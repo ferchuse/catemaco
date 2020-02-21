@@ -41,7 +41,7 @@
 			
 			
 			// ESC t 0x02
-			$texto.="\x1bt2";
+			// $texto.="\x1bt2";
 			$texto.="    ENLACES DE TRANSPORTE TERRESTRE".chr(10).chr(13);
 			$texto.="       7 DE ENERO, S.A. DE C.V.".chr(10).chr(13).chr(10).chr(13);
 			$texto.="     TERMINAL EN MEXICO D.F. METRO".chr(10).chr(13); 

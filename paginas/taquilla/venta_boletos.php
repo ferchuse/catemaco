@@ -168,7 +168,7 @@
 												<div class="row">
 													<div class="col-12">
 														<button class="btn btn-lg btn-success float-right" disabled>
-															<i class="fas fa-check"></i> Finalizar Venta
+															<i class="fas fa-check"></i> Vender
 														</button>
 														<button class="btn mx-2 btn-lg btn-danger float-right" id="nueva_venta" type="button">
 															<i class="fas fa-redo"></i> Reset

@@ -40,7 +40,7 @@
 		
 		$respuesta.=   "\x1b"."@";
 		$respuesta.= "\x1b"."E".chr(1); // Bold
-		$respuesta.= "!16"; //Font BIG
+		$respuesta.= "!"; //Font BIG
 		$respuesta.=   "$empresa \n";
 		$respuesta.=   "PAGO DE TAQUILLA \n";
 		

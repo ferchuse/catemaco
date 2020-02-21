@@ -38,7 +38,7 @@
 	<table class="table table-bordered table-condensed">
 		<thead>
 			<tr>
-				<th></th>
+				<th hidden ></th>
 				<th>Folio Boleto</th>
 				<th>Num Asiento</th>
 				<th>Nombre Pasajero</th>
@@ -57,7 +57,7 @@
 					
 				?>
 				<tr>
-					<td>
+					<td hidden >
 						<?php if($fila["estatus_boletos"] != 'Cancelado'){?>
 							
 							<button target="_blank" class="btn btn-info imprimir " title="Imprimir" data-id_registro='<?php echo $filas["id_boletos"]?>'>
@@ -89,10 +89,8 @@
 				</tr>
 				
 				<?php
-					$total_saldo_unidades+= $filas["saldo_unidades"];
-					$total_ingresos+= $ingresos;
-					$total_cargos+= $filas["gasto_administracion"];
-					$total_seguro+= $filas["seguro_derroteros"];
+				$boletos_vendidos++;;
+				$total_guia+= $filas["precio_boletos"];
 					
 				}
 			?>
@@ -107,7 +105,8 @@
 			</tr>
 		</tbody>
 	</table>
-	
+	<input type="" id="boletos_vendidos" value="<?php echo mysqli_num_rows($result)?>">
+	<input type="" id="total_guia" value="<?php echo $total_guia?>">	
 	<?php
 		
 	}
