@@ -22,7 +22,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Guias </title>
+    <title>Venta de Boletos </title>
 		<?php include('../../styles.php')?>
 		<link href="../../css/corrida.less" type="text/css"  rel="stylesheet/less" >
 	</head>
@@ -56,7 +56,8 @@
 								<div class="tab-pane container active" id="boletos">
 									<hr>
 									<div class="row">
-										<div class="col-sm-3">
+										<div class="col-sm-4">
+											<h6>SELECCIONA ASIENTOS</h6>
 											<div class="plane">
 												<ol class="cabin fuselage">
 													<?php 
@@ -90,7 +91,7 @@
 											</div>
 											
 										</div>
-										<div class="col-sm-9">
+										<div class="col-sm-8">
 											<form id="form_boletos" autocomplete="off">
 												<div class="form-row">
 													<div class="form-group col-2"> 
@@ -98,7 +99,7 @@
 														<input name="id_corridas" id="id_corridas" class="form-control" readonly value="<?php echo $_GET["id_corridas"]?>">
 													</div>
 													<div class="form-group col-2"> 
-														<label>Num Económico	</label>
+														<label>Num Eco	</label>
 														<input name="num_eco" class="form-control" readonly value="<?php echo $_GET["num_eco"]?>">
 													</div>
 													<div class="col-2 mt-4">
@@ -154,59 +155,60 @@
 									<div class="card">
 										<div class="card-header">
 											<h3 >Paquetes</h3>
+										</div>
+										<div class="card-body">
+											<div class="form-group">
+												<label>Tipo de Paquete</label>
+												<select name="paquetes[tipo_paquete][]" class="form-control">
+													<option value="">Elige</option>
+													<option value="Chico">Chico</option>
+													<option value="Mediano">Mediano</option>
+													<option value="Grande">Grande</option>
+												</select>
 											</div>
-											<div class="card-body">
-												<div class="form-group">
-													<label>Tipo de Paquete</label>
-													<select name="paquetes[tipo_paquete][]" class="form-control">
-														<option value="">Elige</option>
-														<option value="Chico">Chico</option>
-														<option value="Mediano">Mediano</option>
-														<option value="Grande">Grande</option>
-													</select>
-												</div>
-												<div class="form-group">
-													<label>Destinatario</label>
-													<input name="paquetes[destinatario][]" class="form-control">
-												</div>
-												<div class="form-group">
-													<label>Precio</label>
-													<input name="paquetes[precio][]" class="form-control">
-												</div>
+											<div class="form-group">
+												<label>Destinatario</label>
+												<input name="paquetes[destinatario][]" class="form-control">
+											</div>
+											<div class="form-group">
+												<label>Precio</label>
+												<input name="paquetes[precio][]" class="form-control">
 											</div>
 										</div>
 									</div>
-								</div><!-- /.tab-content-->
-							</div><!-- /.card-body-->
-						</div><!-- /.card -->
-					</div><!-- /.container-fluid -->
-					
-					
-					<!-- Sticky Footer -->
-					<footer class="sticky-footer">
-						<div class="container my-auto ">
-							<div class="copyright text-center my-auto">
-								<span class="d-print-none">Copyright © Glifo Media 2018</span>
-							</div>
+								</div>
+							</div><!-- /.tab-content-->
+						</div><!-- /.card-body-->
+					</div><!-- /.card -->
+				</div><!-- /.container-fluid -->
+				
+				
+				<!-- Sticky Footer -->
+				<footer class="sticky-footer">
+					<div class="container my-auto ">
+						<div class="copyright text-center my-auto">
+							<span class="d-print-none">Copyright © Glifo Media 2020</span>
 						</div>
-					</footer>
-				</div> 
-				<!-- /.content-wrapper -->
-			</div>
-			<!-- /#wrapper -->
-			
-			<!-- Scroll to Top Button-->
-			<a class="scroll-to-top rounded d-print-none" href="#page-top">
-				<i class="fas fa-angle-up"></i>
-			</a>
-			
-			<div class="d-print-block p-2" hidden id="ticket">
-			</div>
-			<?php include("../../scripts.php")?>
-			<?php include("forms/form_corrida.php");?>
-			<?php include("forms/form_boletos.php");?>
-			<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js" ></script>
-			<script src="js/boletos.js"></script>
-			
-		</body>
-	</html>																												
+					</div>
+				</footer>
+			</div> 
+			<!-- /.content-wrapper -->
+		</div>
+		<!-- /#wrapper -->
+		
+		<!-- Scroll to Top Button-->
+		<a class="scroll-to-top rounded d-print-none" href="#page-top">
+			<i class="fas fa-angle-up"></i>
+		</a>
+		
+		<div class="d-print-block p-2" hidden id="ticket">
+		</div>
+		<?php include("../../scripts.php")?>
+		<?php include("forms/form_corrida.php");?>
+		<?php include("forms/form_boletos.php");?>
+		<script src="../../plugins/pos_print/websocket-printer.js" > </script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js" ></script>
+		<script src="js/boletos.js?v=<?= date("Y-m-d-H-i-s")?>"></script>
+		
+	</body>
+</html>																												

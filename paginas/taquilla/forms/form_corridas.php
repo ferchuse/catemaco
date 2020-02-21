@@ -22,11 +22,11 @@
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label for="fecha_abonogeneral">Fecha:</label>
+							<label for="fecha_abonogeneral">Fecha de Salida:</label>
 							<input type="date" class="form-control" value="<?php echo date("Y-m-d");?>" id="fecha_corridas" name="fecha_corridas" required>
 						</div>
 						<div class="form-group col-md-6">
-							<label for="fecha_abonogeneral">Hora:</label>
+							<label for="fecha_abonogeneral">Hora de Salida:</label>
 								<input type="time" class="form-control" value="<?php echo date("H:i:s");?>" id="hora_corridas" name="hora_corridas" required>
 						</div>
 					</div>
@@ -44,11 +44,6 @@
 						<div class="form-group col-md-6">
 							<label for="fecha_abonogeneral">Num Eco:</label>
 							<input type="number" class="form-control"  id="num_eco" name="num_eco" required>
-							<input type="number" hidden class="form-control"  id="id_unidades" name="id_unidades" required>
-						</div>
-						<div class="form-group col-md-6">
-							<label for="fecha_abonogeneral">Asientos:</label>
-							<input type="number" class="form-control"  id="asientos" name="asientos" required readOnly>
 						</div>
 					</div>
 					

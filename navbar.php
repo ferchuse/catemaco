@@ -23,7 +23,7 @@
 
 <nav class="navbar navbar-expand navbar-dark bg-dark static-top d-print-none justify-content-between">
 	
-	<a class="navbar-brand mr-1" href="index.html">BRUJAAZ <?php //echo (explode("/", $_SERVER["SCRIPT_NAME"])[3])?></a>
+	<a class="navbar-brand mr-1" href="index.html"><?php //echo (explode("/", $_SERVER["SCRIPT_NAME"])[3])?></a>
 	
 	<button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
 		<i class="fas fa-bars"></i>

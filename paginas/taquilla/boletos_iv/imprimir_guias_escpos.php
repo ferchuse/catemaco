@@ -45,7 +45,7 @@
 		
 		$respuesta ="";
 		
-		$empresa = "GRUPO SAUCES";
+		$empresa = "";
 		
 		$respuesta.=   "\x1b"."@";
 		$respuesta.= "\x1b"."E".chr(1); // Bold
@@ -85,7 +85,7 @@
 			
 			$respuesta.=  $fila["cantidad"]."\x09";
 			$respuesta.=  $fila["destino"]."\x09"."\x09";
-			$respuesta.="$". $fila["precio_boletos"]."\x09"."\x09";
+			$respuesta.="$". $fila["precio_boletos"]."\x09   ";
 			$respuesta.= "$" .	number_format($importe,0);
 			
 			$respuesta.= "\x1b"."d".chr(1). "\n"; // Blank line
@@ -106,67 +106,7 @@
 	?>  
 	
 	
-	<div class="row ml-3">
-		
-		
-		<div class="col-12">
-			<h4 class="text-center">GUÍA</h4>
-			<h4 >Corrida: <?= $guias[0]["id_corridas"]?></h4>
-			<h4 >Fecha:  <?= $guias[0]["fecha_corridas"]?></h4>
-			<h4 >Num Eco: <?= $guias[0]["num_eco"]?></h4>
-			<table class="table table-bordered table-condensed">
-				<thead>
-					<tr>
-						<th>Cant</th>
-						<th>Destino</th>
-						<th>Precio </th>
-						<th>Importe </th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php 
-						$total_guia = 0;
-						if(!$result_guia){
-							echo "<pre>".mysqli_error($result_guia)."</pre>";
-							
-						}
-						// echo "<pre>".$consulta_guia."</pre>";
-						
-						foreach($guias AS $i =>$fila){
-							$importe= $fila["cantidad"] * $fila["precio_boletos"];
-							$total_guia+= $importe;
-							
-						?>
-						<tr>
-							
-							<td><?php echo $fila["cantidad"]?></td>
-							<td><?php echo $fila["destino"]?></td>
-							<td><?php echo $fila["precio_boletos"]?></td>
-							<td class="text-right"><?php echo number_format($importe, 2);?></td>
-							
-							
-						</tr>
-						
-						<?php
-							
-							
-						}
-					?>
-					
-				</tbody>
-				<tfoot>
-					<tr >
-						<td colspan="3"> TOTAL</td>
-						
-						<td class="text-right"><?php echo number_format($total_guia,2)?></td>
-						
-					</tr>
-				</tfoot>
-			</table>
-			
-			
-		</div>
-	</div>
+
 	
 	<?php
 		

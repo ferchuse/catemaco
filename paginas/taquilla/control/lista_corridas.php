@@ -4,7 +4,6 @@
 		die("<div class='alert alert-danger'>Tu Sesión ha caducado, recarga la página.</div>");
 	}
 	include('../../../conexi.php');
-	include('../../../funciones/generar_select.php');
 	include('../../../funciones/console_log.php');
 	$link = Conectarse();
 	$filas = array();
@@ -21,7 +20,7 @@
 	FROM origenes ) AS t_destinos 
 	USING(id_destinos)
 	LEFT JOIN usuarios USING(id_usuarios)
-	WHERE corridas.id_administrador = {$_SESSION["id_administrador"]}
+	WHERE corridas.id_administrador = {$_COOKIE["id_administrador"]}
 	";
   
 	
@@ -65,8 +64,8 @@
 						<button class="btn btn-danger cancelar " title="Cancelar" data-id_registro='<?php echo $filas["id_corridas"]?>'>
 							<i class="fas fa-times"></i>
 						</button>	
-						<a class="btn btn-success " title="Boletos" href='venta_boletos.php?id_corridas=<?php echo $filas["id_corridas"]."&num_eco=".$filas["num_eco"]."&asientos=".$filas["asientos"]?>'>
-							<i class="fas fa-ticket-alt"></i>
+						<a class="btn btn-success " title="Boletos" href='boletos_numerados.php?id_corridas=<?php echo $filas["id_corridas"]."&num_eco=".$filas["num_eco"]."&asientos=".$filas["asientos"]?>'>
+							<i class="fas fa-ticket-alt"></i> Venta de Boletos
 						</button>
 						<?php
 							

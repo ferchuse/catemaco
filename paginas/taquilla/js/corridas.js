@@ -12,69 +12,18 @@ $(document).ready(function(){
 	});
 	
 	
-	$('#form_edicion').on('keypress', function (event){
-		if(event.which == 13){
-			return false;
-		}
-	});
+	// $('#form_edicion').on('keypress', function (event){
+		// if(event.which == 13){
+			// return false;
+		// }
+	// });
 	
 	
-	$('#num_eco').on('keyup', buscarUnidad);
-	$('#num_eco').on('blur', buscarUnidad);
+	// $('#num_eco').on('keyup', buscarUnidad);
+	// $('#num_eco').on('blur', buscarUnidad);
 	
 	
-	function buscarUnidad(event){
-		
-		console.log("event ", event)
-		var num_eco = $(this).val();
-		if(num_eco == ''){
-			alertify.error("Ingrese un Num Eco");
-			return false;
-		}
-		console.log("Buscar Unidad", event.which )
-		
-		if(event.type == 'blur'){
-			cargarUnidad(num_eco);
-			return false;
-		}
-		if(event.which == 13){
-			cargarUnidad(num_eco);
-			event.preventDefault();
-		}
-	}
-	
-	function cargarUnidad(num_eco){
-		$("#num_eco").toggleClass("cargando");
-		$.ajax({
-			url: '../../funciones/fila_select.php',
-			method: 'GET',
-			dataType: 'JSON',
-			data: {
-				tabla: "unidades",
-				id_campo: "num_eco",
-				id_valor:num_eco
-			}
-			}).done(function(respuesta){
-			console.log("buscarUnidad", respuesta) 
-			if(respuesta.count_rows == 0){
-				alertify.error("No encontrado")
-			}
-			else{
-				$.each(respuesta.data, function(name, value){
-					
-					$("#"+name).val(value);
-					
-				})
-				
-				
-			}
-			}).always(function(){
-			
-			$("#num_eco").toggleClass("cargando");
-		});
-		
-		
-	}
+
 	
 	//==========GUARDAR============
 	$('#form_edicion').on('submit',function(event){
@@ -117,7 +66,7 @@ $(document).ready(function(){
 function listarRegistros(){
 	console.log("listarRegistros()")
 	$.ajax({
-		url: 'control/lista_corridas.php',
+		url: 'boletos_iv/lista_corridas.php',
 		method: 'POST',
 		data:{}
 	}).done(

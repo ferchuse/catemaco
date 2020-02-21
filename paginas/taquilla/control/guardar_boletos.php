@@ -15,7 +15,7 @@
 		id_corridas = '{$_POST['id_corridas']}' ,
 		num_asiento = {$_POST['num_asiento'][$i]},
 		nombre_pasajero = '{$_POST["nombre_pasajero"][$i]}',
-		tipo_boleto = '{$_POST["tipo_boleto"][$i]}',
+	
 		id_precio = '{$_POST["id_precio"][$i]}',
 		precio_boletos = '{$_POST["precio"][$i]}',
 		id_usuarios = '{$_SESSION["id_usuarios"]}',

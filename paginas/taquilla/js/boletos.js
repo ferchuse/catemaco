@@ -1,4 +1,5 @@
 
+var printService = new WebSocketPrinter();
 
 var  $select_boletos = "";
 
@@ -55,6 +56,13 @@ function listaBoletos(){
 		
 		}).done(function (respuesta){
 		$("#lista_boletos").html(respuesta);
+		
+		$("#imprimir_guia").on("click", finalizarCorrida);
+		$(".imprimir").click(function(){
+			
+			imprimirTicket([$(this).data("id_registro")]);
+			
+		});
 	});
 	
 }
@@ -216,14 +224,17 @@ function imprimirTicket(boletos){
 	icono.toggleClass("fa-print fa-spinner fa-spin");
 	
 	$.ajax({
-		url: "impresion/imprimir_boletos.php" ,
+		url: "impresion/imprimir_boletos_esc.php" ,
 		data:{
 			boletos : boletos
 		}
 		}).done(function (respuesta){
 		
 		$("#ticket").html(respuesta); 
-		window.print();
+		printService.submit({
+			'type': 'LABEL',
+			'raw_content': respuesta
+		});
 		}).always(function(){
 		
 		boton.prop("disabled", false);
@@ -232,4 +243,53 @@ function imprimirTicket(boletos){
 	});
 }
 
+
+function finalizarCorrida(){
+	console.log("finalizarCorrida()");
+	$("#imprimir_guia").prop("disabled", true);
+	
+	$.ajax({
+		"url": "boletos_iv/finalizar_corrida.php",
+		"method": "post",
+		"data": {
+			"id_corridas": $("#id_corridas").val(),
+			"boletos_vendidos": $("#boletos_vendidos").val(),
+			"total_guia": $("#total_guia").val()
+		}
+		}).done(function(){
+		
+		// listarCorridas();
+		//ir a tab corridas
+		
+		// $("#pill_corridas").tab("show");
+		
+		imprimirGuia($("#id_corridas").val())
+		
+		}).fail(function(){
+		
+		
+		}).always(function(){
+		$("#imprimir_guia").prop("disabled", false);
+		
+	});
+}
+
+function imprimirGuia(id_corridas){
+	console.log("imprimirGuia()", id_corridas);
+	
+	$.ajax({
+		"url": "boletos_iv/imprimir_guias_escpos.php",
+		"data": {
+			"id_corridas": id_corridas
+		}
+		}).done(function(respuesta){
+		printService.submit({
+			'type': 'LABEL',
+			'raw_content': respuesta
+		});
+		
+		window.location.href="corridas.php":
+		
+	});
+}
 

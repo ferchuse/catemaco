@@ -13,6 +13,7 @@
 	
 	
 	$consulta = "SELECT * FROM boletos 
+	LEFT JOIN precios_boletos USING(id_precio)
 	
 	WHERE id_corridas = {$_GET["id_corridas"]}
 	ORDER BY id_boletos DESC
@@ -31,6 +32,9 @@
 	<pre hidden>
 		<?php echo $consulta;?>
 	</pre>
+	<button class="btn btn-info float-right" id="imprimir_guia">
+		<i class="fas fa-print"></i> Imprimir Guia y Finalizar 
+	</button>
 	<table class="table table-bordered table-condensed">
 		<thead>
 			<tr>
@@ -40,6 +44,8 @@
 				<th>Nombre Pasajero</th>
 				<th>Tipo de Boleto</th>
 				<th>Precio</th>
+				<th hidden>Origen </th>
+				<th hidden>Destino</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -54,7 +60,10 @@
 					<td>
 						<?php if($fila["estatus_boletos"] != 'Cancelado'){?>
 							
-							<a target="_blank" class="btn btn-info imprimir " title="Imprimir" href="impresion/imprimir_boletos.php?boletos[]=<?php echo $filas["id_boletos"]?>" data-id_registro='<?php echo $filas["id_corridas"]?>'>
+							<button target="_blank" class="btn btn-info imprimir " title="Imprimir" data-id_registro='<?php echo $filas["id_boletos"]?>'>
+								<i class="fas fa-print"></i>
+							</button>	
+							<a target="_blank" class="btn btn-info " title="Imprimir" href="impresion/imprimir_boletos.php?boletos[]=<?php echo $filas["id_boletos"]?>" data-id_registro='<?php echo $filas["id_corridas"]?>'>
 								<i class="fas fa-print"></i>
 							</a>	
 							
@@ -66,11 +75,11 @@
 					<td><?php echo $filas["id_boletos"]?></td>
 					<td><?php echo $filas["num_asiento"]?></td>
 					<td><?php echo $filas["nombre_pasajero"];?></td>
-					<td><?php echo $filas["tipo_boleto"];?></td>
+					<td><?php echo $filas["tipo_precio"];?></td>
 					<td>$<?php echo number_format($filas["precio_boletos"])?></td>
-					<td><?php echo $filas["nombre_origenes"]?></td>
-					<td><?php echo $filas["nombre_destinos"]?></td>
-					<td><?php
+					<td hidden><?php echo $filas["nombre_origenes"]?></td>
+					<td hidden><?php echo $filas["nombre_destinos"]?></td>
+					<td hidden><?php
 						echo $filas["estatus_corridas"]."<br>";
 						if($filas["estatus_corridas"] == "Cancelado"){
 							echo $fila["datos_cancelacion"];

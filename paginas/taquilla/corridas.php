@@ -40,7 +40,7 @@
 					</ol>
 					
 						<button type="button" class="btn btn-success mb-2 nuevo">
-							<i class="fas fa-plus"></i> Nuevo
+							<i class="fas fa-plus"></i> Nueva
 						</button>
 						<button type="button" hidden id="imprimir_ticket" class="btn btn-outline-success mb-2">
 							<i class="fas fa-print"></i> Imprimir
