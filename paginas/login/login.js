@@ -18,7 +18,7 @@ $(document).ready(function(){
 					
 				}
 				else{
-					location.href="/paginas/recaudacion/estado_cuenta.php";
+						location.href="../principal/index.php";
 				}
 				
 				}else{ 
