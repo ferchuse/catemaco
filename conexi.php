@@ -6,16 +6,16 @@
 		$host="localhost";
 		
 		if($_SERVER["SERVER_NAME"] == "localhost"  || $_SERVER["SERVER_NAME"] == "192.168.1.88"){
-			$db="brujaaz";
+			$db="catemaco";
 			$usuario="sistemas";
 			$pass="Glifom3dia";
 		}
 		else{
 			
 			
-			$db="brujaaz_brujaaz";
-			$usuario="brujaaz_sistemas";
-			$pass="Glifom3dia";
+			$db="microsit_catemaco";
+			$usuario="microsit_practic";
+			$pass="UAEH@2018";
 			
 			
 		}
