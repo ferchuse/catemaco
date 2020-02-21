@@ -18,17 +18,10 @@
 							<input type="number" class="form-control" name="num_eco" required autofocus="true">
 						</div>
 					</div>
-					<div class="form-row">
-						<div class="form-group col-md-6">
-							<label for="fecha_abonogeneral">Empresa:</label>
-							<?php 
-								echo generar_select($link, "empresas", "id_empresas", "nombre_empresas", false, false, true);
-							?>
-						</div>
-					</div>
+					<input type="hidden" name="id_empresas" value="1">
 					
 					
-					<div class="form-row">
+					<div class="form-row" hidden>
 						<div class="form-group col-6">
 							<label for="taquilla">Taquilla:</label>
 							<input class="form-control" name="taquilla" value="Indios Verdes" readonly>
@@ -36,15 +29,15 @@
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label for="fecha_corridas">Fecha:</label>
-							<input type="date" class="form-control" value="<?php echo date("Y-m-d");?>" id="fecha_corridas" name="fecha_corridas" required readonly>
+							<label for="fecha_corridas">Fecha de Salida:</label>
+							<input type="date" class="form-control" value="<?php echo date("Y-m-d");?>" id="fecha_corridas" name="fecha_corridas" required >
 						</div>
 						<div class="form-group col-md-6">
-							<label for="hora_corridas">Hora:</label>
-							<input type="time" class="form-control" value="<?php echo date("H:i:s");?>" id="hora_corridas" name="hora_corridas" required readonly>
+							<label for="hora_corridas">Hora de Salida:</label>
+							<input type="time" class="form-control" value="<?php echo date("H:i:s");?>" id="hora_corridas" name="hora_corridas" required >
 						</div>
 					</div>
-					<div class="form-row">
+					<div class="form-row " hidden>
 						<div class="form-group col-md-6">
 							<label for="origen">Origen:</label>
 							<input class="form-control" name="origen" value="Indios Verdes" readonly>

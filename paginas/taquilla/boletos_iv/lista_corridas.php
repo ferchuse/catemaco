@@ -46,7 +46,8 @@
 	
 	$consulta = "SELECT * FROM corridas 
 	
-	LEFT JOIN empresas USING(id_empresas)
+	LEFT JOIN unidades USING(num_eco)
+	LEFT JOIN empresas ON corridas.id_empresas = empresas.id_empresas
 	LEFT JOIN origenes USING(id_origenes)
 	LEFT JOIN (
 	SELECT id_origenes AS id_destinos, 
@@ -130,7 +131,11 @@
 								case "Activa":
 								echo "<span class='badge badge-success'>".$filas["estatus_corridas"]."</span>";
 							?>
-							<button class="btn btn-success  btn-sm btn_venta" title="Venta de Boletos" data-id_corridas="<?php echo $filas["id_corridas"]?>" data-num_eco="<?php echo $filas["num_eco"]?>" >
+							<button class="btn btn-success  btn-sm btn_venta" title="Venta de Boletos" 
+								data-id_corridas="<?php echo $filas["id_corridas"]?>"
+								data-num_eco="<?php echo $filas["num_eco"]?>"
+								data-asientos="<?php echo $filas["asientos"]?>"
+								>
 								<i class="fas fa-ticket-alt"></i> Venta de Boletos
 							</button>
 							

@@ -11,7 +11,7 @@ function onLoad(){
 	listarCorridas();
 	// listaBoletos();
 	
-
+	
 	$("#form_filtros").on("submit", filtrarRegistros);
 	
 	$("#btn_test").on("click", imprimirPrueba);
@@ -29,6 +29,8 @@ function onLoad(){
 	
 	
 	
+	$("#lista_asientos").on("change", ".asiento", selectAsiento);
+	
 	$("#lista_boletos").on("click", ".cancelar", confirmaCancelacion);
 	$("#lista_boletos").on("click", ".imprimir", function(){
 		imprimirESCPOS($(this).data("id_registro"))
@@ -43,7 +45,7 @@ function onLoad(){
 	});
 	$("#lista_corridas").on("change", ".select", sumarCorridas);
 	
-		$("#lista_corridas").on("change", "#check_todos", selectTodos);
+	$("#lista_corridas").on("change", "#check_todos", selectTodos);
 	
 	$(".nuevo").on('click',function(){
 		console.log("Nuevo")
@@ -60,6 +62,191 @@ function onLoad(){
 	$(".tipo_boleto").change(eligeBoleto );
 	$(".cantidad").change(calculaImporte );
 	
+	
+	// Mostrar ASientos 
+	$.ajax({
+		"url" : "control/precios_boletos_json.php",
+		"dataType" : "JSON"
+		
+		
+		}).done(function (respuesta){
+		$select_boletos+= `<select class="tipo_boleto form-control" name="id_precio[]" required >`;
+		$select_boletos+= `<option value="" >Elige...</option>`;
+		
+		$.each(respuesta.precios_boletos, function(index, item){
+			$select_boletos+=`<option data-precio="${item.precio} " value="${item.id_precio}"> 
+			${item.nombre_origenes}-${item.nombre_destinos} 
+			${item.tipo_precio}-$ ${item.precio} 
+			
+			</option>`
+		});
+		
+		$select_boletos+= `</select>`;
+		
+		console.log("select_boletos", $select_boletos)
+		
+		
+	});
+	
+	desactivaAsientosOcupados();
+	
+	
+	$("#form_boletos").submit(guardarBoletos);
+	
+	
+	
+}
+
+
+function selectAsiento(evt){
+	
+	console.log("selectAsiento()", evt);
+	
+	if($(this).prop("checked"))
+	{
+		$("#form_boletos :submit").prop("disabled", false)
+		// $("#num_asiento").val(evt.target.id)
+		agregarBoleto(evt.target.id);
+		
+		// $("#modal_boleto").modal("show")
+	}
+	else
+	{
+		quitarBoleto(evt.target.id);
+	}
+	
+}
+
+function desactivaAsientosOcupados(){
+	console.log(" desactivaAsientosOcupados()")
+	
+	$.ajax({
+		url: "control/asientos_ocupados.php" ,
+		dataType: "JSON" ,
+		data:{
+			id_corridas : $("#id_corridas").val()
+		}
+		}).done(function (respuesta){
+		
+		$.each(respuesta.asientos_ocupados, function(index, num_asiento){
+			$("#"+ num_asiento).prop("disabled", true);
+		})
+		}).always(function(){
+		
+		// boton.prop("disabled", false);
+		// icono.toggleClass("fa-print fa-spinner fa-spin");
+		
+	});
+}
+
+function guardarBoletos(event){
+	event.preventDefault();
+	let form = $(this);
+	let boton = form.find(':submit');
+	let icono = boton.find('.fa');
+	let datos = form.serialize();
+	
+	datos+="&id_usuarios="+ $("#id_usuarios").val();
+	
+	boton.prop('disabled',true);
+	icono.toggleClass('fa-save fa-spinner fa-pulse ');
+	$.ajax({
+		url: 'control/guardar_boletos.php',
+		method: 'POST',
+		dataType: 'JSON',
+		data: datos
+		}).done(function(respuesta){
+		if(respuesta.result == 'success'){
+			
+			alertify.success('Se ha guardado correctamente');
+			desactivaAsientosOcupados();
+			$("#nueva_venta").click();
+			
+			listaBoletos();
+			imprimirTicket(respuesta.boletos);
+		}
+		else{
+			alertify.error(respuesta.mensaje);
+		}
+		}).always(function(){
+		boton.prop('disabled',false);
+		icono.toggleClass('fa-save fa-spinner fa-pulse ');
+	});
+}
+
+
+function quitarBoleto(num_asiento){
+	console.log("quitarBoleto", num_asiento);
+	
+	$("input[value='"+num_asiento+"']").closest("tr").remove();
+	sumarImportes();
+	
+	if($("#resumen_boletos tr" ).length == 0){
+		$("#form_boletos :submit").prop("disabled", true)
+		
+	}
+}
+
+function apartaBoletos(){
+	console.log("apartaBoletos");
+	
+	$("input[type=checkbox]:checked").prop("disabled", true);
+}
+
+
+function agregarBoleto(num_asiento){
+	
+	console.log("num_asiento", num_asiento);
+	console.log("select_boletos", $select_boletos);
+	
+	var boleto_html = 
+	`<tr>
+	<td class="w-10"><input class="form-control num_asiento" type="number" readonly name="num_asiento[]"  
+	value='${num_asiento}'>
+	</td>
+	<td>
+	${$select_boletos}
+	</td>
+	<td class="w-25"><input name="nombre_pasajero[]" required class="form-control nombre_pasajero" ></td>
+	<td><input name="precio[]" class="precio form-control" readonly></td>
+	<td>
+	<button class="btn btn-danger quitar_boleto" type="button">
+	<i class="fas fa-times"></i>
+	</button>
+	</td>
+	
+	</tr>`;
+	$("#resumen_boletos").append(boleto_html);
+	
+	$(".quitar_boleto").click(function( evt){
+		num_asiento = $(this).closest("tr").find(".num_asiento").val();
+		$("#"+num_asiento).prop("checked", false);
+		quitarBoleto(num_asiento);
+	});
+	$(".nombre_pasajero").keyup(function( evt){
+		$(".nombre_pasajero").val($(this).val())
+	});
+	
+	$(".tipo_boleto").change(function( evt){
+		console.log("cambiar_tipo_boleto", evt)
+		
+		$(this).closest("tr").find(".precio").val($(this).find(":selected").data("precio"));
+		
+		sumarImportes();
+	});
+	
+	sumarImportes();
+}
+
+function sumarImportes(){
+	console.log("sumarImportes()")
+	var importe_total = 0;
+	$(".precio").each(function (index, item ){
+		
+		importe_total+= Number($(item).val());
+	});
+	
+	$("#importe_total").val(importe_total)
 	
 }
 
@@ -82,12 +269,12 @@ function quienRecibe(evt){
 	
 	
 	alertify.prompt()
-  .setting({
-    'reverseButtons': true,
+	.setting({
+		'reverseButtons': true,
 		'labels' :{ok:"Aceptar", cancel:'Cancelar'},
-    'title': "Quien Recibe" ,
-    'message': "¿Quien Recibe el Pago?" ,
-    'onok': guardarPago
+		'title': "Quien Recibe" ,
+		'message': "¿Quien Recibe el Pago?" ,
+		'onok': guardarPago
 	}).show();
 	
 	
@@ -103,13 +290,13 @@ function confirmaCancelarCorrida(event){
 	var fila = boton.closest('tr');
 	
 	alertify.prompt()
-  .setting({
-    'reverseButtons': true,
+	.setting({
+		'reverseButtons': true,
 		'labels' :{ok:"SI", cancel:'NO'},
 		'title': "Cancelar Guia" ,
-    'message': "Motivo de Cancelación" ,
-    'onok':cancelarCorrida,
-    'oncancel': function(){
+		'message': "Motivo de Cancelación" ,
+		'onok':cancelarCorrida,
+		'oncancel': function(){
 			boton.prop('disabled', false);
 			
 		}
@@ -163,13 +350,13 @@ function confirmaCancelacion(event){
 	var fila = boton.closest('tr');
 	
 	alertify.prompt()
-  .setting({
-    'reverseButtons': true,
+	.setting({
+		'reverseButtons': true,
 		'labels' :{ok:"SI", cancel:'NO'},
 		'title': "Cancelar Boleto" ,
-    'message': "Motivo de Cancelación" ,
-    'onok':cancelarBoleto,
-    'oncancel': function(){
+		'message': "Motivo de Cancelación" ,
+		'onok':cancelarBoleto,
+		'oncancel': function(){
 			boton.prop('disabled', false);
 			
 		}
@@ -260,6 +447,47 @@ function sumarCorridas(){
 	
 }
 
+
+function renderAsientos(){
+	
+	let html_asientos =  ``; 
+	let $asientos = $("#asientos").val(); 
+	
+	let $filas_asientos = Math.ceil($asientos /4);
+	
+	$num_asiento = 1;
+	
+	for($i = 1; $i <= $filas_asientos; $i++){
+		html_asientos+=`
+		<li class="fila_asientos">
+		<ol class="seats" type="1">`;
+		
+		
+		for($j = 1; $j<= 4; $j++){ 
+			html_asientos+=`
+			<li class="seat">
+			<input class='asiento' type="checkbox" id="${$num_asiento}" />
+			<label for="${$num_asiento}" >
+			${$num_asiento} 
+			</label>
+			</li>`;
+			
+			$num_asiento++;
+			if($num_asiento > $asientos){break;}
+		}
+		html_asientos+=`
+		</ol>
+		</li>`;
+		
+	}
+	
+	$("#lista_asientos").html(html_asientos);
+	
+	
+	desactivaAsientosOcupados();
+}
+
+
 function finalizarCorrida(){
 	console.log("finalizarCorrida()");
 	$("#imprimir_guia").prop("disabled", true);
@@ -316,9 +544,11 @@ function abrirTaquilla(event){
 	
 	$("#id_corridas").val($(this).data("id_corridas"));
 	$("#num_eco").val($(this).data("num_eco"));
+	$("#asientos").val($(this).data("asientos"));
+	
 	$("#pill_venta").tab("show");
 	listaBoletos();
-	
+	renderAsientos();
 }
 function guardarCorrida(event){
 	console.log("guardarCorrida()");
@@ -359,15 +589,18 @@ function guardarCorrida(event){
 function listaBoletos(){
 	console.log("listaBoletos");
 	$.ajax({
-		"url" : "boletos_iv/lista_boletos.php",
+		"url" : "control/lista_boletos.php",
 		"data" :{"id_corridas": $("#id_corridas").val()}
 		
 		}).done(function (respuesta){
 		$("#lista_boletos").html(respuesta);
 		
 		$("#imprimir_guia").on("click", finalizarCorrida);
-		
-		
+		$(".imprimir").click(function(){
+			
+			imprimirTicket([$(this).data("id_registro")]);
+			
+		});
 	});
 	
 }
@@ -384,7 +617,7 @@ function listarCorridas(){
 	$.ajax({
 		url: 'boletos_iv/lista_corridas.php',
 		data: $("#form_filtros").serialize()
-	}).done(function(respuesta){
+		}).done(function(respuesta){
 		$("#lista_corridas").html(respuesta)
 		
 		}).always(function(){
@@ -404,8 +637,6 @@ function nueva_venta(){
 	// $("#form_boletos")[0].reset();
 	
 }
-
-$("#form_boletos").submit(guardarBoletos);
 
 
 function guardarPago(evt, recibe){
@@ -443,48 +674,7 @@ function guardarPago(evt, recibe){
 	});
 }
 
-function guardarBoletos(event){
-	event.preventDefault();
-	let form = $(this);
-	let boton = form.find(':submit');
-	let icono = boton.find('.fa');
-	
-	
-	boton.prop('disabled',true);
-	icono.toggleClass('fa-save fa-spinner fa-pulse ');
-	
-	$.ajax({
-		url: 'boletos_iv/guardar_boletos.php',
-		method: 'POST',
-		dataType: 'JSON',
-		data: {
-			"id_corridas" : $("#id_corridas").val(),
-			"id_precio" : $("#id_precio").val(),
-			"destino" : $("#id_precio").find(":selected").data("destino"),
-			"cantidad" : $("#cantidad").val(),
-			"precio" : $("#precio").val(),
-			"id_usuarios" : $("#id_usuarios").val()
-			
-		}
-		}).done(function(respuesta){
-		if(respuesta.result == 'success'){
-			
-			alertify.success('Se ha guardado correctamente');
-			// desactivaAsientosOcupados();
-			$("#form_boletos")[0].reset();
-			
-			
-			listaBoletos();
-			imprimirESCPOS(respuesta.boletos);
-		}
-		else{
-			alertify.error(respuesta.mensaje);
-		}
-		}).always(function(){
-		boton.prop('disabled',false);
-		icono.toggleClass('fa-save fa-spinner fa-pulse ');
-	});
-}
+
 
 function quitarBoleto(num_asiento){
 	console.log("quitarBoleto", num_asiento);
@@ -549,20 +739,9 @@ function agregarBoleto(num_asiento){
 	sumarImportes();
 }
 
-function sumarImportes(){
-	console.log("sumarImportes()")
-	var importe_total = 0;
-	$(".precio").each(function (index, item ){
-		
-		importe_total+= Number($(item).val());
-	});
-	
-	$("#importe_total").val(importe_total)
-	
-}
 
-function imprimirESCPOS(boletos){
-	console.log("imprimirESCPOS()");
+function imprimirTicket(boletos){
+	console.log("imprimirTicket()");
 	var id_registro = $(this).data("id_registro");
 	// var url = $(this).data("url");
 	var boton = $(this); 
@@ -572,15 +751,13 @@ function imprimirESCPOS(boletos){
 	icono.toggleClass("fa-print fa-spinner fa-spin");
 	
 	$.ajax({
-		url: "boletos_iv/imprimir_escpos.php" ,
+		url: "impresion/imprimir_boletos_catemaco.php" ,
 		data:{
 			boletos : boletos
 		}
 		}).done(function (respuesta){
 		
 		$("#ticket").html(respuesta); 
-		
-		
 		printService.submit({
 			'type': 'LABEL',
 			'raw_content': respuesta
@@ -592,6 +769,10 @@ function imprimirESCPOS(boletos){
 		
 	});
 }
+
+
+
+
 function imprimirPrueba(){
 	console.log("imprimirPago()");
 	
@@ -689,29 +870,3 @@ function buscarUnidad(event){
 }
 
 
-function imprimirTicket(boletos){
-	console.log("imprimirTicket()");
-	var id_registro = $(this).data("id_registro");
-	// var url = $(this).data("url");
-	var boton = $(this); 
-	var icono = boton.find("fas");
-	
-	boton.prop("disabled", true);
-	icono.toggleClass("fa-print fa-spinner fa-spin");
-	
-	$.ajax({
-		url: "boletos_iv/imprimir_boletos.php" ,
-		data:{
-			boletos : boletos
-		}
-		}).done(function (respuesta){
-		
-		$("#ticket").html(respuesta); 
-		window.print();
-		}).always(function(){
-		
-		boton.prop("disabled", false);
-		icono.toggleClass("fa-print fa-spinner fa-spin");
-		
-	});
-}

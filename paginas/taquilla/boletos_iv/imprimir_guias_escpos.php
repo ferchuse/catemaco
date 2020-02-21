@@ -4,8 +4,6 @@
 		die("<div class='alert alert-danger'>Tu Sesión ha caducado, recarga la página.</div>");
 	}
 	include('../../../conexi.php');
-	include('../../../funciones/generar_select.php');
-	include('../../../funciones/console_log.php');
 	$link = Conectarse();
 	$filas = array();
 	$respuesta = array();
