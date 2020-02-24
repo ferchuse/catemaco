@@ -89,8 +89,8 @@
 				</tr>
 				
 				<?php
-				$boletos_vendidos++;;
-				$total_guia+= $filas["precio_boletos"];
+					$boletos_vendidos++;;
+					$total_guia+= $filas["precio_boletos"];
 					
 				}
 			?>
@@ -105,8 +105,16 @@
 			</tr>
 		</tbody>
 	</table>
-	<input type="" id="boletos_vendidos" value="<?php echo mysqli_num_rows($result)?>">
-	<input type="" id="total_guia" value="<?php echo $total_guia?>">	
+	<div class="col-3">
+		<div class="form-group">
+			<label>Boletos Vendidos</label>
+			<input type="" class="form-control" readonly  id="boletos_vendidos" value="<?php echo mysqli_num_rows($result)?>">
+		</div>
+		<Div class="form-group">
+			<label>Total Guia</label>
+			<input type="" class="form-control" readonly   id="total_guia" value="<?php echo $total_guia?>">	
+		</div>
+	</div>
 	<?php
 		
 	}
@@ -117,4 +125,4 @@
 	}
 	
 	
-?>
+	?>		
