@@ -13,9 +13,10 @@
 		else{
 			
 			
-			$db="microsit_catemaco";
-			$usuario="microsit_practic";
-			$pass="UAEH@2018";
+			
+			$db="rhgaazco_catemaco";
+			$usuario="rhgaazco_admin";
+			$pass="C@temaco";
 			
 			
 		}
