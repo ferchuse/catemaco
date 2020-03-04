@@ -138,6 +138,12 @@
 								>
 								<i class="fas fa-ticket-alt"></i> Venta de Boletos
 							</button>
+							<button class="btn btn-info  btn-sm cambiar_unidad" title="Cambiar Unidad" 
+								data-id_registro="<?php echo $filas["id_corridas"]?>"
+								data-num_eco="<?php echo $filas["num_eco"]?>"
+								>
+								<i class="fas fa-exchange-alt"></i> Cambiar Unidad
+							</button>
 							
 							<?php
 								break;

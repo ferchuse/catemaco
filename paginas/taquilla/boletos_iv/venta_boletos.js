@@ -31,17 +31,19 @@ function onLoad(){
 	$("#lista_asientos").on("change", ".asiento", selectAsiento);
 	
 	$("#lista_boletos").on("click", ".cancelar", confirmaCancelacion);
+	
 	$("#lista_boletos").on("click", ".imprimir", function(){
 		imprimirESCPOS($(this).data("id_registro"))
 		
 	});
 	
-	
+	$("#lista_corridas").on("click", ".cambiar_unidad", editarRegistro);
 	$("#lista_corridas").on("click", ".cancelar", confirmaCancelarCorrida);
 	
 	$("#lista_corridas").on("click", ".imprimir", function(){
 		imprimirGuia($(this).data("id_registro"));
 	});
+	
 	$("#lista_corridas").on("change", ".select", sumarCorridas);
 	
 	$("#lista_corridas").on("change", "#check_todos", selectTodos);
@@ -97,6 +99,48 @@ function onLoad(){
 }
 
 
+function editarRegistro() {
+	console.log("editarRegistro")
+	let boton = $(this);
+	let icono = boton.find(".fas");
+	let id_registro = boton.data("id_registro");
+	
+	boton.prop("disabled", true);
+	icono.toggleClass("fa-exchange-alt fa-spinner fa-spin");
+	
+	$.ajax({
+		url: "../../funciones/fila_select.php",
+		
+		dataType: "JSON",
+		data: {
+			tabla: "corridas",
+			id_campo: "id_corridas",
+			id_valor: id_registro
+			
+		}
+		
+		}).done(function (respuesta) {
+		console.log("respuesta", respuesta);
+		if (respuesta.encontrado == 1) {
+			$.each(respuesta.data, function (name, value) {
+				$("#form_corridas input[name=" + name+ "]").val(value);
+				$("#form_corridas select[name=" + name+ "]").val(value);
+			});
+			
+			$("#modal_corridas").modal("show");
+			
+		}
+		}).fail(function (xht, error, errnum) {
+		
+		alertify.error("Error", errnum);
+		}).always(function () {
+		boton.prop("disabled", false);
+		icono.toggleClass("fa-exchange-alt fa-spinner fa-spin");
+		
+	});
+	
+	
+}
 function eligeHoraSalida(evt){
 	
 	console.log("eligeHoraSalida()", evt);
@@ -215,7 +259,12 @@ function agregarBoleto(num_asiento){
 	<td>
 	${$select_boletos}
 	</td>
-	<td class="w-25"><input name="nombre_pasajero[]" required class="form-control nombre_pasajero" ></td>
+	<td class="w-25">
+	<input name="nombre_pasajero[]" required class="form-control nombre_pasajero" >
+	</td>
+	<td class="w-25">
+	<input name="nombre_pasajero[]" required class="form-control nombre_pasajero" >
+	</td>
 	<td><input name="precio[]" class="precio form-control" readonly></td>
 	<td>
 	<button class="btn btn-danger quitar_boleto" type="button">

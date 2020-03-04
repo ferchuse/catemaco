@@ -13,7 +13,7 @@
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="num_eco">Num Eco:</label>
-							<input type="number" class="form-control" name="num_eco" required autofocus="true">
+							<input type="number" class="form-control"  name="num_eco" required autofocus="true">
 						</div>
 				
 						<div class="form-group col-6">
