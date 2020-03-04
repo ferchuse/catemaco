@@ -2,7 +2,6 @@
 	
 	include("funciones/dame_permiso.php");
 	include_once("conexi.php");
-	include_once("funciones/console_log.php");
 	
 	// if(!function_exists("Conectarse")){
 	

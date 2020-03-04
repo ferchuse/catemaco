@@ -30,11 +30,11 @@
 	
 	$insert ="INSERT INTO corridas SET 
 	
-	id_corridas= '{$nuevo_folio}',
+
 	fecha_corridas= '{$_POST['fecha_corridas']}',
 	hora_corridas= CURTIME(),
 	id_unidades = '{$_POST['id_unidades']}',
-	id_taquillas = '{$_POST['id_recaudaciones']}',
+	id_taquilla = '{$_POST['id_taquilla']}',
 	id_usuarios = '{$_POST["id_usuarios"]}',
 	origen = '{$_POST["origen"]}',
 	destino = '{$_POST["destino"]}',

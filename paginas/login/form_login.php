@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 		
-    <title>Inicar Sesión</title>
+    <title>Iniciar Sesión</title>
 		
 		<?php include("../../styles.php")?>
 		

@@ -3,9 +3,9 @@
 	// include("../conexi.php");
 	
 	// $link = Conectarse();
-	 
+	
 	function generar_select($link, $tabla, $llave_primaria, $campo_etiqueta ,$filtro = false, $disabled = false ,$required = false , $id_selected = 0, $data_indice = 0, $name = "", $id = ''  ){
-		$consulta = "SELECT * FROM $tabla WHERE $tabla.id_administrador = {$_SESSION["id_administrador"]} ORDER BY $campo_etiqueta";
+		$consulta = "SELECT * FROM $tabla  ORDER BY $campo_etiqueta";
 		
 		if($name == ""){
 			$name = $llave_primaria;
@@ -14,7 +14,7 @@
 			$id = $llave_primaria;
 		}
 		
-		 
+		
 		$select = "<select data-indice='$data_indice'";
 		
 		$select .= $required ? " required " : " ";
@@ -32,6 +32,11 @@
 		while($fila = mysqli_fetch_assoc($result)){
 			$select.="<option value='".$fila[$llave_primaria]."'";
 			$select.=$fila[$llave_primaria] == $id_selected ? " selected" : "" ;
+			if($tabla = "taquillas"){
+				
+				$select .= " data-hora_salida='{$fila["hora_salida"]}' ";
+			}
+			
 			$select.=" >".$fila[$campo_etiqueta] ."</option>";
 			
 		}

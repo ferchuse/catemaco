@@ -9,9 +9,8 @@ $(document).ready(onLoad);
 function onLoad(){
 	
 	listarCorridas();
-	// listaBoletos();
 	
-	
+	$("#id_taquilla").on("change", eligeHoraSalida);
 	$("#form_filtros").on("submit", filtrarRegistros);
 	
 	$("#btn_test").on("click", imprimirPrueba);
@@ -94,6 +93,15 @@ function onLoad(){
 	$("#form_boletos").submit(guardarBoletos);
 	
 	
+	
+}
+
+
+function eligeHoraSalida(evt){
+	
+	console.log("eligeHoraSalida()", evt);
+	
+	$("#hora_corridas").val($("#id_taquilla option:selected").data("hora_salida"));
 	
 }
 

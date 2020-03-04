@@ -19,7 +19,7 @@
 		nombre_origenes AS nombre_destinos
 		FROM origenes) t_destinos
 		USING(id_destinos)
-	WHERE precios_boletos.id_administrador = {$_SESSION["id_administrador"]}
+
 	ORDER BY nombre_destinos
 	";
   
