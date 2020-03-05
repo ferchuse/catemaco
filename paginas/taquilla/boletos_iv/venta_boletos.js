@@ -6,9 +6,13 @@ var  $select_boletos = "";
 
 $(document).ready(onLoad);
 
+
 function onLoad(){
 	
 	listarCorridas();
+	$("#form_corridas input[name='num_eco']").on("blur", buscarNumEco);
+
+	
 	
 	$("#id_taquilla").on("change", eligeHoraSalida);
 	$("#form_filtros").on("submit", filtrarRegistros);
@@ -16,15 +20,6 @@ function onLoad(){
 	$("#btn_test").on("click", imprimirPrueba);
 	
 	$("#btn_pagar").on("click", quienRecibe);
-	
-	$("#form_corridas input[name='num_eco']").on("keydown", buscarUnidad);
-	// $("#form_corridas select[name='id_empresas']").on("keydown", function(event){
-	
-	// if(event.key == "Enter"){
-	// $(this).closest("form").submit();
-	
-	// }
-	// });
 	
 	
 	
@@ -97,6 +92,44 @@ function onLoad(){
 	
 	
 }
+
+
+
+
+
+
+function buscarNumEco() {
+	console.log("buscarNumEco")
+	var num_eco = $(this).val();
+	
+	$.ajax({
+		url: "../../funciones/fila_select.php",
+		dataType: "JSON",
+		data: {
+			tabla: "unidades",
+			id_campo: "num_eco",
+			id_valor: num_eco
+			
+		}
+		
+		}).done(function (respuesta) {
+		console.log("respuesta", respuesta);
+		if (respuesta.encontrado == 1) {
+			$("#form_corridas input[name='asientos']").val(respuesta.data.asientos) 
+			
+			
+		}
+		}).fail(function (xht, error, errnum) {
+		
+		alertify.error("Error", errnum);
+		}).always(function () {
+		
+		
+	});
+	
+	
+}
+
 
 
 function editarRegistro() {
@@ -263,7 +296,7 @@ function agregarBoleto(num_asiento){
 	<input name="nombre_pasajero[]" required class="form-control nombre_pasajero" >
 	</td>
 	<td class="w-25">
-	<input name="nombre_pasajero[]" required class="form-control nombre_pasajero" >
+	<input name="curp[]" required class="form-control curp" >
 	</td>
 	<td><input name="precio[]" class="precio form-control" readonly></td>
 	<td>
@@ -733,70 +766,6 @@ function guardarPago(evt, recibe){
 
 
 
-function quitarBoleto(num_asiento){
-	console.log("quitarBoleto", num_asiento);
-	
-	$("input[value='"+num_asiento+"']").closest("tr").remove();
-	sumarImportes();
-	
-	if($("#resumen_boletos tr" ).length == 0){
-		$("#form_boletos :submit").prop("disabled", true)
-		
-	}
-}
-
-function apartaBoletos(){
-	console.log("apartaBoletos");
-	
-	$("input[type=checkbox]:checked").prop("disabled", true);
-}
-
-
-function agregarBoleto(num_asiento){
-	
-	console.log("num_asiento", num_asiento);
-	console.log("select_boletos", $select_boletos);
-	
-	var boleto_html = 
-	`<tr>
-	<td class="w-10"><input class="form-control num_asiento" type="number" readonly name="num_asiento[]"  
-	value='${num_asiento}'>
-	</td>
-	<td>
-	${$select_boletos}
-	</td>
-	<td class="w-25"><input name="nombre_pasajero[]" required class="form-control nombre_pasajero" ></td>
-	<td><input name="precio[]" class="precio form-control" readonly></td>
-	<td>
-	<button class="btn btn-danger quitar_boleto" type="button">
-	<i class="fas fa-times"></i>
-	</button>
-	</td>
-	
-	</tr>`;
-	$("#resumen_boletos").append(boleto_html);
-	
-	$(".quitar_boleto").click(function( evt){
-		num_asiento = $(this).closest("tr").find(".num_asiento").val();
-		$("#"+num_asiento).prop("checked", false);
-		quitarBoleto(num_asiento);
-	});
-	$(".nombre_pasajero").keyup(function( evt){
-		$(".nombre_pasajero").val($(this).val())
-	});
-	
-	$(".tipo_boleto").change(function( evt){
-		console.log("cambiar_tipo_boleto", evt)
-		
-		$(this).closest("tr").find(".precio").val($(this).find(":selected").data("precio"));
-		
-		sumarImportes();
-	});
-	
-	sumarImportes();
-}
-
-
 function imprimirTicket(boletos){
 	console.log("imprimirTicket()");
 	var id_registro = $(this).data("id_registro");
@@ -893,37 +862,5 @@ function imprimirPago(id_pagos){
 }
 
 
-function buscarUnidad(event){
-	console.log("buscarUnidad()");
-	console.log("eventkey()", event.key);
-	
-	let num_eco = $(event.target).val();
-	$(event.target).addClass("buscando");
-	if(event.key == "Enter"){
-		console.log("enter()");
-		$.ajax({
-			url: "../catalogos/unidades/consultas/buscar_unidad.php" ,
-			dataType: "JSON" ,
-			data:{
-				num_eco : num_eco
-			}
-			}).done(function (respuesta){
-			if(respuesta.existe == "SI"){
-				
-				$("#form_corridas #id_empresas").val(respuesta.unidad.id_empresas);
-				$("#form_corridas").submit();
-				
-			}
-			else{
-				
-				alertify.error("Unidad no encontrada");
-				$("#form_corridas input[name='num_eco']").focus();
-			}
-			
-			}).always(function(){
-			$(event.target).removeClass("buscando");
-		});
-	}
-}
 
 

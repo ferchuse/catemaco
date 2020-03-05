@@ -10,13 +10,17 @@
 				</div>
 				
 				<div class="modal-body">
-					<div class="form-row">
-						<div class="form-group col-md-6">
+					<div class="row">
+						<div class="form-group col-4">
 							<label for="num_eco">Num Eco:</label>
 							<input type="number" class="form-control"  name="num_eco" required autofocus="true">
 						</div>
+						<div class="form-group col-4">
+							<label for="asientos">Asientos:</label>
+							<input type="number" class="form-control"  name="asientos" required>
+						</div>
 						
-						<div class="form-group col-6">
+						<div class="form-group col-4">
 							<label for="id_taquilla">Taquilla:</label>
 							<?php echo generar_select($link, "taquillas", "id_taquilla", "nombre_taquilla", false, false, true, $_SESSION["id_recaudaciones"]) ;	?>
 						</div>

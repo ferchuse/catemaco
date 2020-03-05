@@ -34,7 +34,7 @@
 			$select.=$fila[$llave_primaria] == $id_selected ? " selected" : "" ;
 			if($tabla = "taquillas"){
 				
-				$select .= " data-hora_salida='{$fila["hora_salida"]}' ";
+				$select .= " data-hora_salida='".date("H:i", strtotime($fila["hora_salida"]))."' ";
 			}
 			
 			$select.=" >".$fila[$campo_etiqueta] ."</option>";

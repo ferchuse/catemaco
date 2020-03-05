@@ -150,6 +150,7 @@
 															<th>Num Asiento</th>
 															<th>Tipo de Boleto</th>
 															<th>Nombre </th>
+															<th>CURP </th>
 															<th>Precio</th>
 														</tr>
 													</thead>

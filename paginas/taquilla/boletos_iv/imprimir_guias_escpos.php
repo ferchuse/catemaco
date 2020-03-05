@@ -82,7 +82,7 @@
 			
 			
 			$respuesta.=  $fila["cantidad"]."\x09";
-			$respuesta.=  $fila["destino"]."\x09"."\x09";
+			$respuesta.=  $fila["nombre_pasajero"]."\x09"."\x09";
 			$respuesta.="$". $fila["precio_boletos"]."\x09   ";
 			$respuesta.= "$" .	number_format($importe,0);
 			
