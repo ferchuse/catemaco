@@ -33,10 +33,9 @@
 		}
 		
 		
-		
-		// $texto =chr(10).chr(13);
 		$texto ="\x1b"."@ ";
-		// $respuesta.=   "\x1b"."@";
+		$texto = file_get_contents('../boletos_iv/logo_brujaz.tmb');
+		$texto ="\x1b"."@ ";
 		foreach($filas as $i => $item){
 			
 			
@@ -58,9 +57,9 @@
 			$texto.=" HORA EN QUE SE  EXPIDE  Y LE DA DERECHO".chr(10).chr(13);
 			$texto.="          AL SEGURO DE VIAJERO".chr(10).chr(13);
 			$texto.="               EXIJALO.".chr(10).chr(13);
-			$texto.="  TIPO DE BOLETO: ".$item["tipo_precio"].chr(10).chr(13).chr(10).chr(13);
 			// $texto.="  RUTA: ".$_GET['ruta'].chr(10).chr(13);
 			$texto.="  FOLIO: ".$item["id_boletos"].chr(10).chr(13);
+			$texto.="  TIPO DE BOLETO: ".$item["tipo_precio"].chr(10).chr(13).chr(10).chr(13);
 			// $texto.="  FOLIO TICKET: ".$vfoliost[$i].chr(10).chr(13);
 			$texto.="  FECHA VENTA: ".$item['fecha_boletos'].chr(10).chr(13);
 			$texto.="  PRECIO: ".$item["precio"].chr(10).chr(13);

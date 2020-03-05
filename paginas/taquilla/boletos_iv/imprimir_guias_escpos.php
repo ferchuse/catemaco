@@ -8,7 +8,7 @@
 	$filas = array();
 	$respuesta = array();
 	
-		
+	
 	
 	
 	$consulta_guia = "SELECT *, nombre_origenes as destino,
@@ -41,7 +41,7 @@
 		
 		
 		
-		$respuesta ="";
+		$respuesta = file_get_contents('logo_brujaz.tmb');
 		
 		$empresa = "";
 		
@@ -104,7 +104,7 @@
 	?>  
 	
 	
-
+	
 	
 	<?php
 		
