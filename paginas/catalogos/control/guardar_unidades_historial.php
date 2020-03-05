@@ -9,20 +9,31 @@
 	$columnas = $_POST["datos"];
 	$str_pairs = "";
 	
+	$consulta = "SELECT * FROM $tabla WHERE 
+	{$columnas[0]['name']} = '{$columnas[0]['value']}' ";
 	
+	$respuesta["consulta_anteriores"] = $consulta;
+	$result = mysqli_query($link, $consulta);
 	
+	while($fila = mysqli_fetch_assoc($result)){
+		
+		$valor_anterior = $fila;
+		$respuesta["valores_anteriores"] = $fila;
+	}
+	// $respuesta["existe"] = "NO";
 	
-	if(empty($columnas[0]['value'])){  
+	if(mysqli_num_rows($result) == 0){
+		
+		$respuesta["existe"] = "NO";
 		$query ="INSERT INTO $tabla SET ";	
 		
 		foreach($columnas as $arr_field_value){
 			$str_pairs.= $arr_field_value["name"]. " = '" . $arr_field_value["value"] . "',";
 		}
 		
-		// $str_pairs  = trim($str_pairs, ",");
+		$str_pairs  = trim($str_pairs, ",");
 		$query.= $str_pairs;
 		
-		$query.= " id_administrador = {$_SESSION["id_administrador"]} ";
 		
 	}
 	else{
@@ -32,17 +43,7 @@
 		//Por cada Campo comparar valor anterior y valor nuevo
 		//Si son diferentes guardar en la tabla de historial, 
 		//Por cada cambio insertar 
-		$consulta = "SELECT * FROM $tabla WHERE 
-		{$columnas[0]['name']} = '{$columnas[0]['value']}' ";
-		
-		$respuesta["consulta_anteriores"] = $consulta;
-		$result = mysqli_query($link, $consulta);
-		
-		while($fila = mysqli_fetch_assoc($result)){
-			
-			$valor_anterior = $fila;
-			$respuesta["valores_anteriores"] = $fila;
-		}
+		$respuesta["existe"] = "SI";
 		
 		$inserta_historial = "";
 		
@@ -66,8 +67,8 @@
 				$fecha_modificacion = date("Y-m-d H:i:s");
 				$inserta_historial= "INSERT INTO unidades_historial SET
 				fecha_modificacion = '{$fecha_modificacion}',
-				id_usuarios = '{$_SESSION["id_usuarios"]}',
-				id_unidades = '{$columnas[0]['value']}',
+				id_usuarios = '{$_COOKIE["id_usuarios"]}',
+				num_eco = '{$columnas[0]['value']}',
 				campo_modificado = '{$columna["name"]}',
 				valor_anterior = '{$valor_anterior[$columna["name"]]}',
 				valor_nuevo = '{$columna["value"]}'
@@ -81,7 +82,7 @@
 			}
 		}
 		
-	
+		
 		
 		
 		$respuesta["cambios"] = $cambios;

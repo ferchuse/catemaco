@@ -5,7 +5,8 @@
 	
 	$consulta = "SELECT * FROM unidades_historial
 	LEFT JOIN usuarios USING (id_usuarios)
-	WHERE id_unidades = '{$_GET["id_unidades"]}'
+	WHERE num_eco = '{$_GET["num_eco"]}'
+	ORDER BY fecha_modificacion DESC
 	
 	";
 	

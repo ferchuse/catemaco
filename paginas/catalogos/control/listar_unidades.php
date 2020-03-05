@@ -7,7 +7,7 @@
 	LEFT JOIN empresas USING(id_empresas) 
 	LEFT JOIN  propietarios  USING (id_propietarios)
 	LEFT JOIN  derroteros  USING (id_derroteros)
-	WHERE unidades.id_administrador = '{$_SESSION["id_administrador"]}'
+	WHERE 1 
 	";
 	
 	if($_GET["num_eco"] != ''){
@@ -37,9 +37,7 @@
 				<th class="text-center">Num Eco</th>
 				<th class="text-center">Propietario</th>
 				<th class="text-center">Empresa</th>
-				<th class="text-center">Derrotero</th>
-				<th class="text-center">Tipo Vehículo</th>
-				<th class="text-center">Saldo Inicial</th>
+				<th class="text-center">Asientos</th>
 				<th class="text-center">Fecha Alta</th>
 				<th class="text-center">Estatus</th>
 				<th class="text-center">Acciones</th>
@@ -53,16 +51,14 @@
 					<td><?php echo $fila["num_eco"];?></td>
 					<td><?php echo $fila["nombre_propietarios"];?></td>
 					<td><?php echo $fila["nombre_empresas"];?></td>
-					<td><?php echo $fila["nombre_derroteros"];?></td>
-					<td><?php echo $fila["tipo_unidad"];?></td>
-					<td><?php echo $fila["saldo_unidades"];?></td>
+					<td><?php echo $fila["asientos"];?></td>
 					<td><?php echo $fila["fecha_ingreso"];?></td>
 					<td><?php echo $fila["estatus_unidades"];?></td>
 					<td>
-						<button class="btn btn-warning btn_editar" data-id_registro="<?php echo $fila["id_unidades"];?>">
+						<button class="btn btn-warning btn_editar" data-id_registro="<?php echo $fila["num_eco"];?>">
 							<i class="fas fa-edit"></i>
 						</button>
-						<button class="btn btn-info btn_historial" data-id_registro="<?php echo $fila["id_unidades"];?>">
+						<button class="btn btn-info btn_historial" data-id_registro="<?php echo $fila["num_eco"];?>">
 							<i class="fas fa-clock"></i> 
 						</button>
 					

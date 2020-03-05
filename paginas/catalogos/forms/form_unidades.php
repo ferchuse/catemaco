@@ -7,27 +7,32 @@
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 				
-				<!-- Modal body -->
 				<div class="modal-body">
-					
-					<input class="d-none" name="id_unidades" id="id_unidades" value="">
-				
-					<div class="row mb-2">
-						<div class="col-2">
-							<label >Empresa:</label>
-						</div>	 
-						<div class="col-5">			
-							<?php
-								echo generar_select($link, "empresas", "id_empresas", "nombre_empresas");
-							?>
-						</div>
-					</div>
 					<div class="row mb-2">
 						<div class="col-2">
 							<label >No Eco:</label>
 						</div>	
 						<div class="col-5">			
 							<input class="form-control" type="number" name="num_eco" id="num_eco" required>
+						</div>
+					</div>
+					<div class="row mb-2">
+						<div class="col-2">
+							<label >Empresa:</label>
+						</div>	 
+						<div class="col-5">			
+							<?php
+								echo generar_select($link, "empresas", "id_empresas", "nombre_empresas", false, false, true);
+							?>
+						</div>
+					</div>
+					
+					<div class="row mb-2">
+						<div class="col-2">
+							<label for="asientos">Asientos:</label>
+						</div>	
+						<div class="col-5">			
+							<input class="form-control" type="number" min="1" ma="80" name="asientos" id="asientos" required>
 						</div>
 					</div>
 					<div class="row mb-2">
@@ -40,7 +45,7 @@
 							?>
 						</div>
 					</div>
-						<div class="row mb-2">
+					<div class="row mb-2">
 						<div class="col-2">
 							<label for="nombre_propietario">Fecha de Alta:</label>
 						</div>	
@@ -68,20 +73,10 @@
 						<div class="col-5">			
 							<select class="form-control" id="estatus_unidades" name="estatus_unidades">
 								<option value="">Seleccione</option>
-								<option value="Alta">Alta</option>
+								<option selected value="Alta">Alta</option>
 								<option value="Baja">Baja</option>
 								<option value="Inactivo">Inactivo</option>
 							</select>
-						</div>
-					</div>
-					<div class="row mb-2">
-						<div class="col-2">
-							<label >Derrotero:</label>
-						</div>	
-						<div class="col-5">			
-							<?php
-								echo generar_select($link, "derroteros", "id_derroteros", "nombre_derroteros");
-							?>
 						</div>
 					</div>
 					<div class="row mb-2">
@@ -105,7 +100,7 @@
 							<label for="nombre_propietario">Poliza:</label>
 						</div>	
 						<div class="col-5">			
-							<input class="form-control" type="text" name="poliza" id="poliza" required>
+							<input class="form-control" type="text" name="poliza" id="poliza" >
 						</div>
 					</div>
 					<div class="row mb-2">
@@ -126,14 +121,6 @@
 					</div>
 					<div class="row mb-2">
 						<div class="col-2">
-							<label for="nombre_propietario">Mutualidad:</label>
-						</div>	
-						<div class="col-5">			
-							<input class="form-control" type="number" name="mutualidad" id="mutualidad">
-						</div>
-					</div>
-					<div class="row mb-2">
-						<div class="col-2">
 							<label for="nombre_propietario">Rin:</label>
 						</div>	
 						<div class="col-5">			
@@ -146,22 +133,6 @@
 						</div>	
 						<div class="col-5">			
 							<input class="form-control" type="text" name="tipo_aceite" id="tipo_aceite">
-						</div>
-					</div>
-					<div class="row mb-2">
-						<div class="col-2">
-							<label for="nombre_propietario">Asientos:</label>
-						</div>	
-						<div class="col-5">			
-							<input class="form-control" type="text" name="asientos" id="asientos">
-						</div>
-					</div>
-					<div class="row mb-2">
-						<div class="col-2">
-							<label for="saldo_unidades">Saldo Inicial:</label> 
-						</div>	
-						<div class="col-5">			
-							<input class="form-control" type="number"  name="saldo_unidades" id="saldo_unidades" value="0">
 						</div>
 					</div>
 				</div>
