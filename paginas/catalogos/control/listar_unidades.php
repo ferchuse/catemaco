@@ -6,16 +6,13 @@
 	$consulta = "SELECT * FROM unidades 
 	LEFT JOIN empresas USING(id_empresas) 
 	LEFT JOIN  propietarios  USING (id_propietarios)
-	LEFT JOIN  derroteros  USING (id_derroteros)
 	WHERE 1 
 	";
 	
 	if($_GET["num_eco"] != ''){
 		$consulta.= " AND num_eco = '{$_GET["num_eco"]}' ";
 	}
-	if($_GET["id_derroteros"] != ''){
-		$consulta.= " AND id_derroteros = '{$_GET["id_derroteros"]}' ";
-	}
+
 	if($_GET["id_empresas"] != ''){
 		$consulta.= " AND id_empresas = '{$_GET["id_empresas"]}' ";
 	}

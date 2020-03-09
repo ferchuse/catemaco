@@ -31,8 +31,9 @@
 	$insert ="INSERT INTO corridas SET 
 	
 	
+	id_corridas= '{$_POST['id_corridas']}',
 	fecha_corridas= '{$_POST['fecha_corridas']}',
-	hora_corridas= CURTIME(),
+	hora_corridas= '{$_POST['hora_corridas']}',
 	id_unidades = '{$_POST['id_unidades']}',
 	id_taquilla = '{$_POST['id_taquilla']}',
 	id_usuarios = '{$_POST["id_usuarios"]}',
@@ -44,7 +45,8 @@
 	estatus_corridas = 'Activa'
 	
 	ON DUPLICATE KEY UPDATE 
-	num_eco = '{$_POST["num_eco"]}'
+	num_eco = '{$_POST["num_eco"]}',
+	hora_corridas = '{$_POST["hora_corridas"]}'
 	";
 	
 	$result = 	mysqli_query($link,$insert);

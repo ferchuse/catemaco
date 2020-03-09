@@ -20,7 +20,7 @@
 	FROM origenes ) AS t_destinos 
 	USING(id_destinos)
 	LEFT JOIN usuarios USING(id_usuarios)
-	WHERE corridas.id_administrador = {$_COOKIE["id_administrador"]}
+	
 	";
   
 	

@@ -11,8 +11,8 @@
 	
 	
 	
-	$consulta_guia = "SELECT *, nombre_origenes as destino,
-	COUNT(id_boletos) AS cantidad
+	$consulta_guia = "SELECT *, nombre_origenes as destino
+
 	FROM	boletos 
 	LEFT JOIN usuarios USING(id_usuarios)
 	LEFT JOIN corridas USING(id_corridas)
@@ -20,7 +20,7 @@
 	LEFT JOIN precios_boletos USING(id_precio)
 	LEFT JOIN origenes ON precios_boletos.id_destinos = origenes.id_origenes
 	WHERE id_corridas = '{$_GET["id_corridas"]}' 
-	GROUP BY id_precio
+	ORDER BY num_asiento
 	";
   
 	
@@ -47,11 +47,13 @@
 		
 		$respuesta.=   "\x1b"."@";
 		$respuesta.= "\x1b"."E".chr(1); // Bold
-		$respuesta.= "!";
+		// $respuesta.= "!";
+		// $respuesta.= "!";
+		$respuesta.= "!\x10"; //font size
 		$respuesta.=   "$empresa \n";
 		$respuesta.=   "GUIA \n";
 		$respuesta.=  "\x1b"."E".chr(0); // Not Bold
-		$respuesta.= "!\x11"; //font size
+		$respuesta.= "!\x10"; //font size
 		$respuesta.= "Folio: ". $guias[0]["id_corridas"];
 		$respuesta.= "\x1b"."d".chr(1); // 4 Blank lines
 		$respuesta.= "Fecha:". $guias[0]["fecha_corridas"];
@@ -70,31 +72,28 @@
 		
 		
 		$total_guia = 0;
+		$total_boletos = 0;
 		if(!$result_guia){
 			echo "<pre>".mysqli_error($result_guia)."</pre>";
 			
 		}
 		
 		foreach($guias AS $i =>$fila){
-			$importe= $fila["cantidad"] * $fila["precio_boletos"];
+			$importe= $fila["precio_boletos"];
 			$total_guia+= $importe;
-			$total_boletos += $fila["cantidad"];
+			$total_boletos++;
 			
-			
-			$respuesta.=  $fila["cantidad"]."\x09";
+			$respuesta.=  $fila["num_asiento"]."\x09";
 			$respuesta.=  $fila["nombre_pasajero"]."\x09"."\x09";
-			$respuesta.="$". $fila["precio_boletos"]."\x09   ";
-			$respuesta.= "$" .	number_format($importe,0);
+			$respuesta.="$". number_format($fila["precio_boletos"],2)."\x09   ";
 			
-			$respuesta.= "\x1b"."d".chr(1). "\n"; // Blank line
-			
-			
+			$respuesta.= "\x1b"."d".chr(1); // Blank line
 			
 		}
 		
-		
-		$respuesta.= "TOTAL: $". number_format($total_guia). "\n"; // Blank line
-		$respuesta.= "Boletos Vendidos: ". $total_boletos ."\n"; // Blank line
+			$respuesta.= "!\x10"; //font size
+		$respuesta.= "\nTOTAL:   $". number_format($total_guia). "\n"; // Blank line
+		$respuesta.= "Boletos Vendidos:  ". $total_boletos ."\n"; // Blank line
 		$respuesta.= "\x1b"."d".chr(1). "\n"; // Blank line
 		$respuesta.= "VA"; // Cut
 		echo base64_encode ( $respuesta );
