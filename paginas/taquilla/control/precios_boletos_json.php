@@ -16,7 +16,7 @@
 		nombre_origenes AS nombre_destinos
 		FROM origenes) t_destinos
 		USING(id_destinos)
-	WHERE precios_boletos.id_administrador = {$_COOKIE["id_administrador"]}
+	
 	";
 	
 	$result = mysqli_query($link,$consulta);
