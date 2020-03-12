@@ -14,7 +14,6 @@
 	
 	$consulta = "SELECT * FROM precios_boletos 
 	
-	WHERE id_administrador= '{$_SESSION["id_administrador"]}'
 	";
   
 	
