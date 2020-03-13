@@ -4,17 +4,7 @@
 	}
 	if($_SESSION["tipo_usuario"] == "propietario"){?>
 	
-	<ul class="sidebar navbar-nav d-print-none">
-		<li class="nav-item active"> 
-			<a class="nav-link" href="../../paginas/recaudacion/estado_cuenta.php">
-				<i class="fas fa-fw fa-dollar-sign"></i>
-				<span>
-					Estado de Cuenta 
-					
-				</span>
-				</a>
-		</li>
-	</ul>
+	
 	<?php
 	}
 	else{
@@ -38,7 +28,7 @@
 			<div class="dropdown-menu " >
 				<?php 
 					$q_catalogos = "SELECT * FROM paginas WHERE categoria_paginas = 'Catálogos'";	
-				
+					
 					$result_catalogos = mysqli_query($link, $q_catalogos);
 					if(!$result_catalogos){
 						echo mysqli_error($link);
@@ -52,26 +42,7 @@
 				?> 
 			</div>
 		</li> 
-		<?php if($_SESSION["id_administrador"] != 4){?>
-			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown" >
-					<i class="fas fa-fw fa-dollar-sign"></i> 
-					<span>Recaudación</span>
-				</a>
-				<div class="dropdown-menu" > 
-					<?php 
-						$q_catalogos = "SELECT * FROM paginas WHERE categoria_paginas = 'Recaudación'";	
-						$result_catalogos = mysqli_query($link, $q_catalogos);
-						while($fila = mysqli_fetch_assoc($result_catalogos)){
-							echo "<a class='dropdown-item' href='../../paginas/recaudacion/{$fila["url_paginas"]}' ";
-							echo dame_permiso($fila["url_paginas"], $link).">-{$fila['nombre_paginas']}</a>";
-						}
-					?> 
-				</div>
-			</li>
-			<?php
-			}
-		?>
+		
 		<?php if($_SESSION["id_administrador"] != 4){?>
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown" >
