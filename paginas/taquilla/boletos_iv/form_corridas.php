@@ -14,7 +14,7 @@
 						<div class="form-group col-4">
 							<label for="num_eco">Num Eco:</label>
 							<input type="number" class="form-control"  name="num_eco" required autofocus="true">
-							<input type="" id="id_corridas" name="id_corridas" value="">
+							<input type="hidden" id="id_corridas" name="id_corridas" value="">
 						</div>
 						<div class="form-group col-4">
 							<label for="asientos">Asientos:</label>

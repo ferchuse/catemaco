@@ -11,7 +11,7 @@ function onLoad(){
 	
 	listarCorridas();
 	$("#form_corridas input[name='num_eco']").on("blur", buscarNumEco);
-
+	
 	
 	
 	$("#id_taquilla").on("change", eligeHoraSalida);
@@ -313,9 +313,20 @@ function agregarBoleto(num_asiento){
 		$("#"+num_asiento).prop("checked", false);
 		quitarBoleto(num_asiento);
 	});
+	
+	
 	$(".nombre_pasajero").keyup(function( evt){
-		$(".nombre_pasajero").val($(this).val())
+		if($("#copiar_datos").prop("checked")){
+			$(".nombre_pasajero").val($(this).val())
+		}
 	});
+	
+	$(".curp").keyup(function( evt){
+		if($("#copiar_datos").prop("checked")){
+			$(".curp").val($(this).val());
+		}
+	});
+	
 	
 	$(".tipo_boleto").change(function( evt){
 		console.log("cambiar_tipo_boleto", evt)
@@ -335,9 +346,9 @@ function sumarImportes(){
 		
 		importe_total+= Number($(item).val());
 	});
-	
-	$("#importe_total").val(importe_total)
-	
+
+$("#importe_total").val(importe_total)
+
 }
 
 function selectTodos(evt){

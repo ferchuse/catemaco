@@ -87,7 +87,7 @@
 												<label>
 													Usuario:
 												</label>
-												<?php echo generar_select($link, "usuarios", "id_usuarios", "nombre_usuarios", true, false, false, $_COOKIE["id_usuarios"])?>
+												<?php echo generar_select($link, "usuarios", "id_usuarios", "nombre_usuarios", true, false, false)?>
 												<button type="submit"  title="Buscar" class="btn btn-primary  d-print-none">
 													<i class="fas fa-search"></i>
 												</button>
@@ -149,7 +149,13 @@
 														<tr>
 															<th>Num Asiento</th>
 															<th>Tipo de Boleto</th>
-															<th>Nombre </th>
+															<th>Nombre 
+															<label>
+																<input checked type="checkbox" id="copiar_datos">
+															Copiar
+														</label>
+																
+																</th>
 															<th>CURP </th>
 															<th>Precio</th>
 														</tr>

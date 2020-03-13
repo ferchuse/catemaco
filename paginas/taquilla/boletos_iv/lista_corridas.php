@@ -1,7 +1,7 @@
 <?php 
 	session_start();
 	// if(count($_SESSION) == 0){
-		// die("<div class='alert alert-danger'>Tu Sesión ha caducado, recarga la página.</div>");
+	// die("<div class='alert alert-danger'>Tu Sesión ha caducado, recarga la página.</div>");
 	// }
 	include('../../../conexi.php');
 	include('../../../funciones/generar_select.php');
@@ -55,10 +55,11 @@
 	FROM origenes ) AS t_destinos 
 	USING(id_destinos)
 	LEFT JOIN usuarios USING(id_usuarios)
-	LEFT JOIN (SELECT id_corridas, SUM(precio_boletos) AS importe_corridas
+	LEFT JOIN (
+	SELECT id_corridas, SUM(precio_boletos) AS importe_corridas
 	FROM boletos GROUP BY id_corridas
 	) AS t_importes USING(id_corridas)
-	WHERE corridas.id_administrador = '{$_COOKIE["id_administrador"]}'
+	WHERE 1
 	
 	
 	AND date(fecha_corridas) BETWEEN '{$_GET["fecha_inicial"]}' AND '{$_GET["fecha_final"]}'
@@ -91,7 +92,7 @@
 		
 		
 	?> 
-	<pre hidden>
+	<pre hidden >
 		<?php echo $consulta?>
 	</pre>
 	<table class="table table-bordered table-condensed">
@@ -132,16 +133,16 @@
 								echo "<span class='badge badge-success'>".$filas["estatus_corridas"]."</span>";
 							?>
 							<button class="btn btn-success  btn-sm btn_venta" title="Venta de Boletos" 
-								data-id_corridas="<?php echo $filas["id_corridas"]?>"
-								data-num_eco="<?php echo $filas["num_eco"]?>"
-								data-asientos="<?php echo $filas["asientos"]?>"
-								>
+							data-id_corridas="<?php echo $filas["id_corridas"]?>"
+							data-num_eco="<?php echo $filas["num_eco"]?>"
+							data-asientos="<?php echo $filas["asientos"]?>"
+							>
 								<i class="fas fa-ticket-alt"></i> Venta de Boletos
 							</button>
 							<button class="btn btn-info  btn-sm cambiar_unidad" title="Cambiar Unidad" 
-								data-id_registro="<?php echo $filas["id_corridas"]?>"
-								data-num_eco="<?php echo $filas["num_eco"]?>"
-								>
+							data-id_registro="<?php echo $filas["id_corridas"]?>"
+							data-num_eco="<?php echo $filas["num_eco"]?>"
+							>
 								<i class="fas fa-exchange-alt"></i> Cambiar Unidad
 							</button>
 							
@@ -230,8 +231,10 @@
 					<td><?php echo $filas["fecha_corridas"]?></td>
 					<td><?php echo $filas["hora_corridas"]?></td>
 					
-					<td hidden class="text-right">$ <?php echo number_format($filas["importe_corridas"], 0)?></td>
-					<td class="text-right">$ <?php echo number_format($filas["total_guia"], 0)?></td>
+					<td  class="text-right">
+						$ <?php echo number_format($filas["importe_corridas"], 0)?>
+					</td>
+					
 					<td><?php echo $filas["nombre_empresas"]?></td>
 					<td><?php echo $filas["nombre_usuarios"]?></td>
 					
