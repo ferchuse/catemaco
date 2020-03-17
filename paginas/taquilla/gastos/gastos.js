@@ -7,7 +7,7 @@ $("#nuevo_gasto").click(function nuevo() {
 	
 });
 
-listarGastos();
+
 
 $('#form_gasto').submit(guardarGasto);
 
@@ -18,7 +18,7 @@ function listarGastos() {
 		"url": "gastos/listar_gastos.php",
 		data:{
 			"id_corridas": $("#form_boletos#id_corridas").val()
-			}
+		}
 		}).done(function alCargar(respuesta) {
 		$("#lista_gastos").html(respuesta);
 		
@@ -95,4 +95,26 @@ function guardarGasto(event) {
 		
 	});
 	
+}
+
+
+function imprimirGasto(id_gasto){
+	console.log("imprimirGasto()");
+
+	
+	$.ajax({
+		url: "impresion/imprimir_gasto.php" ,
+		data:{
+			boletos : boletos
+		}
+		}).done(function (respuesta){
+		
+		printService.submit({
+			'type': 'LABEL',
+			'raw_content': respuesta
+		});
+		}).always(function(){
+		
+		
+	});
 }

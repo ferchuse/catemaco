@@ -649,8 +649,11 @@ function abrirTaquilla(event){
 	
 	$("#pill_venta").tab("show");
 	listaBoletos();
+	listarGastos();
 	renderAsientos();
 }
+
+
 function guardarCorrida(event){
 	console.log("guardarCorrida()");
 	event.preventDefault();

@@ -12,7 +12,7 @@
 	
 	
 	$consulta_guia = "SELECT *, nombre_origenes as destino
-
+	
 	FROM	boletos 
 	LEFT JOIN usuarios USING(id_usuarios)
 	LEFT JOIN corridas USING(id_corridas)
@@ -30,6 +30,22 @@
 	while($fila_guia = mysqli_fetch_assoc($result_guia)){
 		
 		$guias[] = $fila_guia ;
+	}
+	
+	
+	
+	$consulta_gastos = "SELECT * FROM gastos_corrida
+	LEFT JOIN cat_gastos USING(id_cat_gastos)
+	
+	WHERE id_corridas = '{$_GET["id_corridas"]}' 
+	ORDER BY fecha_gastos ";
+	
+	
+	$result_gastos = mysqli_query($link,$consulta_gastos);
+	
+	while($fila = mysqli_fetch_assoc($result)){ 
+		$gastos[] = $fila ;
+		
 	}
 	
 	if($result_guia){
@@ -91,10 +107,45 @@
 			
 		}
 		
-			$respuesta.= "!\x10"; //font size
+		$respuesta.= "!\x10"; //font size
 		$respuesta.= "\nTOTAL:   $". number_format($total_guia). "\n"; // Blank line
 		$respuesta.= "Boletos Vendidos:  ". $total_boletos ."\n"; // Blank line
 		$respuesta.= "\x1b"."d".chr(1). "\n"; // Blank line
+		$respuesta.= "VA"; // Cut
+		
+		
+		//GASTOS
+		
+		
+		$respuesta.=   "\x1b"."@";
+		$respuesta.= "\x1b"."E".chr(1); // Bold
+		$respuesta.= "!\x10"; //font size
+		$respuesta.=   "LISTA DE  GASTOS \n";
+		$respuesta.=  "\x1b"."E".chr(0); // Not Bold
+		$respuesta.= "\x1b"."@";
+		$respuesta.= "Guia: ". $gastos[0]["id_corridas"];
+		$respuesta.= "\x1b"."d".chr(1); // 4 Blank lines
+		$respuesta.= "Fecha:". $gastos[0]["fecha_corridas"];
+		$respuesta.= "\x1b"."d".chr(1); // 4 Blank lines
+		$respuesta.= "Taquillero:". $gastos[0]["nombre_usuarios"];
+		$respuesta.= "\x1b"."d".chr(1); // 4 Blank lines
+		$respuesta.= "Num Eco:". $gastos[0]["num_eco"];
+		$respuesta.= "\x1b"."d".chr(1); // 4 Blank lines
+		
+		foreach($gastos AS $i =>$gasto){
+			$importe= $fila["importe"];
+			$total_gastos+= $importe;
+			
+			$respuesta.=  $gasto["fecha_gastos"]."\x09";
+			$respuesta.=  $fila["concepto"]."\x09"."\x09";
+			$respuesta.="$". number_format($fila["importe")."\x09   ";
+			$respuesta.= "\x1b"."d".chr(1); // Blank line
+			
+			
+			$respuesta.=   "\x1b"."@"; // RESET defaults
+			$respuesta.= "\x1b"."d".chr(2); // 4 Blank lines
+		}
+		
 		$respuesta.= "VA"; // Cut
 		
 		
@@ -104,14 +155,14 @@
 		
 		exit(0);
 		
-	
 		
-	}
-	
-	else {
-		echo "Error en ".$consulta.mysqli_Error($link);
 		
-	}
-	
-	
-?>		
+		}
+		
+		else {
+			echo "Error en ".$consulta.mysqli_Error($link);
+			
+		}
+		
+		
+	?>				
