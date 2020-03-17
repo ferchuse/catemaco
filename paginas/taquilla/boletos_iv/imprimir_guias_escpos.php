@@ -96,16 +96,15 @@
 		$respuesta.= "Boletos Vendidos:  ". $total_boletos ."\n"; // Blank line
 		$respuesta.= "\x1b"."d".chr(1). "\n"; // Blank line
 		$respuesta.= "VA"; // Cut
+		
+		
+		
+		
 		echo base64_encode ( $respuesta );
 		
 		exit(0);
 		
-	?>  
 	
-	
-	
-	
-	<?php
 		
 	}
 	

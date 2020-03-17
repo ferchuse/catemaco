@@ -12,37 +12,11 @@
 	SELECT
 	id_usuarios,
 	nombre_usuarios,
-	suma_abonos_unidades,
-	suma_abonos_general,
 	suma_mutualidad
 	FROM
 	usuarios
-	LEFT JOIN (
-	SELECT
-	id_usuarios,
-	SUM(abono_unidad) AS suma_abonos_unidades
-	FROM
-	abonos_unidades
-	WHERE
-	estatus_abonos <> 'Cancelado'
-	AND date(fecha_abonos) BETWEEN '{$_GET["fecha_inicial"]}'
-	AND '{$_GET["fecha_final"]}'
-	GROUP BY
-	id_usuarios
-	) AS t_suma_abonos_unidades USING (id_usuarios)
-	LEFT JOIN (
-	SELECT
-	id_usuarios,
-	SUM(monto_abonogeneral) AS suma_abonos_general
-	FROM
-	abono_general
-	WHERE
-	estatus_abono <> 'Cancelado'
-	AND date(fecha_abonogeneral) BETWEEN '{$_GET["fecha_inicial"]}'
-	AND '{$_GET["fecha_final"]}'
-	GROUP BY
-	id_usuarios
-	) AS t_suma_abonos_general USING (id_usuarios)
+	
+	
 	LEFT JOIN (
 	SELECT
 	id_usuarios,

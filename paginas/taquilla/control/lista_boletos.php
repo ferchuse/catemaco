@@ -32,9 +32,7 @@
 	<pre hidden>
 		<?php echo $consulta;?>
 	</pre>
-	<button class="btn btn-info float-right" id="imprimir_guia">
-		<i class="fas fa-print"></i> Imprimir Guia y Finalizar 
-	</button>
+	
 	<table class="table table-bordered table-condensed">
 		<thead>
 			<tr>
@@ -57,21 +55,7 @@
 					
 				?>
 				<tr>
-					<td hidden >
-						<?php if($fila["estatus_boletos"] != 'Cancelado'){?>
-							
-							<button target="_blank" class="btn btn-info imprimir " title="Imprimir" data-id_registro='<?php echo $filas["id_boletos"]?>'>
-								<i class="fas fa-print"></i>
-							</button>	
-							<a target="_blank" class="btn btn-info " title="Imprimir" href="impresion/imprimir_boletos.php?boletos[]=<?php echo $filas["id_boletos"]?>" data-id_registro='<?php echo $filas["id_corridas"]?>'>
-								<i class="fas fa-print"></i>
-							</a>	
-							
-							<?php
-								
-							}
-						?>
-					</td>
+				
 					<td><?php echo $filas["id_boletos"]?></td>
 					<td><?php echo $filas["num_asiento"]?></td>
 					<td><?php echo $filas["nombre_pasajero"];?></td>
@@ -105,14 +89,19 @@
 			</tr>
 		</tbody>
 	</table>
-	<div class="col-3">
-		<div class="form-group">
-			<label>Boletos Vendidos</label>
-			<input type="" class="form-control" readonly  id="boletos_vendidos" value="<?php echo mysqli_num_rows($result)?>">
+	
+	<div class="row">
+		<div class="col-6">
+			<div class="form-group">
+				<label>Boletos Vendidos</label>
+				<input type="" class="form-control" readonly  id="boletos_vendidos" value="<?php echo mysqli_num_rows($result)?>">
+			</div>
 		</div>
-		<Div class="form-group">
-			<label>Total Guia</label>
-			<input type="" class="form-control" readonly   id="total_guia" value="<?php echo $total_guia?>">	
+		<div class="col-6">
+			<Div class="form-group">
+				<label>Total Guia</label>
+				<input type="" class="form-control" readonly   id="total_guia" value="<?php echo $total_guia?>">	
+			</div>
 		</div>
 	</div>
 	<?php
@@ -125,4 +114,4 @@
 	}
 	
 	
-	?>		
+?>		

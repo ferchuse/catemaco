@@ -25,7 +25,7 @@
 		<meta name="author" content="">
 		<title>Venta de Boletos </title>
 		<?php include('../../styles.php')?>
-			<link href="../../css/corrida.less" type="text/css"  rel="stylesheet/less" >
+		<link href="../../css/corrida.less" type="text/css"  rel="stylesheet/less" >
 	</head>
 	<body id="page-top">
 		<?php include("../../navbar.php")?>
@@ -105,9 +105,9 @@
 													<?php
 													}	
 												?>
-													<button  type="button" onclick="window.print()" class="btn btn-info float-right d-print-none">
-														<i class="fas fa-print"></i> Imprimir 
-													</button>
+												<button  type="button" onclick="window.print()" class="btn btn-info float-right d-print-none">
+													<i class="fas fa-print"></i> Imprimir 
+												</button>
 											</h3>
 										</div>
 										<div class="card-body" id="lista_corridas">
@@ -140,7 +140,7 @@
 														<input name="num_eco" id="num_eco" class="form-control" readonly >
 													</div>
 													<div class="col-2">
-															<label>Asientos: </label>
+														<label>Asientos: </label>
 														<input name="asientos" id="asientos" class="form-control" readonly >
 													</div>
 												</div>
@@ -150,12 +150,12 @@
 															<th>Num Asiento</th>
 															<th>Tipo de Boleto</th>
 															<th>Nombre 
-															<label>
-																<input checked type="checkbox" id="copiar_datos">
-															Copiar
-														</label>
+																<label>
+																	<input checked type="checkbox" id="copiar_datos">
+																	Copiar
+																</label>
 																
-																</th>
+															</th>
 															<th>CURP </th>
 															<th>Precio</th>
 														</tr>
@@ -185,12 +185,41 @@
 											</form>
 										</div>
 									</div>
-									<div class="card card-secondary mt-4 ">
-										<div class="card-header">
-											Boletos Vendidos
+									
+									</hr>
+									
+									
+									
+									<div class="row">
+										<div class="col-6" >
+											<div class="card card-secondary mt-4 ">
+												<div class="card-header">
+													Boletos Vendidos
+													<button class="btn btn-info float-right" id="imprimir_guia">
+														<i class="fas fa-print"></i> Imprimir Guia y Finalizar 
+													</button>
+												</div>
+												<div class="card-body" id="lista_boletos">
+													<h3 class="text-center">Cargando <i class="fas fa-spinner fa-pulse"></i></h3>
+												</div>
+											</div>
 										</div>
-										<div class="card-body" id="lista_boletos">
-											<h3 class="text-center">Cargando <i class="fas fa-spinner fa-pulse"></i></h3>
+										
+										
+										<div class="col-6">
+											
+											<div class="card card-secondary mt-4 ">
+												<div class="card-header">
+													Gastos por Corrida
+													<button  id="nuevo_gasto" type="button" class="btn btn-success mb-2 d-print-none float-right">
+														<i class="fas fa-plus"></i> Nuevo
+													</button>
+												</div>
+												<div class="card-body" id="lista_gastos">
+													<h3 class="text-center">Cargando <i class="fas fa-spinner fa-pulse"></i></h3>
+												</div>
+											</div>
+											
 										</div>
 									</div>
 								</div>
@@ -225,11 +254,15 @@
 		
 		<div class="d-print-block p-2" style="max-width:100mm;" hidden id="ticket" >
 		</div>
+		
+		<?php include("gastos/form_gastos.php")?>
+		
 		<?php include("../../scripts.php")?>
 		<script src="../../plugins/pos_print/websocket-printer.js" > </script>
 		<?php include("boletos_iv/form_corridas.php");?>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js" ></script>
 		<script src="boletos_iv/venta_boletos.js?v=<?= date("Y-m-d-H-i-s")?>"></script>
+		<script src="gastos/gastos.js?v=<?= date("Y-m-d-H-i-s")?>"></script>
 		
 	</body>
 </html>																														
