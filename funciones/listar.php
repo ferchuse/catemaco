@@ -25,7 +25,7 @@
 	// }
 	else{
 		$consulta = "SELECT * FROM $tabla";
-		$consulta.= " WHERE $tabla.id_administrador = {$_SESSION["id_administrador"]}";
+		$consulta.= " WHERE $tabla.id_administrador = '1'";
 	}
 	
 	

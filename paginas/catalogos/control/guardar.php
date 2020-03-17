@@ -19,7 +19,7 @@
 		// $str_pairs  = trim($str_pairs, ",");
 		$query.= $str_pairs;
 		
-		$query.= " id_administrador = {$_SESSION["id_administrador"]} ";
+		$query.= " id_administrador = '1' ";
 		
     }else{
 		
