@@ -39,8 +39,10 @@
 		$respuesta["estatus"] = "success";
 		$respuesta["mensaje"] = "Agregado";
 		$respuesta["query"] = $query;
+		$respuesta["folio"] = mysqli_insert_id($link);
 		
-    }else{
+	}
+	else{
 		
 		$respuesta["estatus"] = "error";
 		$respuesta["mensaje"] = "Error en insert: $query  ".mysqli_error($link);		

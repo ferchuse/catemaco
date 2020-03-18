@@ -23,7 +23,7 @@
 		
 		if( mysqli_num_rows($result) == 0){
 			
-			die("<div class='alert alert-danger'>Tarjeta No encontrada</div>");
+			die("<div class='alert alert-danger'>Registro No Encontrado</div>");
 			
 			
 		}
