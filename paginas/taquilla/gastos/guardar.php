@@ -13,7 +13,7 @@
 	recibe = '{$_POST["recibe"]}',
 	id_usuarios = '{$_COOKIE["id_usuarios"]}',
 	importe = '{$_POST["importe"]}'
-
+	
 	";	
 	
 	
@@ -24,6 +24,7 @@
 	if($exec_query){
 		$respuesta["estatus"] = "success";
 		$respuesta["mensaje"] = "Guardado";
+		$respuesta["folio"] = mysqli_insert_id($link);
 		
 		
     }else{

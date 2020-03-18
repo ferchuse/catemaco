@@ -32,7 +32,7 @@
 					</div> 
                     <div class="form-group">
 						<label for="observaciones_reciboSalidas">OBSERVACIONES</label>
-						<input type="text" class="form-control" id="observaciones_reciboSalidas" name="observaciones_reciboSalidas" placeholder="Observaciones">
+						<input type="text" class="form-control" id="observaciones_reciboSalidas" name="observaciones_reciboSalidas" required placeholder="Observaciones">
 					</div>
 				</div>
 				<!-- Modal footer -->

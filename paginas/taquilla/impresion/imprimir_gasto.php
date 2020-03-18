@@ -1,19 +1,17 @@
 <?php 
 	include('../../../conexi.php');
-	include('../../../funciones/generar_select.php');
-	include('../../../funciones/console_log.php');
 	$link = Conectarse();
 	$filas = array();
 	$respuesta = array();
 	
-	$boletos_id= implode("," ,$_GET['boletos']);
+	// $boletos_id= implode("," ,$_GET['boletos']);
 	
-	$consulta = "SELECT * FROM gastos 
+	$consulta = "SELECT * FROM gastos_corrida 
 	LEFT JOIN usuarios  USING(id_usuarios)
 	LEFT JOIN cat_gastos USING(id_cat_gastos)
 	LEFT JOIN corridas USING(id_corridas)
 	
-	WHERE id_gasto = {$_GET['id_gasto']}";
+	WHERE id_gastos = '{$_GET['id_gasto']}'";
   
 	
 	$result = mysqli_query($link,$consulta);
@@ -38,24 +36,25 @@
 		$respuesta.=   "\x1b"."@";
 		$respuesta.= "\x1b"."E".chr(1); // Bold
 		$respuesta.= "!";
-		$respuesta.=   "GRUPO ZITLALTEPEC \n";
+		$respuesta.=   "VALE DE GASTOS \n";
 		$respuesta.=  "\x1b"."E".chr(0); // Not Bold
 		$respuesta.= "!\x10";
 		$respuesta.= "\x1b"."d".chr(1); // 4 Blank lines
-		$respuesta.= "Folio:". $registro["id_gasto"]. "\n";
+		$respuesta.= "Folio:". $registro["id_gastos"]. "\n";
 		$respuesta.= "Corrida:". $registro["id_corridas"]. "\n";
 		$respuesta.= "Num Eco:". $registro["num_eco"]. "\n";
-		$respuesta.= "Fecha:" . ($registro["fecha_boletos"])."\n";
+		$respuesta.= "Fecha:" . ($registro["fecha_gastos"])."\n";
 		$respuesta.= "Recibe :". $registro["recibe"]."\n";
 		$respuesta.= "Concepto :". $registro["descripcion_gastos"]."\n";
 		$respuesta.= "Importe: $ ". $registro["importe"]."\n";
-		$respuesta.=  "Taquillero:" . $item["nombre_usuarios"]."\n";
+		$respuesta.=  "Taquillero:" . $_COOKIE["nombre_usuarios"]."\n\n";
 		$respuesta.= "\x1b"."d".chr(1); // Blank line
-		$respuesta.= "aSeguro de Viajero\n"; // Blank line
+		$respuesta.= "  _________________\n\n"; // Blank line
+		$respuesta.= "aFIRMA DE RECIBIDO\n"; // Blank line
 		$respuesta.= "\x1b"."d".chr(1). "\n"; // Blank line
 		$respuesta.= "VA"; // Cut
 		
-	}
+	
 	// /* Output an example receipt */
 	// echo ESC."@"; // Reset to defaults
 	// echo ESC."E".chr(1); // Bold
