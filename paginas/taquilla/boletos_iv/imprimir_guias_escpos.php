@@ -43,7 +43,7 @@
 	
 	$result_gastos = mysqli_query($link,$consulta_gastos);
 	
-	while($fila = mysqli_fetch_assoc($result)){ 
+	while($fila = mysqli_fetch_assoc($result_gastos)){ 
 		$gastos[] = $fila ;
 		
 	}
@@ -133,17 +133,15 @@
 		$respuesta.= "\x1b"."d".chr(1); // 4 Blank lines
 		
 		foreach($gastos AS $i =>$gasto){
-			$importe= $fila["importe"];
+			$importe= $gasto["importe"];
 			$total_gastos+= $importe;
 			
 			$respuesta.=  $gasto["fecha_gastos"]."\x09";
-			$respuesta.=  $fila["concepto"]."\x09"."\x09";
-			$respuesta.="$". number_format($fila["importe")."\x09   ";
+			$respuesta.=  $gasto["descripcion_gastos"]."\x09"."\x09";
+			$respuesta.="$". number_format($gasto["importe"])."\x09   ";
 			$respuesta.= "\x1b"."d".chr(1); // Blank line
 			
-			
 			$respuesta.=   "\x1b"."@"; // RESET defaults
-			$respuesta.= "\x1b"."d".chr(2); // 4 Blank lines
 		}
 		
 		$respuesta.= "VA"; // Cut
