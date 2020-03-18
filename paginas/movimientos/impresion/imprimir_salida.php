@@ -10,7 +10,7 @@
 	
 	
 	
-	$consulta = "SELECT * FROM recibosSalidas 
+	$consulta = "SELECT * FROM recibos_salidas 
 	LEFT JOIN empresas USING(id_empresas)
 	LEFT JOIN beneficiarios USING(id_beneficiarios) 
 	LEFT JOIN motivos_salida USING(id_motivosSalida) 
@@ -69,7 +69,10 @@
 		</div>
 		<div class="row">
 			<div class="col-12">
-				<p>Recibi la cantidad de $ <?php echo NumeroALetras::convertir($filas["monto_reciboSalidas"], 'PESOS', 'CENTAVOS')?></p><br>
+				<p>Recibi la cantidad de $<?=$filas["monto_reciboSalidas"]?>
+					(<?php echo NumeroALetras::convertir($filas["monto_reciboSalidas"], 'PESOS', 'CENTAVOS')?>)
+				</p>
+				<br>
 				<p>Por concepto de: <?php echo $filas["observaciones_reciboSalidas"];?></p>
 			</div>	 
 		</div>
@@ -92,7 +95,7 @@
 		<br>
 		<div class="row">
 			<div class="col-6 border-top">
-				Impreso por: <?php echo $_SESSION["nombre_usuarios"];?><br>
+				Impreso por: <?php echo $_COOKIE["nombre_usuarios"];?><br>
 				Fecha Impresión: <?php echo date("Y-m-d h:i:s");?>
 			</div>
 			<div class="col-6 text-right">
@@ -142,7 +145,10 @@
 		</div>
 		<div class="row">
 			<div class="col-12">
-				<p>Recibi la cantidad de $ <?php echo NumeroALetras::convertir($filas["monto_reciboSalidas"], 'PESOS', 'CENTAVOS')?></p><br>
+				<p>Recibi la cantidad de $<?=$filas["monto_reciboSalidas"]?>
+					(<?php echo NumeroALetras::convertir($filas["monto_reciboSalidas"], 'PESOS', 'CENTAVOS')?>)
+				</p>
+				<br>
 				<p>Por concepto de: <?php echo $filas["observaciones_reciboSalidas"];?></p>
 			</div>	 
 		</div>
@@ -164,7 +170,7 @@
 		
 		<div class="row">
 			<div class="col-6 border-top">
-				Impreso por: <?php echo $_SESSION["nombre_usuarios"];?><br>
+				Impreso por: <?php echo $_COOKIE["nombre_usuarios"];?><br>
 				Fecha Impresión: <?php echo date("Y-m-d h:i:s");?>
 			</div>
 			<div class="col-6 text-right">

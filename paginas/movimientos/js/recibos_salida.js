@@ -1,7 +1,6 @@
 $(document).ready(function(){ 
 	
 	listarRegistros();
-	// obtenerSaldo();
 	
 	$('#form_filtro').on('submit', function filtrar(event){
 		event.preventDefault();
@@ -11,55 +10,13 @@ $(document).ready(function(){
 	});
 	
 	
-	//========DAR LCIK EN BOTON DE NUEVO=============
 	$('#nuevoSalida').on('click',function(){
 		$('#form_salida')[0].reset();
 		$('.modal-title').text('Nuevo Motivo de Salida');
 		$('#modal_salida').modal('show');
 	}); 
 	
-	$('#form_salida').on('submit',function(event){
-		event.preventDefault();
-		let form = $(this);
-		let boton = form.find(':submit');
-		let icono = boton.find('.fa');
-		let datos = form.serializeArray();
-		let fecha = new Date().toString('yyyy-MM-dd HH:mm:ss')
-		
-		datos.push({
-			name: 'fecha_reciboSalidas',
-			value : fecha
-		
-		});
-		datos.push({
-			name: 'id_usuarios',
-			value : $("#id_usuarios").val()
-		});
-		
-		boton.prop('disabled',true);
-		icono.toggleClass('fa-save fa-spinner fa-pulse ');
-		
-		$.ajax({
-			url: '../catalogos/control/guardar.php',
-			method: 'POST',
-			dataType: 'JSON',
-			data:{
-				tabla: 'recibosSalidas',
-				datos: datos
-			}
-			}).done(function(respuesta){
-			if(respuesta.estatus == 'success'){
-				alertify.success('Se ha agregado correctamente');
-				$('#modal_salida').modal('hide');
-				listarRegistros();
-				}else{
-				alertify.error('Ocurrio un error');
-			}
-			}).always(function(){
-			boton.prop('disabled',false);
-			icono.toggleClass('fa-save fa-spinner fa-pulse fa-fw');
-		});
-	})
+	$('#form_salida').on('submit', guardarRecibo)
 	
 	//=========BUSCAR EMPRESA=========
 	$("#numero_conductor").keyup(function filtro_buscar(){
@@ -120,7 +77,49 @@ $(document).ready(function(){
 	
 });
 
-
+function guardarRecibo(event){
+	event.preventDefault();
+	let form = $(this);
+	let boton = form.find(':submit');
+	let icono = boton.find('.fa');
+	let datos = form.serializeArray();
+	let fecha = new Date().toString('yyyy-MM-dd HH:mm:ss')
+	
+	datos.push({
+		name: 'fecha_reciboSalidas',
+		value : fecha
+		
+	});
+	datos.push({
+		name: 'id_usuarios',
+		value : $("#id_usuarios").val()
+	});
+	
+	boton.prop('disabled',true);
+	icono.toggleClass('fa-save fa-spinner fa-pulse ');
+	
+	$.ajax({
+		url: 'control/guardar_salida.php',
+		method: 'POST',
+		dataType: 'JSON',
+		data:{
+			tabla: 'recibos_salidas',
+			datos: datos
+		}
+		}).done(function(respuesta){
+		if(respuesta.estatus == 'success'){
+			alertify.success('Se ha agregado correctamente');
+			$('#modal_salida').modal('hide');
+			imprimirTicket()
+			listarRegistros();
+			}else{
+			alertify.error('Ocurrio un error');
+		}
+		}).always(function(){
+		boton.prop('disabled',false);
+		icono.toggleClass('fa-save fa-spinner fa-pulse fa-fw');
+	});
+}
 
 
 
@@ -140,8 +139,11 @@ function listarRegistros(){
 		}).done(function(respuesta){
 		
 		$("#tabla_registros").html(respuesta)
-		// $("#dataTable").dataTable();
-		$(".imprimir").click(imprimirTicket);
+		
+		$(".imprimir").click(function(){
+			imprimirTicket($(this).data("id_registro"))
+			
+		});
 		$(".cancelar").click(confirmaCancelacion);
 		
 		
@@ -177,8 +179,7 @@ function obtenerFecha(){
 	return today = `${yyyy}-${mm}-${dd}`;
 }
 
-function imprimirTicket(event){
-	var id_registro = $(this).data("id_registro");
+function imprimirTicket(id_registro){
 	var boton = $(this);
 	var icono = boton.find("fas");
 	
@@ -246,27 +247,27 @@ function confirmaCancelacion(event){
 	}
 }
 
+
+function obtenerSaldo(){
+	console.log("obtenerSaldo()")
 	
-	function obtenerSaldo(){
-		console.log("obtenerSaldo()")
-		
-		 $.ajax({
-			url: "control/obtener_saldo_empresa.php",
-			dataType:"JSON",
-			data: {
-				id_empresas: $("#id_empresas").val()
-				
-			 }
-			}).done(function (respuesta){
-			if(respuesta.result == "success"){
-				$("#saldo_reciboSalidas").val(respuesta.saldo_empresa)
-			}
-			else{
-				alertify.error(respuesta.result);
-				
-			}
+	$.ajax({
+		url: "control/obtener_saldo_empresa.php",
+		dataType:"JSON",
+		data: {
+			id_empresas: $("#id_empresas").val()
 			
-			}).always(function(){
+		}
+		}).done(function (respuesta){
+		if(respuesta.result == "success"){
+			$("#saldo_reciboSalidas").val(respuesta.saldo_empresa)
+		}
+		else{
+			alertify.error(respuesta.result);
+			
+		}
 		
-		});
-	}
+		}).always(function(){
+		
+	});
+}

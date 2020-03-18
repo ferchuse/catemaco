@@ -7,11 +7,11 @@
 	$fecha_cancelacion = date("Y-m-d H:i:s");
 	//Cancelar Abono
 	
-	$cancela_abono = "UPDATE recibosSalidas
+	$cancela_abono = "UPDATE recibos_salidas
 	
 	SET
 	estatus_reciboSalidas = 'Cancelado' ,
-	datos_cancelacion='Usuario: {$_GET["nombre_usuarios"]} <br> Fecha: $fecha_cancelacion'
+	datos_cancelacion='Usuario: {$_COOKIE["nombre_usuarios"]} <br> Fecha: $fecha_cancelacion'
 	WHERE  id_reciboSalidas = {$_GET["id_registro"]}";
 	
 	$result_abono = mysqli_query($link,$cancela_abono) ;

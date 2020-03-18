@@ -9,7 +9,7 @@
 	
 	
 	
-	$consulta = "SELECT * FROM recibosSalidas
+	$consulta = "SELECT * FROM recibos_salidas
 	LEFT JOIN empresas USING(id_empresas) 
 	LEFT JOIN beneficiarios USING(id_beneficiarios) 
 	LEFT JOIN motivos_salida USING(id_motivosSalida)
@@ -84,7 +84,22 @@
 						<td><?php echo $fila["nombre_empresas"]?></td>
 						<td><?php echo $fila["monto_reciboSalidas"]?></td>
 						<td><?php echo $fila["observaciones_reciboSalidas"]?></td>
-						<td><?php echo $fila["estatus_reciboSalidas"]?></td>
+						<td>
+						
+							<?php
+								if($fila["estatus_reciboSalidas"] == "Cancelado"){
+									
+									echo "<span class='badge badge-danger'>".$fila["estatus_reciboSalidas"]."<br>".$fila["datos_cancelacion"]."</span>";
+								}
+								else{
+									
+								echo $fila["estatus_reciboSalidas"];
+									}
+								
+								
+								
+								?>
+						</td>
 						<td><?php echo $fila["nombre_usuarios"]?></td>
 						
 					</tr>

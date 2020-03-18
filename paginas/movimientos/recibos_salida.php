@@ -152,7 +152,7 @@
 			include("../../scripts.php");
 			include('forms/forms_salida.php');
 		?>
-    <script src="js/recibos_salida.js"></script>
+    <script src="js/recibos_salida.js?v=<?= date("d-m-Y-H-i-s")?>"></script>
     <script src="../catalogos/js/buscar.js"></script>
 	</body>
 </html>
