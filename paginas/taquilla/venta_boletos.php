@@ -191,7 +191,7 @@
 									
 									
 									<div class="row">
-										<div class="col-6" >
+										<div class="col-7" >
 											<div class="card card-secondary mt-4 ">
 												<div class="card-header">
 													Boletos Vendidos
@@ -206,7 +206,7 @@
 										</div>
 										
 										
-										<div class="col-6">
+										<div class="col-5">
 											
 											<div class="card card-secondary mt-4 ">
 												<div class="card-header">
