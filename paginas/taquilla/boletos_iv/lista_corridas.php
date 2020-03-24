@@ -57,7 +57,7 @@
 	LEFT JOIN usuarios USING(id_usuarios)
 	LEFT JOIN (
 	SELECT id_corridas, SUM(precio_boletos) AS importe_corridas
-	FROM boletos GROUP BY id_corridas
+	FROM boletos WHERE estatus_boletos <> 'Cancelado' GROUP BY id_corridas
 	) AS t_importes USING(id_corridas)
 	WHERE 1
 	
