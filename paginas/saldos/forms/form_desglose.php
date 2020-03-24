@@ -1,132 +1,72 @@
-<form class="was-validated " id="form_modal">
-	<!-- The Modal -->
-	<div class="modal fade" id="modal_modal">
-		<div class="modal-dialog modal-dialog-centered">
+<form class="was-validated " id="form_arqueo">
+
+	<div id="modal_arqueo" class="modal fade hidden-print" >
+		<div class="modal-dialog ">
 			<div class="modal-content">
 				
-				<!-- Modal Header -->
 				<div class="modal-header">
-					<h4 class="modal-title text-center"></h4>
+					<h4 class="modal-title text-center">Nuevo Arqueo</h4>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 				
-				<!-- Modal body -->
 				<div class="modal-body">
-					<input type="text" hidden class="form-control" id="id_desglose" name="id_desglose">
 					
-					<div class="form-row">
-						<div class="form-group col-md-6">
-							<label for="fecha_abonogeneral">FECHA</label>
-							<input type="date" class="form-control" value="<?php echo date("Y-m-d");?>" id="fecha_desglose" name="fecha_desglose" required>
-						</div>
+					<table class="table table-bordered ">
+						<thead>
+							<tr>
+								<th>Denominación</th>
+								<th>Cantidad</th>
+								<th>Importe</th>
+							</tr>
+							
+						</thead>
+						<tbody>
+							<?php
+								$denominaciones =  [1000,500,200,100,50,20,10,5,2,1,.5,.2,.1];
+								
+								foreach($denominaciones AS $i => $denominacion){ ?>
+								
+								<tr>
+									<td><b>$<?php echo $denominacion?></b></td>
+									<td>
+										<input type="number"  class="form-control cantidad" min="0" name="<?php echo $denominacion?>" data-denomi="<?php echo $denominacion?>" value="0">
+									</td>
+									
+									<td>	
+										<input tabindex="-1" type="number" min="0" class="form-control importe" value="0" readOnly>
+									</td>
+								</tr>
+								
+								<?php
+								}
+							?>
+						</tbody>
+					</table>
+					
+					
+					
+					
+					<div class="form-group ">
+						<label for="">Total</label>
+						<input type="number" name="importe_desglose" tabindex="-1" min="0" class="form-control" id="importe_total"  value="0" readOnly>
+					</div>
+					<div class="form-group " hidden>
+						<label for="">Fecha</label>
+						<input type="date" name="fecha_desglose"  class="form-control" id="fecha_desglose"  value="<?= date("Y-m-d")?>" readOnly>
 					</div>
 					
-					<div class="form-row">
-						<div class="form-group col-md-6">
-							<label for="">Taquilla</label>
-						</div>
-						<div class="form-group col-md-6">
-							<button type="button" class="btn btn-outline-success" id="btn_taquilla">
-								<i class="fas fa-plus"></i>
-							</button>
-						</div>
-					</div>
-					<div id="todo">
-						
-						<div id="imp_cadena" style="display:none;"></div>
-						
-						<!-- FIN SUBTOTAL DE TAQUILLA  -->
-						<div class="form-row">
-							<div class="form-group col-md-6">
-								<label for="">Subtotal</label>
-							</div>
-							<div class="form-group col-md-6">
-								<div class="input-group">
-									<div class="input-group-prepend">
-										<div class="input-group-text"><i class="fas fa-dollar-sign"></i></div>
-									</div>
-									<input type="number" min="0" class="form-control" id="importe_total" val="" readOnly>
-								</div>
-							</div>
-						</div>
-						<!-- SUBTOTAL DE TAQUILLA  -->
-						<!-- DOCUMENTO DE DOLETOS -->
-						<div class="form-row">
-							<div class="form-group col-md-6">
-								<label for="">Documento Boletos</label>
-							</div>
-							<div class="form-group col-md-4">
-								<div class="input-group">
-									<div class="input-group-prepend">
-										<div class="input-group-text"><i class="fas fa-dollar-sign"></i></div>
-									</div>
-									<input type="number" min="0" class="form-control" id="total_boletos" val="" readOnly>
-								</div>
-							</div>
-							<div class="form-group col-md-2">
-								<button type="button" class="btn btn-outline-success" id="btn_boletos">
-									<i class="fas fa-plus"></i>
-								</button>
-							</div>
-						</div>
-						
-						<div class="form-row" id="datos_boleto" style="display:none;">
-							<div class="form-group col-md-4">
-								<label for="">Cantidad</label>
-								<input type="number" min="0" class="form-control" id="cantidad" val="">
-							</div>
-							<div class="form-group col-md-4">
-								<label for="">Denominación</label>
-								<div class="input-group">
-									<div class="input-group-prepend">
-										<div class="input-group-text"><i class="fas fa-dollar-sign"></i></div>
-									</div>
-									<input type="number" min="0" class="form-control" id="denominacion" val="">
-								</div>
-							</div>
-							<div class="form-group col-md-4">
-								<label for="">Importe</label>
-								<input type="number" min="0" class="form-control" id="total_importe" val="0" readOnly>
-							</div>
-						</div>
-						<!-- FIN DOCUMENTO DE DOLETOS -->
-						<!-- DOCUMENTO DE CHEQUES -->
-						<div class="form-row">
-							<div class="form-group col-md-6">
-								<label for="">Documento Cheques</label>
-							</div>
-							<div class="form-group col-md-6">
-								<div class="input-group">
-									<div class="input-group-prepend">
-										<div class="input-group-text"><i class="fas fa-dollar-sign"></i></div>
-									</div>
-									<input type="number" min="0" id="documento_cheque" class="form-control" val="">
-								</div>
-							</div>
-						</div>
-						<!-- FIN DOCUMENTO DE CHEQUES -->
-						<div class="form-row">
-							<div class="form-group col-md-6">
-								<label for="">Total</label>
-							</div>
-							<div class="form-group col-md-6">
-								<div class="input-group">
-									<div class="input-group-prepend">
-										<div class="input-group-text"><i class="fas fa-dollar-sign"></i></div>
-									</div>
-									<input type="number" min="0" class="form-control" id="importe_desglose" name="importe_desglose" val="" readOnly>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-		    <!-- Modal footer -->
-		    <div class="modal-footer">
-					<button type="button" class="btn btn-outline-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
-					<button type="submit" class="btn btn-outline-success"><i class="fa fa-save"></i> Guardar</button>
 				</div>
 				
+				<!-- Modal footer -->
+				<div class="modal-footer hidden-print">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">
+					<i class="fa fa-times"></i> Cancelar
+					</button>
+					<button type="submit" class="btn btn-info">
+						<i class="fa fa-print"></i> Imprimir
+					</button>
+				</div>
 			</div>
 		</div>
 	</div>
-</form>
+</form>								

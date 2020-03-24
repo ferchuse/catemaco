@@ -4,7 +4,7 @@
 	include('../../../funciones/console_log.php');
 	$link = Conectarse();
 	$filas = array();
-	$respuesta = array();
+	$respuesta = "";
 	
 	
 	$denominaciones = ["1000", "500", "200", "100", "50", "20", "10", "5", "2", "1", "0.5"];
@@ -30,74 +30,48 @@
 			
 		}
 		
-	?> 
-	<div >
-		<legend>Desglose de Dinero </legend> 
-		<div class="row mb-2">
-			<div class="col-4">
-				<b >Fecha:</b>
-			</div>	 
-			<div class="col-8">			
-				<?php echo $filas["fecha_desglose"];?>
-			</div>
-		</div>
-		<div class="row mb-2">
-			<div class="col-4">
-				<b >Usuario:</b>
-			</div>	 
-			<div class="col-8">			
-				<?php echo $filas["nombre_usuarios"]?>
-			</div>
-		</div>
-			<div class="row mb-2">
-				<div class="col-4">
-					<b >Denom.</b> 
-				</div>	 
-				<div class="col-4">			
-					<b >Cantidad</b> 
-				</div>
-				<div class="col-4">			
-					<b >Importe</b> 
-				</div>
-			</div>
-		<?php foreach($denominaciones as $i => $denominacion){?>
-			<div class="row mb-2">
-				<div class="col-4">
-					<b >$<?php echo $denominacion;?>:</b> 
-				</div>	 
-				<div class="col-4 text-right">			
-					<?php echo number_format($filas[$denominacion]);?>
-				</div>
-				<div class="col-4 text-right">			
-					<?php echo number_format($filas[$denominacion] * $denominacion);?>
-				</div>
-			</div>
-			<?php
+		for ($x = 0 ; $x < 2; $x++){
+			$respuesta.= file_get_contents('../../img/logo_brujaz.tmb');
+			
+			$respuesta.=   "\x1b"."@";
+			$respuesta.= "\x1b"."E".chr(1); // Bold
+			
+			$respuesta.= "!\x10"; //font size
+			$respuesta.=   "Desglose de Dinero \n";
+			$respuesta.=  "\x1b"."E".chr(0); // Not Bold
+			$respuesta.=   "\x1b"."@";
+			$respuesta.= "Folio:". $filas["id_desglose"] . "\n";
+			$respuesta.= "Fecha:". $filas["fecha_desglose"] . "\n";
+			$respuesta.= "Taquillero:". $filas["nombre_usuarios"]."\n";
+			
+			
+			foreach($denominaciones as $i => $denominacion){
+				$respuesta.= $denominacion .chr(9);
+				
+				$respuesta.=number_format($filas[$denominacion]) .chr(9) ;
+				
+				$respuesta.= number_format($filas[$denominacion] * $denominacion) .chr(9);
+				$respuesta.= "\n";
+				
 			}
-		?>
-		
-			<hr>
-			<div class="row mb-2">
-				<div class="col-4">
-					<b >IMPORTE TOTAL:</b> 
-				</div>	 
-				<div class="col-8 text-right">			
-					<?php echo number_format($filas["importe_desglose"])?>
-				</div>
-			</div>
-		</div>
-		
-		<div style="page-break-after:always;"></div>
-		
-		
-		<?php
+			
+			$respuesta.=  "\nIMPORTE TOTAL:" .chr(9). number_format($filas["importe_desglose"]);
 			
 			
-		}
-		else {
-			echo "Error en ".$consulta.mysqli_Error($link);
-			
+			$respuesta.= "\x1b"."d".chr(2); // 4 Blank lines
+			$respuesta.= "\nVA"; // Cut
 		}
 		
+		// echo base64_encode ( $respuesta );
+		echo  ( $respuesta );
 		
-	?>	
+		
+		
+	}
+	else {
+		echo "Error en ".$consulta.mysqli_Error($link);
+		
+	}
+	
+	
+?>			

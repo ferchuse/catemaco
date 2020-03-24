@@ -115,7 +115,7 @@
 				<footer class="sticky-footer">
 					<div class="container my-auto ">
 						<div class="copyright text-center my-auto">
-							<span class="d-print-none">Copyright © Glifo Media 2018</span>
+							<span class="d-print-none">Copyright © Glifo Media 2020</span>
 						</div>
 					</div>
 				</footer>
@@ -132,8 +132,9 @@
 		<div class="d-print-block p-2" hidden id="ticket">
 		</div>
 		<?php include("../../scripts.php")?>
+		<script src="../../plugins/pos_print/websocket-printer.js" > </script>
 		<?php include("forms/form_desglose.php");?>
-		<script src="js/desglose_dinero.js"></script>
+		<script src="js/desglose_dinero.js?v=<?= date("d-m-Y-h-i-s")?>"></script>
 		<script src="js/buscar.js"></script>
 	</body>
 </html>	
