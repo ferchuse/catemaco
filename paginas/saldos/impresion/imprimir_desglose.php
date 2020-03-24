@@ -62,8 +62,8 @@
 			$respuesta.= "\nVA"; // Cut
 		}
 		
-		// echo base64_encode ( $respuesta );
-		echo  ( $respuesta );
+		echo base64_encode ( $respuesta );
+		// echo  ( $respuesta );
 		
 		
 		
