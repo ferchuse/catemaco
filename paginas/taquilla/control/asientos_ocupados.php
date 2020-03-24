@@ -13,6 +13,7 @@
 	$consulta = "SELECT num_asiento FROM boletos 
 	
 	WHERE id_corridas= {$_GET["id_corridas"]}
+	AND estatus_boletos  <> 'Cancelado'
 	";
   
 	
