@@ -82,6 +82,8 @@ function guardarRegistro(event){
 				alertify.success('Se ha agregado correctamente');
 				$('#modal_arqueo').modal('hide');
 				$('#form_filtros').submit();
+				
+				imprimirDesglose(respuesta.nuevo_id);
 			}
 			else{
 				alertify.error('Ocurrio un error');
@@ -116,6 +118,25 @@ function listarRegistros(ev){
 }
 
 
+function imprimirDesglose(id_registro){
+	
+	
+	$.ajax({
+		url: "impresion/imprimir_desglose.php",
+		data:{
+			id_registro : id_registro
+		}
+		}).done(function (respuesta){
+		printService.submit({
+			'type': 'LABEL',
+			'raw_content': respuesta
+		});
+		}).always(function(){
+		
+		
+		
+	});
+}	
 function imprimirTicket(event){
 	var id_registro = $(this).data("id_registro");
 	var boton = $(this);
@@ -132,12 +153,12 @@ function imprimirTicket(event){
 		}).done(function (respuesta){
 		printService.submit({
 			'type': 'LABEL',
-			'raw_content': respuesta
+		'raw_content': respuesta
 		});
 		}).always(function(){
 		
 		boton.prop("disabled", false);
 		icono.toggleClass("fa-print fa-spinner fa-spin");
 		
-	});
-}	
+		});
+		}			
