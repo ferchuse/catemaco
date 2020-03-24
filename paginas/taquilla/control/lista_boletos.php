@@ -12,10 +12,10 @@
 	
 	
 	
-	$consulta = "SELECT * FROM boletos 
+	$consulta = "SELECT *, nombre_origenes as destino FROM boletos 
 	LEFT JOIN precios_boletos USING(id_precio)
-	
-	WHERE id_corridas = {$_GET["id_corridas"]}
+	LEFT JOIN origenes ON precios_boletos.id_destinos = origenes.id_origenes
+	WHERE id_corridas = '{$_GET["id_corridas"]}'
 	ORDER BY id_boletos DESC
 	";
   
@@ -40,7 +40,7 @@
 				<th>Folio Boleto</th>
 				<th>Num Asiento</th>
 				<th>Nombre Pasajero</th>
-				<th>Tipo de Boleto</th>
+				<th>Destino</th>
 				<th>Precio</th>
 				<th hidden>Origen </th>
 				<th hidden>Destino</th>
@@ -59,10 +59,8 @@
 					<td><?php echo $filas["id_boletos"]?></td>
 					<td><?php echo $filas["num_asiento"]?></td>
 					<td><?php echo $filas["nombre_pasajero"];?></td>
-					<td><?php echo $filas["tipo_precio"];?></td>
+					<td ><?php echo $filas["destino"]?></td>
 					<td>$<?php echo number_format($filas["precio_boletos"])?></td>
-					<td hidden><?php echo $filas["nombre_origenes"]?></td>
-					<td hidden><?php echo $filas["nombre_destinos"]?></td>
 					<td hidden><?php
 						echo $filas["estatus_corridas"]."<br>";
 						if($filas["estatus_corridas"] == "Cancelado"){
