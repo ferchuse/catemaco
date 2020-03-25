@@ -95,15 +95,31 @@
 		}
 		
 		foreach($guias AS $i =>$fila){
-			$importe= $fila["precio_boletos"];
-			$total_guia+= $importe;
-			$total_boletos++;
+			if($fila["estatus_boletos"] == "Cancelado"){
+				
+				
+				$respuesta.= "CANCELADO:";
+				$respuesta.=  $fila["num_asiento"]."\x09";
+				$respuesta.=  $fila["nombre_pasajero"]."\x09"."\x09";
+				$respuesta.="$". number_format($fila["precio_boletos"],2)."\x09   ";
+				
+				$respuesta.= "\x1b"."d".chr(1); // Blank line
+				
+			}
+			else{
+				$importe= $fila["precio_boletos"];
+				$total_guia+= $importe;
+				$total_boletos++;
+				
+				$respuesta.=  $fila["num_asiento"]."\x09";
+				$respuesta.=  $fila["nombre_pasajero"]."\x09"."\x09";
+				$respuesta.="$". number_format($fila["precio_boletos"],2)."\x09   ";
+				
+				$respuesta.= "\n"; // Blank line
+				
+				
+			}
 			
-			$respuesta.=  $fila["num_asiento"]."\x09";
-			$respuesta.=  $fila["nombre_pasajero"]."\x09"."\x09";
-			$respuesta.="$". number_format($fila["precio_boletos"],2)."\x09   ";
-			
-			$respuesta.= "\x1b"."d".chr(1); // Blank line
 			
 		}
 		
@@ -111,7 +127,7 @@
 		$respuesta.= "\nTOTAL:   $". number_format($total_guia). "\n"; // Blank line
 		$respuesta.= "Boletos Vendidos:  ". $total_boletos ."\n"; // Blank line
 		$respuesta.= "\x1b"."d".chr(1). "\n"; // Blank line
-		$respuesta.= "VA"; // Cut
+		// $respuesta.= "VA"; // Cut
 		
 		
 		//GASTOS
@@ -121,16 +137,7 @@
 		$respuesta.= "\x1b"."E".chr(1); // Bold
 		$respuesta.= "!\x10"; //font size
 		$respuesta.=   "LISTA DE  GASTOS \n";
-		$respuesta.=  "\x1b"."E".chr(0); // Not Bold
-		$respuesta.= "\x1b"."@";
-		$respuesta.= "Guia: ". $gastos[0]["id_corridas"];
-		$respuesta.= "\x1b"."d".chr(1); // 4 Blank lines
-		$respuesta.= "Fecha:". $gastos[0]["fecha_corridas"];
-		$respuesta.= "\x1b"."d".chr(1); // 4 Blank lines
-		$respuesta.= "Taquillero:". $gastos[0]["nombre_usuarios"];
-		$respuesta.= "\x1b"."d".chr(1); // 4 Blank lines
-		$respuesta.= "Num Eco:". $gastos[0]["num_eco"];
-		$respuesta.= "\x1b"."d".chr(1); // 4 Blank lines
+		
 		
 		foreach($gastos AS $i =>$gasto){
 			$importe= $gasto["importe"];
@@ -141,26 +148,33 @@
 			$respuesta.="$". number_format($gasto["importe"])."\x09   ";
 			$respuesta.= "\x1b"."d".chr(1); // Blank line
 			
-			$respuesta.=   "\x1b"."@"; // RESET defaults
+			$respuesta.=   "\x1b"."@"; 
 		}
+		
+			$respuesta.=   "\nTOTAL BOLETOS: $". number_format($total_guia). "\n";
+			$respuesta.=   "TOTAL GASTOS: $". number_format($total_gastos). "\n";
+			$respuesta.=   "BALANCE: $". number_format($total_guia - $total_gastos). "\n";
+		
+		
 		
 		$respuesta.= "VA"; // Cut
 		
 		
 		
 		
+		// echo  ( $respuesta );
 		echo base64_encode ( $respuesta );
 		
 		exit(0);
 		
 		
 		
-		}
+	}
+	
+	else {
+		echo "Error en ".$consulta.mysqli_Error($link);
 		
-		else {
-			echo "Error en ".$consulta.mysqli_Error($link);
-			
-		}
-		
-		
-	?>				
+	}
+	
+	
+?>				
