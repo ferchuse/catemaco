@@ -30,10 +30,11 @@
 	}
 	
 	
-	$consulta_boletos = "SELECT COUNT(id_precio) AS tipo_precio, precio_boletos
+	$consulta_boletos = "SELECT COUNT(id_precio) AS cantidad, nombre_origenes AS destino
 	
 	FROM	boletos 
-	
+	LEFT JOIN precios_boletos USING(id_precio)
+	LEFT JOIN origenes ON precios_boletos.id_destinos = origenes.id_origenes
 	WHERE id_corridas = '{$_GET["id_corridas"]}' 
 	GROUP BY id_precio
 	";
@@ -172,11 +173,11 @@
 		$respuesta.= "!\x10"; //font size
 		$respuesta.=   "  TIPOS DE BOLETOS \n";
 		$respuesta.=   "\x1b"."@"; 
-		$respuesta.=  "  TIPO DE BOLETO \x09 CANTIDAD \n";
+		$respuesta.=  "  DESTINO           CANTIDAD \n";
 			
 		foreach($boletos AS $i =>$boleto){
-			$respuesta.=  "  $".$boleto["precio_boletos"]."\x09\x09 ";
-			$respuesta.=  "  ".$boleto["tipo_precio"]."\n  ";
+			$respuesta.=  "  ".$boleto["destino"]." \x09       ";
+			$respuesta.= $boleto["cantidad"]."\n";
 		}
 		
 		$respuesta.= "  ______________________\n "; 
