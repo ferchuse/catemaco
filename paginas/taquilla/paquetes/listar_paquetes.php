@@ -3,13 +3,14 @@
 	include('../../../conexi.php');
 	$link = Conectarse();
 	
-	$consulta = "SELECT * FROM gastos_corrida
-	LEFT JOIN cat_gastos USING(id_cat_gastos)
+	$consulta = "SELECT * FROM paquetes
+	LEFT JOIN taquillas ON taquillas.id_taquilla = paquetes.id_taquilla_destino
+	
 	WHERE id_corridas = '{$_GET["id_corridas"]}' 
 	";
 	
 
-	$consulta.= "ORDER BY fecha_gastos ";
+	$consulta.= "ORDER BY id_paquetes ";
 	$result = mysqli_query($link,$consulta);
 	
 	if($result){
@@ -19,24 +20,22 @@
 		<thead>
 			<tr>
 				
-				
 				<th class="text-center">Folio</th>
-				<th class="text-center">Concepto</th>
-				<th class="text-center">Importe</th>
+				<th class="text-center">Taquilla Destino</th>
+				<th class="text-center">Costo</th>
 			
 			</tr>
 		</thead>
 		<tbody >
 			<?php
 				while($fila = mysqli_fetch_assoc($result)){ 
-					$suma_gastos+= $fila["importe"];
+					$suma_paquetes+= $fila["costo"];
 					?>
 				
 				<tr>
-					
-					<td><?php echo $fila["id_gastos"];?></td>
-					<td><?php echo $fila["descripcion_gastos"];?></td>
-					<td>$<?php echo $fila["importe"];?></td>
+					<td><?php echo $fila["id_paquetes"];?></td>
+					<td><?php echo $fila["nombre_taquilla"];?></td>
+					<td>$<?php echo $fila["costo"];?></td>
 				
 					
 				</tr>
@@ -50,9 +49,9 @@
 				<td >
 					<?php echo mysqli_num_rows($result);?> Registros.
 				</td>
-				<td ><B> Total Gastos</b></td>
+				<td ><B> Total Paquetes</b></td>
 				<td >
-					$<?php echo number_format($suma_gastos);?>.
+					$<?php echo number_format($suma_paquetes);?>.
 				</td>
 			</tr>
 		</tfoot>

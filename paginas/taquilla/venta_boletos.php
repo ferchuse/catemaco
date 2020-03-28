@@ -194,7 +194,8 @@
 										<div class="col-7" >
 											<div class="card card-secondary mt-4 ">
 												<div class="card-header">
-													Boletos Vendidos
+													<b> <i class="fas fa-ticket-alt"></i> Boletos Vendidos</b>
+													
 													<button class="btn btn-info float-right" id="imprimir_guia">
 														<i class="fas fa-print"></i> Imprimir Guia y Finalizar 
 													</button>
@@ -208,14 +209,26 @@
 										
 										<div class="col-5">
 											
-											<div class="card card-secondary mt-4 ">
-												<div class="card-header">
-													Gastos por Corrida
+											<div class="card card-primary mt-4 ">
+												<div class="card-header bg-danger">
+													<b> <i class="fas fa-dollar-sign"></i> Gastos por Corrida</b>
 													<button  id="nuevo_gasto" type="button" class="btn btn-success mb-2 d-print-none float-right">
 														<i class="fas fa-plus"></i> Nuevo
 													</button>
 												</div>
 												<div class="card-body" id="lista_gastos">
+													<h3 class="text-center">Cargando <i class="fas fa-spinner fa-pulse"></i></h3>
+												</div>
+											</div>
+											
+											<div class="card card-success mt-4 ">
+												<div class="card-header bg-info">
+													<b> <i class="fas fa-box-open"></i> Paquetes</b>
+													<button  id="nuevo_paquete" type="button" class="btn btn-success mb-2 d-print-none float-right">
+														<i class="fas fa-plus"></i> Nuevo
+													</button>
+												</div>
+												<div class="card-body" id="lista_paquetes">
 													<h3 class="text-center">Cargando <i class="fas fa-spinner fa-pulse"></i></h3>
 												</div>
 											</div>
@@ -256,6 +269,7 @@
 		</div>
 		
 		<?php include("gastos/form_gastos.php")?>
+		<?php include("paquetes/form_paquetes.php")?>
 		
 		<?php include("../../scripts.php")?>
 		<script src="../../plugins/pos_print/websocket-printer.js" > </script>
@@ -263,6 +277,7 @@
 		<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js" ></script>
 		<script src="boletos_iv/venta_boletos.js?v=<?= date("Y-m-d-H-i-s")?>"></script>
 		<script src="gastos/gastos.js?v=<?= date("Y-m-d-H-i-s")?>"></script>
+		<script src="paquetes/paquetes.js?v=<?= date("Y-m-d-H-i-s")?>"></script>
 		
 	</body>
 </html>																														
