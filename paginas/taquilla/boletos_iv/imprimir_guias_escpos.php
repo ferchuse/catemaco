@@ -22,10 +22,7 @@
 	WHERE id_corridas = '{$_GET["id_corridas"]}' 
 	ORDER BY num_asiento
 	";
-  
-	
 	$result_guia = mysqli_query($link,$consulta_guia);
-	
 	
 	while($fila_guia = mysqli_fetch_assoc($result_guia)){
 		
@@ -33,13 +30,26 @@
 	}
 	
 	
+	$consulta_boletos = "SELECT COUNT(id_precio) AS tipo_precio, precio_boletos
+	
+	FROM	boletos 
+	
+	WHERE id_corridas = '{$_GET["id_corridas"]}' 
+	GROUP BY id_precio
+	";
+	$result_boletos = mysqli_query($link,$consulta_boletos);
+	
+	while($fila_boletos = mysqli_fetch_assoc($result_boletos)){
+		
+		$boletos[] = $fila_boletos ;
+	}
+	
+	
 	
 	$consulta_gastos = "SELECT * FROM gastos_corrida
 	LEFT JOIN cat_gastos USING(id_cat_gastos)
-	
 	WHERE id_corridas = '{$_GET["id_corridas"]}' 
 	ORDER BY fecha_gastos ";
-	
 	
 	$result_gastos = mysqli_query($link,$consulta_gastos);
 	
@@ -47,6 +57,24 @@
 		$gastos[] = $fila ;
 		
 	}
+	
+	$consulta_paquetes = "SELECT * FROM paquetes
+	LEFT JOIN taquillas ON taquillas.id_taquilla = paquetes.id_taquilla_destino
+	
+	WHERE id_corridas = '{$_GET["id_corridas"]}' 
+	";
+	
+	$result_paquetes = mysqli_query($link,$consulta_paquetes);
+	
+	while($fila = mysqli_fetch_assoc($result_paquetes)){ 
+		$paquetes[] = $fila ;
+		
+	}
+	
+	
+	
+	
+	
 	
 	if($result_guia){
 		
@@ -94,13 +122,15 @@
 			
 		}
 		
+		
+			$respuesta.= "ASIENTO           PASAJERO            PRECIO\n";
 		foreach($guias AS $i =>$fila){
 			if($fila["estatus_boletos"] == "Cancelado"){
 				
 				
 				$respuesta.= "CANCELADO:";
 				$respuesta.=  $fila["num_asiento"]."\x09";
-				$respuesta.=  $fila["nombre_pasajero"]."\x09"."\x09";
+				$respuesta.=  $fila["nombre_pasajero"]."\x09";
 				$respuesta.="$". number_format($fila["precio_boletos"],2)."\x09   ";
 				
 				$respuesta.= "\x1b"."d".chr(1); // Blank line
@@ -112,7 +142,7 @@
 				$total_boletos++;
 				
 				$respuesta.=  $fila["num_asiento"]."\x09";
-				$respuesta.=  $fila["nombre_pasajero"]."\x09"."\x09";
+				$respuesta.=  substr($fila["nombre_pasajero"], 0 , 22)."\x09";
 				$respuesta.="$". number_format($fila["precio_boletos"],2)."\x09   ";
 				
 				$respuesta.= "\n"; // Blank line
@@ -129,38 +159,87 @@
 		$respuesta.= "\x1b"."d".chr(1). "\n"; // Blank line
 		// $respuesta.= "VA"; // Cut
 		
+		$respuesta.= "________________________\n "; 
+		
+		
+		
+		
+		
+		//TIPOS DE BOLETO
+		
+		$respuesta.=   "\x1b"."@";
+		$respuesta.= "\x1b"."E".chr(1); // Bold
+		$respuesta.= "!\x10"; //font size
+		$respuesta.=   "  TIPOS DE BOLETOS \n";
+		$respuesta.=   "\x1b"."@"; 
+		$respuesta.=  "  TIPO DE BOLETO \x09 CANTIDAD \n";
+			
+		foreach($boletos AS $i =>$boleto){
+			$respuesta.=  "  $".$boleto["precio_boletos"]."\x09\x09 ";
+			$respuesta.=  "  ".$boleto["tipo_precio"]."\n  ";
+		}
+		
+		$respuesta.= "  ______________________\n "; 
+		
+		
+		
+		
 		
 		//GASTOS
-		
 		
 		$respuesta.=   "\x1b"."@";
 		$respuesta.= "\x1b"."E".chr(1); // Bold
 		$respuesta.= "!\x10"; //font size
 		$respuesta.=   "LISTA DE  GASTOS \n";
-		
+		$respuesta.=   "\x1b"."@"; 
 		
 		foreach($gastos AS $i =>$gasto){
 			$importe= $gasto["importe"];
 			$total_gastos+= $importe;
 			
-			$respuesta.=  $gasto["fecha_gastos"]."\x09";
+			$respuesta.=  $gasto["id_gastos"]."\x09";
 			$respuesta.=  $gasto["descripcion_gastos"]."\x09"."\x09";
-			$respuesta.="$". number_format($gasto["importe"])."\x09   ";
-			$respuesta.= "\x1b"."d".chr(1); // Blank line
+			$respuesta.="$". number_format($gasto["importe"], 0)."\n";
 			
-			$respuesta.=   "\x1b"."@"; 
 		}
 		
-			$respuesta.=   "\nTOTAL BOLETOS: $". number_format($total_guia). "\n";
-			$respuesta.=   "TOTAL GASTOS: $". number_format($total_gastos). "\n";
-			$respuesta.=   "BALANCE: $". number_format($total_guia - $total_gastos). "\n";
+		$respuesta.= "______________________\n "; 
 		
 		
+		//PAQUETES
+		
+		$respuesta.=   "\x1b"."@";
+		$respuesta.= "\x1b"."E".chr(1); // Bold
+		$respuesta.= "!\x10"; //font size
+		$respuesta.=   "LISTA DE  PAQUETES \n";
+		$respuesta.=   "\x1b"."@"; 
+		$total_paquetes = 0;
+		foreach($paquetes AS $i =>$paquete){
+			
+			$total_paquetes+= $paquete["costo"];
+			
+			
+			$respuesta.=  $paquete["id_paquetes"]."\x09";
+			$respuesta.=  $paquete["nombre_taquilla"]."\x09    ";
+			$respuesta.="$". number_format($paquete["costo"])."\n";
+			
+		}
+		
+		$respuesta.= "______________________\n "; 
+		
+		
+		
+		
+		
+		
+		
+		
+		$respuesta.=   "\nTOTAL BOLETOS: $". number_format($total_guia). "\n";
+		$respuesta.=   "TOTAL GASTOS: $". number_format($total_gastos). "\n";
+		$respuesta.=   "TOTAL PAQUETERIA: $". number_format($total_paquetes). "\n";
+		$respuesta.=   "BALANCE: $". number_format($total_guia - $total_gastos + $total_paquetes). "\n";
 		
 		$respuesta.= "VA"; // Cut
-		
-		
-		
 		
 		// echo  ( $respuesta );
 		echo base64_encode ( $respuesta );

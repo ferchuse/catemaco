@@ -210,7 +210,7 @@
 										<div class="col-5">
 											
 											<div class="card card-primary mt-4 ">
-												<div class="card-header bg-danger">
+												<div class="card-header bg-danger text-white">
 													<b> <i class="fas fa-dollar-sign"></i> Gastos por Corrida</b>
 													<button  id="nuevo_gasto" type="button" class="btn btn-success mb-2 d-print-none float-right">
 														<i class="fas fa-plus"></i> Nuevo
@@ -222,7 +222,7 @@
 											</div>
 											
 											<div class="card card-success mt-4 ">
-												<div class="card-header bg-info">
+												<div class="card-header bg-info text-white">
 													<b> <i class="fas fa-box-open"></i> Paquetes</b>
 													<button  id="nuevo_paquete" type="button" class="btn btn-success mb-2 d-print-none float-right">
 														<i class="fas fa-plus"></i> Nuevo
