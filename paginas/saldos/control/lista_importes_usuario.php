@@ -13,6 +13,7 @@
 	id_usuarios,
 	nombre_usuarios,
 	suma_boletos,
+	suma_paquetes,
 	suma_gastos
 	FROM
 	usuarios
@@ -28,10 +29,23 @@
 	estatus_boletos <> 'Cancelado'
 	AND DATE(fecha_boletos) BETWEEN '{$_GET["fecha_inicial"]}'
 	AND '{$_GET["fecha_final"]}'
-	
 	GROUP BY
 	id_usuarios
 	) AS t_boletos USING (id_usuarios)
+	
+	LEFT JOIN (
+	SELECT
+	id_usuarios,
+	SUM(costo) AS suma_paquetes
+	FROM
+	paquetes
+	WHERE
+	estatus_paquetes <> 'Cancelado'
+	AND DATE(fecha_paquetes) BETWEEN '{$_GET["fecha_inicial"]}'
+	AND '{$_GET["fecha_final"]}'
+	GROUP BY
+	id_usuarios
+	) AS t_paquetes USING (id_usuarios)
 	
 	LEFT JOIN (
 	SELECT
@@ -63,11 +77,13 @@
 		
 		
 	?>  
+	
 	<table class="table table-bordered table-condensed">
 		<thead>
 			<tr>
 				<th>Usuario</th>
 				<th>Venta de Boletos</th>
+				<th>Paquetería</th>
 				<th>Gastos</th>
 				<th>Total</th>
 			</tr>
@@ -79,88 +95,69 @@
 					
 					$filas = $fila ;
 					$totales[0]+= $filas["suma_boletos"];
-					$totales[1]+= $filas["suma_gastos"];
-					$balance_usuario  = $filas["suma_boletos"] - $filas["suma_gastos"] ;
+					$totales[1]+= $filas["suma_paquetes"];
+					$totales[2]+= $filas["suma_gastos"];
+					$balance_usuario  = $filas["suma_boletos"] + $filas["suma_paquetes"] - $filas["suma_gastos"] ;
 					$balance_total+= $balance_usuario;
 				?>
 				<tr>
 					<td>
-						
 						<?php echo $filas["nombre_usuarios"] == ''? 0 : $filas["nombre_usuarios"] ?>
-						
 					</td>
-					
-					<td>
-						<a href="abonos_usuario.php?<?php 
-							
-							echo "id_usuarios={$filas["id_usuarios"]}
-							&fecha_inicial={$_GET["fecha_inicial"]}
-							&fecha_final={$_GET["fecha_final"]}
-							&nombre_usuarios={$filas["nombre_usuarios"]}
-							
-							";
-							
-							?>">
-							<?php echo $filas["suma_boletos"]  == '' ? 0 : $filas["suma_boletos"]?>
-						</a>	
+					<td class="text-right">
+						$ <?php echo $filas["suma_boletos"]  == '' ? 0 : number_format($filas["suma_boletos"])?>
 					</td>
-					<td>
-						<a href="abonos_general_usuario.php?<?php 
-							echo "id_usuarios={$filas["id_usuarios"]}
-							&fecha_inicial={$_GET["fecha_inicial"]}
-							&fecha_final={$_GET["fecha_final"]}
-							&nombre_usuarios={$filas["nombre_usuarios"]}
-							";
-							?>">
-							
-							<?php echo $filas["suma_gastos"]  == ''? 0 : $filas["suma_gastos"] ?>
-						</a>	
+					<td class="text-right">
+						$ <?php echo $filas["suma_paquetes"]  == '' ? 0 : number_format($filas["suma_paquetes"])?>
 					</td>
-					</a>
-					<td>
-						<?php echo number_format($balance_usuario); ?>
+					<td class="text-right">
+						$ <?php echo $filas["suma_gastos"]  == ''? 0 : number_format($filas["suma_gastos"]) ?>
 					</td>
-				</tr>
-				
-				<?php
-					
-					
-				}
-			?>
+				</a>
+				<td class="text-right">
+					<?php echo number_format($balance_usuario); ?>
+				</td>
+			</tr>
 			
-			
-		</tbody>
-		<tfoot>
-			<tr class="h5">
-				<td ><b> TOTALES<b></td>
-					<?php
-						$gran_total = 0;
-						foreach($totales as $i =>$total){
-							
-						?>
-						<td ><b><?php echo number_format($total)?></b></td>
-						<?php	
-						}
-						
-						
-					?>
-					<td ><b>$<?php echo number_format($balance_total)?></b></td>
-					
-				</tr>
-				</tfoot>
-			</table>
-			
-			<pre hidden>
-				<?php echo $consulta;?>
-			</pre>
 			<?php
 				
-			}
-			
-			else {
-				echo "Error en ".$consulta.mysqli_Error($link);
 				
 			}
+		?>
+		
+		
+	</tbody>
+	<tfoot>
+		<tr class="h5">
+			<td ><b> TOTALES<b></td>
+				<?php
+					$gran_total = 0;
+					foreach($totales as $i =>$total){
+						
+					?>
+					<td class="text-right"><b>$ <?php echo number_format($total)?></b></td>
+					<?php	
+					}
+					
+					
+				?>
+				<td class="text-right" ><b>$<?php echo number_format($balance_total)?></b></td>
+				
+			</tr>
+			</tfoot>
+		</table>
+		
+		<pre hidden>
+			<?php echo $consulta;?>
+		</pre>
+		<?php
 			
+		}
+		
+		else {
+			echo "Error en ".$consulta.mysqli_Error($link);
 			
-		?>																							
+		}
+		
+		
+	?>																											
