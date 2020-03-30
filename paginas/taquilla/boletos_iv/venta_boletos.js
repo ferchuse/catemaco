@@ -28,9 +28,12 @@ function onLoad(){
 	$("#lista_boletos").on("click", ".cancelar", confirmaCancelacion);
 	
 	$("#lista_boletos").on("click", ".imprimir", function(){
-		imprimirESCPOS($(this).data("id_registro"))
-		
+		// imprimirESCPOS($(this).data("id_registro"))
+		imprimirTicket([$(this).data("id_registro")]);
+			
 	});
+	
+	
 	
 	$("#lista_corridas").on("click", ".cambiar_unidad", editarRegistro);
 	$("#lista_corridas").on("click", ".cancelar", confirmaCancelarCorrida);
@@ -700,11 +703,7 @@ function listaBoletos(){
 		$("#lista_boletos").html(respuesta);
 		
 		$("#imprimir_guia").on("click", finalizarCorrida);
-		$(".imprimir").click(function(){
-			
-			imprimirTicket([$(this).data("id_registro")]);
-			
-		});
+	
 	});
 	
 }
