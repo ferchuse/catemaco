@@ -30,7 +30,7 @@ function onLoad(){
 	$("#lista_boletos").on("click", ".imprimir", function(){
 		// imprimirESCPOS($(this).data("id_registro"))
 		imprimirTicket([$(this).data("id_registro")]);
-			
+		
 	});
 	
 	
@@ -305,8 +305,19 @@ function agregarBoleto(num_asiento){
 	<td>
 	<button class="btn btn-danger quitar_boleto" type="button">
 	<i class="fas fa-times"></i>
-	</button>
-	</td>
+	</button>`;
+	
+	if($("#permiso").val() == "Supervisor"){
+		
+		boleto_html+=
+		`<button class="btn btn-default cortesia" type="button" title="Cortesia">
+		<i class="fas fa-percent"></i>
+		</button>`;
+		
+	}
+	
+	boleto_html+=
+	`</td>
 	
 	</tr>`;
 	$("#resumen_boletos").append(boleto_html);
@@ -339,6 +350,14 @@ function agregarBoleto(num_asiento){
 		sumarImportes();
 	});
 	
+	$(".cortesia").click( function darCortesia( evt){
+		console.log("darCortesia", evt)
+		
+		$(this).closest("tr").find(".precio").val(0);
+		$(this).removeClass("btn-default").addClass("btn-info");
+		sumarImportes();
+	});
+	
 	sumarImportes();
 }
 
@@ -349,9 +368,9 @@ function sumarImportes(){
 		
 		importe_total+= Number($(item).val());
 	});
-
-$("#importe_total").val(importe_total)
-
+	
+	$("#importe_total").val(importe_total)
+	
 }
 
 function selectTodos(evt){
@@ -703,7 +722,7 @@ function listaBoletos(){
 		$("#lista_boletos").html(respuesta);
 		
 		$("#imprimir_guia").on("click", finalizarCorrida);
-	
+		
 	});
 	
 }
