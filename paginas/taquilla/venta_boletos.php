@@ -110,7 +110,7 @@
 												</button>
 											</h3>
 										</div>
-										<div class="card-body" id="lista_corridas">
+										<div class="card-body table-responsive" id="lista_corridas">
 											
 										</div>
 									</div>
