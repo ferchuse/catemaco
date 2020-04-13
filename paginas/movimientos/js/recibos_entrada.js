@@ -12,65 +12,12 @@ $(document).ready(function(){
 	
 	$('#nuevoSalida').on('click',function(){
 		$('#form_salida')[0].reset();
-		$('.modal-title').text('Nuevo Recibo de Salida');
+		$('.modal-title').text('Nueva Entrada');
 		$('#modal_salida').modal('show');
 	}); 
 	
 	$('#form_salida').on('submit', guardarRecibo)
 	
-	//=========BUSCAR EMPRESA=========
-	$("#numero_conductor").keyup(function filtro_buscar(){
-		var indice = $(this).data("indice");
-		var valor_filtro = $(this).val();
-		var num_rows = buscar(valor_filtro,'tabla_conductores',indice);
-		if(num_rows == 0){
-			$('#mensaje').html("<div class='alert alert-dark text-center' role='alert'><strong>No se ha encontrado.</strong></div>");
-			}else{
-			$('#mensaje').html('');
-		}
-	});
-	//=========BUSCAR RECIBO DE SALIDA=========
-	$("#nombre_empresa").keyup(function filtro_buscar(){
-		var indice = $(this).data("indice");
-		var valor_filtro = $(this).val();
-		var num_rows = buscar(valor_filtro,'tabla_recibos',indice);
-		if(num_rows == 0){
-			$('#mensaje').html("<div class='alert alert-dark text-center' role='alert'><strong>No se ha encontrado.</strong></div>");
-			}else{
-			$('#mensaje').html('');
-		}
-	});
-	$("#nombre_beneficiario").keyup(function filtro_buscar(){
-		var indice = $(this).data("indice");
-		var valor_filtro = $(this).val();
-		var num_rows = buscar(valor_filtro,'tabla_recibos',indice);
-		if(num_rows == 0){
-			$('#mensaje').html("<div class='alert alert-dark text-center' role='alert'><strong>No se ha encontrado.</strong></div>");
-			}else{
-			$('#mensaje').html('');
-		}
-	});
-	$("#buscar_salida").keyup(function filtro_buscar(){
-		var indice = $(this).data("indice");
-		var valor_filtro = $(this).val();
-		var num_rows = buscar(valor_filtro,'tabla_recibos',indice);
-		if(num_rows == 0){
-			$('#mensaje').html("<div class='alert alert-dark text-center' role='alert'><strong>No se ha encontrado.</strong></div>");
-			}else{
-			$('#mensaje').html('');
-		}
-	});
-	$("#fecha_recibo").change(function filtro_buscar(){
-		var indice = $(this).data("indice");
-		var valor_filtro = $(this).val();
-		console.log(valor_filtro);
-		var num_rows = buscar(valor_filtro,'tabla_recibos',indice);
-		if(num_rows == 0){
-			$('#mensaje').html("<div class='alert alert-dark text-center' role='alert'><strong>No se ha encontrado.</strong></div>");
-			}else{
-			$('#mensaje').html('');
-		}
-	});
 	
 	
 	
@@ -86,7 +33,7 @@ function guardarRecibo(event){
 	let fecha = new Date().toString('yyyy-MM-dd HH:mm:ss')
 	
 	datos.push({
-		name: 'fecha_reciboSalidas',
+		name: 'fecha_deposito',
 		value : fecha
 		
 	});
@@ -99,11 +46,11 @@ function guardarRecibo(event){
 	icono.toggleClass('fa-save fa-spinner fa-pulse ');
 	
 	$.ajax({
-		url: 'control/guardar_salida.php',
+		url: 'control/guardar_entrada.php',
 		method: 'POST',
 		dataType: 'JSON',
 		data:{
-			tabla: 'recibos_salidas',
+			tabla: 'recibos_entradas',
 			datos: datos
 		}
 		}).done(function(respuesta){
@@ -134,7 +81,7 @@ function listarRegistros(){
 	icono.toggleClass('fa-search fa-spinner fa-pulse ');
 	
 	return $.ajax({
-		url: 'control/lista_recibos_salida.php',
+		url: 'control/lista_recibos_entrada.php',
 		data: $("#form_filtro").serialize()
 		}).done(function(respuesta){
 		
@@ -155,30 +102,6 @@ function listarRegistros(){
 	});
 }
 
-
-
-
-
-
-
-function obtenerFecha(){
-	let today = new Date();
-	let dd = today.getDate();
-	
-	let mm = today.getMonth()+1; 
-	const yyyy = today.getFullYear();
-	if(dd<10) 
-	{
-		dd=`0${dd}`;
-	} 
-	
-	if(mm<10) 
-	{
-		mm=`0${mm}`;
-	} 
-	return today = `${yyyy}-${mm}-${dd}`;
-}
-
 function imprimirTicket(id_registro){
 	var boton = $(this);
 	var icono = boton.find("fas");
@@ -187,7 +110,7 @@ function imprimirTicket(id_registro){
 	icono.toggleClass("fa-print fa-spinner fa-spin");
 	
 	$.ajax({
-		url: "impresion/imprimir_salida.php",
+		url: "impresion/imprimir_entrada.php",
 		data:{
 			id_registro : id_registro,
 			nombre_usuarios : $("#sesion_nombre_usuarios").html()
@@ -224,7 +147,7 @@ function confirmaCancelacion(event){
 		icono.toggleClass("fa-times fa-spinner fa-spin");
 		
 		return $.ajax({ 
-			url: "control/cancelar_recibo_salida.php",
+			url: "control/cancelar_recibo_entrada.php",
 			dataType:"JSON",
 			data:{
 				id_registro : id_registro,
