@@ -112,7 +112,7 @@ function listarSalidas(){
                     dataType: 'JSON',
                     data: {
                         tabla: 'motivos_salida',
-                        id_campo: 'id_motivosSalida',
+                        id_campo: 'id_motivossalida',
                         campo: id_motivosSalida
                     }
                 }).done(function(respuesta){
