@@ -57,7 +57,7 @@ function guardarRecibo(event){
 		if(respuesta.estatus == 'success'){
 			alertify.success('Se ha agregado correctamente');
 			$('#modal_salida').modal('hide');
-			imprimirTicket(respuesta.folio)
+			// imprimirTicket(respuesta.folio)
 			listarRegistros();
 			}else{
 			alertify.error('Ocurrio un error');
