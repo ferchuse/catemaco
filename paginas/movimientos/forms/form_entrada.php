@@ -1,4 +1,4 @@
-<form class="was-validated " id="form_salida">
+<form class="was-validated " id="form_salida" autocomplete>
 	<!-- The Modal -->
 	<div class="modal fade" id="modal_salida">
 		<div class="modal-dialog modal-md">
@@ -23,7 +23,15 @@
 					</div> 
 					
 					<div class="form-group">
-						<label for="monto_reciboSalidas">MONTO</label>
+						<label for="id_motivo_entrada">Motivo:</label>
+						<?php echo generar_select($link, "motivos_entrada", "id_motivo_entrada", "motivo",  false, false, true); ?>
+					</div> 
+					<div class="form-group">
+						<label for="concepto">Concepto:</label>
+						<input type="text" class="form-control" id="concepto" name="concepto" required>
+					</div> 
+					<div class="form-group">
+						<label for="monto">MONTO</label>
 						<input type="number" class="form-control" id="monto" name="monto" required>
 					</div> 
 					

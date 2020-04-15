@@ -11,6 +11,7 @@
 	
 	
 	$consulta = "SELECT * FROM recibos_entradas 
+	LEFT JOIN motivos_entrada USING(id_motivo_entrada)
 	LEFT JOIN empresas USING(id_empresas)
 	LEFT JOIN beneficiarios USING(id_beneficiarios) 
 	LEFT JOIN usuarios USING(id_usuarios)
@@ -30,7 +31,7 @@
 		while($fila = mysqli_fetch_assoc($result)){
 			
 			$filas = $fila ;
-	
+			
 			
 		}
 		
@@ -46,10 +47,14 @@
 		</div>
 		
 		<legend>Recibo de Entrada </legend> 
-		 
+		
 		<div class="row">
 			<div class="col-6">
-				<h5>Empresa: <?php echo $filas["nombre_empresas"]?><br></h5>
+				<h5>
+					Empresa: <?php echo $filas["nombre_empresas"]?><br>	
+					Motivo: <?php echo $filas["motivo"]?><br>
+				</h5>
+				
 			</div>	 
 			<div class="col-6 text-right">	
 				<h4>Folio: <?php echo $filas["id_deposito"]?></h4>
@@ -62,24 +67,26 @@
 		</div>
 		<div class="row">
 			<div class="col-12">
-				<p>Aportación por la cantidad de $<?=$filas["monto"]?>
+				<p>Depósito por la cantidad de $<?=$filas["monto"]?>
 					(<?php echo NumeroALetras::convertir($filas["monto"], 'PESOS', 'CENTAVOS')?>)
+					
 				</p>
 				<br>
+				<p>Por concepto de: <?php echo $filas["concepto"];?></p>
 			</div>	 
 		</div>
 		<div class="row text-center">
 			<div class="col-4 ">
 			</div>
 			<div class="col-4 border-bottom">
-			 <?php echo $filas["nombre_beneficiarios"];?>
+				<?php echo $filas["nombre_beneficiarios"];?>
 			</div>
 		</div>
 		<div class="row text-center">
 			<div class="col-4 ">
 			</div>
 			<div class="col-4 ">
-		
+				
 			</div>
 		</div>
 		<br>
@@ -113,7 +120,7 @@
 		</div>
 		
 		<legend>Recibo de Entrada COPIA</legend> 
-		 
+		
 		<div class="row">
 			<div class="col-6">
 				<h5>Empresa: <?php echo $filas["nombre_empresas"]?><br></h5>
@@ -139,14 +146,14 @@
 			<div class="col-4 ">
 			</div>
 			<div class="col-4 border-bottom">
-			 <?php echo $filas["nombre_beneficiarios"];?>
+				<?php echo $filas["nombre_beneficiarios"];?>
 			</div>
 		</div>
 		<div class="row text-center">
 			<div class="col-4 ">
 			</div>
 			<div class="col-4 ">
-		
+				
 			</div>
 		</div>
 		<br>
