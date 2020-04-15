@@ -1,23 +1,17 @@
-<?php //include("propietario.class.php")
-	include("../login/login_check.php");
-	
-	?>
-
+<?php
+  include("../login/login_check.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
-	
-  <head>
-		
+	<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-		
-    <title>Catálogo de Motivos de Condonación</title>
-		<?php include('../../styles.php');?>
+    <title>Catálogo de Motivos de Entrada</title>
+		<?php include('../../styles.php')?>
 	</head>
-	
 	<body id="page-top">
     <?php include("../../navbar.php")?>
     <div id="wrapper">
@@ -29,33 +23,33 @@
 						<li class="breadcrumb-item">
 							<a href="#">Catálogos</a>
 						</li>
-						<li class="breadcrumb-item active">Motivos de Salidas de Seguro Interno</li>
+						<li class="breadcrumb-item active">Motivos de Entrada</li>
 					</ol>
-					<form id="formularioP">
-				    <div class="col-12 mb-3">
-							<button type="submit"  class="btn btn-outline-success" title="Guardar"> <i class="fas fa-save"></i></button>
+					<div class="row mb-2">
+						<div class="col-3">
+							<button type="button" id="nuevo" class="btn btn-success" > 
+								<i class="fas fa-plus"></i> Nueva
+							</button>
 						</div>
-						<div class="row mb-2">
-							<div class="col-2">
-								<label for="nombre_motivos_de_salida_de_seguro_interno">Nombre:</label>
-							</div>	
-							<div class="col-6">			
-								<input class="form-control" type="text" name="motivo" id="motivo" placeholder="Escribe el motivo de Salida">
-							</div>
-						</div>
-					</form>		
+					</div>	
 					<div class="card mb-3">
 						<div class="card-header">
 							<i class="fas fa-table"></i>
-							Lista de Motivos
+							Lista de Motivos de Entrada
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
-								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+								<table class="table table-bordered" id="lista_registros" width="100%" cellspacing="0">
 									<thead>
 										<tr>
-											<th class="text-center">Id </th>
-											<th class="text-center">Motivo de Salida de Seguro Interno</th>
+											<th class="text-center">Motivo</th>
+											<th></th>
+										</tr>
+										<tr>
+											<th></th>
+											<th class="text-center">
+												<input id="buscar_nombre" type="text" class="form-control" data-indice="1" placeholder="Buscar">
+											</th>
 											<th></th>
 										</tr>
 									</thead>
@@ -65,22 +59,22 @@
 										</tr>
 									</tbody>
 								</table>
+								<div class="mensaje"></div>
 							</div>
 						</div>
-						<div class="card-footer small text-muted">Ultima Modificación Ayer 12pm</div>
+						
 					</div>
 				</div>
 				<!-- /.container-fluid -->
 				
-		    <!-- Sticky Footer -->
+				<!-- Sticky Footer -->
 				<footer class="sticky-footer">
 					<div class="container my-auto">
 						<div class="copyright text-center my-auto">
-							<span>Copyright © Glifo Media 2018</span>
+							<span>Copyright © Glifo Media 2020</span>
 						</div>
 					</div>
 				</footer>
-				
 			</div>
 			<!-- /.content-wrapper -->
 		</div>
@@ -91,7 +85,8 @@
 			<i class="fas fa-angle-up"></i>
 		</a>		
     <?php include("../../scripts.php")?>
-    <script src="motivos_condonacion.js"></script>
+    <?php include("forms/form_motivos_entrada.php")?>
+    <script src="js/motivos_entrada.js?v=<?= date("d-m-Y-H-i-s")?>"></script>
+    <script src="js/buscar.js"></script>
 	</body>
-	
 </html>
