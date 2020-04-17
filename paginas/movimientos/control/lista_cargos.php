@@ -9,21 +9,16 @@
 	
 	
 	
-	$consulta = "SELECT * FROM recibos_entradas
-	LEFT JOIN empresas USING(id_empresas) 
-	LEFT JOIN beneficiarios USING(id_beneficiarios) 
+	$consulta = "SELECT * FROM cargos
 	LEFT JOIN usuarios USING(id_usuarios)
-	WHERE 1
-	";
-	
-	$consulta.=  " 
-	AND  DATE(fecha_deposito)
+	LEFT JOIN beneficiarios USING(id_beneficiarios)
+	WHERE  DATE(fecha_cargos)
 	BETWEEN '{$_GET['fecha_inicial']}' 
 	AND '{$_GET['fecha_final']}'"; 
 	
-	$consulta.=  " ORDER BY id_deposito DESC"; 
-	
-	
+	if($_GET["id_beneficiarios"] != ''){
+		$consulta.=  " AND  id_beneficiarios = '{$_GET["id_beneficiarios"]}'"; 
+	}
 	
 	$result = mysqli_query($link,$consulta);
 	
@@ -34,7 +29,7 @@
 		}
 		
 		while($fila = mysqli_fetch_assoc($result)){
-			// console_log($fila);
+			
 			$filas[] = $fila ;
 		}
 	?>
@@ -50,54 +45,46 @@
 			<tr>
 				<th></th>
 				<th>Folio</th>
-				<th>Fecha </th>
+				<th>Fecha</th>
 				<th>Beneficiario</th>
-				<th>Empresa</th>
+				<th>Concepto</th>
 				<th>Monto</th>
-				<th>Estatus</th>
 				<th>Usuario</th>
 			</thead>
-			<tbody id="tabla_DB">
+			<tbody id="">
 				<?php 
 					foreach($filas as $index=>$fila){
 					?>
 					<tr>
 						<td class="text-center"> 
-							<?php if($fila["estatus_deposito"] != 'Cancelado'){
-								$totales[0]+= $fila["monto"];
-								
-							?>
-							<button class="btn btn-danger cancelar" title="Cancelar" data-id_registro='<?php echo $fila['id_deposito']?>'>
-								<i class="fas fa-times"></i>
-							</button>
-							<button class="btn btn-outline-info imprimir" data-id_registro='<?php echo $fila['id_deposito']?>'>
-								<i class="fas fa-print"></i>
-							</button>
-							<?php
-							}
-							else{
-								echo "<span class='badge badge-danger'>".$fila["estatus_deposito"]."<br>".$fila["datos_cancelacion"]."</span>";
-							}
+							<?php 
+								if($fila["estatus"] == 'Cancelado'){
+									echo "<span class='badge badge-danger'>".$fila["estatus"]."<br>".$fila["datos_cancelacion"]."</span>";
+								}
+								else{
+									$totales[0]+= $fila["monto"];
+								?>
+								<button class="btn btn-danger cancelar" title="Cancelar" data-id_registro='<?php echo $fila['id_cargos']?>'>
+									<i class="fas fa-times"></i>
+								</button>
+								<?php
+								}
 							?>
 						</td>
-						<td><?php echo $fila["id_deposito"]?></td>
-						<td><?php echo $fila["fecha_deposito"]?></td>
+						<td><?php echo $fila["id_cargos"]?></td>
+						<td><?php echo date("d-m-Y", strtotime($fila["fecha_cargos"]))?></td>
 						<td><?php echo $fila["nombre_beneficiarios"]?></td>
-						<td><?php echo $fila["nombre_empresas"]?></td>
-						<td><?php echo $fila["monto"]?></td>
-						
-						<td><?php echo $fila["estatus_deposito"]?></td>
+						<td><?php echo $fila["concepto"]?></td>
+						<td>$<?php echo number_format($fila["monto"])?></td>
 						<td><?php echo $fila["nombre_usuarios"]?></td>
-						
 					</tr>
 					<?
-						
 					}
 				?>
 			</tbody>
 			<tfoot>
-				<tr>
-					<td></td>
+				<tr class="bg-secondary text-white">
+					<td class="h6"><?= count($filas)?> Registros</td>
 					<td></td>
 					<td></td>
 					<td></td>
@@ -105,12 +92,10 @@
 					<?php
 						foreach($totales as $i =>$total){
 						?>
-						<td class="h6"><?php echo number_format($total)?></td>
+						<td class="h6">$<?php echo number_format($total)?></td>
 						<?php	
 						}
 					?>
-					<td></td>
-					<td></td>
 					<td></td>
 				</tr>
 			</tfoot>

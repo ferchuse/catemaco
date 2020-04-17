@@ -1,7 +1,7 @@
 <?php
 	include('../../conexi.php');
 	$link = Conectarse();
-	$nombre_pagina = "Traspaso de Utilidad";
+	$nombre_pagina = "Cargos";
 	include('../../funciones/generar_select.php');
 	include("../../paginas/login/login_check.php");
 ?>
@@ -32,35 +32,50 @@
 						<li class="breadcrumb-item active"><?php echo $nombre_pagina; ?></li>
 					</ol>
 					
+					<!--Form Filtro !-->
 					<form id="form_filtro" autocomplete="off">
-						<div class="col-12 mb-3">
-							<button  type="submit" id="btn_buscar"  class="btn btn-primary" >
-								<i class="fas fa-search"></i> Buscar
-							</button> 
-							<button type="button" class="btn btn-success" id="nuevo">
-								<i class="fas fa-plus"></i> Nuevo
-							</button>
+						<div class="row mb-2">
+							<div class="col-12">
+								<div class="col-12 mb-3">
+									<button class="btn btn-primary btn-sm" >
+										<i class="fas fa-search"></i> Buscar
+									</button>
+									<button type="button" class="btn btn-success btn-sm" id="nuevo">
+										<i class="fas fa-plus"></i> Nuevo
+									</button>
+									
+								</div>
+								
+							</div>
 						</div>
-						<div class="row"> 
-							<label class="col-1">Fecha Inicial:</label>
-							<div class="col-2">
-								<input class="form-control" name="fecha_inicial" type="date" id="fecha_inicial" value="<?php echo date("Y-m-d")?>">
+						
+						<div class="row mb-2">
+							<div class="col-sm-2">
+								<label for="fecha_inicial">Fecha Inicial:</label>
 							</div>
-							<label class="col-2">Fecha Incial:</label>
+							<div class="col-2">			
+								<input class="form-control" type="date" name="fecha_inicial" id="fecha_inicial" value="<?php echo date("Y-m-01");?>">
+							</div>  
 							<div class="col-2">
-								<input class="form-control" name="fecha_final" type="date" id="fecha_final" value="<?php echo date("Y-m-d")?>">
+								<label for="fecha_final">Fecha Final:</label>
+							</div>	
+							<div class="col-2">			
+								<input class="form-control" type="date" name="fecha_final" id="fecha_final" value="<?php echo date("Y-m-d");?>">
+							</div> 
+							<div class="col-sm-1">
+								<label >Beneficiarios:</label>
 							</div>
-						</div>	
-						<div class="row">
-							
-							<label class="col-1">Num Eco:</label>
-							<div class="col-2">
-								<input class="form-control" name="num_eco" type="text" >
+							<div class="col-sm-3">			
+								<?php
+									echo generar_select($link, "beneficiarios", "id_beneficiarios", "nombre_beneficiarios", true);
+								?>
 							</div>
 						</div>
 						
 					</form>
 					<hr>
+					
+					
 					<div class="card mb-3">
 						<div class="card-header">
 							<i class="fas fa-table"></i>
@@ -68,23 +83,10 @@
 						</div>
 						<div class="card-body">
 							
-							<div class="table-responsive">
-								<table class="table table-bordered" id="tabla_registros" width="100%" cellspacing="0" >
-									<thead>
-										<tr>
-											<th class="text-center">Acciones</th>
-											<th class="text-center">Folio</th>
-											<th class="text-center">Fecha</th>
-											<th class="text-center">Fecha Aplicación</th>
-											<th class="text-center">Beneficiario</th>
-											<th class="text-center">Concepto</th>
-											<th class="text-center">Monto</th>
-											<th class="text-center">Estatus</th>
-											<th class="text-center">Usuario</th>
-										</tr>
-									</thead>
+							<div class="table-responsive" id="tabla_registros">
+								<table class="table table-bordered" id="tabla_recibos" width="100%" cellspacing="0" >
 									
-									<tbody id="containerLista">
+									<tbody id="">
 										<tr>
 											<td colspan="8"><h3 class="text-center">Cargando...</h3></td>
 										</tr>
@@ -102,7 +104,7 @@
 				<footer class="sticky-footer">
 					<div class="container my-auto">
 						<div class="copyright text-center my-auto">
-							<span>Copyright  Glifo Media 2018</span>
+							<span>Copyright  Glifo Media 2020</span>
 						</div>
 					</div>
 				</footer>
@@ -122,9 +124,9 @@
 		
     <?php 
 			include("../../scripts.php");
-			include('forms/forms_traspaso.php');
+			include('forms/form_cargos.php');
 		?>
-    <script src="js/traspaso_utilidad.js?v=<?php echo date('Y-m-d-H:i:s');?>"></script>
+    <script src="js/cargos.js?v=<?= date("d-m-Y-H-i-s")?>"></script>
     <script src="../catalogos/js/buscar.js"></script>
 	</body>
 </html>
