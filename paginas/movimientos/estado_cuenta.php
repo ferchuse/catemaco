@@ -33,12 +33,7 @@
 					</ol>
 					
 					<form id="form_filtro" autocomplete="off">
-						<div class="col-12 mb-3">
-							<button  type="submit" id="btn_buscar"  class="btn btn-primary" >
-								<i class="fas fa-search"></i> Buscar
-							</button> 
-							
-						</div>
+						
 						<div class="form-row"> 
 							<label class="col-sm-1">Año:</label>
 							<div class="col-sm-2">
@@ -49,7 +44,7 @@
 									<option <?= date("Y") == "2023" ? "selected": "";?> value="2023">2023</option>
 								</select>
 							</div>
-								<label class="col-sm-1">Mes:</label>
+							<label class="col-sm-1">Mes:</label>
 							<div class="col-sm-2">
 								<select class="form-control filtro" id="mes" name="mes" >
 									<option <?= date("n") == "1" ? "selected": "";?> value="1">Enero</option>
@@ -64,11 +59,9 @@
 									<option <?= date("n") == "10" ? "selected": "";?> value="10">Octubre</option>
 									<option <?= date("n") == "11" ? "selected": "";?> value="11">Noviembre</option>
 									<option <?= date("n") == "12" ? "selected": "";?> value="12">Diciembre</option>
-								
+									
 								</select>
 							</div>
-							
-							
 							<div class="col-sm-1">
 								<label >Beneficiarios:</label>
 							</div>
@@ -77,8 +70,19 @@
 									echo generar_select($link, "beneficiarios", "id_beneficiarios", "nombre_beneficiarios", true);
 								?>
 							</div>
-							
 						</div>
+						
+						<div class="row">
+						
+							<div class="col-sm-1 mb-3">
+								<button  type="submit" id="btn_buscar"  class="btn btn-primary" >
+									<i class="fas fa-search"></i> Buscar
+								</button> 
+								
+							</div>
+						</div>
+						
+						
 						
 					</form>
 					<hr>

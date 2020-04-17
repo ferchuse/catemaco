@@ -8,6 +8,7 @@
 	$insert_traspaso  ="INSERT INTO cargos SET 
 	fecha_cargos = '{$_POST['fecha_cargos']}',
 	id_beneficiarios = '{$_POST['id_beneficiarios']}',
+	id_empresas = '{$_POST['id_empresas']}',
 	concepto = '{$_POST['concepto']}',
 	monto = '{$_POST["monto"]}',
 	id_usuarios = '{$_COOKIE["id_usuarios"]}'

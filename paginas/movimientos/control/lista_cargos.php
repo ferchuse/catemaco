@@ -10,6 +10,7 @@
 	
 	
 	$consulta = "SELECT * FROM cargos
+	LEFT JOIN empresas USING(id_empresas)
 	LEFT JOIN usuarios USING(id_usuarios)
 	LEFT JOIN beneficiarios USING(id_beneficiarios)
 	WHERE  DATE(fecha_cargos)
@@ -47,6 +48,7 @@
 				<th>Folio</th>
 				<th>Fecha</th>
 				<th>Beneficiario</th>
+				<th>Empresa</th>
 				<th>Concepto</th>
 				<th>Monto</th>
 				<th>Usuario</th>
@@ -74,6 +76,7 @@
 						<td><?php echo $fila["id_cargos"]?></td>
 						<td><?php echo date("d-m-Y", strtotime($fila["fecha_cargos"]))?></td>
 						<td><?php echo $fila["nombre_beneficiarios"]?></td>
+						<td><?php echo $fila["nombre_empresas"]?></td>
 						<td><?php echo $fila["concepto"]?></td>
 						<td>$<?php echo number_format($fila["monto"])?></td>
 						<td><?php echo $fila["nombre_usuarios"]?></td>
@@ -85,6 +88,7 @@
 			<tfoot>
 				<tr class="bg-secondary text-white">
 					<td class="h6"><?= count($filas)?> Registros</td>
+					<td></td>
 					<td></td>
 					<td></td>
 					<td></td>

@@ -14,6 +14,19 @@
 	LEFT JOIN (
 	SELECT
 	id_beneficiarios,
+	SUM(monto)  AS cargos 
+	FROM cargos
+	WHERE 
+	MONTH(fecha_cargos) = '{$_GET["mes"]}'
+	AND YEAR(fecha_cargos) = '{$_GET["year"]}'
+	AND estatus = 'Activo'
+	GROUP BY id_beneficiarios
+	) as t_cargos
+	USING (id_beneficiarios)
+	
+	LEFT JOIN (
+	SELECT
+	id_beneficiarios,
 	SUM(monto)  AS entradas 
 	FROM recibos_entradas
 	WHERE 
@@ -66,23 +79,27 @@
 		<thead>
 			<tr>
 				<th>Beneficiario</th>
+				<th>Cargos</th>
 				<th>Entradas</th>
 				<th>Salidas</th>
 				<th>Saldo</th>
 				
 			</thead>
-			<tbody id="tabla_DB">
+			<tbody id="">
 				<?php 
 					foreach($filas as $index=>$fila){
 					
-						$total[0]+= $fila["entradas"];
-						$total[1]+= $fila["salidas"];
+						$total[0]+= $fila["cargos"];
+						$total[1]+= $fila["entradas"];
+						$total[2]+= $fila["salidas"];
+						$total[3]+= $fila["cargos"] + $fila["salidas"] - $fila["entradas"];
 					?>
 					<tr>						
 						<td><?php echo $fila["nombre_beneficiarios"]?></td>
+						<td>$<?php echo number_format($fila["cargos"])?></td>
 						<td>$<?php echo number_format($fila["entradas"])?></td>
 						<td>$<?php echo number_format($fila["salidas"])?></td>
-						<td>$<?php echo number_format($fila["entradas"] - $fila["salidas"])?></td>
+						<td>$<?php echo number_format($fila["cargos"] + $fila["salidas"] - $fila["entradas"] )?></td>
 					</tr>
 					<?
 					}
@@ -93,6 +110,8 @@
 					<td><?php echo mysqli_num_rows($result);?> Registros</td>
 					<td>$<?= number_format($total[0]);?></td>
 					<td>$<?= number_format($total[1]);?></td>
+					<td>$<?= number_format($total[2]);?></td>
+					<td>$<?= number_format($total[3]);?></td>
 				</tr>
 			</tfoot>
 		</table>

@@ -18,6 +18,10 @@
 						<input type="date" class="form-control" id="fecha_cargos" name="fecha_cargos" value="<?= date("Y-m-d")?>" required>
 					</div>
 					<div class="form-group">
+						<label for="id_empresas">Empresa</label>
+						<?php echo generar_select($link, "empresas", "id_empresas", "nombre_empresas", false, false, true); ?>
+					</div>
+					<div class="form-group">
 						<label for="id_beneficiarios">Beneficiario:</label>
 						<?php echo generar_select($link, "beneficiarios", "id_beneficiarios", "nombre_beneficiarios",  false, false, true); ?>
 					</div> 
