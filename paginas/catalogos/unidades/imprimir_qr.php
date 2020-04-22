@@ -62,7 +62,7 @@
 			
 			$('#qrcodeCanvas').qrcode({
 			render	: "canvas",	
-			text	: "https://zitlalli.com/paginas/catalogos/unidades/detalles_unidad.php?serie="+$("#qr_text").val()
+			text	: "https://rhgaaz.com/catemaco/paginas/catalogos/unidades/detalles_unidad.php?serie="+$("#qr_text").val()
 			});	
 		</script>
 	</body>
