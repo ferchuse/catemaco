@@ -12,7 +12,7 @@
 	if($_GET["num_eco"] != ''){
 		$consulta.= " AND num_eco = '{$_GET["num_eco"]}' ";
 	}
-
+	
 	if($_GET["id_empresas"] != ''){
 		$consulta.= " AND id_empresas = '{$_GET["id_empresas"]}' ";
 	}
@@ -58,7 +58,13 @@
 						<button class="btn btn-info btn_historial" data-id_registro="<?php echo $fila["num_eco"];?>">
 							<i class="fas fa-clock"></i> 
 						</button>
-					
+						<a target="_blank" class="btn btn-default" href="unidades/detalles_unidad.php?serie=<?php echo $fila["serie"];?>">
+							<i class="fas fa-print"></i> 
+						</a>
+						<a class="btn btn-secondary" href="unidades/imprimir_qr.php?serie=<?php echo $fila["serie"];?>">
+							<i class="fas fa-qrcode"></i> 
+						</a>
+						
 					</td>
 				</tr>
 				
