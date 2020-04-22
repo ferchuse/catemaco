@@ -8,7 +8,6 @@
 	
 	$consulta = "SELECT * FROM unidades 
 	LEFT JOIN empresas USING(id_empresas)
-	LEFT JOIN derroteros USING(id_derroteros)
 	LEFT JOIN propietarios USING(id_propietarios)
 	WHERE serie= '{$_GET['serie']}'";
 	
@@ -150,17 +149,7 @@
 											<input class="form-control" value="<?= $unidad["estatus_unidades"]?>" readonly>
 										</div>
 									</div>
-									
-									<div class="row mb-2">
-										<div class="col-sm-5 col-12">
-											<label >Derrotero:</label>
-										</div>	
-										<div class="col-sm-7 col-12">			
-											
-											<input class="form-control" value="<?= $unidad["nombre_derroteros"]?>" readonly>
-											
-										</div>
-									</div>
+								
 									<div class="row mb-2">
 										<div class="col-sm-5 col-12">
 											<label for="serie">Serie:</label>
