@@ -22,6 +22,14 @@
 	BETWEEN '{$_GET['fecha_inicial']}' 
 	AND '{$_GET['fecha_final']}'"; 
 	
+	if($_GET['referencia'] != ""){
+		$consulta.=  " AND referencia =  '{$_GET['referencia']}' "; 
+	}
+	
+	if($_GET['id_beneficiarios'] != ""){
+		$consulta.=  " AND id_beneficiarios =  '{$_GET['id_beneficiarios']}' "; 
+	}
+	
 	$consulta.=  " ORDER BY id_reciboSalidas"; 
 	
 	
@@ -51,13 +59,13 @@
 			<tr>
 				<th></th>
 				<th>Folio</th>
+				<th>Referencia</th>
 				<th>Fecha </th>
 				<th>Beneficiario</th>
 				<th>Motivo</th>
 				<th>Empresa</th>
 				<th>Monto</th>
 				<th>Observaciones</th>
-				<th>Estatus</th>
 				<th>Usuario</th>
 			</thead>
 			<tbody id="tabla_DB">
@@ -75,31 +83,19 @@
 								</button>
 								<?php
 								}
+								else{
+									echo "<span class='badge badge-danger'>".$fila["estatus_reciboSalidas"]."<br>".$fila["datos_cancelacion"]."</span>";
+								}
 							?>
 						</td>
 						<td><?php echo $fila["id_reciboSalidas"]?></td>
+						<td><?php echo $fila["referencia"]?></td>
 						<td><?php echo $fila["fecha_reciboSalidas"]?></td>
 						<td><?php echo $fila["nombre_beneficiarios"]?></td>
 						<td><?php echo $fila["nombre_motivosSalida"]?></td>
 						<td><?php echo $fila["nombre_empresas"]?></td>
-						<td><?php echo $fila["monto_reciboSalidas"]?></td>
+						<td>$<?php echo $fila["monto_reciboSalidas"]?></td>
 						<td><?php echo $fila["observaciones_reciboSalidas"]?></td>
-						<td>
-						
-							<?php
-								if($fila["estatus_reciboSalidas"] == "Cancelado"){
-									
-									echo "<span class='badge badge-danger'>".$fila["estatus_reciboSalidas"]."<br>".$fila["datos_cancelacion"]."</span>";
-								}
-								else{
-									
-								echo $fila["estatus_reciboSalidas"];
-									}
-								
-								
-								
-								?>
-						</td>
 						<td><?php echo $fila["nombre_usuarios"]?></td>
 						
 					</tr>
@@ -120,14 +116,14 @@
 					<td></td>
 					<td></td>
 					<td></td>
+					<td></td>
 					<?php
 						foreach($totales as $i =>$total){
 						?>
-						<td class="h6"><?php echo number_format($total)?></td>
+						<td class="h6">$<?php echo number_format($total)?></td>
 						<?php	
 						}
 					?>
-					<td></td>
 					<td></td>
 					<td></td>
 				</tr>

@@ -52,17 +52,25 @@
 						</div>
 						
 						<div class="row mb-2">
-							<div class="col-2">
-								<label for="nombre_condonaciones">Fecha Inicial:</label>
-							</div>
-							<div class="col-4">			
+							
+							<div class="col-sm-2">	
+								<label for="fecha_inicial">Fecha Inicial:</label>
 								<input class="form-control" type="date" name="fecha_inicial" id="fecha_inicial" value="<?php echo date("Y-m-01");?>">
 							</div>  
-							<div class="col-2">
-								<label for="nombre_condonaciones">Fecha Final:</label>
-							</div>	
-							<div class="col-4">			
+							
+							<div class="col-sm-2">	
+								<label for="fecha_final">Fecha Final:</label>
 								<input class="form-control" type="date" name="fecha_final" id="fecha_final" value="<?php echo date("Y-m-d");?>">
+							</div> 
+							<div class="col-sm-2">
+								<label for="referencia">Referencia:</label>
+								<input class="form-control" type="text" name="referencia" >
+							</div>	
+							<div class="col-sm-3">	
+								
+								<label for="id_beneficiarios">Beneficiario</label>
+								<?php echo generar_select($link, "beneficiarios", "id_beneficiarios", "nombre_beneficiarios",  true); ?>
+								
 							</div> 
 						</div>
 						
@@ -150,7 +158,7 @@
 		
     <?php 
 			include("../../scripts.php");
-			include('forms/forms_salida.php');
+			include('forms/form_extra.php');
 		?>
     <script src="js/recibos_extra.js?v=<?= date("d-m-Y-H-i-s")?>"></script>
     <script src="../catalogos/js/buscar.js"></script>

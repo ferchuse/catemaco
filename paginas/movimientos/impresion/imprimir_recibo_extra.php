@@ -29,11 +29,8 @@
 		}
 		
 		while($fila = mysqli_fetch_assoc($result)){
-			console_log($fila);
+		
 			$filas = $fila ;
-			//TODO
-			///Tarjeta Cancelada
-			///Tarjeta Ya recaudada
 			
 		}
 		
@@ -56,6 +53,7 @@
 				<h5>
 					Empresa: <?php echo $filas["nombre_empresas"]?><br>
 					Motivo: <?php echo $filas["nombre_motivosSalida"]?><br>
+					Referencia: <?php echo $filas["referencia"]?><br>
 				</h5>
 			</div>	 
 			<div class="col-6 text-right">	
@@ -128,6 +126,7 @@
 				<h5>
 					Empresa: <?php echo $filas["nombre_empresas"]?><br>
 					Motivo: <?php echo $filas["nombre_motivosSalida"]?><br>
+					Referencia: <?php echo $filas["referencia"]?><br>
 				</h5>
 			</div>	 
 			<div class="col-6 text-right">	
