@@ -28,7 +28,7 @@
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label for="num_eco">Origen:</label>
+							<label for="origen">Origen:</label>
 							<select  required class="form-control"  name="origen" id="origen">
 								<option selected>INDIOS VERDES</option>
 								<option >CATEMACO</option>
@@ -36,8 +36,8 @@
 						</div>
 						
 						<div class="form-group col-6">
-							<label for="id_taquilla">Destino:</label>
-							<select  required class="form-control"  name="origen" id="origen">
+							<label for="destino">Destino:</label>
+							<select  required class="form-control"  name="destino" id="destino">
 								<option >INDIOS VERDES</option>
 								<option selected>CATEMACO</option>
 							</select>

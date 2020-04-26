@@ -36,6 +36,7 @@ function onLoad(){
 	
 	
 	$("#lista_corridas").on("click", ".cambiar_unidad", editarRegistro);
+	$("#lista_corridas").on("click", ".editar", editarRegistro);
 	$("#lista_corridas").on("click", ".cancelar", confirmaCancelarCorrida);
 	
 	$("#lista_corridas").on("click", ".imprimir", function(){

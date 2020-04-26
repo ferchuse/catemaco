@@ -59,9 +59,9 @@
 			$texto.="               EXIJALO.".chr(10).chr(13);
 			// $texto.="  RUTA: ".$_GET['ruta'].chr(10).chr(13);
 			$texto.="  FOLIO: ".$item["id_boletos"].chr(10).chr(13);
-			$texto.="  TIPO DE BOLETO: ".$item["tipo_precio"].chr(10).chr(13).chr(10).chr(13);
-			// $texto.="  FOLIO TICKET: ".$vfoliost[$i].chr(10).chr(13);
 			$texto.="  FECHA VENTA: ".$item['fecha_boletos'].chr(10).chr(13);
+			$texto.="  TIPO DE BOLETO: ".$item["tipo_precio"].chr(10).chr(13);
+			// $texto.="  FOLIO TICKET: ".$vfoliost[$i].chr(10).chr(13);
 			$texto.="  PRECIO: ".$item["precio_boletos"].chr(10).chr(13);
 			$texto.="  FECHA SALIDA: ".$item["fecha_corridas"].chr(10).chr(13);
 			$texto.="  HORA SALIDA: ".$item["hora_corridas"].chr(10).chr(13);

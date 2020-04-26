@@ -107,9 +107,9 @@
 				<th>Num Eco</th>
 				<th>Fecha</th>
 				<th>Hora</th>
-				<th hidden>Importe</th>
 				<th>Total</th>
-				<th>Empresa</th>
+				<th>Origen </th>
+				<th>Destino </th>
 				<th>Usuario</th>
 				
 			</tr>
@@ -118,10 +118,9 @@
 			<?php 
 				
 				while($fila = mysqli_fetch_assoc($result)){
-					// console_log($fila);
+				
 					$filas = $fila ;
-					
-					
+				
 				?>
 				<tr>
 					
@@ -144,6 +143,12 @@
 							data-num_eco="<?php echo $filas["num_eco"]?>"
 							>
 								<i class="fas fa-exchange-alt"></i> Cambiar Unidad
+							</button>
+							<button class="btn btn-warning  btn-sm editar" title="Editar" 
+							data-id_registro="<?php echo $filas["id_corridas"]?>"
+							data-num_eco="<?php echo $filas["num_eco"]?>"
+							>
+								<i class="fas fa-edit"></i> Editar
 							</button>
 							
 							<?php
@@ -235,7 +240,8 @@
 						$ <?php echo number_format($filas["importe_corridas"], 0)?>
 					</td>
 					
-					<td><?php echo $filas["nombre_empresas"]?></td>
+					<td><?php echo $filas["origen"]?></td>
+					<td><?php echo $filas["destino"]?></td>
 					<td><?php echo $filas["nombre_usuarios"]?></td>
 					
 				</tr>
@@ -245,26 +251,19 @@
 						
 						$total_corrida+= $filas["total_guia"];
 					}
-					// $total_ingresos+= $ingresos;
-					// $total_cargos+= $filas["gasto_administracion"];
-					// $total_seguro+= $filas["seguro_derroteros"];
+					
 					
 				}
 			?>
 			
-			<tr hidden>
-				<td colspan="4"> TOTALES</td>
-				<td><?php echo number_format($total_saldo_unidades);?></td>
-				<td><?php echo number_format($total_ingresos);?></td>
-				<td><?php echo number_format($total_cargos);?></td>
-				<td><?php echo number_format($ingresos)?></td>
-				
-			</tr>
+			
 		</tbody>
 		<tfoot>
 			<tr class="bg-secondary text-white">
 				<td colspan="6">TOTAL</td>
 				<td class="text-right"><?= number_format($total_corrida,0)?></td>
+				<td></td>
+				<td></td>
 				<td></td>
 			</tr>
 		</tfoot>
