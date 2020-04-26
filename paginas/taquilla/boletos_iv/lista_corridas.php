@@ -249,7 +249,7 @@
 				<?php
 					if($fila["estatus_corridas"] != "Cancelada"){
 						
-						$total_corrida+= $filas["total_guia"];
+						$total_corrida+= $filas["importe_corridas"];
 					}
 					
 					
@@ -261,7 +261,7 @@
 		<tfoot>
 			<tr class="bg-secondary text-white">
 				<td colspan="6">TOTAL</td>
-				<td class="text-right"><?= number_format($total_corrida,0)?></td>
+				<td class="text-right">$<?= number_format($total_corrida,0)?></td>
 				<td></td>
 				<td></td>
 				<td></td>
