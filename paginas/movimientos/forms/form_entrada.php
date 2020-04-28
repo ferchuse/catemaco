@@ -32,7 +32,7 @@
 					</div> 
 					<div class="form-group">
 						<label for="monto">MONTO</label>
-						<input type="number" class="form-control" id="monto" name="monto" required>
+						<input type="number" class="form-control" id="monto" name="monto" required step="any">
 					</div> 
 					
 				</div>

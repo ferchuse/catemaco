@@ -28,7 +28,7 @@
 				
 					<div class="form-group">
 						<label for="monto_reciboSalidas">MONTO</label>
-						<input type="number" class="form-control" id="monto_reciboSalidas" name="monto_reciboSalidas" required>
+						<input type="number" class="form-control" id="monto_reciboSalidas" name="monto_reciboSalidas" required step="any">
 					</div> 
                     <div class="form-group">
 						<label for="observaciones_reciboSalidas">OBSERVACIONES</label>
