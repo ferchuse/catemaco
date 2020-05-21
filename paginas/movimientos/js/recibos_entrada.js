@@ -118,7 +118,10 @@ function imprimirTicket(id_registro){
 		}).done(function (respuesta){
 		
 		$("#impresion").html(respuesta);
-		window.print();
+		setTimeout( function(){
+			window.print();
+			
+		}, 500);
 		}).always(function(){
 		
 		boton.prop("disabled", false);

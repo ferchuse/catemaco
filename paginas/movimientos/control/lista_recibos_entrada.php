@@ -90,7 +90,7 @@
 						<td><?php echo $fila["nombre_usuarios"]?></td>
 						
 					</tr>
-					<?
+					<?php
 						
 					}
 				?>

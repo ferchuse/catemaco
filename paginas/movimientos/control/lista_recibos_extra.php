@@ -99,7 +99,7 @@
 						<td><?php echo $fila["nombre_usuarios"]?></td>
 						
 					</tr>
-					<?
+					<?php
 						
 						if($fila["estatus_reciboSalidas"] != "Cancelado"){
 							$totales[0]+= $fila["monto_reciboSalidas"];

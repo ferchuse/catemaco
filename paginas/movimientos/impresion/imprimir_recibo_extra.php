@@ -37,16 +37,14 @@
 	?> 
 	<div class="media_carta">
 		<div class="row">
-			<div class="col-12 text-center" >
-				<img  hidden 
-				src="../../img/amt.jpg" class="img-fluid">
+			<div class="col-2 text-center" >
+				<img  src="../../img/logo.jpg" class="img-fluid">
 			</div>
-			<div class="col-12 text-center">
-				<h4><?php echo $filas["nombre_empresas"]?></h4>
+			<div class="col-7 text-center">
+				<h4>Coordinadora de Transporte Grupo AAZ AC</h4>
+			<legend>Recibo de Salida</legend> 
 			</div>
 		</div>
-		
-		<legend>Recibo de Salida</legend> 
 		
 		<div class="row">
 			<div class="col-6">
@@ -68,7 +66,7 @@
 		<div class="row">
 			<div class="col-12">
 				<p>Recibi la cantidad de $<?=$filas["monto_reciboSalidas"]?>
-					(<?php echo NumeroALetras::convertir($filas["monto_reciboSalidas"], 'PESOS', 'CENTAVOS')?>)
+					(<?php echo NumeroALetras::convertir($filas["monto_reciboSalidas"], 'PESOS', 'centavos')?>)
 				</p>
 				<br>
 				<p>Por concepto de: <?php echo $filas["observaciones_reciboSalidas"];?></p>
@@ -111,15 +109,14 @@
 	
 	<div class="media_carta">
 		<div class="row">
-			<div class="col-12 text-center" >
-				<img hidden src="../../../img/amt.jpg" class="img-fluid">
+			<div class="col-2 text-center" >
+				<img  src="../../img/logo.jpg" class="img-fluid">
 			</div>
-			<div class="col-12 text-center">
-				<h4><?php echo $filas["nombre_empresas"]?></h4>
+			<div class="col-7 text-center">
+				<h4>Coordinadora de Transporte Grupo AAZ AC</h4>
+			<legend>Recibo de Salida COPIA</legend> 
 			</div>
 		</div>
-		
-		<legend>Recibo de Salida COPIA</legend> 
 		 
 		<div class="row">
 			<div class="col-6">
@@ -141,7 +138,7 @@
 		<div class="row">
 			<div class="col-12">
 				<p>Recibi la cantidad de $<?=$filas["monto_reciboSalidas"]?>
-					(<?php echo NumeroALetras::convertir($filas["monto_reciboSalidas"], 'PESOS', 'CENTAVOS')?>)
+					(<?php echo NumeroALetras::convertir($filas["monto_reciboSalidas"], 'PESOS', 'centavos')?>)
 				</p>
 				<br>
 				<p>Por concepto de: <?php echo $filas["observaciones_reciboSalidas"];?></p>
