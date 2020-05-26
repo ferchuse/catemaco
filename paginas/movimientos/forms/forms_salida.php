@@ -14,6 +14,10 @@
 				<div class="modal-body">
 					<input type="text" hidden class="form-control" id="id_reciboSalidas" name="id_reciboSalidas">
 					<div class="form-group">
+						<label for="fecha_aplicacion">Fecha Aplicación:</label>
+						<input type="date" class="form-control" id="fecha_aplicacion" name="fecha_aplicacion" required value="<?= date("Y-m-d")?>">
+					</div>
+					<div class="form-group">
 						<label for="id_empresas">EMPRESA</label>
 						<?php echo generar_select($link, "empresas", "id_empresas", "nombre_empresas", false, false, true, $_SESSION["id_empresas"]); ?>
 					</div>
@@ -25,7 +29,7 @@
 						<label for="id_motivosSalida">MOTIVO DE LA SALIDA</label>
 						<?php echo generar_select($link, "motivos_salida", "id_motivosSalida", "nombre_motivosSalida",  false, false, true); ?>
 					</div>
-				
+					
 					<div class="form-group">
 						<label for="monto_reciboSalidas">MONTO</label>
 						<input type="number" class="form-control" id="monto_reciboSalidas" name="monto_reciboSalidas" required step="any">

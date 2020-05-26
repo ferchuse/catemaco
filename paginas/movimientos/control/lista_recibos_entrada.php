@@ -28,7 +28,7 @@
 	
 	
 	
-	$consulta.=  " ORDER BY id_deposito DESC"; 
+	$consulta.=  " ORDER BY id_deposito ASC"; 
 	
 	
 	$result = mysqli_query($link,$consulta);
@@ -56,7 +56,8 @@
 			<tr>
 				<th></th>
 				<th>Folio</th>
-				<th>Fecha </th>
+				<th>Fecha Creacion </th>
+				<th>Fecha Aplicación</th>
 				<th>Beneficiario</th>
 				<th>Empresa</th>
 				<th>Monto</th>
@@ -88,6 +89,7 @@
 						</td>
 						<td><?php echo $fila["id_deposito"]?></td>
 						<td><?php echo $fila["fecha_deposito"]?></td>
+						<td><?php echo $fila["fecha_aplicacion"]?></td>
 						<td><?php echo $fila["nombre_beneficiarios"]?></td>
 						<td><?php echo $fila["nombre_empresas"]?></td>
 						<td class="text-right">$<?php echo number_format($fila["monto"], 2)?></td>

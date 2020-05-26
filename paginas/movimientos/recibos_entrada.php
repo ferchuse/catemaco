@@ -56,7 +56,7 @@
 								<label for="nombre_condonaciones">Fecha Inicial:</label>
 							</div>
 							<div class="col-4">			
-								<input class="form-control" type="date" name="fecha_inicial" id="fecha_inicial" value="<?php echo date("Y-m-01");?>">
+								<input class="form-control" type="date" name="fecha_inicial" id="fecha_inicial" value="<?php echo date("Y-m-d");?>">
 							</div>  
 							<div class="col-2">
 								<label for="nombre_condonaciones">Fecha Final:</label>

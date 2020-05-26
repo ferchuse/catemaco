@@ -55,7 +55,7 @@
 							
 							<div class="col-sm-3">	
 								<label for="fecha_inicial">Fecha Inicial:</label>
-								<input class="form-control" type="date" name="fecha_inicial" id="fecha_inicial" value="<?php echo date("Y-m-01");?>">
+								<input class="form-control" type="date" name="fecha_inicial" id="fecha_inicial" value="<?php echo date("Y-m-d");?>">
 							</div>  
 							
 							<div class="col-sm-3">	

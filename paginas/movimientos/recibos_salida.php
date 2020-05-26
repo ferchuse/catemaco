@@ -54,7 +54,7 @@
 						<div class="row mb-2">
 							<div class="col-3">
 								<label for="">Fecha Inicial:</label>
-								<input class="form-control" type="date" name="fecha_inicial" id="fecha_inicial" value="<?php echo date("Y-m-01");?>">
+								<input class="form-control" type="date" name="fecha_inicial" id="fecha_inicial" value="<?php echo date("Y-m-d");?>">
 							</div>
 							<div class="col-3">
 								<label for="">Fecha Final:</label>

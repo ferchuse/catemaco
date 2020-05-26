@@ -31,7 +31,7 @@
 	
 	
 	
-	$consulta.=  " ORDER BY id_reciboSalidas"; 
+	$consulta.=  " ORDER BY id_reciboSalidas ASC"; 
 	
 	
 	
@@ -60,10 +60,10 @@
 			<tr>
 				<th></th>
 				<th>Folio</th>
-				<th>Fecha </th>
+				<th>Fecha Creación</th>
+				<th>Fecha Aplicación</th>
 				<th>Beneficiario</th>
 				<th>Motivo</th>
-				<th>Empresa</th>
 				<th>Monto</th>
 				<th>Observaciones</th>
 				<th>Estatus</th>
@@ -88,13 +88,13 @@
 						</td>
 						<td><?php echo $fila["id_reciboSalidas"]?></td>
 						<td><?php echo $fila["fecha_reciboSalidas"]?></td>
+						<td><?php echo $fila["fecha_aplicacion"]?></td>
 						<td><?php echo $fila["nombre_beneficiarios"]?></td>
 						<td><?php echo $fila["nombre_motivosSalida"]?></td>
-						<td><?php echo $fila["nombre_empresas"]?></td>
 						<td class="text-right">$<?php echo number_format($fila["monto_reciboSalidas"],2)?></td>
 						<td><?php echo $fila["observaciones_reciboSalidas"]?></td>
 						<td>
-						
+							
 							<?php
 								if($fila["estatus_reciboSalidas"] == "Cancelado"){
 									
@@ -102,54 +102,54 @@
 								}
 								else{
 									
-								echo $fila["estatus_reciboSalidas"];
-									}
+									echo $fila["estatus_reciboSalidas"];
+								}
 								
 								
 								
 								?>
-						</td>
-						<td><?php echo $fila["nombre_usuarios"]?></td>
-						
-					</tr>
-					<?php
-						
-						if($fila["estatus_reciboSalidas"] != "Cancelado"){
-							$totales[0]+= $fila["monto_reciboSalidas"];
-							
-						}
-					}
-				?>
-			</tbody>
-			<tfoot>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<?php
-						foreach($totales as $i =>$total){
-						?>
-						<td class="h6 text-right">$<?php echo number_format($total,2)?></td>
-						<?php	
-						}
-					?>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-			</tfoot>
-		</table>
-	</div>
-	
-	<?php
-		
-		
-	}
-	else {
-		echo  "Error en ".$consulta.mysqli_Error($link);
-	}
-	
-?>	
+								</td>
+								<td><?php echo $fila["nombre_usuarios"]?></td>
+								
+								</tr>
+								<?php
+								
+								if($fila["estatus_reciboSalidas"] != "Cancelado"){
+								$totales[0]+= $fila["monto_reciboSalidas"];
+								
+								}
+								}
+								?>
+								</tbody>
+								<tfoot>
+								<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<?php
+								foreach($totales as $i =>$total){
+								?>
+								<td class="h6 text-right">$<?php echo number_format($total,2)?></td>
+								<?php	
+								}
+								?>
+								<td></td>
+								<td></td>
+								<td></td>
+								</tr>
+								</tfoot>
+								</table>
+								</div>
+								
+								<?php
+								
+								
+								}
+								else {
+								echo  "Error en ".$consulta.mysqli_Error($link);
+								}
+								
+								?>									
