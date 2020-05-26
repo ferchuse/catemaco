@@ -9,22 +9,22 @@
 
 <!DOCTYPE html>
 <html lang="es_mx">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title><?php echo $nombre_pagina;?></title>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<title><?php echo $nombre_pagina;?></title>
 		<?php include('../../styles.php')?>
 	</head>
 	<body id="page-top">
-    <?php include("../../navbar.php")?>
-    <div id="wrapper" class="d-print-none">
+		<?php include("../../navbar.php")?>
+		<div id="wrapper" class="d-print-none">
 			<?php include("../../menu.php")?>	
 			<div id="content-wrapper">		
 				<div class="container-fluid">		
-          <!-- Breadcrumbs-->
+					<!-- Breadcrumbs-->
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
 							<a href="#">Movimientos</a> 
@@ -52,18 +52,19 @@
 						</div>
 						
 						<div class="row mb-2">
-							<div class="col-2">
-								<label for="nombre_condonaciones">Fecha Inicial:</label>
-							</div>
-							<div class="col-4">			
+							<div class="col-3">
+								<label for="">Fecha Inicial:</label>
 								<input class="form-control" type="date" name="fecha_inicial" id="fecha_inicial" value="<?php echo date("Y-m-01");?>">
-							</div>  
-							<div class="col-2">
-								<label for="nombre_condonaciones">Fecha Final:</label>
-							</div>	
-							<div class="col-4">			
+							</div>
+							<div class="col-3">
+								<label for="">Fecha Final:</label>
 								<input class="form-control" type="date" name="fecha_final" id="fecha_final" value="<?php echo date("Y-m-d");?>">
-							</div> 
+							</div>	
+							<div class="col-3">
+								<label for="">Motivo:</label>
+								<?= generar_select ($link, "motivos_salida", "id_motivosSalida", "nombre_motivosSalida", true);?>
+							</div>	
+							
 						</div>
 						
 					</form>
@@ -92,67 +93,68 @@
 											<th class="text-center"></th>
 										</tr>
 									</thead>
-									<thead>
-										<tr>
-											<th class="text-center">
-												<input type="date" class="form-control" data-indice="0" id="fecha_recibo">
-											</th>
-											<th class="text-center">
-												<input type="text" data-indice="1" class="form-control" placeholder="Buscar empresa" id="nombre_empresa">
-											</th>
-											<th class="text-center">
-											<input type="text" data-indice="2" class="form-control" placeholder="Buscar beneficiario" id="nombre_beneficiario"></th>
-											<th class="text-center">
-												<input type="text" data-indice="3" class="form-control" placeholder="Buscar motivo de salida" id="buscar_salida">
-											</th>
-											<th class="text-center"></th>
-											<th class="text-center"></th>
-											<th class="text-center"></th>
-											<th class="text-center"></th>
-											<th class="text-center"></th>
-										</tr>
-									</thead> 
-									<tbody id="containerLista">
-										<tr>
-											<td colspan="8"><h3 class="text-center">Cargando...</h3></td>
-										</tr>
-									</tbody>
+								<thead>
+								<tr>
+								<th class="text-center">
+								<input type="date" class="form-control" data-indice="0" id="fecha_recibo">
+								</th>
+								<th class="text-center">
+								<input type="text" data-indice="1" class="form-control" placeholder="Buscar empresa" id="nombre_empresa">
+								</th>
+								<th class="text-center">
+								<input type="text" data-indice="2" class="form-control" placeholder="Buscar beneficiario" id="nombre_beneficiario"></th>
+								<th class="text-center">
+								<input type="text" data-indice="3" class="form-control" placeholder="Buscar motivo de salida" id="buscar_salida">
+								</th>
+								<th class="text-center"></th>
+								<th class="text-center"></th>
+								<th class="text-center"></th>
+								<th class="text-center"></th>
+								<th class="text-center"></th>
+								</tr>
+								</thead> 
+								<tbody id="containerLista">
+								<tr>
+								<td colspan="8"><h3 class="text-center">Cargando...</h3></td>
+								</tr>
+								</tbody>
 								</table>
 								<div id="mensaje"></div>
-							</div>
-						</div>
-						
-					</div>
-				</div>
-				<!-- /.container-fluid -->
-				
-		    <!-- Sticky Footer -->
-				<footer class="sticky-footer">
-					<div class="container my-auto">
-						<div class="copyright text-center my-auto">
-							<span>Copyright  Glifo Media 2018</span>
-						</div>
-					</div>
-				</footer>
-				
-			</div>
-			<!-- /.content-wrapper -->
-		</div>
-		<!-- /#wrapper -->
-		
-		<!-- Scroll to Top Button-->
-		<a class="scroll-to-top rounded" href="#page-top">
-			<i class="fas fa-angle-up"></i>
-		</a>	
-		<div class="d-print-inline d-none p-2 carta"   id="impresion">
-			
-		</div>
-		
-    <?php 
-			include("../../scripts.php");
-			include('forms/forms_salida.php');
-		?>
-    <script src="js/recibos_salida.js?v=<?= date("d-m-Y-H-i-s")?>"></script>
-    <script src="../catalogos/js/buscar.js"></script>
-	</body>
-</html>
+								</div>
+								</div>
+								
+								</div>
+								</div>
+								<!-- /.container-fluid -->
+								
+								<!-- Sticky Footer -->
+								<footer class="sticky-footer">
+								<div class="container my-auto">
+								<div class="copyright text-center my-auto">
+								<span>Copyright  Glifo Media 2018</span>
+								</div>
+								</div>
+								</footer>
+								
+								</div>
+								<!-- /.content-wrapper -->
+								</div>
+								<!-- /#wrapper -->
+								
+								<!-- Scroll to Top Button-->
+								<a class="scroll-to-top rounded" href="#page-top">
+								<i class="fas fa-angle-up"></i>
+								</a>	
+								<div class="d-print-inline d-none p-2 carta"   id="impresion">
+								
+								</div>
+								
+								<?php 
+								include("../../scripts.php");
+								include('forms/forms_salida.php');
+								?>
+								<script src="js/recibos_salida.js?v=<?= date("d-m-Y-H-i-s")?>"></script>
+								<script src="../catalogos/js/buscar.js"></script>
+								</body>
+								</html>
+																

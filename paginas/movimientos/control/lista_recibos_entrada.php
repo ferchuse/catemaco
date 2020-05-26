@@ -21,8 +21,14 @@
 	BETWEEN '{$_GET['fecha_inicial']}' 
 	AND '{$_GET['fecha_final']}'"; 
 	
-	$consulta.=  " ORDER BY id_deposito DESC"; 
 	
+	if($_GET["id_empresas"] != ""){
+		$consulta.=  " AND recibos_entradas.id_empresas = '{$_GET["id_empresas"]}'"; 
+	}
+	
+	
+	
+	$consulta.=  " ORDER BY id_deposito DESC"; 
 	
 	
 	$result = mysqli_query($link,$consulta);
@@ -84,7 +90,7 @@
 						<td><?php echo $fila["fecha_deposito"]?></td>
 						<td><?php echo $fila["nombre_beneficiarios"]?></td>
 						<td><?php echo $fila["nombre_empresas"]?></td>
-						<td><?php echo $fila["monto"]?></td>
+						<td class="text-right">$<?php echo number_format($fila["monto"], 2)?></td>
 						
 						<td><?php echo $fila["estatus_deposito"]?></td>
 						<td><?php echo $fila["nombre_usuarios"]?></td>
@@ -105,7 +111,7 @@
 					<?php
 						foreach($totales as $i =>$total){
 						?>
-						<td class="h6"><?php echo number_format($total)?></td>
+						<td class="h6">$<?php echo number_format($total, 2)?></td>
 						<?php	
 						}
 					?>
@@ -125,4 +131,4 @@
 		echo  "Error en ".$consulta.mysqli_Error($link);
 	}
 	
-?>	
+?>				

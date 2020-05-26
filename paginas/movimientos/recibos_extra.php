@@ -9,22 +9,22 @@
 
 <!DOCTYPE html>
 <html lang="es_mx">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title><?php echo $nombre_pagina;?></title>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<title><?php echo $nombre_pagina;?></title>
 		<?php include('../../styles.php')?>
 	</head>
 	<body id="page-top">
-    <?php include("../../navbar.php")?>
-    <div id="wrapper" class="d-print-none">
+		<?php include("../../navbar.php")?>
+		<div id="wrapper" class="d-print-none">
 			<?php include("../../menu.php")?>	
 			<div id="content-wrapper">		
 				<div class="container-fluid">		
-          <!-- Breadcrumbs-->
+					<!-- Breadcrumbs-->
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
 							<a href="#">Movimientos</a> 
@@ -53,12 +53,12 @@
 						
 						<div class="row mb-2">
 							
-							<div class="col-sm-2">	
+							<div class="col-sm-3">	
 								<label for="fecha_inicial">Fecha Inicial:</label>
 								<input class="form-control" type="date" name="fecha_inicial" id="fecha_inicial" value="<?php echo date("Y-m-01");?>">
 							</div>  
 							
-							<div class="col-sm-2">	
+							<div class="col-sm-3">	
 								<label for="fecha_final">Fecha Final:</label>
 								<input class="form-control" type="date" name="fecha_final" id="fecha_final" value="<?php echo date("Y-m-d");?>">
 							</div> 
@@ -67,11 +67,16 @@
 								<input class="form-control" type="text" name="referencia" >
 							</div>	
 							<div class="col-sm-3">	
-								
 								<label for="id_beneficiarios">Beneficiario</label>
 								<?php echo generar_select($link, "beneficiarios", "id_beneficiarios", "nombre_beneficiarios",  true); ?>
-								
 							</div> 
+						</div>
+						<div class="row mb-2">
+							<div class="col-3">
+								<label for="nombre_condonaciones">Empresa:</label>
+								<?= generar_select ($link, "empresas", "id_empresas", "nombre_empresas", true);?>
+							</div>
+							
 						</div>
 						
 					</form>
@@ -127,40 +132,41 @@
 									</tbody>
 								</table>
 								<div id="mensaje"></div>
-							</div>
-						</div>
-						
-					</div>
-				</div>
-				<!-- /.container-fluid -->
-				
-		    <!-- Sticky Footer -->
-				<footer class="sticky-footer">
-					<div class="container my-auto">
-						<div class="copyright text-center my-auto">
-							<span>Copyright  Glifo Media 2018</span>
-						</div>
-					</div>
-				</footer>
-				
-			</div>
-			<!-- /.content-wrapper -->
-		</div>
-		<!-- /#wrapper -->
-		
-		<!-- Scroll to Top Button-->
-		<a class="scroll-to-top rounded" href="#page-top">
-			<i class="fas fa-angle-up"></i>
-		</a>	
-		<div class="d-print-inline d-none p-2 carta"   id="impresion">
-			
-		</div>
-		
-    <?php 
-			include("../../scripts.php");
-			include('forms/form_extra.php');
-		?>
-    <script src="js/recibos_extra.js?v=<?= date("d-m-Y-H-i-s")?>"></script>
-    <script src="../catalogos/js/buscar.js"></script>
-	</body>
-</html>
+								</div>
+								</div>
+								
+								</div>
+								</div>
+								<!-- /.container-fluid -->
+								
+								<!-- Sticky Footer -->
+								<footer class="sticky-footer">
+								<div class="container my-auto">
+								<div class="copyright text-center my-auto">
+								<span>Copyright  Glifo Media 2018</span>
+								</div>
+								</div>
+								</footer>
+								
+								</div>
+								<!-- /.content-wrapper -->
+								</div>
+								<!-- /#wrapper -->
+								
+								<!-- Scroll to Top Button-->
+								<a class="scroll-to-top rounded" href="#page-top">
+								<i class="fas fa-angle-up"></i>
+								</a>	
+								<div class="d-print-inline d-none p-2 carta"   id="impresion">
+								
+								</div>
+								
+								<?php 
+								include("../../scripts.php");
+								include('forms/form_extra.php');
+								?>
+								<script src="js/recibos_extra.js?v=<?= date("d-m-Y-H-i-s")?>"></script>
+								<script src="../catalogos/js/buscar.js"></script>
+								</body>
+								</html>
+																

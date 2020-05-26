@@ -22,6 +22,15 @@
 	BETWEEN '{$_GET['fecha_inicial']}' 
 	AND '{$_GET['fecha_final']}'"; 
 	
+	
+	
+	if($_GET['id_motivosSalida'] != ""){
+		$consulta.=  " AND id_motivosSalida =  '{$_GET['id_motivosSalida']}' "; 
+	}
+	
+	
+	
+	
 	$consulta.=  " ORDER BY id_reciboSalidas"; 
 	
 	
@@ -82,7 +91,7 @@
 						<td><?php echo $fila["nombre_beneficiarios"]?></td>
 						<td><?php echo $fila["nombre_motivosSalida"]?></td>
 						<td><?php echo $fila["nombre_empresas"]?></td>
-						<td><?php echo $fila["monto_reciboSalidas"]?></td>
+						<td class="text-right">$<?php echo number_format($fila["monto_reciboSalidas"],2)?></td>
 						<td><?php echo $fila["observaciones_reciboSalidas"]?></td>
 						<td>
 						
@@ -123,7 +132,7 @@
 					<?php
 						foreach($totales as $i =>$total){
 						?>
-						<td class="h6"><?php echo number_format($total)?></td>
+						<td class="h6 text-right">$<?php echo number_format($total,2)?></td>
 						<?php	
 						}
 					?>

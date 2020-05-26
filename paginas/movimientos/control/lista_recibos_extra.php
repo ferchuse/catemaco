@@ -30,6 +30,10 @@
 		$consulta.=  " AND id_beneficiarios =  '{$_GET['id_beneficiarios']}' "; 
 	}
 	
+	if($_GET["id_empresas"] != ""){
+		$consulta.=  " AND recibos_extra.id_empresas = '{$_GET["id_empresas"]}'"; 
+	}
+	
 	$consulta.=  " ORDER BY id_reciboSalidas"; 
 	
 	
