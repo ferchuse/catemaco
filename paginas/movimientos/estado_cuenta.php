@@ -9,22 +9,22 @@
 
 <!DOCTYPE html>
 <html lang="es_mx">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title><?php echo $nombre_pagina;?></title>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<title><?php echo $nombre_pagina;?></title>
 		<?php include('../../styles.php')?>
 	</head>
 	<body id="page-top">
-    <?php include("../../navbar.php")?>
-    <div id="wrapper" class="d-print-none">
+		<?php include("../../navbar.php")?>
+		<div id="wrapper" class="d-print-none">
 			<?php include("../../menu.php")?>	
 			<div id="content-wrapper">		
 				<div class="container-fluid">		
-          <!-- Breadcrumbs-->
+					<!-- Breadcrumbs-->
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
 							<a href="#">Estado de Cuenta</a> 
@@ -33,10 +33,13 @@
 					</ol>
 					
 					<form id="form_filtro" autocomplete="off">
-						
-						<div class="form-row"> 
-							<label class="col-sm-1">Año:</label>
+						<button  type="submit" id="btn_buscar"  class="btn btn-primary" >
+							<i class="fas fa-search"></i> Buscar
+						</button> 
+						<div class="row"> 
+							
 							<div class="col-sm-2">
+								<label>Año:</label>
 								<select class="form-control filtro" id="year" name="year" >
 									<option <?= date("Y") == "2020" ? "selected": "";?> value="2020">2020</option>
 									<option <?= date("Y") == "2021" ? "selected": "";?> value="2021">2021</option>
@@ -44,8 +47,8 @@
 									<option <?= date("Y") == "2023" ? "selected": "";?> value="2023">2023</option>
 								</select>
 							</div>
-							<label class="col-sm-1">Mes:</label>
 							<div class="col-sm-2">
+								<label>Mes:</label>
 								<select class="form-control filtro" id="mes" name="mes" >
 									<option <?= date("n") == "1" ? "selected": "";?> value="1">Enero</option>
 									<option <?= date("n") == "2" ? "selected": "";?> value="2">Febrero</option>
@@ -62,22 +65,16 @@
 									
 								</select>
 							</div>
-							<div class="col-sm-1">
+							<div class="col-sm-3">
 								<label >Beneficiarios:</label>
-							</div>
-							<div class="col-sm-3">			
-								<?php
-									echo generar_select($link, "beneficiarios", "id_beneficiarios", "nombre_beneficiarios", true);
-								?>
+								<?= generar_select($link, "beneficiarios", "id_beneficiarios", "nombre_beneficiarios", true); ?>
 							</div>
 						</div>
 						
 						<div class="row">
-						
+							
 							<div class="col-sm-1 mb-3">
-								<button  type="submit" id="btn_buscar"  class="btn btn-primary" >
-									<i class="fas fa-search"></i> Buscar
-								</button> 
+								
 								
 							</div>
 						</div>
@@ -118,37 +115,38 @@
 								<div id="mensaje"></div>
 							</div>
 						</div>
-						
+					
 					</div>
-				</div>
-				<!-- /.container-fluid -->
-				
-		    <!-- Sticky Footer -->
-				<footer class="sticky-footer">
+					</div>
+					<!-- /.container-fluid -->
+					
+					<!-- Sticky Footer -->
+					<footer class="sticky-footer">
 					<div class="container my-auto">
-						<div class="copyright text-center my-auto">
-							<span>Copyright  Glifo Media 2020</span>
-						</div>
+					<div class="copyright text-center my-auto">
+					<span>Copyright  Glifo Media 2020</span>
 					</div>
-				</footer>
-				
-			</div>
-			<!-- /.content-wrapper -->
-		</div>
-		<!-- /#wrapper -->
-		
-		<!-- Scroll to Top Button-->
-		<a class="scroll-to-top rounded" href="#page-top">
-			<i class="fas fa-angle-up"></i>
-		</a>	
-		<div class="d-print-inline d-none p-2 carta"   id="impresion">
-			
-		</div>
-		
-    <?php 
-			include("../../scripts.php");
-		?>
-    <script src="js/estado_cuenta.js?v=<?php echo date('Y-m-d-H:i:s');?>"></script>
-    <script src="../catalogos/js/buscar.js"></script>
-	</body>
-</html>
+					</div>
+					</footer>
+					
+					</div>
+					<!-- /.content-wrapper -->
+					</div>
+					<!-- /#wrapper -->
+					
+					<!-- Scroll to Top Button-->
+					<a class="scroll-to-top rounded" href="#page-top">
+					<i class="fas fa-angle-up"></i>
+					</a>	
+					<div class="d-print-inline d-none p-2 carta"   id="impresion">
+					
+					</div>
+					
+					<?php 
+					include("../../scripts.php");
+					?>
+					<script src="js/estado_cuenta.js?v=<?php echo date('Y-m-d-H:i:s');?>"></script>
+					<script src="../catalogos/js/buscar.js"></script>
+					</body>
+					</html>
+										

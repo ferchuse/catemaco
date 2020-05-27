@@ -79,7 +79,6 @@
 		<thead>
 			<tr>
 				<th>Beneficiario</th>
-				<th>Cargos</th>
 				<th>Entradas</th>
 				<th>Salidas</th>
 				<th>Saldo</th>
@@ -88,30 +87,27 @@
 			<tbody id="">
 				<?php 
 					foreach($filas as $index=>$fila){
-					
-						$total[0]+= $fila["cargos"];
+						
 						$total[1]+= $fila["entradas"];
 						$total[2]+= $fila["salidas"];
-						$total[3]+= $fila["cargos"] + $fila["salidas"] - $fila["entradas"];
+						$total[3]+=  $fila["entradas"] - $fila["salidas"]  ;
 					?>
 					<tr>						
 						<td><?php echo $fila["nombre_beneficiarios"]?></td>
-						<td>$<?php echo number_format($fila["cargos"])?></td>
-						<td>$<?php echo number_format($fila["entradas"])?></td>
-						<td>$<?php echo number_format($fila["salidas"])?></td>
-						<td>$<?php echo number_format($fila["cargos"] + $fila["salidas"] - $fila["entradas"] )?></td>
+						<td class="text-right">$<?php echo number_format($fila["entradas"])?></td>
+						<td class="text-right">$<?php echo number_format($fila["salidas"])?></td>
+						<td class="text-right">$<?php echo number_format( $fila["entradas"] - $fila["salidas"] )?></td>
 					</tr>
-					<?
+					<?php
 					}
 				?>
 			</tbody>
 			<tfoot>
 				<tr class="bg-secondary text-white">
 					<td><?php echo mysqli_num_rows($result);?> Registros</td>
-					<td>$<?= number_format($total[0]);?></td>
-					<td>$<?= number_format($total[1]);?></td>
-					<td>$<?= number_format($total[2]);?></td>
-					<td>$<?= number_format($total[3]);?></td>
+					<td class="text-right">$<?= number_format($total[1]);?></td>
+					<td class="text-right">$<?= number_format($total[2]);?></td>
+					<td class="text-right">$<?= number_format($total[3]);?></td>
 				</tr>
 			</tfoot>
 		</table>
