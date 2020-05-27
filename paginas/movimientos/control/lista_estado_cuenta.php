@@ -30,8 +30,8 @@
 	SUM(monto)  AS entradas 
 	FROM recibos_entradas
 	WHERE 
-	MONTH(fecha_deposito) = '{$_GET["mes"]}'
-	AND YEAR(fecha_deposito) = '{$_GET["year"]}'
+	MONTH(fecha_aplicacion) = '{$_GET["mes"]}'
+	AND YEAR(fecha_aplicacion) = '{$_GET["year"]}'
 	AND estatus_deposito = 'Activo'
 	GROUP BY id_beneficiarios
 	) as t_depositos
@@ -43,8 +43,8 @@
 	SUM(monto_ReciboSalidas)  AS salidas 
 	FROM recibos_salidas
 	WHERE 
-	MONTH(fecha_reciboSalidas) = '{$_GET["mes"]}'
-	AND YEAR(fecha_reciboSalidas) = '{$_GET["year"]}'
+	MONTH(fecha_aplicacion) = '{$_GET["mes"]}'
+	AND YEAR(fecha_aplicacion) = '{$_GET["year"]}'
 	AND estatus_reciboSalidas = 'Activo'	
 	GROUP BY id_beneficiarios
 	) as t_salidas
