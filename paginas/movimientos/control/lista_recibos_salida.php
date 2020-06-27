@@ -58,6 +58,7 @@
 	<table class="table table-bordered table-condensed" id="dataTable" width="100%" cellspacing="0">
 		<thead>
 			<tr>
+				<th><input type="checkbox" id="check_all"></th>
 				<th></th>
 				<th>Folio</th>
 				<th>Fecha Creación</th>
@@ -74,6 +75,7 @@
 					foreach($filas as $index=>$fila){
 					?>
 					<tr>
+						<th class="text-center"><input type="checkbox" class="seleccionar" value='<?php echo $fila['id_reciboSalidas']?>'></th>
 						<td class="text-center"> 
 							<?php if($fila["estatus_reciboSalidas"] != 'Cancelado'){?>
 								<button class="btn btn-danger cancelar" title="Cancelar" data-id_registro='<?php echo $fila['id_reciboSalidas']?>'>

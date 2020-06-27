@@ -43,9 +43,7 @@
 									<button type="button" class="btn btn-success btn-sm" id="nuevoSalida">
 										<i class="fas fa-plus"></i> Nuevo
 									</button>
-									<button hidden class="btn btn-info btn-sm" onclick="window.print()" type="button">
-										<i class="fas fa-print"></i> Imprimir
-									</button>
+									
 								</div>
 								
 							</div>
@@ -75,6 +73,10 @@
 						<div class="card-header">
 							<i class="fas fa-table"></i>
 							Lista de <?php echo $nombre_pagina; ?>
+							<button disabled id="imprimir_recibos" class="btn btn-info btn-sm float-right" type="button">
+								<i class="fas fa-print"></i> Imprimir <span id="cant_seleccionados"></span>
+							</button>
+							<input type="hidden" id="folios_seleccionados" name="folios_seleccionados" >
 						</div>
 						<div class="card-body">
 							
@@ -82,6 +84,7 @@
 								<table class="table table-bordered" id="tabla_recibos" width="100%" cellspacing="0" >
 									<thead>
 										<tr>
+											<th class="text-center"><input type="checkbox" id="check_all"></th>
 											<th class="text-center">Fecha</th>
 											<th class="text-center">Empresa</th>
 											<th class="text-center">Beneficiario</th>
@@ -93,68 +96,67 @@
 											<th class="text-center"></th>
 										</tr>
 									</thead>
-								<thead>
-								<tr>
-								<th class="text-center">
-								<input type="date" class="form-control" data-indice="0" id="fecha_recibo">
-								</th>
-								<th class="text-center">
-								<input type="text" data-indice="1" class="form-control" placeholder="Buscar empresa" id="nombre_empresa">
-								</th>
-								<th class="text-center">
-								<input type="text" data-indice="2" class="form-control" placeholder="Buscar beneficiario" id="nombre_beneficiario"></th>
-								<th class="text-center">
-								<input type="text" data-indice="3" class="form-control" placeholder="Buscar motivo de salida" id="buscar_salida">
-								</th>
-								<th class="text-center"></th>
-								<th class="text-center"></th>
-								<th class="text-center"></th>
-								<th class="text-center"></th>
-								<th class="text-center"></th>
-								</tr>
-								</thead> 
-								<tbody id="containerLista">
-								<tr>
-								<td colspan="8"><h3 class="text-center">Cargando...</h3></td>
-								</tr>
-								</tbody>
+									<thead>
+										<tr>
+											<th class="text-center">
+												<input type="date" class="form-control" data-indice="0" id="fecha_recibo">
+											</th>
+											<th class="text-center">
+												<input type="text" data-indice="1" class="form-control" placeholder="Buscar empresa" id="nombre_empresa">
+											</th>
+											<th class="text-center">
+											<input type="text" data-indice="2" class="form-control" placeholder="Buscar beneficiario" id="nombre_beneficiario"></th>
+											<th class="text-center">
+												<input type="text" data-indice="3" class="form-control" placeholder="Buscar motivo de salida" id="buscar_salida">
+											</th>
+											<th class="text-center"></th>
+											<th class="text-center"></th>
+											<th class="text-center"></th>
+											<th class="text-center"></th>
+											<th class="text-center"></th>
+										</tr>
+									</thead> 
+									<tbody id="containerLista">
+										<tr>
+											<td colspan="8"><h3 class="text-center">Cargando...</h3></td>
+										</tr>
+									</tbody>
 								</table>
 								<div id="mensaje"></div>
-								</div>
-								</div>
-								
-								</div>
-								</div>
-								<!-- /.container-fluid -->
-								
-								<!-- Sticky Footer -->
-								<footer class="sticky-footer">
-								<div class="container my-auto">
-								<div class="copyright text-center my-auto">
-								<span>Copyright  Glifo Media 2018</span>
-								</div>
-								</div>
-								</footer>
-								
-								</div>
-								<!-- /.content-wrapper -->
-								</div>
-								<!-- /#wrapper -->
-								
-								<!-- Scroll to Top Button-->
-								<a class="scroll-to-top rounded" href="#page-top">
-								<i class="fas fa-angle-up"></i>
-								</a>	
-								<div class="d-print-inline d-none p-2 carta"   id="impresion">
-								
-								</div>
-								
-								<?php 
-								include("../../scripts.php");
-								include('forms/forms_salida.php');
-								?>
-								<script src="js/recibos_salida.js?v=<?= date("d-m-Y-H-i-s")?>"></script>
-								<script src="../catalogos/js/buscar.js"></script>
-								</body>
-								</html>
-																
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				<!-- /.container-fluid -->
+				
+				<!-- Sticky Footer -->
+				<footer class="sticky-footer">
+					<div class="container my-auto">
+						<div class="copyright text-center my-auto">
+							<span>Copyright  Glifo Media 2018</span>
+						</div>
+					</div>
+				</footer>
+				
+			</div>
+			<!-- /.content-wrapper -->
+		</div>
+		<!-- /#wrapper -->
+		
+		<!-- Scroll to Top Button-->
+		<a class="scroll-to-top rounded" href="#page-top">
+			<i class="fas fa-angle-up"></i>
+		</a>	
+		<div class="d-print-inline d-none p-2 carta"   id="impresion">
+			
+		</div>
+		
+		<?php 
+			include("../../scripts.php");
+			include('forms/forms_salida.php');
+		?>
+		<script src="js/recibos_salida.js?v=<?= date("d-m-Y-H-i-s")?>"></script>
+		<script src="../catalogos/js/buscar.js"></script>
+	</body>
+</html>

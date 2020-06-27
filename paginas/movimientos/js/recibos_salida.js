@@ -1,4 +1,45 @@
+function contarSeleccionados(){
+	console.log( ("contarSeleccionados()"));
+	$("#cant_seleccionados").text($(".seleccionar:checked").length);
+	
+	
+	var folios = $(".seleccionar:checked").map(function(){
+		return $(this).val();
+	}).get().join(",");
+	
+	
+	$("#folios_seleccionados").val(folios);
+	console.log( ("folios") , folios);	
+	
+	if($(".seleccionar:checked").length > 0 ){
+		$("#imprimir_recibos").prop("disabled", false);
+	}
+	else{
+		$("#imprimir_recibos").prop("disabled", true);
+	}
+}
+
+function checkAll(){
+	console.log("checkAll");
+	if($(this).prop("checked")){
+		$(".seleccionar").prop("checked", true);
+	}
+	else{
+		
+		$(".seleccionar").prop("checked", false);
+		
+	}
+	contarSeleccionados();
+	
+}
+
+
 $(document).ready(function(){ 
+	
+	$("#imprimir_recibos").click(function(){
+		imprimirTicket($(this).data("id_registro") , $("#folios_seleccionados").val())
+		
+	});
 	
 	listarRegistros();
 	
@@ -146,6 +187,9 @@ function listarRegistros(){
 		});
 		$(".cancelar").click(confirmaCancelacion);
 		
+		$("#check_all").change(checkAll);
+		
+		$(".seleccionar").change(contarSeleccionados)
 		
 		}).always(function(){  
 		
@@ -179,7 +223,7 @@ function obtenerFecha(){
 	return today = `${yyyy}-${mm}-${dd}`;
 }
 
-function imprimirTicket(id_registro){
+function imprimirTicket(id_registro, folios){
 	var boton = $(this);
 	var icono = boton.find("fas");
 	
@@ -189,6 +233,7 @@ function imprimirTicket(id_registro){
 	$.ajax({
 		url: "impresion/imprimir_salida.php",
 		data:{
+			folios: folios,
 			id_registro : id_registro,
 			nombre_usuarios : $("#sesion_nombre_usuarios").html()
 		}
