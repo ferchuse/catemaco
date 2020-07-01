@@ -105,7 +105,7 @@
 				</div>
 				<div class="col-6 text-right">
 					Creado por: <?php echo $filas["nombre_usuarios"];?><br>
-					Fecha Creacion: <?php echo $filas["fecha_reciboSalidas"];?><br>
+					Fecha Aplicación: <?php echo $filas["fecha_aplicacion"];?><br>
 				</div>
 			</div> 
 		</div> 
@@ -174,7 +174,7 @@
 				</div>
 				<div class="col-6 text-right">
 					Creado por: <?php echo $filas["nombre_usuarios"];?><br>
-					Fecha Creacion: <?php echo $filas["fecha_reciboSalidas"];?><br>
+					Fecha Aplicación: <?php echo $filas["fecha_aplicacion"];?><br>
 				</div>
 			</div> 
 		</div> 
