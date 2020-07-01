@@ -137,7 +137,7 @@
 							<span>Copyright  Glifo Media 2018</span>
 						</div>
 					</div>
-				</footer>
+					</footer>
 				
 			</div>
 			<!-- /.content-wrapper -->

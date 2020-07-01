@@ -75,7 +75,7 @@
 					foreach($filas as $index=>$fila){
 					?>
 					<tr>
-						<th class="text-center"><input type="checkbox" class="seleccionar" value='<?php echo $fila['id_reciboSalidas']?>'></th>
+						<td class="text-center"><input type="checkbox" class="seleccionar" value='<?php echo $fila['id_reciboSalidas']?>'></td>
 						<td class="text-center"> 
 							<?php if($fila["estatus_reciboSalidas"] != 'Cancelado'){?>
 								<button class="btn btn-danger cancelar" title="Cancelar" data-id_registro='<?php echo $fila['id_reciboSalidas']?>'>

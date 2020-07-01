@@ -35,13 +35,12 @@ function checkAll(){
 
 
 $(document).ready(function(){ 
+	listarRegistros();
 	
 	$("#imprimir_recibos").click(function(){
 		imprimirTicket($(this).data("id_registro") , $("#folios_seleccionados").val())
 		
 	});
-	
-	listarRegistros();
 	
 	$('#form_filtro').on('submit', function filtrar(event){
 		event.preventDefault();

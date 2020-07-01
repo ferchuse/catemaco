@@ -54,6 +54,7 @@
 	<table class="table table-bordered table-condensed" id="dataTable" width="100%" cellspacing="0">
 		<thead>
 			<tr>
+				<th><input type="checkbox" id="check_all"></th>
 				<th></th>
 				<th>Folio</th>
 				<th>Fecha Creacion </th>
@@ -69,6 +70,7 @@
 					foreach($filas as $index=>$fila){
 					?>
 					<tr>
+						<td class="text-center"><input type="checkbox" class="seleccionar" value='<?php echo $fila['id_deposito']?>'></td>
 						<td class="text-center"> 
 							<?php if($fila["estatus_deposito"] != 'Cancelado'){
 								$totales[0]+= $fila["monto"];
