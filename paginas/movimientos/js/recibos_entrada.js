@@ -154,7 +154,7 @@ function imprimirTicket(id_registro, folios){
 	icono.toggleClass("fa-print fa-spinner fa-spin");
 	
 	$.ajax({
-		url: "impresion/imprimir_salida.php",
+		url: "impresion/imprimir_entrada.php",
 		data:{
 			folios: folios,
 			id_registro : id_registro,
