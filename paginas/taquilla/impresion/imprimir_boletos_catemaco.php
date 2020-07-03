@@ -11,10 +11,17 @@
 	
 	LEFT JOIN usuarios  USING(id_usuarios)
 	LEFT JOIN corridas  USING(id_corridas)
-	LEFT JOIN origenes  USING(id_origenes)
 	LEFT JOIN precios_boletos  USING(id_precio)
+	LEFT JOIN origenes  ON precios_boletos.id_origenes = origenes.id_origenes
+	LEFT JOIN (
+	SELECT 
+	id_origenes AS id_destinos, 
+	nombre_origenes AS nombre_destinos
+	FROM origenes
+	) AS destinos
+	ON precios_boletos.id_destinos = destinos.id_destinos
 	WHERE id_boletos IN($boletos)";
-  
+	
 	
 	$result = mysqli_query($link,$consulta);
 	if($result){
@@ -61,7 +68,8 @@
 			$texto.="  FOLIO: ".$item["id_boletos"].chr(10).chr(13);
 			$texto.="  FECHA VENTA: ".$item['fecha_boletos'].chr(10).chr(13);
 			$texto.="  TIPO DE BOLETO: ".$item["tipo_precio"].chr(10).chr(13);
-			// $texto.="  FOLIO TICKET: ".$vfoliost[$i].chr(10).chr(13);
+			$texto.="  ORIGEN: ".$item["nombre_origenes"].chr(10).chr(13);
+			$texto.="  DESTINO: ".$item["nombre_destinos"].chr(10).chr(13);
 			$texto.="  PRECIO: ".$item["precio_boletos"].chr(10).chr(13);
 			$texto.="  FECHA SALIDA: ".$item["fecha_corridas"].chr(10).chr(13);
 			$texto.="  HORA SALIDA: ".$item["hora_corridas"].chr(10).chr(13);
