@@ -24,7 +24,7 @@
 		LEFT JOIN empresas USING(id_empresas)
 		LEFT JOIN beneficiarios USING(id_beneficiarios) 
 		LEFT JOIN usuarios USING(id_usuarios)
-		WHERE id_deposito= '{$_GET['folio']}'";
+		WHERE id_deposito= '{$folio}'";
 		
 		
 		$result = mysqli_query($link,$consulta); 
