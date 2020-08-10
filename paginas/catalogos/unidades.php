@@ -10,22 +10,22 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Catálogo de Unidades</title>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<title>Catálogo de Unidades</title>
 		<?php include('../../styles.php')?>
 	</head>
 	<body id="page-top">
-    <?php include("../../navbar.php")?>
-    <div id="wrapper">
+		<?php include("../../navbar.php")?>
+		<div id="wrapper">
 			<?php include("../../menu.php")?>	
 			<div id="content-wrapper">		
 				<div class="container-fluid">		
-          <!-- Breadcrumbs-->
+					<!-- Breadcrumbs-->
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
 							<a href="#">Catálogos</a>
@@ -53,38 +53,38 @@
 								
 								
 								<div class="row mb-2"> 
-									<div class="col-1">
+									<div class="col-sm-1">
 										<label for="">No. Economico:</label>
 									</div>	
-									<div class="col-3">			
+									<div class="col-sm-3">			
 										<input class="form-control" type="text" name="num_eco"  >
 									</div> 
-									<div class="col-1">
+									<div class="col-sm-1">
 										<label for="">Derrotero:</label>
 									</div>	
-									<div class="col-3">			
+									<div class="col-sm-3">			
 										<?php echo generar_select($link, "derroteros", "id_derroteros", "nombre_derroteros", true);?>
 									</div> 
-									<div class="col-1">
+									<div class="col-sm-1">
 										<label >Propietario:</label>
 									</div>	
-									<div class="col-3">			
+									<div class="col-sm-3">			
 										<?php
 											echo generar_select($link, "propietarios", "id_propietarios", "nombre_propietarios", true);
 										?>
 									</div>
 								</div>
 								<div class="row mb-2">
-									<div class="col-1">
+									<div class="col-sm-1">
 										<label >Empresa:</label>
 									</div>	
-									<div class="col-3">			
+									<div class="col-sm-3">			
 										<?php
 											echo generar_select($link, "empresas", "id_empresas", "nombre_empresas", true);
 										?>
 									</div>
 									
-									<div class="col-1">
+									<div class="col-sm-1">
 										<label >Estatus:</label>
 									</div>	
 									<div class="col-3">			
@@ -141,7 +141,7 @@
 		<i class="fas fa-angle-up"></i>
 	</a>		
 	
-
+	
 	
 	<?php include("forms/form_unidades.php")?>
 	<?php include("forms/modal_historial.php")?>
