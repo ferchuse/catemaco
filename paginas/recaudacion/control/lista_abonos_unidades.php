@@ -117,7 +117,7 @@
 						<td class="text-center " > 
 							<?php if($fila["estatus_abonos"] != 'Cancelado'){
 								
-								if(dame_permiso("unidades.php", $link) == 'Supervisor'){
+								if(dame_permiso("abonos_unidades.php", $link) == 'Supervisor'){
 								?>
 								<button class="btn btn-danger cancelar" title="Cancelar" data-id_registro='<?php echo $fila['id_abonos_unidades']?>'>
 									<i class="fas fa-times"></i>

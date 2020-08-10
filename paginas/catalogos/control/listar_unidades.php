@@ -62,7 +62,7 @@
 						<a target="_blank" class="btn btn-default" href="unidades/detalles_unidad.php?serie=<?php echo $fila["serie"];?>">
 							<i class="fas fa-print"></i> 
 						</a>
-						<?php if(dame_permiso("abonos_unidades.php", $link) == 'Supervisor'){ ?>
+						<?php if(dame_permiso("unidades.php", $link) == 'Supervisor'){ ?>
 							<a class="btn btn-secondary" href="unidades/imprimir_qr.php?serie=<?php echo $fila["serie"];?>">
 								<i class="fas fa-qrcode"></i> 
 							</a>
