@@ -1,6 +1,7 @@
 <?php 
 	session_start();
 	include('../../../conexi.php');
+	include('../../../funciones/dame_permiso.php');
 	$link = Conectarse();
 	
 	$consulta = "SELECT * FROM unidades 
@@ -61,9 +62,13 @@
 						<a target="_blank" class="btn btn-default" href="unidades/detalles_unidad.php?serie=<?php echo $fila["serie"];?>">
 							<i class="fas fa-print"></i> 
 						</a>
-						<a class="btn btn-secondary" href="unidades/imprimir_qr.php?serie=<?php echo $fila["serie"];?>">
-							<i class="fas fa-qrcode"></i> 
-						</a>
+						<?php if(dame_permiso("abonos_unidades.php", $link) == 'Supervisor'){ ?>
+							<a class="btn btn-secondary" href="unidades/imprimir_qr.php?serie=<?php echo $fila["serie"];?>">
+								<i class="fas fa-qrcode"></i> 
+							</a>
+							<?php
+							}
+						?>
 						
 					</td>
 				</tr>
@@ -71,24 +76,24 @@
 				<?php 	
 				}
 			?>
-		</tbody>
-		<tfoot>
-			<tr>
-				<td colspan="7">
-					<?php echo mysqli_num_rows($result);?> Registros.
-				</td>
-			</tr>
-		</tfoot>
-	</table>
-	
-	
-	<?php
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="7">
+						<?php echo mysqli_num_rows($result);?> Registros.
+					</td>
+				</tr>
+			</tfoot>
+		</table>
 		
 		
-	}
-	else {
-		echo "Error en".$consulta. mysqli_error($link);
-	}
-	
-	
-?>	
+		<?php
+			
+			
+		}
+		else {
+			echo "Error en".$consulta. mysqli_error($link);
+		}
+		
+		
+	?>		
