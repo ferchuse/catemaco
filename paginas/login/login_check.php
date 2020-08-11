@@ -1,1 +1,1 @@
-<?php session_start();$url = "location:../login/form_login.php?retorno=".$_SERVER['PHP_SELF'];if (isset($_SESSION['id_usuarios'])) {}else{	header($url);} ?>
+<?php 	if($_SERVER["SERVER_NAME"] == "localhost"){		$url = "location:../login/index.php?retorno=".$_SERVER['PHP_SELF'];	}	else{		$url = "location:https://rhgaaz.com/catemaco/login/index.php?retorno=".$_SERVER['PHP_SELF'];	}	if (!isset($_COOKIE['id_usuarios'])) {		header($url);	}	?>
