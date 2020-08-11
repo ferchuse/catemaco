@@ -34,12 +34,12 @@
 							
 							<div class="form-group">
 								<label>Empresa </label>		
-								<?php echo generar_select($link, "empresas", "id_empresas", "nombre_empresas", true); ?>
+								<?php echo generar_select($link, "empresas", "id_empresas", "nombre_empresas", false); ?>
 							</div>
 							
 							<div class="form-group">
 								<label>Tipo Documento </label>		
-								<?php echo generar_select($link, "tipo_documento", "id_documento", "tipo_documento", true); ?>
+								<?php echo generar_select($link, "tipo_documento", "id_documento", "tipo_documento", false); ?>
 							</div>
 						</div>
 						

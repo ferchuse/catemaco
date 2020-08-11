@@ -34,15 +34,67 @@
 						<li class="breadcrumb-item active">Archivo</li>
 					</ol>
 					
-					<div class="row mb-2">
-						<div class="col-12">
-							
-							
-							<button type="button" class="btn btn-success nuevo" >
-								<i class="fas fa-plus"></i> Nuevo
-							</button>
+					<form id="form_filtros" autocomplete="off">
+						<div class="row mb-2">
+							<div class="col-12">
+								<div class="col-12 mb-3">
+									<button  class="btn btn-primary btn-sm" >
+										<i class="fas fa-search"></i> Buscar
+									</button>
+									
+									<button type="button" class="btn btn-success btn-sm nuevo" >
+										<i class="fas fa-plus"></i> Nuevo
+									</button>
+									<button hidden class="btn btn-info btn-sm" onclick="window.print()" type="button">
+										<i class="fas fa-print"></i> Imprimir
+									</button>
+								</div>
+								
+							</div>
 						</div>
-					</div>
+						
+						
+						<div class="row mb-2"> 
+							<div class="col-sm-1">
+								<label for="">Tipo:</label>
+							</div>	
+							<div class="col-2">			
+								<?php echo generar_select($link, "tipo_documento", "id_documento", "tipo_documento", true); ?>
+							</div> 
+							<div class="col-sm-1">
+								<label >Estatus:</label>
+							</div>	
+							<div class="col-2">			
+								<select class="form-control" id="estatus" name="estatus" >
+									<option value="">Todos</option>
+									<option  >En Trámite</option>
+									<option  >En Archivo</option>
+								</select>
+							</div> 
+							<div class="col-sm-1">
+								<label >Sector:</label>
+							</div>	
+							<div class="col-2">			
+								<select class="form-control" id="sector" name="sector" >
+									<option value="">Todos</option>
+									<option  >Jurídico</option>
+									<option  >Gestoría</option>
+								</select>
+							</div> 
+						</div>
+						
+						<div class="row mb-2"> 
+							<div class="col-sm-1">
+								<label>Empresa </label>		
+							</div>	
+							<div class="col-2">			
+								
+								<?php echo generar_select($link, "empresas", "id_empresas", "nombre_empresas", true); ?>
+								
+							</div> 
+							
+						</div>
+					</form>
 					<hr>
 					
 					

@@ -3,6 +3,11 @@ $(document).ready( function onLoad(){
 	listarRegistros(); 
 	
 	$('#form_edicion').submit( guardarRegistro );
+	$('#form_filtros').submit( function(event){
+		
+		event.preventDefault();
+		listarRegistros();
+	});
 	$('.nuevo').click( nuevoRegistro );
 	// $("#tabla_registros").tableExport();
 	
@@ -78,7 +83,14 @@ function guardarRegistro(event){
 
 //FUNCION DE ENLISTAR
 function listarRegistros() {
-	console.log("listarRegistros");
+	console.log("listarRegistros()");
+	let boton = $("#form_filtros").find(":submit");
+	let icono = boton.find('.fas');
+	
+	boton.prop('disabled',true);
+	icono.toggleClass('fa-search fa-spinner fa-pulse ');
+	
+	
 	$.ajax({
 		url: 'control/lista_archivo.php',
 		method: 'GET',
@@ -86,14 +98,13 @@ function listarRegistros() {
 		}).done(function(respuesta){
 		
 		$('#lista_registros').html(respuesta);
-		// $('#tabla_registros').DataTable({
-		// "language": {
-		// "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
-		// }
-		// });
 		
-		//BOTON DE Editar
+		
 		$('.btn_editar').on('click', cargarRegistro);
+		
+		}).always(function(){
+		boton.prop('disabled',false);
+		icono.toggleClass('fa-search fa-spinner fa-pulse');
 		
 	});
 }
@@ -123,7 +134,7 @@ function cargarRegistro(event){
 				$("#foto_thumb").attr("src", value);
 				break;
 				
-							
+				
 				default:
 				
 				
