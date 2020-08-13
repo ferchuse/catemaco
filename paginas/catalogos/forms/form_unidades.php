@@ -124,7 +124,7 @@
 							<label for="nombre_propietario">Rin:</label>
 						</div>	
 						<div class="col-5">			
-							<input class="form-control" type="text" name="rin" id="rin">
+							<input class="form-control" type="text" name="rin" id="rin" placeholder="Opcional">
 						</div>
 					</div>
 					<div class="row mb-2">
@@ -132,7 +132,7 @@
 							<label for="nombre_propietario">Tipo de Aceite:</label>
 						</div>	
 						<div class="col-5">			
-							<input class="form-control" type="text" name="tipo_aceite" id="tipo_aceite">
+							<input class="form-control" type="text" name="tipo_aceite" id="tipo_aceite" placeholder="Opcional">
 						</div>
 					</div>
 				</div>

@@ -19,7 +19,7 @@
 					</div>
 					<div class="form-group">
 						<label for="rfc_conductores">RFC</label>
-						<input type="text" class="form-control" id="rfc_conductores" name="rfc_conductores" placeholder="RFC del conductor">
+						<input type="text" class="form-control" id="rfc_conductores" name="rfc_conductores" placeholder="Opcional">
 					</div> 
 					<div class="form-group">
 						<label for="noLicencia_conductores">TIPO LICENCIA</label>
