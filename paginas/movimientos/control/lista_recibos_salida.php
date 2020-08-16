@@ -18,9 +18,9 @@
 	";
 	
 	$consulta.=  " 
-	AND  DATE(fecha_reciboSalidas)
-	BETWEEN '{$_GET['fecha_inicial']}' 
-	AND '{$_GET['fecha_final']}'"; 
+	AND 	MONTH(fecha_aplicacion) = '{$_GET["mes"]}'
+	AND YEAR(fecha_aplicacion) = '{$_GET["year"]}'"; 
+	
 	
 	
 	
@@ -109,49 +109,50 @@
 								
 								
 								
-								?>
-								</td>
-								<td><?php echo $fila["nombre_usuarios"]?></td>
-								
-								</tr>
-								<?php
-								
-								if($fila["estatus_reciboSalidas"] != "Cancelado"){
-								$totales[0]+= $fila["monto_reciboSalidas"];
-								
-								}
-								}
-								?>
-								</tbody>
-								<tfoot>
-								<tr>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<?php
-								foreach($totales as $i =>$total){
-								?>
-								<td class="h6 text-right">$<?php echo number_format($total,2)?></td>
-								<?php	
-								}
-								?>
-								<td></td>
-								<td></td>
-								<td></td>
-								</tr>
-								</tfoot>
-								</table>
-								</div>
-								
-								<?php
-								
-								
-								}
-								else {
-								echo  "Error en ".$consulta.mysqli_Error($link);
-								}
-								
-								?>									
+							?>
+						</td>
+						<td><?php echo $fila["nombre_usuarios"]?></td>
+						
+					</tr>
+					<?php
+						
+						if($fila["estatus_reciboSalidas"] != "Cancelado"){
+							$totales[0]+= $fila["monto_reciboSalidas"];
+							
+						}
+					}
+				?>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<?php
+						foreach($totales as $i =>$total){
+						?>
+						<td class="h6 text-right">$<?php echo number_format($total,2)?></td>
+						<?php	
+						}
+					?>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+	
+	<?php
+		
+		
+	}
+	else {
+		echo  "Error en ".$consulta.mysqli_Error($link);
+	}
+	
+?>									

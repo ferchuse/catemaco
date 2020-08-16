@@ -37,7 +37,6 @@
 							<i class="fas fa-search"></i> Buscar
 						</button> 
 						<div class="row"> 
-							
 							<div class="col-sm-2">
 								<label>Año:</label>
 								<select class="form-control filtro" id="year" name="year" >

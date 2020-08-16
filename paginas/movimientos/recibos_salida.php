@@ -50,15 +50,38 @@
 						</div>
 						
 						<div class="row mb-2">
-							<div class="col-3">
-								<label for="">Fecha Inicial:</label>
-								<input class="form-control" type="date" name="fecha_inicial" id="fecha_inicial" value="<?php echo date("Y-m-d");?>">
+						<div class="col-sm-2">
+								<label>Año:</label>
+								<select class="form-control filtro" id="year" name="year" >
+									<option <?= date("Y") == "2020" ? "selected": "";?> value="2020">2020</option>
+									<option <?= date("Y") == "2021" ? "selected": "";?> value="2021">2021</option>
+									<option <?= date("Y") == "2022" ? "selected": "";?> value="2022">2022</option>
+									<option <?= date("Y") == "2023" ? "selected": "";?> value="2023">2023</option>
+								</select>
 							</div>
-							<div class="col-3">
-								<label for="">Fecha Final:</label>
-								<input class="form-control" type="date" name="fecha_final" id="fecha_final" value="<?php echo date("Y-m-d");?>">
-							</div>	
-							<div class="col-3">
+							<div class="col-sm-2">
+								<label>Mes:</label>
+								<select class="form-control filtro" id="mes" name="mes" >
+									<option <?= date("n") == "1" ? "selected": "";?> value="1">Enero</option>
+									<option <?= date("n") == "2" ? "selected": "";?> value="2">Febrero</option>
+									<option <?= date("n") == "3" ? "selected": "";?> value="3">Marzo</option>
+									<option <?= date("n") == "4" ? "selected": "";?> value="4">Abril</option>
+									<option <?= date("n") == "5" ? "selected": "";?> value="5">Mayo</option>
+									<option <?= date("n") == "6" ? "selected": "";?> value="6">Junio</option>
+									<option <?= date("n") == "7" ? "selected": "";?> value="7">Julio</option>
+									<option <?= date("n") == "8" ? "selected": "";?> value="8">Agosto</option>
+									<option <?= date("n") == "9" ? "selected": "";?> value="9">Septiembre</option>
+									<option <?= date("n") == "10" ? "selected": "";?> value="10">Octubre</option>
+									<option <?= date("n") == "11" ? "selected": "";?> value="11">Noviembre</option>
+									<option <?= date("n") == "12" ? "selected": "";?> value="12">Diciembre</option>
+									
+								</select>
+							</div>
+								<div class="col-sm-4">
+								<label for="nombre_condonaciones">Empresa:</label>
+								<?= generar_select ($link, "empresas", "id_empresas", "nombre_empresas", true);?>
+							</div>
+							<div class="col-sm-3">
 								<label for="">Motivo:</label>
 								<?= generar_select ($link, "motivos_salida", "id_motivosSalida", "nombre_motivosSalida", true);?>
 							</div>	

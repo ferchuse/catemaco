@@ -17,9 +17,8 @@
 	";
 	
 	$consulta.=  " 
-	AND  DATE(fecha_deposito)
-	BETWEEN '{$_GET['fecha_inicial']}' 
-	AND '{$_GET['fecha_final']}'"; 
+	AND 	MONTH(fecha_aplicacion) = '{$_GET["mes"]}'
+	AND YEAR(fecha_aplicacion) = '{$_GET["year"]}'"; 
 	
 	
 	if($_GET["id_empresas"] != ""){
@@ -107,6 +106,8 @@
 			</tbody>
 			<tfoot>
 				<tr>
+					<td></td>
+					<td></td>
 					<td></td>
 					<td></td>
 					<td></td>
