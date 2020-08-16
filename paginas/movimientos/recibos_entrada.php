@@ -51,7 +51,7 @@
 						
 						<div class="row mb-2">
 							<div class="col-sm-2">
-								<label>Año:</label>
+								<label>Año Aplicación:</label>
 								<select class="form-control filtro" id="year" name="year" >
 									<option <?= date("Y") == "2020" ? "selected": "";?> value="2020">2020</option>
 									<option <?= date("Y") == "2021" ? "selected": "";?> value="2021">2021</option>
@@ -60,7 +60,7 @@
 								</select>
 							</div>
 							<div class="col-sm-2">
-								<label>Mes:</label>
+								<label>Mes Aplicación:</label>
 								<select class="form-control filtro" id="mes" name="mes" >
 									<option <?= date("n") == "1" ? "selected": "";?> value="1">Enero</option>
 									<option <?= date("n") == "2" ? "selected": "";?> value="2">Febrero</option>
