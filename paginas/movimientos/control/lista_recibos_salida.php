@@ -17,6 +17,11 @@
 	WHERE 1
 	";
 	
+		$consulta.=  " 
+	AND  DATE(fecha_reciboSalidas)
+	BETWEEN '{$_GET['fecha_inicial']}' 
+	AND '{$_GET['fecha_final']}'"; 
+	
 	$consulta.=  " 
 	AND 	MONTH(fecha_aplicacion) = '{$_GET["mes"]}'
 	AND YEAR(fecha_aplicacion) = '{$_GET["year"]}'"; 

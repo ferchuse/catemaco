@@ -21,6 +21,11 @@
 	AND YEAR(fecha_aplicacion) = '{$_GET["year"]}'"; 
 	
 	
+	$consulta.=  " 
+	AND fecha_deposito BETWEEN '{$_GET["fecha_inicial"]}'
+	AND  '{$_GET["fecha_final"]}'"; 
+	
+	
 	if($_GET["id_empresas"] != ""){
 		$consulta.=  " AND recibos_entradas.id_empresas = '{$_GET["id_empresas"]}'"; 
 	}
@@ -39,7 +44,7 @@
 		}
 		
 		while($fila = mysqli_fetch_assoc($result)){
-			// console_log($fila);
+		
 			$filas[] = $fila ;
 		}
 	?>

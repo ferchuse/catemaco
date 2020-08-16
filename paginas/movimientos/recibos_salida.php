@@ -50,7 +50,15 @@
 						</div>
 						
 						<div class="row mb-2">
-						<div class="col-sm-2">
+							<div class="col-sm-2">
+								<label for="fecha_inicial">Fecha Inicial:</label>
+								<input class="form-control" type="date" name="fecha_inicial" id="fecha_inicial" value="<?php echo date("Y-m-d");?>">	
+							</div>
+							<div class="col-sm-2">
+								<label for="fecha_final">Fecha Final:</label>
+								<input class="form-control" type="date" name="fecha_final" id="fecha_final" value="<?php echo date("Y-m-d");?>">
+							</div>
+							<div class="col-sm-2">
 								<label>Año Aplicación:</label>
 								<select class="form-control filtro" id="year" name="year" >
 									<option <?= date("Y") == "2020" ? "selected": "";?> value="2020">2020</option>
@@ -77,7 +85,7 @@
 									
 								</select>
 							</div>
-								<div class="col-sm-4">
+							<div class="col-sm-4">
 								<label for="nombre_condonaciones">Empresa:</label>
 								<?= generar_select ($link, "empresas", "id_empresas", "nombre_empresas", true);?>
 							</div>
@@ -160,7 +168,7 @@
 							<span>Copyright  Glifo Media 2018</span>
 						</div>
 					</div>
-					</footer>
+				</footer>
 				
 			</div>
 			<!-- /.content-wrapper -->
