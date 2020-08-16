@@ -14,8 +14,20 @@
 				<div class="modal-body">
 					<input type="text" hidden class="form-control" id="id_propietarios" name="id_propietarios">
 					<div class="form-group">
-						<label for="nombre_propietarios">NOMBRE</label>
+						<label for="nombre_propietarios">Nombre</label>
 						<input type="text" class="form-control" id="nombre_propietarios" name="nombre_propietarios" required>
+					</div> 
+					<div class="form-group">
+						<label for="estatus">Estatus</label>
+						<select class="form-control" id="estatus" name="estatus">
+							<option value="">Seleccione:</option>
+							<option selected value="Activo">Activo</option>
+							<option value="Inactivo">Inactivo</option>
+						</select>
+					</div> 
+					<div class="form-group">
+						<label for="id_empresas">Empresa</label>
+						<?php echo generar_select($link, "empresas", "id_empresas", "nombre_empresas", false, false, true);?>
 					</div> 
 					<?php if(dame_permiso("propietarios.php", $link) == 'Supervisor'){ ?>
 						<div class="form-group">
