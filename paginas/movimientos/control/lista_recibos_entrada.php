@@ -20,10 +20,11 @@
 	AND 	MONTH(fecha_aplicacion) = '{$_GET["mes"]}'
 	AND YEAR(fecha_aplicacion) = '{$_GET["year"]}'"; 
 	
-	
-	$consulta.=  " 
-	AND fecha_deposito BETWEEN '{$_GET["fecha_inicial"]}'
-	AND  '{$_GET["fecha_final"]}'"; 
+	if($_GET['mes'] != ""){
+		$consulta.=  " 
+		AND fecha_deposito BETWEEN '{$_GET["fecha_inicial"]}'
+		AND  '{$_GET["fecha_final"]}'"; 
+	}
 	
 	
 	if($_GET["id_empresas"] != ""){
@@ -44,7 +45,7 @@
 		}
 		
 		while($fila = mysqli_fetch_assoc($result)){
-		
+			
 			$filas[] = $fila ;
 		}
 	?>
@@ -53,7 +54,7 @@
 		Id_empresas <?php echo $_SESSION["id_empresas"]?>
 		Session Id <?php echo session_id()?>
 		Sesiion Estatus <?php echo session_status()?>
-		Consulta <?php echo $consulta?>
+	Consulta <?php echo $consulta?>
 	</pre>
 	<table class="table table-bordered table-condensed" id="dataTable" width="100%" cellspacing="0">
 		<thead>

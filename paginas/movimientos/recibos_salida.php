@@ -70,6 +70,7 @@
 							<div class="col-sm-2">
 								<label>Mes Aplicación:</label>
 								<select class="form-control filtro" id="mes" name="mes" >
+									<option value="">Todos</option>
 									<option <?= date("n") == "1" ? "selected": "";?> value="1">Enero</option>
 									<option <?= date("n") == "2" ? "selected": "";?> value="2">Febrero</option>
 									<option <?= date("n") == "3" ? "selected": "";?> value="3">Marzo</option>
