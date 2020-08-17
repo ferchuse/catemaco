@@ -16,7 +16,7 @@
 					<div class="row">
 						<div class="col-sm-6">
 							<div class="form-group">
-								<label >Sector:</label>
+								<label >NOMBRE:</label>
 								<select class="form-control" id="sector" name="sector" required>
 									<option value="">Seleccione</option>
 									<option  >Jurídico</option>
@@ -37,7 +37,7 @@
 							</div>
 							<div class="form-group">
 								<label>Descripción </label>		
-								<textarea class="form-control" name="descripcion" id="descripcion" required></textarea>
+								<textarea class="form-control" name="descripcion" id="descripcion" required></(textarea>
 							</div>
 							
 							<div class="form-group">
@@ -88,7 +88,7 @@
 									<div class="progress-bar progress-bar-striped active" >
 									</div>
 								</div>	
-								<a id="link_imagen" target="_blank" href="#">
+								<a id="link_imagen">
 									<img id="foto_thumb" class="w-50">
 								</a>
 								<input class="url" id="foto" type="hidden" name="foto" >

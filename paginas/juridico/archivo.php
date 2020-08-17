@@ -65,7 +65,7 @@
 								<label >Estatus:</label>
 							</div>	
 							<div class="col-2">			
-								<select class="form-control" id="estatus" name="estatus" >
+								<select class="form-control"  name="estatus" >
 									<option value="">Todos</option>
 									<option  >En Trámite</option>
 									<option  >En Archivo</option>
@@ -75,7 +75,7 @@
 								<label >Sector:</label>
 							</div>	
 							<div class="col-2">			
-								<select class="form-control" id="sector" name="sector" >
+								<select class="form-control"  name="sector" >
 									<option value="">Todos</option>
 									<option  >Jurídico</option>
 									<option  >Gestoría</option>
@@ -142,7 +142,7 @@
 			<script src="../../fileupload/jquery.ui.widget.js"></script>
 			<script src="../../fileupload/jquery.fileupload.js"></script>
 			
-			<script src="js/archivo.js" ></script>
+			<script src="js/archivo.js?v=<?= date("d.m.Y.his")?>" ></script>
 			
 		</body>
 	</html>

@@ -37,7 +37,7 @@
 							</div>
 							<div class="form-group">
 								<label>Descripción </label>		
-								<textarea class="form-control" name="descripcion" id="descripcion" required></textarea>
+								<textarea class="form-control" name="descripcion" id="descripcion" required></(textarea>
 							</div>
 							
 							<div class="form-group">
@@ -88,9 +88,9 @@
 									<div class="progress-bar progress-bar-striped active" >
 									</div>
 								</div>	
-								<a id="link_imagen" target="_blank" href="#">
-									<img id="foto_thumb" class="w-50">
-								</a>
+								
+								<img id="foto_thumb" class="w-50">
+								
 								<input class="url" id="foto" type="hidden" name="foto" >
 								
 								

@@ -15,8 +15,11 @@
 	id_documento ='{$_POST['id_documento']}',
 	copia ='{$_POST['copia']}',
 	estatus ='{$_POST['estatus']}',
+	ubicacion ='{$_POST['ubicacion']}',
 	foto ='{$_POST['foto']}',
-	thumbnail ='{$_POST['thumbnail']}'
+	thumbnail ='{$_POST['thumbnail']}',
+	jurisdiccion ='{$_POST['jurisdiccion']}',
+	lugar_salida ='{$_POST['lugar_salida']}'
 	
 	ON DUPLICATE KEY UPDATE
 	
@@ -28,8 +31,11 @@
 	id_documento ='{$_POST['id_documento']}',
 	copia ='{$_POST['copia']}',
 	estatus ='{$_POST['estatus']}',
+	ubicacion ='{$_POST['ubicacion']}',
 	foto ='{$_POST['foto']}',
-	thumbnail ='{$_POST['thumbnail']}'
+	thumbnail ='{$_POST['thumbnail']}',
+	jurisdiccion ='{$_POST['jurisdiccion']}',
+	lugar_salida ='{$_POST['lugar_salida']}'
 	
 	
 	";	
