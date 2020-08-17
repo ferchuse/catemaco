@@ -54,7 +54,7 @@
 			// console_log($fila);
 			$filas[] = $fila ;
 		}
-	?>
+		?>
 	
 	<pre hidden>
 		Id_empresas <?php echo $_SESSION["id_empresas"]?>

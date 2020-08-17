@@ -16,15 +16,21 @@
 	WHERE 1
 	";
 	
-	$consulta.=  " 
-	AND 	MONTH(fecha_aplicacion) = '{$_GET["mes"]}'
-	AND YEAR(fecha_aplicacion) = '{$_GET["year"]}'"; 
+	
+	
 	
 	if($_GET['mes'] != ""){
 		$consulta.=  " 
+		AND 	MONTH(fecha_aplicacion) = '{$_GET["mes"]}'
+		AND YEAR(fecha_aplicacion) = '{$_GET["year"]}'"; 
+	}
+	else{
+		$consulta.=  " 
 		AND fecha_deposito BETWEEN '{$_GET["fecha_inicial"]}'
 		AND  '{$_GET["fecha_final"]}'"; 
+		
 	}
+	
 	
 	
 	if($_GET["id_empresas"] != ""){
@@ -54,7 +60,7 @@
 		Id_empresas <?php echo $_SESSION["id_empresas"]?>
 		Session Id <?php echo session_id()?>
 		Sesiion Estatus <?php echo session_status()?>
-	Consulta <?php echo $consulta?>
+		Consulta <?php echo $consulta?>
 	</pre>
 	<table class="table table-bordered table-condensed" id="dataTable" width="100%" cellspacing="0">
 		<thead>
