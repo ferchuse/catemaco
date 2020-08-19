@@ -15,40 +15,34 @@
 					
 					<div class="row">
 						<div class="col-sm-6">
+							
 							<div class="form-group">
-								<label >NOMBRE:</label>
-								<select class="form-control" id="sector" name="sector" required>
-									<option value="">Seleccione</option>
-									<option  >Jurídico</option>
-									<option  >Gestoría</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<label >Jurisdicción:</label>
-								<select class="form-control" id="jurisdiccion" name="jurisdiccion" required>
-									<option value="">Seleccione</option>
-									<option  >Estatal</option>
-									<option  >Federal</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<label>Nombre </label>		
+								<label>Nombre:</label>		
 								<input class="form-control" name="nombre" id="nombre" required>
 							</div>
 							<div class="form-group">
-								<label>Descripción </label>		
-								<textarea class="form-control" name="descripcion" id="descripcion" required></(textarea>
+								<label>Contraseña:</label>		
+								<input class="form-control" name="password" id="password" required>
+							</div>
+							<div class="form-group">
+								<label>CURP:</label>		
+								<input class="form-control" name="curp" id="curp" required>
 							</div>
 							
 							<div class="form-group">
-								<label>Empresa </label>		
-								<?php echo generar_select($link, "empresas", "id_empresas", "nombre_empresas", false); ?>
+								<label>RFC:</label>		
+								<input class="form-control" name="rfc" id="rfc" required>
+							</div>
+							<div class="form-group">
+								<label>Profesión: </label>		
+								<input class="form-control" name="profesion" id="profesion" required>
 							</div>
 							
 							<div class="form-group">
-								<label>Tipo Documento </label>		
-								<?php echo generar_select($link, "tipo_documento", "id_documento", "tipo_documento", false); ?>
+								<label>Puesto: </label>		
+								<input class="form-control" name="profesion" id="profesion" required>
 							</div>
+							
 						</div>
 						
 						
@@ -78,23 +72,7 @@
 									<option  >Copia Certificada</option>
 								</select>
 							</div>
-							<div class="form-group">
-								<span class="btn btn-success fileinput-button">
-									<i class="fas fa-upload"></i> Cargar Archivo
-									<input class="fileupload" type="file" accept="image/*" name="files[]" data-url="../../fileupload/server_upload.php" >
-								</span>
-								
-								<div class="progress " >
-									<div class="progress-bar progress-bar-striped active" >
-									</div>
-								</div>	
-								<a id="link_imagen">
-									<img id="foto_thumb" class="w-50">
-								</a>
-								<input class="url" id="foto" type="hidden" name="foto" >
-								
-								
-							</div>
+							
 						</div>
 					</div>
 				</div>

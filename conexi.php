@@ -36,9 +36,9 @@
 			die( "Error seleccionando la base de datos.". mysqli_error($link));
 		}
 		
-		mysqli_query($link, "SET sql_mode = ''") or die("Error Cambiando charset").mysqli_error($link);
+		// mysqli_query($link, "SET sql_mode = ''") or die("Error Cambiando charset").mysqli_error($link);
 		
-		mysqli_query($link, "SET CHARACTER SET utf8") or die("Error en charset UTF8".mysqli_error($link));
+		// mysqli_query($link, "SET CHARACTER SET utf8") or die("Error en charset UTF8".mysqli_error($link));
 		
 		if($_SERVER["SERVER_NAME"] != "localhost") {
 			mysqli_query($link, "SET NAMES 'utf8'") or die("Error Cambiando charset").mysqli_error($link);

@@ -9,31 +9,7 @@ $(document).ready( function onLoad(){
 		listarRegistros();
 	});
 	$('.nuevo').click( nuevoRegistro );
-	// $("#tabla_registros").tableExport();
 	
-});
-
-
-$('.fileupload').fileupload({
-	dataType: 'json',
-	done: function (e, data) {
-		
-		$form_group = $(this).closest(".form-group");
-		
-		$.each(data.result.files, function (index, file) {
-			$form_group.find(".url").val("/catemaco/fileupload/files/"+file.name);
-			
-			$form_group.find("img").attr("src", "/catemaco/fileupload/files/"+file.name);
-			
-		});
-	},
-	progressall: function (e, data) {
-		$form_group = $(this).closest(".form-group");
-		
-		var progress = parseInt(data.loaded / data.total * 100, 10);
-		$form_group.find(".progress-bar").css("width" , progress +"%");
-		$form_group.find(".progress-bar").html(progress +"%");
-	}
 });
 
 

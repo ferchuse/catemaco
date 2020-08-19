@@ -28,9 +28,9 @@
 					<!-- Breadcrumbs-->
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
-							<a href="#">Catálogos</a>
+							<a href="#">Jurídico</a>
 						</li>
-						<li class="breadcrumb-item active">Unidades</li>
+						<li class="breadcrumb-item active">Personal</li>
 					</ol>
 					
 					<div class="row mb-2">
@@ -53,11 +53,6 @@
 								
 								
 								<div class="row mb-2"> 
-									<div class="col-sm-2">
-										<label for="">:</label>
-										
-										<input class="form-control" type="text" name="num_eco"  >
-									</div> 
 									
 								</div>
 								
