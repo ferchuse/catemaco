@@ -89,37 +89,40 @@
 							
 						?>
 						<legend><?php echo $categoria;?></legend>
-						<table class="table table-bordered table-hover">
-							<thead>
-								<tr>
-									<th>Página</th>
-									<th>Sin Acceso</th>
-									<th>Lectura</th>
-									<th>Escritura</th>
-									<th>Supervisor</th>
-								</tr>
-							</thead>
-							<tbody class="text-center">
-								<?php foreach($paginas as  $j=> $pagina){?>
+						<div class="table-responsive">
+							<table class="table table-bordered table-hover">
+								<thead>
 									<tr>
-										<td>
-											<?php echo $pagina["nombre_paginas"]?>
-											<input hidden class="id_paginas" name="id_paginas[<?php echo $pagina["id_paginas"];?>]" value="<?php echo $pagina["id_paginas"];?>">	
-										</td>
-										
-										<?php
-											foreach($permisos as $k => $permiso){?>
-											<td>
-												<input type="radio"  class="permiso" name="permisos[<?php echo $pagina["id_paginas"];?>]" value="<?php echo $permiso;?>">
-											</td>
-											<?php
-											}?>
+										<th>Página</th>
+										<th>Sin Acceso</th>
+										<th>Lectura</th>
+										<th>Escritura</th>
+										<th>Supervisor</th>
 									</tr>
-									<?php 
-									}
-								?>
-							</tbody>
-						</table>
+								</thead>
+								<tbody class="text-center">
+									<?php foreach($paginas as  $j=> $pagina){?>
+										<tr>
+											<td>
+												<?php echo $pagina["nombre_paginas"]?>
+												<input hidden class="id_paginas" name="id_paginas[<?php echo $pagina["id_paginas"];?>]" value="<?php echo $pagina["id_paginas"];?>">	
+											</td>
+											
+											<?php
+												foreach($permisos as $k => $permiso){?>
+												<td>
+													<input type="radio"  class="permiso" name="permisos[<?php echo $pagina["id_paginas"];?>]" value="<?php echo $permiso;?>">
+												</td>
+												<?php
+												}?>
+										</tr>
+										<?php 
+										}
+									?>
+								</tbody>
+							</table>
+						</div>
+						
 						<?php	
 						}
 					?>

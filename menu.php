@@ -43,30 +43,37 @@
 			</div>
 		</li> 
 		
-		<?php if($_SESSION["id_administrador"] != 4){?>
-			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown" >
-					<i class="fas fa-fw fa-exchange-alt"></i>
-					<span>Movimientos</span>
-				</a>
-				<div class="dropdown-menu" >
-					<?php 
-						$q_catalogos = "SELECT * FROM paginas WHERE categoria_paginas = 'Movimientos'";	
-						$result_catalogos = mysqli_query($link, $q_catalogos);
-						while($fila = mysqli_fetch_assoc($result_catalogos)){
+		
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown" >
+				<i class="fas fa-fw fa-exchange-alt"></i>
+				<span>Movimientos</span>
+			</a>
+			<div class="dropdown-menu" >
+				<?php 
+					$q_catalogos = "SELECT * FROM paginas WHERE categoria_paginas = 'Movimientos'";	
+					$result_catalogos = mysqli_query($link, $q_catalogos);
+					while($fila = mysqli_fetch_assoc($result_catalogos)){
+						if($fila["url_paginas"] == "recibos_extra.php" ){
+							if(dame_permiso($fila["url_paginas"], $link) == "Supervisor" ){
+								echo "<a class='dropdown-item' href='../../paginas/movimientos/{$fila["url_paginas"]}' ";
+								echo dame_permiso($fila["url_paginas"], $link).">-{$fila['nombre_paginas']}</a>";
+							}
+						}
+						else{
+							
 							echo "<a class='dropdown-item' href='../../paginas/movimientos/{$fila["url_paginas"]}' ";
 							echo dame_permiso($fila["url_paginas"], $link).">-{$fila['nombre_paginas']}</a>";
 						}
-					?> 
-				</div> 
-			</li>
-			<?php
-			}
-		?>
+					}
+				?> 
+			</div> 
+		</li>
+		
 		<li class="nav-item dropdown">
 			<a class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown" >
-				<i class="fas fa-fw fa-dollar-sign"></i> 
-				<span>Saldos</span>
+			<i class="fas fa-fw fa-dollar-sign"></i> 
+			<span>Saldos</span>
 			</a>
 			<div class="dropdown-menu" > 
 				<?php 
@@ -125,15 +132,15 @@
 				<span>Administración</span>
 			</a>
 			<div class="dropdown-menu" >
-			<?php 
-			$q_catalogos = "SELECT * FROM paginas WHERE categoria_paginas = 'Administración'";	
-			$result_catalogos = mysqli_query($link, $q_catalogos);
-			while($fila = mysqli_fetch_assoc($result_catalogos)){
-				echo "<a class='dropdown-item' href='../../paginas/administracion/{$fila["url_paginas"]}' ";
-				echo dame_permiso($fila["url_paginas"], $link).">-{$fila['nombre_paginas']}</a>";
-			}
-			?> 
-			
+				<?php 
+					$q_catalogos = "SELECT * FROM paginas WHERE categoria_paginas = 'Administración'";	
+					$result_catalogos = mysqli_query($link, $q_catalogos);
+					while($fila = mysqli_fetch_assoc($result_catalogos)){
+						echo "<a class='dropdown-item' href='../../paginas/administracion/{$fila["url_paginas"]}' ";
+						echo dame_permiso($fila["url_paginas"], $link).">-{$fila['nombre_paginas']}</a>";
+					}
+				?> 
+				
 			</div>
 		</li> 
 		
