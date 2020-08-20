@@ -39,7 +39,7 @@
 								<div class="row mb-2">
 									<div class="col-12">
 										<div class="col-12 mb-3">
-											<button class="btn btn-primary btn-sm" >
+											<button hidden class="btn btn-primary btn-sm" >
 												<i class="fas fa-search"></i> Buscar
 											</button>
 											<button type="button" class="btn btn-success nuevo btn-sm" >

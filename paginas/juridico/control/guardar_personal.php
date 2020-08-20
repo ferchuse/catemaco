@@ -14,6 +14,7 @@
 	password= '{$_POST['password']}' , 
 	profesion = '{$_POST['profesion']}' , 
 	puesto ='{$_POST['puesto']}',
+	estatus ='{$_POST['estatus']}',
 	telefono ='{$_POST['telefono']}'
 		
 	ON DUPLICATE KEY UPDATE
@@ -25,6 +26,7 @@
 	password= '{$_POST['password']}' , 
 	profesion = '{$_POST['profesion']}' , 
 	puesto ='{$_POST['puesto']}',
+	estatus ='{$_POST['estatus']}',
 	telefono ='{$_POST['telefono']}'
 	
 	

@@ -32,7 +32,7 @@ function guardarRegistro(event){
 	icono.toggleClass("fa-save fa-spinner fa-spin");
 	
 	$.ajax({
-		url: 'control/guardar_archivo.php',
+		url: 'control/guardar_personal.php',
 		dataType: 'JSON',
 		method: 'POST',
 		data: datos
@@ -68,7 +68,7 @@ function listarRegistros() {
 	
 	
 	$.ajax({
-		url: 'control/lista_archivo.php',
+		url: 'control/lista_personal.php',
 		method: 'GET',
 		data: $("#form_filtros").serialize()
 		}).done(function(respuesta){
@@ -95,8 +95,8 @@ function cargarRegistro(event){
 		"url": "../../funciones/fila_select.php",
 		"dataType": "JSON",
 		"data": {
-			"tabla": "archivo",
-			"id_campo": "id_archivo",
+			"tabla": "personal",
+			"id_campo": "id_personal",
 			"id_valor": $id_registro						
 		}
 		}).done( function alTerminar (respuesta){					

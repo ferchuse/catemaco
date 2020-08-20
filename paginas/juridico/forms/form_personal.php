@@ -11,7 +11,7 @@
 				<!-- Modal body -->
 				<div class="modal-body">
 					
-					<input hidden name="id_archivo" id="id_archivo" value="">
+					<input hidden name="id_personal" id="id_personal" value="">
 					
 					<div class="row">
 						<div class="col-sm-6">
@@ -21,55 +21,41 @@
 								<input class="form-control" name="nombre" id="nombre" required>
 							</div>
 							<div class="form-group">
-								<label>Contraseña:</label>		
-								<input class="form-control" name="password" id="password" required>
-							</div>
-							<div class="form-group">
 								<label>CURP:</label>		
 								<input class="form-control" name="curp" id="curp" required>
+							</div>
+							<div class="form-group">
+								<label>Contraseña:</label>		
+								<input class="form-control" type="password" name="password" id="password" required>
 							</div>
 							
 							<div class="form-group">
 								<label>RFC:</label>		
-								<input class="form-control" name="rfc" id="rfc" required>
+								<input class="form-control" name="rfc" id="rfc" >
 							</div>
+							
+						</div>
+						<div class="col-sm-6">
 							<div class="form-group">
 								<label>Profesión: </label>		
-								<input class="form-control" name="profesion" id="profesion" required>
+								<input class="form-control" name="profesion" id="profesion" >
 							</div>
 							
 							<div class="form-group">
 								<label>Puesto: </label>		
-								<input class="form-control" name="profesion" id="profesion" required>
+								<input class="form-control" name="puesto" id="puesto" >
 							</div>
-							
-						</div>
-						
-						
-						<div class="col-sm-6">
+								
+							<div class="form-group">
+								<label>Telefono:</label>		
+								<input class="form-control" type="tel" name="telefono" id="telefono" >
+							</div>
 							<div class="form-group">
 								<label >Estatus:</label>
 								<select class="form-control" id="estatus" name="estatus" required>
-									<option value="">Seleccione</option>
-									<option  >En Trámite</option>
-									<option  >En Archivo</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<label>Ubicación </label>		
-								<input class="form-control" name="ubicacion" id="ubicacion" >
-							</div>
-							<div class="form-group">
-								<label>A donde Salió </label>		
-								<input class="form-control" name="lugar_salida" id="lugar_salida" >
-							</div>
-							<div class="form-group">
-								<label >Copia:</label>
-								<select class="form-control" id="copia" name="copia" required>
-									<option value="">Seleccione</option>
-									<option  >Original</option>
-									<option  >Copia</option>
-									<option  >Copia Certificada</option>
+									
+									<option selected >Activo</option>
+									<option  >Inactivo</option>
 								</select>
 							</div>
 							
