@@ -2,7 +2,9 @@ $(document).ready( function onLoad(){
 	console.log("onLoad");
 	listarRegistros(); 
 	
+	$('#password').blur( verificaPassword );
 	$('#form_edicion').submit( guardarRegistro );
+	$('#form_salida').submit( guardarSalida );
 	$('#form_filtros').submit( function(event){
 		
 		event.preventDefault();
@@ -41,6 +43,9 @@ $('.fileupload').fileupload({
 
 function nuevoRegistro(event){
 	console.log("nuevoRegistro") 
+	$("#link_imagen").attr("href", "");
+	$("#foto_thumb").attr("src", "");
+	$("#foto").val("");
 	$("#form_edicion")[0].reset();
 	$("#modal_edicion").modal("show");
 	
@@ -81,7 +86,65 @@ function guardarRegistro(event){
 	}); 
 }
 
-//FUNCION DE ENLISTAR
+
+function guardarSalida(event){
+	console.log("guardarRegistro")
+	event.preventDefault();
+	let datos = $(this).serialize();
+	let boton = $(this).find(":submit");
+	let icono = boton.find(".fas");
+	
+	
+	
+	
+	boton.prop("disabled", true);
+	icono.toggleClass("fa-save fa-spinner fa-spin");
+	
+	
+	verificaPassword().done(function(respuesta){
+		if(respuesta.valido =="NO"){
+			alertify.error("Contraseña Incorrecta")
+			boton.prop("disabled", false);
+			icono.toggleClass("fa-save fa-spinner fa-spin");
+			
+		}
+		else{
+			$.ajax({
+				url: 'control/guardar_salida.php',
+				dataType: 'JSON',
+				method: 'POST',
+				data: datos
+				
+				}).done(function(respuesta){
+				
+				if(respuesta.estatus == "success"){
+					alertify.success('Se ha agregado correctamente');
+					$('#form_salida')[0].reset();
+					$('#modal_salida').modal("hide");
+					imprimirSalida(respuesta.folio)
+					
+					listarRegistros();
+					}else{
+					
+					console.log(respuesta.mensaje);
+				}
+				}).always(function(){
+				
+				boton.prop("disabled", false);
+				icono.toggleClass("fa-save fa-spinner fa-spin");
+				
+				
+			}); 
+			
+			
+		}
+		
+	})
+	
+	
+}
+
+
 function listarRegistros() {
 	console.log("listarRegistros()");
 	let boton = $("#form_filtros").find(":submit");
@@ -101,12 +164,103 @@ function listarRegistros() {
 		
 		
 		$('.btn_editar').on('click', cargarRegistro);
+		$('.btn_salida').on('click', modalSalida);
+		$('.btn_historial').on('click', modalHistorial);
 		
 		}).always(function(){
 		boton.prop('disabled',false);
 		icono.toggleClass('fa-search fa-spinner fa-pulse');
 		
 	});
+}
+
+function imprimirSalida(folio) {
+	console.log("imprimirSalida()");
+	// let boton = $("#form_filtros").find(":submit");
+	// let icono = boton.find('.fas');
+	
+	// boton.prop('disabled',true);
+	// icono.toggleClass('fa-search fa-spinner fa-pulse ');
+	
+	
+	$.ajax({
+		url: 'impresion/imprimir_salida.php',
+		method: 'GET',
+		data: {
+			"folio" :folio
+		}
+		}).done(function(respuesta){
+		
+		$('#impresion').html(respuesta);
+		
+		window.print();
+		
+		}).always(function(){
+		// boton.prop('disabled',false);
+		// icono.toggleClass('fa-search fa-spinner fa-pulse');
+		
+	});
+}
+
+function verificaPassword() {
+	console.log("verificaPassword()");
+	
+	
+	return $.ajax({
+		url: 'control/verifica_password.php',
+		method: 'GET',
+		data:{
+			"id_personal": $("#id_personal").val(),
+			"password": $("#password").val()
+		}
+	});
+}
+
+
+function modalSalida(event){
+	$("#salida_id_archivo").val($(this).data("id_registro"));
+	$("#salida_nombre").val($(this).data("nombre"));
+	
+	$("#modal_salida").modal("show");
+	
+}
+
+
+
+function modalHistorial(event){
+	
+	console.log("modalHistorial()");
+	let boton = $(this);
+	let icono = boton.find('.fas');
+	let id_registro = boton.data('id_registro');
+	
+	
+	boton.prop('disabled',true);
+	icono.toggleClass('fa-clock fa-spinner fa-spin ');
+	
+	
+	
+	return $.ajax({
+		url: 'control/modal_historial.php',
+		method: 'GET',
+		data:{
+			"id_archivo": id_registro
+		}
+		}).done(function(respuesta){
+		
+		$("#modal_historial .modal-body").html(respuesta);
+		$("#modal_historial").modal("show");
+		}).always(function(){
+		
+		boton.prop('disabled',false);
+		icono.toggleClass('fa-clock fa-spinner fa-spin ');
+		
+		
+	});
+	
+	
+	$("#modal_salida").modal("show");
+	
 }
 function cargarRegistro(event){
 	console.log("event", event);

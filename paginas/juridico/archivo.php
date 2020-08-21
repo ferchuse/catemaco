@@ -22,9 +22,9 @@
 	</head>
 	<body id="page-top">
 		<?php include("../../navbar.php")?>
-		<div id="wrapper">
+		<div id="wrapper" class="d-print-none">
 			<?php include("../../menu.php")?>	
-			<div id="content-wrapper">		
+			<div id="content-wrapper" >		
 				<div class="container-fluid">		
 					<!-- Breadcrumbs-->
 					<ol class="breadcrumb">
@@ -126,16 +126,39 @@
 			</div>
 			<!-- /#wrapper -->
 			
-			<!-- Scroll to Top Button-->
 			<a class="scroll-to-top rounded" href="#page-top">
 				<i class="fas fa-angle-up"></i>
 			</a>		
 			
 			
-			<!-- The Modal -->
+			
+			<div id="modal_historial" class="modal fade d-print-none" role="dialog">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h3 class="modal-title text-center">Historial de Movimientos <span id="nombre_historial"></span></h3>
+							<button type="button" class="close d-print-none" data-dismiss="modal">&times;</button>
+						</div>
+						<div class="modal-body">
+						</div>
+						<div class="modal-footer d-print-none">
+							<button type="button" class="btn btn-danger" data-dismiss="modal">
+								<i class="fa fa-times"></i> Cerrar
+							</button>
+							<button type="button" id="btn_imprimir_edo_cuenta" class="btn btn-info" >
+								<i class="fa fa-print"></i> Imprimir
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>	
+			
+			<div id="impresion" class="d-none d-print-block" >
+				
+			</div>	
 			
 			
-			
+			<?php include("forms/form_salida.php")?>
 			<?php include("forms/form_archivo.php")?>
 			<?php include("../../scripts.php")?>
 			

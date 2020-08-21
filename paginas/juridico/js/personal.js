@@ -84,6 +84,8 @@ function listarRegistros() {
 		
 	});
 }
+
+
 function cargarRegistro(event){
 	console.log("event", event);
 	let $boton = $(this);
