@@ -11,6 +11,18 @@ $(document).ready( function onLoad(){
 		listarRegistros();
 	});
 	$('.nuevo').click( nuevoRegistro );
+	$('#form_edicion').find("#estatus").change( function(){
+		
+		if($(this).val() == "En Archivo"){
+			$("#ubicacion").closest(".form-group").show();
+			$("#lugar_salida").closest(".form-group").hide();
+		}
+		else{
+			$("#ubicacion").closest(".form-group").hide();
+			$("#lugar_salida").closest(".form-group").show();
+		}
+		
+	} );
 	// $("#tabla_registros").tableExport();
 	
 });
@@ -289,6 +301,17 @@ function cargarRegistro(event){
 				$("#foto_thumb").attr("src", value);
 				$("#link_imagen").attr("href", value);
 				console.log("link_imagen ", value)
+				break;
+				case "estatus":
+				
+				if(value == "En Archivo"){
+					$("#ubicacion").closest(".form-group").show();
+					$("#lugar_salida").closest(".form-group").hide();
+				}
+				else{
+					$("#ubicacion").closest(".form-group").hide();
+					$("#lugar_salida").closest(".form-group").show();
+				}
 				break;
 				
 				
