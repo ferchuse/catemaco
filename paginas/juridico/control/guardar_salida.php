@@ -1,5 +1,4 @@
 <?php 
-	session_start();
 	include('../../../conexi.php');
 	$link = Conectarse();
 	
@@ -32,6 +31,31 @@
 	}
 	
 	
+	
+	$update ="UPDATE archivo SET  
+	estatus = 'En Trámite' , 
+	lugar_salida = '{$_POST['lugar']}'
+	
+	WHERE id_archivo = '{$_POST['id_archivo']}' 
+	
+	
+	";	
+	
+	$result_update = 	mysqli_query($link,$update);
+	
+	if($result_update){
+		
+		$respuesta["update"]["estatus"] = "success";
+		$respuesta["update"]["mensaje"] = "Actualizado";
+	
+	}
+	else{
+		$respuesta["update"]["estatus"] = "error";
+		$respuesta["update"]["mensaje"] = mysqli_error($link);		
+				
+	}
+	
+	$respuesta["update"]["consulta"] = $update;
 	
 	
 	

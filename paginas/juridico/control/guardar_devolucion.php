@@ -35,6 +35,32 @@
 	
 	
 	
+	$update ="UPDATE archivo SET  
+	estatus = 'En Archivo' , 
+	ubicacion = '{$_POST['ubicacion']}'
+	
+	WHERE id_archivo = '{$_POST['id_archivo']}' 
+	
+	
+	";	
+	$result_update = 	mysqli_query($link,$update);
+	
+	if($result_update){
+		
+		$respuesta["update"]["estatus"] = "success";
+		$respuesta["update"]["mensaje"] = "Actualizado";
+	
+	}
+	else{
+		$respuesta["update"]["estatus"] = "error";
+		$respuesta["update"]["mensaje"] = mysqli_error($link);		
+				
+	}
+	
+	$respuesta["update"]["consulta"] = $update;
+	
+	
+	
 	echo json_encode($respuesta);
 	
 ?>

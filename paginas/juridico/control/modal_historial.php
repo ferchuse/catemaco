@@ -6,16 +6,34 @@
 	
 	
 	$consulta = "
-	SELECT *,
+	SELECT 
+	fecha,
 	'Salida' AS tipo_movimiento,
 	archivo.nombre as archivo_nombre,
-	personal.nombre as personal_nombre
+	personal.nombre as personal_nombre,
+	nombre_usuarios,
+	lugar AS lugar
 	FROM salida_archivo
 	LEFT JOIN usuarios USING(id_usuarios)
 	LEFT JOIN archivo USING(id_archivo)
 	LEFT JOIN personal USING(id_personal)
+	WHERE id_archivo = '{$_GET["id_archivo"]}'
 	
 	
+	
+	UNION
+	
+	SELECT
+	fecha,
+	'Devolucion' AS tipo_movimiento,
+	archivo.nombre as archivo_nombre,
+	personal.nombre as personal_nombre,
+	nombre_usuarios,
+	devolucion.ubicacion AS lugar
+	FROM devolucion
+	LEFT JOIN usuarios USING(id_usuarios)
+	LEFT JOIN archivo USING(id_archivo)
+	LEFT JOIN personal USING(id_personal)
 	WHERE id_archivo = '{$_GET["id_archivo"]}'
 	
 	
@@ -50,7 +68,7 @@
 				<th class="text-center">Tipo</th>
 				<th class="text-center">Personal</th>
 				<th class="text-center">Lugar</th>
-				<th class="text-center">Entrega</th>
+				<th class="text-center">Entrega/Recibe</th>
 			</tr>
 			<?php 
 				$cargos= 0;
@@ -58,11 +76,13 @@
 				$saldo= 0;
 				foreach($lista_transacciones AS $i => $transaccion){
 					
+					$badge = $transaccion["tipo_movimiento"] == "Devolucion" ? "badge-success" : "badge-danger";
+					
 				?>
 				<tr class="text-center">
 					
 					<td><?php echo date("d/m/Y", strtotime($transaccion["fecha"]));?></td>		
-					<td><?php echo ($transaccion["tipo_movimiento"]);?></td>
+					<td><?php echo "<span class='badge $badge'>".($transaccion["tipo_movimiento"]). "</badge>";?></td>
 					<td><?php echo ($transaccion["personal_nombre"]);?></td>
 					<td><?php echo ($transaccion["lugar"]);?></td>
 					<td><?php echo ($transaccion["nombre_usuarios"]);?></td>
