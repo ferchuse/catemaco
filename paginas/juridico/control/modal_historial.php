@@ -7,7 +7,7 @@
 	
 	$consulta = "
 	SELECT *,
-	'salida_archivo' AS tabla,
+	'Salida' AS tipo_movimiento,
 	archivo.nombre as archivo_nombre,
 	personal.nombre as personal_nombre
 	FROM salida_archivo
@@ -47,7 +47,7 @@
 		<table class="table table-hover ">
 			<tr>
 				<th class="text-center">Fecha</th>
-				<th class="text-center">Nombre</th>
+				<th class="text-center">Tipo</th>
 				<th class="text-center">Personal</th>
 				<th class="text-center">Lugar</th>
 				<th class="text-center">Entrega</th>
@@ -62,7 +62,7 @@
 				<tr class="text-center">
 					
 					<td><?php echo date("d/m/Y", strtotime($transaccion["fecha"]));?></td>		
-					<td><?php echo ($transaccion["archivo_nombre"]);?></td>
+					<td><?php echo ($transaccion["tipo_movimiento"]);?></td>
 					<td><?php echo ($transaccion["personal_nombre"]);?></td>
 					<td><?php echo ($transaccion["lugar"]);?></td>
 					<td><?php echo ($transaccion["nombre_usuarios"]);?></td>

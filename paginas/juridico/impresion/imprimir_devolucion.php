@@ -8,12 +8,12 @@
 	personal.nombre AS personal_nombre,
 	archivo.nombre AS archivo_nombre
 	
-	FROM salida_archivo
+	FROM devolucion
 	LEFT JOIN personal USING (id_personal)
 	LEFT JOIN archivo USING (id_archivo)
 	LEFT JOIN usuarios USING (id_usuarios)
 	
-	WHERE id_salida_archivo = '{$_GET["folio"]}'
+	WHERE id_devolucion = '{$_GET["folio"]}'
 	
 	";
     
@@ -40,12 +40,12 @@
 	?> 
 	
 	<div class="row">
-		<div class="col-2 text-center" >
+		<div class="col-3 text-center" >
 			<img  src="../../img/logo.jpg" class="img-fluid">
 		</div>
 		<div class="col-7 text-center">
 			<h4>Coordinadora de Transporte Grupo AAZ AC</h4>
-			<legend>Salida de Archivo</legend> 
+			<legend>Devolución de Documento</legend> 
 		</div>
 	</div>
 	<hr>
@@ -57,10 +57,9 @@
 	</div>
 	<div class="row">
 		<div class="col-12 text-center">
-			<p>Solicita: <?php echo $fila["personal_nombre"];?></p>
+			<p>Entrega: <?php echo $fila["personal_nombre"];?></p>
 		</div>	 
 	</div>
-	
 	<div class="row">
 		<div class="col-12 text-center">
 			<p>Dcoumento: <?php echo $fila["archivo_nombre"];?></p>
@@ -68,7 +67,7 @@
 	</div>
 	<div class="row">
 		<div class="col-12 text-center">
-			<p>Entrega: <?php echo $fila["nombre_usuarios"];?></p>
+			<p>Recibe: <?php echo $fila["nombre_usuarios"];?></p>
 		</div>	 
 	</div>
 	<div class="row">
@@ -76,7 +75,6 @@
 			<p>Fecha de impresión: <?php echo date("d/m/Y H:i:s");?></p>
 		</div>	 
 	</div>
-	
 	
 	<?php    
 	}

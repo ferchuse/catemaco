@@ -132,41 +132,40 @@
 									</tbody>
 								</table>
 								<div id="mensaje"></div>
-								</div>
-								</div>
-								
-								</div>
-								</div>
-								<!-- /.container-fluid -->
-								
-								<!-- Sticky Footer -->
-								<footer class="sticky-footer">
-								<div class="container my-auto">
-								<div class="copyright text-center my-auto">
-								<span>Copyright  Glifo Media 2018</span>
-								</div>
-								</div>
-								</footer>
-								
-								</div>
-								<!-- /.content-wrapper -->
-								</div>
-								<!-- /#wrapper -->
-								
-								<!-- Scroll to Top Button-->
-								<a class="scroll-to-top rounded" href="#page-top">
-								<i class="fas fa-angle-up"></i>
-								</a>	
-								<div class="d-print-inline d-none p-2 carta"   id="impresion">
-								
-								</div>
-								
-								<?php 
-								include("../../scripts.php");
-								include('forms/form_extra.php');
-								?>
-								<script src="js/recibos_extra.js?v=<?= date("d-m-Y-H-i-s")?>"></script>
-								<script src="../catalogos/js/buscar.js"></script>
-								</body>
-								</html>
-																
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				<!-- /.container-fluid -->
+				
+				<!-- Sticky Footer -->
+				<footer class="sticky-footer">
+					<div class="container my-auto">
+						<div class="copyright text-center my-auto">
+							<span>Copyright  Glifo Media 2018</span>
+						</div>
+					</div>
+				</footer>
+				
+			</div>
+			<!-- /.content-wrapper -->
+			</div>
+		<!-- /#wrapper -->
+		
+		<!-- Scroll to Top Button-->
+		<a class="scroll-to-top rounded" href="#page-top">
+			<i class="fas fa-angle-up"></i>
+		</a>	
+		<div class="d-print-inline d-none p-2 carta"   id="impresion">
+			
+		</div>
+		
+		<?php 
+			include("../../scripts.php");
+			include('forms/form_extra.php');
+		?>
+		<script src="js/recibos_extra.js?v=<?= date("d-m-Y-H-i-s")?>"></script>
+		<script src="../catalogos/js/buscar.js"></script>
+	</body>
+</html>

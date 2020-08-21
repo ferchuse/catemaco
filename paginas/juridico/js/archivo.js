@@ -5,6 +5,7 @@ $(document).ready( function onLoad(){
 	$('#password').blur( verificaPassword );
 	$('#form_edicion').submit( guardarRegistro );
 	$('#form_salida').submit( guardarSalida );
+	$('#form_devolucion').submit( guardarDevolucion );
 	$('#form_filtros').submit( function(event){
 		
 		event.preventDefault();
@@ -100,7 +101,7 @@ function guardarRegistro(event){
 
 
 function guardarSalida(event){
-	console.log("guardarRegistro")
+	console.log("guardarSalida()")
 	event.preventDefault();
 	let datos = $(this).serialize();
 	let boton = $(this).find(":submit");
@@ -155,6 +156,52 @@ function guardarSalida(event){
 	
 	
 }
+function guardarDevolucion(event){
+	console.log("guardarDevolucion")
+	event.preventDefault();
+	let datos = $(this).serialize();
+	let boton = $(this).find(":submit");
+	let icono = boton.find(".fas");
+	
+	
+	
+	
+	boton.prop("disabled", true);
+	icono.toggleClass("fa-save fa-spinner fa-spin");
+	
+	
+	
+	$.ajax({
+		url: 'control/guardar_devolucion.php',
+		dataType: 'JSON',
+		method: 'POST',
+		data: datos
+		
+		}).done(function(respuesta){
+		
+		if(respuesta.estatus == "success"){
+			alertify.success('Se ha agregado correctamente');
+			$('#form_devolucion')[0].reset();
+			$('#modal_devolucion').modal("hide");
+			imprimirDevolucion(respuesta.folio)
+			
+			listarRegistros();
+			}else{
+			
+			console.log(respuesta.mensaje);
+		}
+		}).always(function(){
+		
+		boton.prop("disabled", false);
+		icono.toggleClass("fa-save fa-spinner fa-spin");
+		
+		
+	}); 
+	
+	
+	
+	
+}
 
 
 function listarRegistros() {
@@ -178,6 +225,7 @@ function listarRegistros() {
 		$('.btn_editar').on('click', cargarRegistro);
 		$('.btn_salida').on('click', modalSalida);
 		$('.btn_historial').on('click', modalHistorial);
+		$('.btn_devolucion').on('click', modalDevolucion);
 		
 		}).always(function(){
 		boton.prop('disabled',false);
@@ -205,8 +253,39 @@ function imprimirSalida(folio) {
 		
 		$('#impresion').html(respuesta);
 		
-		window.print();
+		setTimeout( function(){
+			window.print();
+			
+		}, 500)
+		}).always(function(){
+		// boton.prop('disabled',false);
+		// icono.toggleClass('fa-search fa-spinner fa-pulse');
 		
+	});
+}
+function imprimirDevolucion(folio) {
+	console.log("imprimirDevolucion()");
+	// let boton = $("#form_filtros").find(":submit");
+	// let icono = boton.find('.fas');
+	
+	// boton.prop('disabled',true);
+	// icono.toggleClass('fa-search fa-spinner fa-pulse ');
+	
+	
+	$.ajax({
+		url: 'impresion/imprimir_devolucion.php',
+		method: 'GET',
+		data: {
+			"folio" :folio
+		}
+		}).done(function(respuesta){
+		
+		$('#impresion').html(respuesta);
+		
+		setTimeout( function(){
+			window.print();
+			
+		}, 500)
 		}).always(function(){
 		// boton.prop('disabled',false);
 		// icono.toggleClass('fa-search fa-spinner fa-pulse');
@@ -234,6 +313,14 @@ function modalSalida(event){
 	$("#salida_nombre").val($(this).data("nombre"));
 	
 	$("#modal_salida").modal("show");
+	
+}
+
+function modalDevolucion(event){
+	$("#devolucion_id_archivo").val($(this).data("id_registro"));
+	$("#devolucion_nombre").val($(this).data("nombre"));
+	
+	$("#modal_devolucion").modal("show");
 	
 }
 

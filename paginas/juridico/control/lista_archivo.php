@@ -42,7 +42,7 @@
 						<button class="btn btn-info btn_salida" data-id_registro="<?php echo $fila["id_archivo"];?>" data-nombre="<?php echo $fila["nombre"];?>" title="Salida de Documento">
 							<i class="fas fa-arrow-right"></i>
 						</button>
-						<button class="btn btn-success btn_devolucion" data-id_registro="<?php echo $fila["id_archivo"];?>" title="Devolucion">
+						<button class="btn btn-success btn_devolucion" data-id_registro="<?php echo $fila["id_archivo"];?>" data-nombre="<?php echo $fila["nombre"];?>" title="Devolucion">
 							<i class="fas fa-undo"></i>
 						</button>
 					</td>
