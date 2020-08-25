@@ -2,6 +2,7 @@
 	session_start();
 	include('../../../conexi.php');
 	include('../../../funciones/generar_select.php');
+	include('../../../funciones/dame_permiso.php');
 	$link = Conectarse();
 	$filas = array();
 	$respuesta = array();
@@ -83,17 +84,21 @@
 					<tr>
 						<td class="text-center"><input type="checkbox" class="seleccionar" value='<?php echo $fila['id_deposito']?>'></td>
 						<td class="text-center"> 
-							<?php if($fila["estatus_deposito"] != 'Cancelado'){
+							<?php if($fila["estatus_deposito"] != 'Cancelado' ){
 								$totales[0]+= $fila["monto"];
+								if(dame_permiso("recibos_entrada.php", $link) == 'Supervisor'){ 
+								?>
+								<button class="btn btn-danger cancelar" title="Cancelar" data-id_registro='<?php echo $fila['id_deposito']?>'>
+									<i class="fas fa-times"></i>
+								</button>
 								
+								<?php
+								}
 							?>
-							<button class="btn btn-danger cancelar" title="Cancelar" data-id_registro='<?php echo $fila['id_deposito']?>'>
-								<i class="fas fa-times"></i>
-							</button>
 							<button class="btn btn-outline-info imprimir" data-id_registro='<?php echo $fila['id_deposito']?>'>
 								<i class="fas fa-print"></i>
 							</button>
-							<?php
+							<?php	
 							}
 							else{
 								echo "<span class='badge badge-danger'>".$fila["estatus_deposito"]."<br>".$fila["datos_cancelacion"]."</span>";

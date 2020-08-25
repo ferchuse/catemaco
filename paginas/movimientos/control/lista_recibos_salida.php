@@ -2,6 +2,7 @@
 	session_start();
 	include('../../../conexi.php');
 	include('../../../funciones/generar_select.php');
+	include('../../../funciones/dame_permiso.php');
 	$link = Conectarse();
 	$filas = array();
 	$respuesta = array();
@@ -54,7 +55,7 @@
 			// console_log($fila);
 			$filas[] = $fila ;
 		}
-		?>
+	?>
 	
 	<pre hidden>
 		Id_empresas <?php echo $_SESSION["id_empresas"]?>
@@ -84,15 +85,29 @@
 					<tr>
 						<td class="text-center"><input type="checkbox" class="seleccionar" value='<?php echo $fila['id_reciboSalidas']?>'></td>
 						<td class="text-center"> 
-							<?php if($fila["estatus_reciboSalidas"] != 'Cancelado'){?>
+							<?php if($fila["estatus_reciboSalidas"] != 'Cancelado'){ 
+								
+								$totales[0]+= $fila["monto_reciboSalidas"];
+								if(dame_permiso("recibos_salida.php", $link) == 'Supervisor'){ 
+								?>
 								<button class="btn btn-danger cancelar" title="Cancelar" data-id_registro='<?php echo $fila['id_reciboSalidas']?>'>
 									<i class="fas fa-times"></i>
 								</button>
-								<button class="btn btn-outline-info imprimir" data-id_registro='<?php echo $fila['id_reciboSalidas']?>'>
-									<i class="fas fa-print"></i>
-								</button>
+								
 								<?php
 								}
+							?>
+							
+							<button class="btn btn-outline-info imprimir" data-id_registro='<?php echo $fila['id_reciboSalidas']?>'>
+								<i class="fas fa-print"></i>
+							</button>
+							<?php	
+							}
+							else{
+								
+								
+								echo "<span class='badge badge-danger'>".$fila["estatus_reciboSalidas"]."<br>".$fila["datos_cancelacion"]."</span>";
+							}
 							?>
 						</td>
 						<td><?php echo $fila["id_reciboSalidas"]?></td>
@@ -123,10 +138,7 @@
 					</tr>
 					<?php
 						
-						if($fila["estatus_reciboSalidas"] != "Cancelado"){
-							$totales[0]+= $fila["monto_reciboSalidas"];
-							
-						}
+						
 					}
 				?>
 			</tbody>
