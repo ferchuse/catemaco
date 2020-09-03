@@ -17,8 +17,9 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-danger" data-dismiss="modal">
 					<i class="fas fa-times"></i> Cancelar</button>
-					<button type="submit" class="btn btn-success " >
-					<i class="fas fa-save"></i> Guardar </button>
+					<button data-dismiss="modal" type="submit" class="btn btn-success " >
+					<i class="fas fa-check"></i> Aceptar 
+					</button>
 				</div>
 			</div>
 		</div>
