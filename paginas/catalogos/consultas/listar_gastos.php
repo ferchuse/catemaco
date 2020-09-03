@@ -1,12 +1,13 @@
 <?php 
 	session_start();
 	include('../../../conexi.php');
+	include('../../../funciones/dame_permiso.php');
 	$link = Conectarse();
 	
 	$consulta = "SELECT * FROM cat_gastos
 	";
 	
-
+	
 	$consulta.= "ORDER BY descripcion_gastos ";
 	$result = mysqli_query($link,$consulta);
 	
@@ -19,7 +20,7 @@
 				
 				<th class="text-center">Descripción</th>
 				<th class="text-center"></th>
-			
+				
 			</tr>
 		</thead>
 		<tbody >
@@ -28,15 +29,18 @@
 				
 				<tr>
 					<td><?php echo $fila["descripcion_gastos"];?></td>
-				
-					<td>
-						<button class="btn btn-warning btn_editar" data-id_registro="<?php echo $fila["id_cat_gastos"];?>">
-							<i class="fas fa-edit"></i>
-						</button>
-						<button class="btn btn-danger btn_borrar" data-id_registro="<?php echo $fila["id_cat_gastos"];?>">
-							<i class="fas fa-trash"></i> 
-						</button>
 					
+					<td>
+						<?php if(dame_permiso("gastos.php", $link) == 'Supervisor'){ ?>
+							<button class="btn btn-warning btn_editar" data-id_registro="<?php echo $fila["id_cat_gastos"];?>">
+								<i class="fas fa-edit"></i>
+							</button>
+							<button class="btn btn-danger btn_borrar" data-id_registro="<?php echo $fila["id_cat_gastos"];?>">
+								<i class="fas fa-trash"></i> 
+							</button>
+							<?php
+							}
+						?>
 					</td>
 				</tr>
 				
@@ -57,10 +61,10 @@
 	<?php
 		
 		
-	}
-	else {
-		echo "Error en".$consulta. mysqli_error($link);
-	}
-	
-	
-?>	
+		}
+		else {
+			echo "Error en".$consulta. mysqli_error($link);
+		}
+		
+		
+	?>		

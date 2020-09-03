@@ -38,43 +38,47 @@
 				while($fila = mysqli_fetch_assoc($result)){
 					
 					$color = $fila["estatus"]  == "Activo" ? "badge-success" : "badge-danger";
-					?>
+				?>
 				
 				
 				<tr>
-			
+					
 					<td><?php echo $fila["nombre_propietarios"];?></td>
 					<td><?php echo $fila["nombre_empresas"];?></td>
 					
 					<td><?php echo "<span class='badge $color'>{$fila["estatus"]}</span>";?></td>
 					<td>
-						<button class="btn btn-warning btn_editar" data-id_registro="<?php echo $fila["id_propietarios"];?>">
-							<i class="fas fa-edit"></i>
-						</button>
+						<?php if(dame_permiso("propietarios.php", $link) == 'Supervisor'){ ?>
+							<button class="btn btn-warning btn_editar" data-id_registro="<?php echo $fila["id_propietarios"];?>">
+								<i class="fas fa-edit"></i>
+							</button>
+							<?php
+							}
+						?>
 					</td>
 				</tr>
 				
 				<?php 	
 				}
 			?>
-			</tbody>
-			<tfoot>
-				<tr>
-					<td colspan="7">
-						<?php echo mysqli_num_rows($result);?> Registros.
-					</td>
-				</tr>
-			</tfoot>
-		</table>
-		
-		
-		<?php
-			
-			
-		}
-		else {
-			echo "Error en".$consulta. mysqli_error($link);
-		}
-		
-		
-	?>		
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="7">
+					<?php echo mysqli_num_rows($result);?> Registros.
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+
+
+<?php
+	
+	
+}
+else {
+	echo "Error en".$consulta. mysqli_error($link);
+}
+
+
+?>		
