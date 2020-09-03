@@ -57,12 +57,15 @@
 							<button class="btn btn-warning btn_editar" data-id_registro="<?php echo $fila["num_eco"];?>">
 								<i class="fas fa-edit"></i>
 							</button>
+							
+							<button class="btn btn-info btn_historial" data-id_registro="<?php echo $fila["num_eco"];?>">
+								<i class="fas fa-clock"></i> 
+							</button>
 							<?php
 							}
 						?>
-						<button class="btn btn-info btn_historial" data-id_registro="<?php echo $fila["num_eco"];?>">
-							<i class="fas fa-clock"></i> 
-						</button>
+						
+						
 						<a target="_blank" class="btn btn-default" href="unidades/detalles_unidad.php?serie=<?php echo $fila["serie"];?>">
 							<i class="fas fa-print"></i> 
 						</a>
@@ -74,11 +77,11 @@
 							}
 						?>
 						
-						</td>
-					</tr>
-					
-					<?php 	
-					}
+					</td>
+				</tr>
+				
+				<?php 	
+				}
 			?>
 		</tbody>
 		<tfoot>
