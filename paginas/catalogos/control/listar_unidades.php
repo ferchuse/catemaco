@@ -53,9 +53,13 @@
 					<td><?php echo $fila["fecha_ingreso"];?></td>
 					<td><?php echo $fila["estatus_unidades"];?></td>
 					<td>
-						<button class="btn btn-warning btn_editar" data-id_registro="<?php echo $fila["num_eco"];?>">
-							<i class="fas fa-edit"></i>
-						</button>
+						<?php if(dame_permiso("unidades.php", $link) == 'Supervisor'){ ?>
+							<button class="btn btn-warning btn_editar" data-id_registro="<?php echo $fila["num_eco"];?>">
+								<i class="fas fa-edit"></i>
+							</button>
+							<?php
+							}
+						?>
 						<button class="btn btn-info btn_historial" data-id_registro="<?php echo $fila["num_eco"];?>">
 							<i class="fas fa-clock"></i> 
 						</button>
@@ -70,30 +74,30 @@
 							}
 						?>
 						
-					</td>
-				</tr>
-				
-				<?php 	
-				}
+						</td>
+					</tr>
+					
+					<?php 	
+					}
 			?>
-			</tbody>
-			<tfoot>
-				<tr>
-					<td colspan="7">
-						<?php echo mysqli_num_rows($result);?> Registros.
-					</td>
-				</tr>
-			</tfoot>
-		</table>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="7">
+					<?php echo mysqli_num_rows($result);?> Registros.
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+	
+	
+	<?php
 		
 		
-		<?php
-			
-			
-		}
-		else {
-			echo "Error en".$consulta. mysqli_error($link);
-		}
-		
-		
-	?>		
+	}
+	else {
+		echo "Error en".$consulta. mysqli_error($link);
+	}
+	
+	
+?>		
