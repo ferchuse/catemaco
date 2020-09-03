@@ -92,7 +92,7 @@
 			include("../../scripts.php");
 			include("forms/form_modal.php");
 		?>
-    <script src="js/beneficiarios.js"></script>
+    <script src="js/beneficiarios.js?v=<?= date("Ymdhis")?>"></script>
     <script src="js/buscar.js"></script>
 	</body>
 	

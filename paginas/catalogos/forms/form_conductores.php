@@ -18,6 +18,10 @@
 						<input type="text" class="form-control" id="nombre_conductores" name="nombre_conductores" placeholder="Nombre del conductor" required>
 					</div>
 					<div class="form-group">
+						<label for="id_empresas">EMPRESA</label>
+						<?php echo generar_select($link, "empresas", "id_empresas", "nombre_empresas", false, false, true); ?>
+					</div> 
+					<div class="form-group">
 						<label for="rfc_conductores">RFC</label>
 						<input type="text" class="form-control" id="rfc_conductores" name="rfc_conductores" placeholder="Opcional">
 					</div> 
@@ -33,10 +37,7 @@
 						<label for="fechaVigencia_conductores">FECHA DE VIGENCIA</label>
 						<input type="date" class="form-control" id="fechaVigencia_conductores" name="fechaVigencia_conductores">
 					</div> 
-					<div class="form-group">
-						<label for="id_empresas">EMPRESA</label>
-						<?php echo generar_select($link, "empresas", "id_empresas", "nombre_empresas"); ?>
-					</div> 
+					
 					<div class="form-group">
 						<label for="curp_conductores">CURP</label>
 						<input type="text" class="form-control" id="curp_conductores" name="curp_conductores" placeholder="CURP del conductor">

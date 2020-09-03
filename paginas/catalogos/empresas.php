@@ -99,7 +99,7 @@
 			include("../../scripts.php");
 			include("forms/form_empresas.php");
 		?>
-    <script src="js/empresas.js"></script>
+    <script src="js/empresas.js?v=<?= date("Ymdhis")?>"></script>
     <script src="js/buscar.js"></script>
 	</body>
 </html>

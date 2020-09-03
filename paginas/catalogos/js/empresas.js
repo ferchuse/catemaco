@@ -73,9 +73,17 @@ function listarEmpresas(){
 		data: {
 			tabla: 'empresas'
 		}
-    }).done(function(respuesta){
+		}).done(function(respuesta){
 		if(respuesta.estatus == 'success'){
 			let empresas = '';
+			
+			if($("#permiso").val() == "Supervisor"){
+				permitido = ""; 
+			}
+			else{
+				permitido = " hidden "; 
+			}
+			
 			if(respuesta.num_rows > 0){
 				$.each(respuesta.mensaje,function(index,element){
 					empresas += `
@@ -84,8 +92,8 @@ function listarEmpresas(){
 					<td class="text-center">${element.nombre_empresas}</td>
 					<td class="text-center">${element.correo_empresas}</td>
 					<td class="text-center">
-					<button class="btn btn-outline-danger eliminar" data-id_empresas='${element.id_empresas}'><i class="fas fa-trash-alt"></i></button>
-					<button class="btn btn-outline-warning editar" data-id_empresas='${element.id_empresas}'><i class="fas fa-pencil-alt"></i></button>
+					<button  ${permitido} class="btn btn-outline-danger eliminar" data-id_empresas='${element.id_empresas}'><i class="fas fa-trash-alt"></i></button>
+					<button  ${permitido} class="btn btn-outline-warning editar" data-id_empresas='${element.id_empresas}'><i class="fas fa-pencil-alt"></i></button>
 					</td>
 					</tr>
 					`;

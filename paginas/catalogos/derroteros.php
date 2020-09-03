@@ -84,7 +84,7 @@
 		</a>		
     <?php include("../../scripts.php")?>
     <?php include("forms/form_derroteros.php")?>
-    <script src="js/derroteros.js"></script>
+    <script src="js/derroteros.js?v=<?= date("Ymdhis")?>"></script>
     <script src="js/buscar.js"></script>
 	</body>
 </html>

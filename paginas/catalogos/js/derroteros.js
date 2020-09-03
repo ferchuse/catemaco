@@ -55,6 +55,15 @@ function listarRegistros(){
     }).done(function(respuesta){
 		if(respuesta.estatus == 'success'){
 			let derroteros = '';
+			
+			
+			if($("#permiso").val() == "Supervisor"){
+				permitido = ""; 
+			}
+			else{
+				permitido = " hidden "; 
+			}
+			
 			if(respuesta.num_rows > 0){
 				$.each(respuesta.mensaje,function(index,element){
 					derroteros += `
@@ -66,8 +75,8 @@ function listarRegistros(){
 					<td class="text-center">${element.seguro_derroteros}</td>
 					<td hidden class="text-center">${element.estatus_derrotero}</td>
 					<td class="text-center"> 
-					<button class="btn btn-outline-danger eliminar" data-id_derroteros='${element.id_derroteros}'><i class="fas fa-trash-alt"></i></button>
-					<button class="btn btn-outline-warning editar" data-id_derroteros='${element.id_derroteros}'><i class="fas fa-pencil-alt"></i></button>
+					<button ${permitido} class="btn btn-outline-danger eliminar" data-id_derroteros='${element.id_derroteros}'><i class="fas fa-trash-alt"></i></button>
+					<button ${permitido} class="btn btn-outline-warning editar" data-id_derroteros='${element.id_derroteros}'><i class="fas fa-pencil-alt"></i></button>
 					</td>
 					</tr>
 					`;
@@ -83,7 +92,7 @@ function listarRegistros(){
 			
 			// $('#tableDerroteros').DataTable({
 				// "language": {
-					// "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+				// "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
 				// }
 			// });
 			

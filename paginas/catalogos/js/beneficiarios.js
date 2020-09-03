@@ -74,14 +74,23 @@ function listarBeneficiarios(){
     }).done(function(respuesta){
 		if(respuesta.estatus == 'success'){
 			let lista = '';
+			
+			if($("#permiso").val() == "Supervisor"){
+				permitido = ""; 
+				}
+			else{
+				permitido = " hidden "; 
+			}
+			
+			
 			if(respuesta.num_rows > 0){
 				$.each(respuesta.mensaje,function(index,element){
 					lista += `
 					<tr>
 					<td class="text-center">${element.nombre_beneficiarios}</td>
 					<td class="text-center">
-					<button class="btn btn-outline-danger eliminar" data-id_beneficiarios='${element.id_beneficiarios}'><i class="fas fa-trash-alt"></i></button>
-					<button class="btn btn-outline-warning editar" data-id_beneficiarios='${element.id_beneficiarios}'><i class="fas fa-pencil-alt"></i></button>
+					<button ${permitido} class="btn btn-outline-danger eliminar" data-id_beneficiarios='${element.id_beneficiarios}'><i class="fas fa-trash-alt"></i></button>
+					<button ${permitido} class="btn btn-outline-warning editar" data-id_beneficiarios='${element.id_beneficiarios}'><i class="fas fa-pencil-alt"></i></button>
 					</td>
 					</tr>
 					`;

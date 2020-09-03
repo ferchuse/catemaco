@@ -91,6 +91,15 @@ function listarRegistros(){
     }).done(function(respuesta){
 		if(respuesta.estatus == 'success'){
 			let conductores = '';
+			
+			
+			if($("#permiso").val() == "Supervisor"){
+				permitido = ""; 
+			}
+			else{
+				permitido = " hidden "; 
+			}
+			
 			if(respuesta.num_rows > 0){
 				$.each(respuesta.mensaje,function(index,element){
 					conductores += `
@@ -102,7 +111,7 @@ function listarRegistros(){
 					<td class="text-center">${element.fechaVigencia_conductores}</td>
 					<td class="text-center">${element.estatus_conductores}</td>
 					<td class="text-center">${element.nombre_empresas}</td>
-					<td class="text-center">
+					<td class="text-center"  ${permitido}>
 					<button class="btn btn-outline-danger eliminar" data-id_conductores='${element.id_conductores}'><i class="fas fa-trash-alt"></i></button>
 					<button class="btn btn-outline-warning editar" data-id_conductores='${element.id_conductores}'><i class="fas fa-pencil-alt"></i></button>
 					</td>
