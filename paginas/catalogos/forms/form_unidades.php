@@ -47,6 +47,16 @@
 					</div>
 					<div class="row mb-2">
 						<div class="col-2">
+							<label >Derrotero:</label>
+						</div>	
+						<div class="col-5">			
+							<?php
+								echo generar_select($link, "derroteros", "id_derroteros", "nombre_derroteros");
+							?>
+						</div>
+					</div>
+					<div class="row mb-2">
+						<div class="col-2">
 							<label for="nombre_propietario">Fecha de Alta:</label>
 						</div>	
 						<div class="col-5">			
@@ -119,7 +129,7 @@
 							<input class="form-control" type="date" name="vigencia" id="vigencia">
 						</div>
 					</div>
-					<div class="row mb-2">
+					<div class="row mb-2" hidden>
 						<div class="col-2">
 							<label for="nombre_propietario">Rin:</label>
 						</div>	
@@ -127,7 +137,7 @@
 							<input class="form-control" type="text" name="rin" id="rin" placeholder="Opcional">
 						</div>
 					</div>
-					<div class="row mb-2">
+					<div class="row mb-2" hidden>
 						<div class="col-2">
 							<label for="nombre_propietario">Tipo de Aceite:</label>
 						</div>	

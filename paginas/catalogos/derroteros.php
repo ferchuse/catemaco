@@ -29,7 +29,7 @@
 					</ol>
 					<div class="row mb-2">
 						<div class="col-3">
-							<button type="button" id="btn_modal" class="btn btn-outline-success" title="Agregar"> <i class="fas fa-plus"></i></button>
+							<button type="button" id="btn_modal" class="btn btn-outline-success" title="Agregar"> <i class="fas fa-plus"></i> Nuevo</button>
 						</div>
 					</div>	
 					<div class="card mb-3">

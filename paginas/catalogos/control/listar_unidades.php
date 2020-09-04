@@ -7,6 +7,7 @@
 	$consulta = "SELECT * FROM unidades 
 	LEFT JOIN empresas USING(id_empresas) 
 	LEFT JOIN  propietarios  USING (id_propietarios)
+	LEFT JOIN  derroteros  USING (id_derroteros)
 	WHERE 1 
 	";
 	
@@ -36,6 +37,7 @@
 				<th class="text-center">Propietario</th>
 				<th class="text-center">Empresa</th>
 				<th class="text-center">Asientos</th>
+				<th class="text-center">Derrotero</th>
 				<th class="text-center">Fecha Alta</th>
 				<th class="text-center">Estatus</th>
 				<th class="text-center">Acciones</th>
@@ -50,6 +52,7 @@
 					<td><?php echo $fila["nombre_propietarios"];?></td>
 					<td><?php echo $fila["nombre_empresas"];?></td>
 					<td><?php echo $fila["asientos"];?></td>
+					<td><?php echo $fila["nombre_derroteros"];?></td>
 					<td><?php echo $fila["fecha_ingreso"];?></td>
 					<td><?php echo $fila["estatus_unidades"];?></td>
 					<td>

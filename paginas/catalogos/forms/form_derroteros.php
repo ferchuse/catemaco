@@ -44,7 +44,7 @@
                         <input type="number" class="form-control" id="seguro_derroteros" name="seguro_derroteros"  min="0">
                     </div>
                 </div>
-                <div class="form-check">
+                <div class="form-check" hidden>
                     <input type="checkbox" class="form-check-input" id="estatus_derrotero" name="estatus_derrotero">
                     <label class="form-check-label" for="estatus_derrotero">LIBERAR</label>
                  </div>
