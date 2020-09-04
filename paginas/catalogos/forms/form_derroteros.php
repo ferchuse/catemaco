@@ -17,7 +17,7 @@
 					<label for="nombre_derroteros">NOMBRE</label>
 					<input type="text" class="form-control" id="nombre_derroteros" name="nombre_derroteros" placeholder="Nombre derroteros" required>
 				</div>
-                <div class="form-group">
+                <div class="form-group" hidden>
 					<label for="cuenta_derroteros">CUENTA</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
@@ -27,7 +27,7 @@
                     </div>
 				</div> 
                 <div class="form-group">
-					<label for="gasto_administracion">GASTO DE ADMINISTRACIÓN</label>
+					<label for="gasto_administracion">PAGO DE ADMINISTRACIÓN</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <div class="input-group-text"><i class="fas fa-dollar-sign"></i></div>
@@ -35,7 +35,7 @@
                         <input type="number" class="form-control" id="gasto_administracion" name="gasto_administracion"  min="0">
                     </div>
 				</div>
-                <div class="form-group">
+                <div class="form-group" hidden>
                     <label for="seguro_derroteros">SEGURO INTERNO</label>
                     <div class="input-group">
                         <div class="input-group-prepend">

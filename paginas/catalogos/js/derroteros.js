@@ -70,9 +70,7 @@ function listarRegistros(){
 					<tr>
 					<td class="text-center">${element.id_derroteros}</td>
 					<td class="text-center">${element.nombre_derroteros}</td>
-					<td class="text-center">${element.cuenta_derroteros}</td>
 					<td class="text-center">${element.gasto_administracion}</td>
-					<td class="text-center">${element.seguro_derroteros}</td>
 					<td hidden class="text-center">${element.estatus_derrotero}</td>
 					<td class="text-center"> 
 					<button ${permitido} class="btn btn-outline-danger eliminar" data-id_derroteros='${element.id_derroteros}'><i class="fas fa-trash-alt"></i></button>

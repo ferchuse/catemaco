@@ -90,7 +90,7 @@
 									</div>
 									<div class="row mb-2">
 										<div class="col-sm-5 col-12">
-											<label >Derroteros:</label>
+											<label >Derrotero:</label>
 										</div>	
 										<div class="col-sm-7 col-12">			
 											

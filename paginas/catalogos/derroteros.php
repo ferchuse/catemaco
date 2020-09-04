@@ -44,9 +44,7 @@
 										<tr>
 											<th class="text-center">Id </th>
 											<th class="text-center">Nombre</th>
-											<th class="text-center">Cuenta</th>
-											<th class="text-center">Gasto Administración</th>
-											<th class="text-center">Seguro Interno</th>
+											<th class="text-center">Pago de Administración</th>
 											<th hidden class="text-center">Estatus</th>
 											<th></th>
 										</tr>
