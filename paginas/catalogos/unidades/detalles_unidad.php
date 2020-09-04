@@ -9,6 +9,7 @@
 	$consulta = "SELECT * FROM unidades 
 	LEFT JOIN empresas USING(id_empresas)
 	LEFT JOIN propietarios USING(id_propietarios)
+	LEFT JOIN derroteros USING(id_derroteros)
 	WHERE num_eco= '{$_GET['num_eco']}'";
 	
 	
@@ -39,7 +40,7 @@
 				<meta name="description" content="">
 				<meta name="author" content="">
 				<title>Datos de Unidad</title>
-        <?php include('../../../styles.php')?>
+				<?php include('../../../styles.php')?>
 			</head>
 			<body id="page-top">
 				
@@ -80,12 +81,17 @@
 									</div>
 									<div class="row mb-2"><div class="col-sm-5 col-12">
 										<label >Propietario:</label>
-									</div>	
-									<div class="col-sm-7 col-12">			
 										
-										<input class="form-control" value="<?= $unidad["nombre_propietarios"]?>" readonly>
-										
+										<div class="col-sm-7 col-12">			
+											<input class="form-control" value="<?= $unidad["nombre_propietarios"]?>" readonly>
+										</div>
 									</div>
+									<div class="row mb-2"><div class="col-sm-5 col-12">
+										<label >Derrotero:</label>
+										
+										<div class="col-sm-7 col-12">			
+											<input class="form-control" value="<?= $unidad["nombre_derroteros"]?>" readonly>
+										</div>
 									</div>
 									<div class="row mb-2"><div class="col-sm-5 col-12">
 										<label for="fecha_ingreso">Fecha de Ingreso:</label>
@@ -103,7 +109,7 @@
 									</div>
 									</div>
 									<div class="row mb-2"><div class="col-sm-5 col-12">
-										<label for="concesion">Concesión:</label>
+									<label for="concesion">Concesión:</label>
 									</div>	
 									<div class="col-sm-7 col-12">			
 										<input class="form-control" value="<?= $unidad["concesion"]?>" readonly>
@@ -149,7 +155,7 @@
 											<input class="form-control" value="<?= $unidad["estatus_unidades"]?>" readonly>
 										</div>
 									</div>
-								
+									
 									<div class="row mb-2">
 										<div class="col-sm-5 col-12">
 											<label for="serie">Serie:</label>
