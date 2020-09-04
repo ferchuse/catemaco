@@ -15,7 +15,7 @@
 				<input type="text" hidden class="form-control" id="id_derroteros" name="id_derroteros">
 				<div class="form-group">
 					<label for="nombre_derroteros">NOMBRE</label>
-					<input type="text" class="form-control" id="nombre_derroteros" name="nombre_derroteros" placeholder="Nombre derroteros" required>
+					<input type="text" class="form-control" id="nombre_derroteros" name="nombre_derroteros" required>
 				</div>
                 <div class="form-group" hidden>
 					<label for="cuenta_derroteros">CUENTA</label>
@@ -23,7 +23,7 @@
                         <div class="input-group-prepend">
                             <div class="input-group-text"><i class="fas fa-dollar-sign"></i></div>
                         </div>
-                        <input type="number" class="form-control" id="cuenta_derroteros" name="cuenta_derroteros"  min="0">
+                        <input type="number" class="form-control" id="cuenta_derroteros"  name="cuenta_derroteros"  min="0">
                     </div>
 				</div> 
                 <div class="form-group">
@@ -32,7 +32,7 @@
                         <div class="input-group-prepend">
                             <div class="input-group-text"><i class="fas fa-dollar-sign"></i></div>
                         </div>
-                        <input type="number" class="form-control" id="gasto_administracion" name="gasto_administracion"  min="0">
+                        <input type="number" class="form-control" id="gasto_administracion" step="any"  name="gasto_administracion"  min="0">
                     </div>
 				</div>
                 <div class="form-group" hidden>
