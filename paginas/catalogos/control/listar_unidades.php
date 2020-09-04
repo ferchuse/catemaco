@@ -69,11 +69,11 @@
 						?>
 						
 						
-						<a target="_blank" class="btn btn-default" href="unidades/detalles_unidad.php?serie=<?php echo $fila["serie"];?>">
+						<a target="_blank" class="btn btn-default" href="unidades/detalles_unidad.php?num_eco=<?php echo $fila["num_eco"];?>">
 							<i class="fas fa-print"></i> 
 						</a>
 						<?php if(dame_permiso("unidades.php", $link) == 'Supervisor'){ ?>
-							<a class="btn btn-secondary" href="unidades/imprimir_qr.php?num_eco=<?php echo $fila["serie"];?>">
+							<a class="btn btn-secondary" href="unidades/imprimir_qr.php?num_eco=<?php echo $fila["num_eco"];?>">
 								<i class="fas fa-qrcode"></i> 
 							</a>
 							<?php
