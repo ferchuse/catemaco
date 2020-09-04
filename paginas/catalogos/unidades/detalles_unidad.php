@@ -9,7 +9,7 @@
 	$consulta = "SELECT * FROM unidades 
 	LEFT JOIN empresas USING(id_empresas)
 	LEFT JOIN propietarios USING(id_propietarios)
-	WHERE serie= '{$_GET['serie']}'";
+	WHERE num_eco= '{$_GET['num_eco']}'";
 	
 	
 	$result = mysqli_query($link,$consulta); 
