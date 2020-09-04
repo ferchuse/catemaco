@@ -2,7 +2,7 @@
 	
 	
 	function dame_permiso($url_paginas,$link){
-		
+		// $respuesta = "Sin Acceso";
 		// return false;
 		$consulta = "SELECT * FROM permisos LEFT JOIN paginas USING(id_paginas) 
 		WHERE url_paginas = '$url_paginas' 
@@ -17,7 +17,7 @@
 				$respuesta= $fila["permiso"];
 			}
 			
-			if($respuesta == "Sin Acceso"){
+			if($respuesta == "Sin Acceso" || $respuesta == "" ){
 				return "hidden"; 
 			}
 			else{
@@ -27,7 +27,7 @@
 			
 		}
 		else{
-			
+			return "hidden"; 
 			return false;//"Pagina no existe, $url_paginas,{$_SESSION["id_usuarios"]}, $consulta";
 		}
 		
