@@ -79,17 +79,21 @@
 										
 									</div>
 									</div>
-									<div class="row mb-2"><div class="col-sm-5 col-12">
-										<label >Propietario:</label>
-										
+									<div class="row mb-2">
+										<div class="col-sm-5 col-12">
+											<label >Propietario:</label>
+										</div>	
 										<div class="col-sm-7 col-12">			
+											
 											<input class="form-control" value="<?= $unidad["nombre_propietarios"]?>" readonly>
 										</div>
 									</div>
-									<div class="row mb-2"><div class="col-sm-5 col-12">
-										<label >Derrotero:</label>
-										
+									<div class="row mb-2">
+										<div class="col-sm-5 col-12">
+											<label >Derroteros:</label>
+										</div>	
 										<div class="col-sm-7 col-12">			
+											
 											<input class="form-control" value="<?= $unidad["nombre_derroteros"]?>" readonly>
 										</div>
 									</div>
@@ -109,7 +113,7 @@
 									</div>
 									</div>
 									<div class="row mb-2"><div class="col-sm-5 col-12">
-									<label for="concesion">Concesión:</label>
+										<label for="concesion">Concesión:</label>
 									</div>	
 									<div class="col-sm-7 col-12">			
 										<input class="form-control" value="<?= $unidad["concesion"]?>" readonly>
