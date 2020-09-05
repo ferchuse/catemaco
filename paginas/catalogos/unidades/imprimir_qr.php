@@ -24,7 +24,7 @@
 					
 					
 					<?php foreach($economicos as $num_eco){ ?>
-						<div class="col-sm-3 ">
+						<div class="col-sm-3 mb-2">
 							<div data-num_eco="<?= $num_eco?>"  class="qr_code"></div>
 							
 						</div>
