@@ -1,35 +1,7 @@
 <?php 
-	session_start();
-	// require('../../../conexi.php');
 	
-	// $link = Conectarse();
-	// $filas = array();
-	
-	
-	// $consulta = "SELECT * FROM conductores 
-	// LEFT JOIN empresas USING(id_empresas)
-	// LEFT JOIN derroteros USING(id_derroteros)
-	// WHERE id_conductores= '{$_GET['id_registro']}'";
-	
-	
-	// $result = mysqli_query($link,$consulta); 
-	// if($result){
-	
-	// if( mysqli_num_rows($result) == 0){
-	
-	// die("<div class='alert alert-danger'>No encontrada</div>");
-	
-	
-	// }
-	
-	// while($fila = mysqli_fetch_assoc($result)){
-	
-	// $conductor = $fila ;
-	
-	// }
-	
-	
-	
+	$economicos = explode(",", $_GET["num_eco"] );
+	// print_r($economicos);
 ?> 
 
 <!DOCTYPE html>
@@ -43,27 +15,42 @@
 		<title>QR</title>
 		<?php include('../../../styles.php')?>
 	</head>
-	<body id="page-top">
+	<body >
 		
 		
-		<div id="content-wrapper">		
+		<div >		
 			<div class="container text-center mt-5">		
-				
-				<hr>
-				<input type="hidden" id="qr_text" value="<?= $_GET["serie"]?>">
-				<div id="qrcodeCanvas"></div>
-				
+				<div class="row">		
+					
+					
+					<?php foreach($economicos as $num_eco){ ?>
+						<div class="col-sm-3 ">
+							<div data-num_eco="<?= $num_eco?>"  class="qr_code"></div>
+							
+						</div>
+						<?php	
+						}
+					?>
+					
+				</div> 
 			</div> 
 		</div> 
 		
 		<?php include("../../../scripts.php")?>
 		<script type="text/javascript" src="../../../plugins/qr_code/jquery-qrcode-0.17.0.min.js"></script>
 		<script>
+			$(".qr_code").each(function(){
 			
-			$('#qrcodeCanvas').qrcode({
+			
+			$(this).qrcode({
+			label: $(this).data("num_eco"),
+				
+			mode	: 2,	
 			render	: "canvas",	
-			text	: "https://rhgaaz.com/catemaco/paginas/catalogos/unidades/detalles_unidad.php?serie="+$("#qr_text").val()
-			});	
+			text	: "https://rhgaaz.com/catemaco/paginas/catalogos/unidades/detalles_unidad.php?num_eco="+$(this).data("num_eco")
+			});		
+			});
+			
 		</script>
 	</body>
 </html>	

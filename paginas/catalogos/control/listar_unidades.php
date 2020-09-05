@@ -33,6 +33,7 @@
 	<table class="table table-bordered" id="tabla_registros" width="100%" cellspacing="0">
 		<thead>
 			<tr>
+				<th class="text-center"><input id="check_all"  type="checkbox"></th>
 				<th class="text-center">Num Eco</th>
 				<th class="text-center">Propietario</th>
 				<th class="text-center">Empresa</th>
@@ -48,6 +49,10 @@
 				while($fila = mysqli_fetch_assoc($result)){?>
 				
 				<tr>
+					<td>
+						<input value="<?php echo $fila["num_eco"];?>" class="seleccionar"  type="checkbox">
+						
+					</td>
 					<td><?php echo $fila["num_eco"];?></td>
 					<td><?php echo $fila["nombre_propietarios"];?></td>
 					<td><?php echo $fila["nombre_empresas"];?></td>
@@ -73,7 +78,7 @@
 							<i class="fas fa-print"></i> 
 						</a>
 						<?php if(dame_permiso("unidades.php", $link) == 'Supervisor'){ ?>
-							<a class="btn btn-secondary" href="unidades/imprimir_qr.php?num_eco=<?php echo $fila["num_eco"];?>">
+							<a target="_blank" class="btn btn-secondary" href="unidades/imprimir_qr.php?num_eco=<?php echo $fila["num_eco"];?>">
 								<i class="fas fa-qrcode"></i> 
 							</a>
 							<?php

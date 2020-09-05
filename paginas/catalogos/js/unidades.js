@@ -11,7 +11,48 @@ $(document).ready(function(){
 		
 	});
 	
+	
+	$("#imprimir_qr").click(function(){
+		$("#form_seleccionados").submit()
+	});
 });
+
+
+function contarSeleccionados(){
+	console.log( ("contarSeleccionados()"));
+	$("#cant_seleccionados").text($(".seleccionar:checked").length);
+	
+	
+	var folios = $(".seleccionar:checked").map(function(){
+		return $(this).val();
+	}).get().join(",");
+	
+	
+	$("#seleccionados").val(folios);
+	console.log( ("folios") , folios);	
+	
+	if($(".seleccionar:checked").length > 0 ){
+		$("#imprimir_qr").prop("disabled", false);
+	}
+	else{
+		$("#imprimir_qr").prop("disabled", true);
+	}
+}
+
+function checkAll(){
+	console.log("checkAll");
+	if($(this).prop("checked")){
+		$(".seleccionar").prop("checked", true);
+	}
+	else{
+		
+		$(".seleccionar").prop("checked", false);
+		
+	}
+	contarSeleccionados();
+	
+}
+
 
 function buscarUnidad(){
 	console.log("id_unidades", $("#id_unidades").val());
@@ -114,7 +155,7 @@ function listarRegistros() {
 		// "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
 		// }
 		// });
-		
+		$("#check_all").change(checkAll);
 		$('.btn_editar').on('click', cargarRegistro);
 		$('.btn_historial').on('click', mostrarHistorial);
 		

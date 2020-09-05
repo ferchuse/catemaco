@@ -111,6 +111,13 @@
 					<div class="card-header">
 						<i class="fas fa-table"></i>
 						Lista de Unidades
+						
+						<button disabled id="imprimir_qr" class="btn btn-info btn-sm float-right" type="button">
+							<i class="fas fa-qrcode"></i> Imprimir  <span id="cant_seleccionados"></span> QR
+						</button>
+						<form target="_blank" action="unidades/imprimir_qr.php" id="form_seleccionados">
+							<input  type="hidden" id="seleccionados" name="num_eco" >
+						</form>
 					</div>
 					<div class="card-body">
 						<div class="table-responsive" id="lista_registros">
