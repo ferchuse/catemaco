@@ -68,7 +68,7 @@
 					</div>
 					
 					<?php 
-						$categorias=["Catálogos", "Recaudación", "Movimientos", "Saldos", "Taquilla", "Jurídico", "Administración"];
+						$categorias=["Catálogos", "Recaudación", "Movimientos", "Bases","Saldos", "Taquilla", "Jurídico", "Administración"];
 						
 						foreach($categorias as $i=> $categoria){
 							$paginas =Array();

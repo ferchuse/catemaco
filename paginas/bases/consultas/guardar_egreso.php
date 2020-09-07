@@ -1,13 +1,6 @@
 <?php 
-	// session_start();
-	// if(count($_SESSION) == 0){
-		// $respuesta["estatus"] = "error";
-		// $respuesta["mensaje"] = "Tu sesion a caducado, vuelve a entrar ";		
-		
-		// echo json_encode($respuesta);
-		// exit();
-	// }
-	include('../conexi.php');
+	session_start();
+	include('../../../conexi.php');
 	$link = Conectarse();
 	
 	$respuesta = array();
@@ -16,7 +9,7 @@
 	$campos_valores = $_POST["datos"];
 	$str_pairs = "";
 	
-	if(empty($campos_valores[0]['value'])){ //Si el primer input (id) esta vacio, insertar sino actualizar  
+	if(empty($campos_valores[0]['value'])){  
 		$query ="INSERT INTO $tabla SET ";	
 		
 		foreach($campos_valores as $arr_field_value){
@@ -25,7 +18,8 @@
 		
 		// $str_pairs  = trim($str_pairs, ",");
 		$query.= $str_pairs;
-		$query.= " id_administrador = '1'";
+		
+		$query.= " id_administrador = '1' ";
 		
     }else{
 		
@@ -44,10 +38,11 @@
 	if($exec_query){
 		$respuesta["estatus"] = "success";
 		$respuesta["mensaje"] = "Agregado";
-		$respuesta["insert_id"] = mysqli_insert_id($link);
 		$respuesta["query"] = $query;
+		$respuesta["folio"] = mysqli_insert_id($link);
 		
-    }else{
+	}
+	else{
 		
 		$respuesta["estatus"] = "error";
 		$respuesta["mensaje"] = "Error en insert: $query  ".mysqli_error($link);		

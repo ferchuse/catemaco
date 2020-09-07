@@ -64,6 +64,28 @@
 			</div> 
 		</li>
 		
+			<?php //if(dame_permiso("base_ingresos.php.php", $link) == "Supervisor"){?> 
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown" >
+					<i class="fas fa-fw fa-home"></i>
+					<span>Bases</span>
+				</a>
+				<div class="dropdown-menu" >
+					<?php 
+						$q_catalogos = "SELECT * FROM paginas WHERE categoria_paginas = 'Bases'";	
+						$result_catalogos = mysqli_query($link, $q_catalogos);
+						while($fila = mysqli_fetch_assoc($result_catalogos)){
+							echo "<a class='dropdown-item' href='../../paginas/bases/{$fila["url_paginas"]}' ";
+							echo dame_permiso($fila["url_paginas"], $link).">-{$fila['nombre_paginas']}</a>";
+						}
+					?> 
+					
+				</div>
+			</li> 
+			<?php 
+			//}
+		?>
+		
 		<li class="nav-item dropdown">
 			<a class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown" >
 				<i class="fas fa-fw fa-dollar-sign"></i> 
