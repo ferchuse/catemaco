@@ -1,0 +1,132 @@
+listarEquipaje();
+
+
+$("#nuevo_equipaje").click(function nuevo() {
+	console.log("nuevo_equipaje")
+	
+	$('#form_equipaje')[0].reset();
+	$("#modal_equipaje").modal("show");
+	
+});
+
+
+
+$('#tipo_equipaje').change(eligeEquipaje);
+
+$('#form_equipaje').submit(guardarEquipaje);
+
+
+function eligeEquipaje() {
+	console.log("eligeEquipaje")
+	
+	$("#importe").val($(this).find("option:selected").data("precio"));
+	
+}
+
+function listarEquipaje() {
+	
+	$.ajax({
+		"url": "equipaje/listar_equipaje.php",
+		data:{
+			
+		}
+		}).done(function alCargar(respuesta) {
+		$("#lista_equipaje").html(respuesta);
+		
+	});
+}
+
+
+function confirmaBorrar(event){
+	console.log("confirmaBorrar")
+	let $boton = $(this);
+	let $fila = $(this).closest('tr');
+	let $icono = $(this).find(".fas");
+	$boton.prop("disabled", true);
+	$icono.toggleClass("fa-trash fa-spinner fa-spin");
+	
+	if(confirm("¿Estás Seguro?")){
+		$.ajax({ 
+			"url": "../../funciones/fila_delete.php",
+			"dataType": "JSON",
+			"method": "POST",
+			"data": {
+				"tabla": "cat_equipajes",
+				"id_campo": "id_cat_equipajes",
+				"id_valor": $boton.data("id_registro")
+			}
+			}).done( function alTerminar (respuesta){
+			console.log("respuesta", respuesta);
+			
+			$fila.remove();
+			
+			}).fail(function(xhr, textEstatus, error){
+			console.log("textEstatus", textEstatus);
+			console.log("error", error);
+			
+			}).always(function(){
+			
+			$boton.prop("disabled", false);
+			$icono.toggleClass("fa-trash fa-spinner fa-spin"); 
+		});
+	}
+}		
+
+function guardarEquipaje(event) {
+	
+	event.preventDefault();
+	
+	let boton = $(this).find(":submit");
+	let icono = boton.find(".fas");
+	
+	boton.prop("disabled", true);
+	icono.toggleClass("fa-save fa-spinner fa-spin");
+	
+	$.ajax({
+		url: "equipaje/guardar.php",
+		method: "POST",
+		dataType: "JSON",
+		data: $("#form_equipaje").serialize() + "&id_corridas="+ $("#form_boletos #id_corridas").val()
+		
+		}).done(function (respuesta) {
+		console.log("respuesta", respuesta);
+		if (respuesta.estatus == "success") {
+			
+			alertify.success(respuesta.mensaje);
+			
+			$("#modal_equipaje").modal("hide");
+			listarequipajes();
+			imprimirequipaje(respuesta.folio);
+		}
+		}).fail(function (xht, error, errnum) {
+		
+		alertify.error("Error", errnum);
+		}).always(function () {
+		boton.prop("disabled", false);
+		icono.toggleClass("fa-save fa-spinner fa-spin");
+		
+	});
+	
+}
+
+
+function imprimirEquipaje(id_equipaje){
+	console.log("imprimirequipaje()");
+	
+	
+	$.ajax({
+		url: "impresion/imprimir_equipaje.php" ,
+		data:{
+			"id_equipaje" : id_equipaje
+		}
+		}).done(function (respuesta){
+		
+		printService.submit({
+			'type': 'LABEL',
+			'raw_content': respuesta
+		});
+		}).always(function(){
+		
+		
+	});
+}

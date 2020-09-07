@@ -59,7 +59,7 @@
 				<input hidden value="<?php echo $_COOKIE["id_usuarios"]?>" id="id_usuarios">
 				<input hidden value="<?php echo $_COOKIE["id_recaudaciones"]?>" id="sesion_id_recaudaciones">
 				<input hidden value="<?php echo $_COOKIE["id_usuarios"]?>" id="sesion_id_usuarios">
-				<input hidden value="<?php echo $_COOKIE["id_empresas"]?>" id="sesion_id_empresas">
+				
 				<input hidden value="<?php echo $_COOKIE["id_administrador"]?>" id="sesion_id_administrador">
 				<input hidden id="permiso" value="<?php echo dame_permiso(basename($_SERVER['PHP_SELF']), $link);?>">
 				<a class="dropdown-item" href="#">

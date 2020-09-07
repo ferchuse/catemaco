@@ -5,22 +5,22 @@
 
 <!DOCTYPE html>
 <html lang="es_mx">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-		
-    <title>Iniciar Sesión</title>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<meta name="robots" content="noindex">
+		<title>Iniciar Sesión</title>
 		
 		<?php include("../../styles.php")?>
 		
 	</head>
 	
-  <body class="bg-dark">
+	<body class="bg-dark">
 		
-    <div class="container">
+		<div class="container">
 			<div class="card card-login mx-auto mt-5">
 				<div class="card-header text-center">
 					INICIAR SESIÓN
