@@ -64,7 +64,7 @@
 			</div> 
 		</li>
 		
-			<?php //if(dame_permiso("base_ingresos.php.php", $link) == "Supervisor"){?> 
+			<?php if(dame_permiso("base_ingresos.php.php", $link) == "Supervisor"){?> 
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown" >
 					<i class="fas fa-fw fa-home"></i>
@@ -83,7 +83,7 @@
 				</div>
 			</li> 
 			<?php 
-			//}
+			s}
 		?>
 		
 		<li class="nav-item dropdown">
