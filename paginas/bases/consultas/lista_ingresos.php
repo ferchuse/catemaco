@@ -12,6 +12,7 @@
 	
 	$consulta = "SELECT * FROM base_ingresos
 	LEFT JOIN usuarios USING(id_usuarios)
+	LEFT JOIN beneficiarios USING(id_beneficiarios)
 	WHERE 1
 	";
 	
@@ -82,7 +83,7 @@
 						</td>
 						<td><?php echo $fila["id_ingreso"]?></td>
 						<td><?php echo $fila["fecha"]?></td>
-						<td><?php echo $fila["realiza"]?></td>
+						<td><?php echo $fila["nombre_beneficiarios"]?></td>
 						<td class="text-right">$<?php echo number_format($fila["monto"], 2)?></td>
 						<td><?php echo $fila["estatus"]?></td>
 						<td><?php echo $fila["nombre_usuarios"]?></td>

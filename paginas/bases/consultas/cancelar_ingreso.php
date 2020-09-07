@@ -5,14 +5,14 @@
 	
 	$respuesta = array();
 	$fecha_cancelacion = date("Y-m-d H:i:s");
-	//Cancelar Abono
 	
-	$cancela_abono = "UPDATE recibos_entradas
+	
+	$cancela_abono = "UPDATE base_ingresos
 	
 	SET
-	estatus_deposito = 'Cancelado' ,
+	estatus = 'Cancelado' ,
 	datos_cancelacion='Usuario: {$_COOKIE["nombre_usuarios"]} <br> Fecha: $fecha_cancelacion'
-	WHERE  id_deposito = {$_GET["id_registro"]}";
+	WHERE  id_ingreso = {$_GET["folio"]}";
 	
 	$result_abono = mysqli_query($link,$cancela_abono) ;
 	

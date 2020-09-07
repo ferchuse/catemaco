@@ -130,8 +130,7 @@ function confirmaCancelacion(event){
 	console.log("confirmaCancelacion()");
 	let boton = $(this);
 	let icono = boton.find(".fas");
-	var id_registro = $(this).data("id_registro");
-	var fila = boton.closest('tr');
+	var folio = $(this).data("id_registro");
 	
 	alertify.confirm('Confirmación', '¿Deseas Cancelar?', cancelarRegistro , function(){});
 	
@@ -142,11 +141,10 @@ function confirmaCancelacion(event){
 		icono.toggleClass("fa-times fa-spinner fa-spin");
 		
 		return $.ajax({ 
-			url: "control/cancelar_recibo_entrada.php",
+			url: "consultas/cancelar_ingreso.php",
 			dataType:"JSON",
 			data:{
-				id_registro : id_registro,
-				nombre_usuarios : $("#sesion_nombre_usuarios").text()
+				folio : folio
 			}
 			}).done(function (respuesta){
 			if(respuesta.result == "success"){

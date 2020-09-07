@@ -9,6 +9,7 @@
 	$consulta = "SELECT * FROM base_ingresos
 	LEFT JOIN bases USING(id_base)
 	LEFT JOIN usuarios USING(id_usuarios)
+	LEFT JOIN beneficiarios USING(id_beneficiarios)
 	
 	
 	WHERE id_ingreso = {$_GET["folio"]}";
@@ -44,7 +45,7 @@
 		$respuesta.= "Folio:   ". $fila["id_ingreso"]. "\n";
 		$respuesta.= "Fecha:   " . date('d/m/Y', strtotime($fila["fecha"]))."\n";
 		$respuesta.= "Hora:    " . date('H:i:s', strtotime($fila["fecha"]))."\n";
-		$respuesta.= "Realiza: ". $fila["realiza"]."\n";
+		$respuesta.= "Realiza: ". $fila["nombre_beneficiarios"]."\n";
 		$respuesta.= "Monto:   $ ". $fila["monto"]."\n";
 		$respuesta.= "Recibe:  ". $fila["nombre_usuarios"]."\n";
 		

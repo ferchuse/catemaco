@@ -15,8 +15,12 @@
 					<input type="text" hidden class="form-control" id="id_deposito" name="id_deposito">
 					
 					<div class="form-group">
-						<label for="id_empresas">Base</label>
-						<?php echo generar_select($link, "bases", "id_base", "base", false, false, true, $_SESSION["id_empresas"]); ?>
+						<label for="id_empresas">Base:</label>
+						<?php echo generar_select($link, "bases", "id_base", "base", false, false, true); ?>
+					</div>
+					<div class="form-group">
+						<label for="id_empresas">Beneficiario:</label>
+						<?php echo generar_select($link, "beneficiarios", "id_beneficiarios", "nombre_beneficiarios", false, false, true); ?>
 					</div>
 					
 					<div class="form-group">

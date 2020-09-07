@@ -9,7 +9,7 @@
 	$query ="INSERT INTO base_ingresos SET 
 	id_base = '{$_POST["id_base"]}',
 	fecha = NOW(),
-	realiza = '{$_POST["realiza"]}',
+	id_beneficiarios = '{$_POST["id_beneficiarios"]}',
 	monto = '{$_POST["monto"]}',
 	id_usuarios = '{$_COOKIE["id_usuarios"]}'
 
