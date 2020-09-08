@@ -1,6 +1,6 @@
-
 listarPaquetes();
 
+$("#lista_paquetes").on("click", ".btn_cancelar", confirmarCancelarPaquete);
 
 $("#nuevo_paquete").click(function nuevo() {
 	console.log("nuevo_paquete")
@@ -11,10 +11,16 @@ $("#nuevo_paquete").click(function nuevo() {
 });
 
 
+$('#tipo_paquete').change(eligePaquete);
 
 $('#form_paquetes').submit(guardarPaquete);
 
-
+function eligePaquete() {
+	console.log("eligePaquete")
+	
+	$("#costo").val($(this).find("option:selected").data("precio"));
+	
+}
 function listarPaquetes() {
 	
 	$.ajax({
@@ -70,7 +76,7 @@ function guardarPaquete(event) {
 
 function imprimirPaquete(id_paquetes){
 	console.log("imprimirPaquete()");
-
+	
 	
 	$.ajax({
 		url: "paquetes/imprimir_paquetes.php" ,
@@ -90,28 +96,31 @@ function imprimirPaquete(id_paquetes){
 }
 
 
-function confirmaBorrar(event){
-	console.log("confirmaBorrar")
+function confirmarCancelarPaquete(event){
+	console.log("confirmarCancelarPaquete()")
 	let $boton = $(this);
 	let $fila = $(this).closest('tr');
 	let $icono = $(this).find(".fas");
-	$boton.prop("disabled", true);
-	$icono.toggleClass("fa-trash fa-spinner fa-spin");
+	let id_registro = $(this).data("id_registro");
+	
 	
 	if(confirm("¿Estás Seguro?")){
+		
+		$boton.prop("disabled", true);
+		$icono.toggleClass("fa-times fa-spinner fa-spin");
+		
 		$.ajax({ 
-			"url": "../../funciones/fila_delete.php",
+			"url": "paquetes/cancelar_paquete.php",
 			"dataType": "JSON",
 			"method": "POST",
 			"data": {
-				"tabla": "cat_gastos",
-				"id_campo": "id_cat_gastos",
-				"id_valor": $boton.data("id_registro")
+				"id_registro": id_registro
+				
 			}
 			}).done( function alTerminar (respuesta){
 			console.log("respuesta", respuesta);
 			
-			$fila.remove();
+			listarPaquetes();
 			
 			}).fail(function(xhr, textEstatus, error){
 			console.log("textEstatus", textEstatus);
@@ -120,7 +129,7 @@ function confirmaBorrar(event){
 			}).always(function(){
 			
 			$boton.prop("disabled", false);
-			$icono.toggleClass("fa-trash fa-spinner fa-spin"); 
+			$icono.toggleClass("fa-times fa-spinner fa-spin"); 
 		});
 	}
 }		

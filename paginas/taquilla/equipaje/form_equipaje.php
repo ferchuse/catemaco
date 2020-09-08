@@ -1,5 +1,3 @@
-
-
 <form id="form_equipaje" autocomplete="off" class="was-validated">
 	<div class="modal " id="modal_equipaje">
 		<div class="modal-dialog modal-sm">

@@ -11,6 +11,7 @@
 	id_usuarios = '{$_COOKIE["id_usuarios"]}',
 	id_taquilla_destino = '{$_POST["id_taquilla"]}',
 	fecha_paquetes = NOW(),
+	tipo_paquete = '{$_POST["tipo_paquete"]}',
 	destinatario = '{$_POST["destinatario"]}',
 	contenido = '{$_POST["contenido"]}',
 	costo = '{$_POST["costo"]}'

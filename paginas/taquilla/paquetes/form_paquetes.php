@@ -8,13 +8,38 @@
 				</div>
 				
 				<div class="modal-body">
+				
+					<div class="form-group">		
+						<label >Corrida:</label>
+						<select required class="form-control" id="paquete_id_corridas" name="id_corridas" required>
+								<option value="">Elige...</option>
+							<?php foreach($corridas as $corrida ){?>
+							
+								<option value="<?= $corrida["id_corridas"]?>">
+									<?= date("d-m-Y", strtotime($corrida["fecha_corridas"]))." Eco: ".$corrida["num_eco"] ?>
+									
+								</option>
+							<?php }?>
+						</select>
+					</div>
 					<div class="form-group">		
 						<label >Taquilla Destino:</label>
 							<?= generar_select($link, "taquillas", "id_taquilla", "nombre_taquilla", false, false, true) ?>
 					</div>
+					<div class="form-group">		
+						<label >Tamaño:</label>
+						<select required class="form-control" id="tipo_paquete" name="tipo_paquete" required>
+							<option value="">Elige...</option>
+							<option data-precio="80">PEQUEÑO (30X25X25) $80</option>
+							<option data-precio="140">MEDIANO (40X36X36) $140</option>
+							<option data-precio="210">GRANDE (60X30X33) $210</option>
+							
+						</select>
+					</div>
+					
 					
 					<div class="form-group">		
-						<label >Destinatario:</label>
+						<label >Nombre Destinatario:</label>
 						<input class="form-control" type="text" name="destinatario" id="destinatario" required>
 					</div>
 					<div class="form-group">		
@@ -23,7 +48,7 @@
 					</div>
 					<div class="form-group">		
 						<label >Costo:</label>
-						<input class="form-control" type="number" name="costo" id="costo" required>
+						<input readonly class="form-control" type="number" name="costo" id="costo" required >
 					</div>
 				
 				

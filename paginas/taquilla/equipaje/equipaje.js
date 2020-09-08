@@ -1,6 +1,9 @@
 listarEquipaje();
 
 
+$("#lista_equipaje").on("click", ".btn_cancelar", confirmarCancelacion);
+
+
 $("#nuevo_equipaje").click(function nuevo() {
 	console.log("nuevo_equipaje")
 	
@@ -8,7 +11,6 @@ $("#nuevo_equipaje").click(function nuevo() {
 	$("#modal_equipaje").modal("show");
 	
 });
-
 
 
 $('#tipo_equipaje').change(eligeEquipaje);
@@ -37,28 +39,29 @@ function listarEquipaje() {
 }
 
 
-function confirmaBorrar(event){
-	console.log("confirmaBorrar")
+function confirmarCancelacion(event){
+	console.log("confirmarCancelacion")
 	let $boton = $(this);
 	let $fila = $(this).closest('tr');
 	let $icono = $(this).find(".fas");
-	$boton.prop("disabled", true);
-	$icono.toggleClass("fa-trash fa-spinner fa-spin");
+	let id_registro = $(this).data("id_registro");
+	
 	
 	if(confirm("¿Estás Seguro?")){
+		
+		$boton.prop("disabled", true);
+		$icono.toggleClass("fa-times fa-spinner fa-spin");
 		$.ajax({ 
-			"url": "../../funciones/fila_delete.php",
+			"url": "equipaje/cancelar_equipaje.php",
 			"dataType": "JSON",
 			"method": "POST",
 			"data": {
-				"tabla": "cat_equipajes",
-				"id_campo": "id_cat_equipajes",
-				"id_valor": $boton.data("id_registro")
+				"id_registro": id_registro
 			}
 			}).done( function alTerminar (respuesta){
 			console.log("respuesta", respuesta);
 			
-			$fila.remove();
+			listarEquipaje();
 			
 			}).fail(function(xhr, textEstatus, error){
 			console.log("textEstatus", textEstatus);
@@ -67,7 +70,7 @@ function confirmaBorrar(event){
 			}).always(function(){
 			
 			$boton.prop("disabled", false);
-			$icono.toggleClass("fa-trash fa-spinner fa-spin"); 
+			$icono.toggleClass("fa-times fa-spinner fa-spin"); 
 		});
 	}
 }		
@@ -95,8 +98,8 @@ function guardarEquipaje(event) {
 			alertify.success(respuesta.mensaje);
 			
 			$("#modal_equipaje").modal("hide");
-			listarequipajes();
-			imprimirequipaje(respuesta.folio);
+			listarEquipaje();
+			imprimirEquipaje(respuesta.folio);
 		}
 		}).fail(function (xht, error, errnum) {
 		
@@ -115,7 +118,7 @@ function imprimirEquipaje(id_equipaje){
 	
 	
 	$.ajax({
-		url: "impresion/imprimir_equipaje.php" ,
+		url: "imprimir_equipaje.php" ,
 		data:{
 			"id_equipaje" : id_equipaje
 		}
