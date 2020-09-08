@@ -47,7 +47,27 @@
 		$respuesta.= "Hora:    " . date('H:i:s', strtotime($fila["fecha"]))."\n";
 		$respuesta.= "Realiza: ". $fila["nombre_beneficiarios"]."\n";
 		$respuesta.= "Monto:   $ ". $fila["monto"]."\n";
-		$respuesta.= "Recibe:  ". $fila["nombre_usuarios"]."\n";
+		$respuesta.= "Recibe:  ". $fila["nombre_usuarios"]."\n\n\n";
+		
+		$respuesta.= "\x1b"."d".chr(1); // Blank line
+		
+		$respuesta.= "\x1b"."d".chr(1). "\n"; // Blank line
+		$respuesta.= "VA"; // Cut
+		
+		
+		$respuesta.=  "\x1b"."@";
+		$respuesta.= "\x1b"."E".chr(1); // Bold
+		$respuesta.= "!";
+		$respuesta.= "RECIBO DE INGRESO \n";
+		$respuesta.= "\x1b"."E".chr(0); // Not Bold
+		$respuesta.= "!\x10";
+		$respuesta.= "\x1b"."d".chr(1); // 4 Blank lines
+		$respuesta.= "Folio:   ". $fila["id_ingreso"]. "\n";
+		$respuesta.= "Fecha:   " . date('d/m/Y', strtotime($fila["fecha"]))."\n";
+		$respuesta.= "Hora:    " . date('H:i:s', strtotime($fila["fecha"]))."\n";
+		$respuesta.= "Realiza: ". $fila["nombre_beneficiarios"]."\n";
+		$respuesta.= "Monto:   $ ". $fila["monto"]."\n";
+		$respuesta.= "Recibe:  ". $fila["nombre_usuarios"]."\n\n\n";
 		
 		$respuesta.= "\x1b"."d".chr(1); // Blank line
 		

@@ -22,11 +22,7 @@
 						<label for="id_empresas">Beneficiario:</label>
 						<?php echo generar_select($link, "beneficiarios", "id_beneficiarios", "nombre_beneficiarios", false, false, true); ?>
 					</div>
-					
-					<div class="form-group">
-						<label for="concepto">Realiza:</label>
-						<input type="text" class="form-control" id="realiza" name="realiza" required>
-					</div> 
+				
 					<div class="form-group">
 						<label for="monto">Monto</label>
 						<input type="number" class="form-control" id="monto" name="monto" required step="any">
