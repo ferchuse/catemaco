@@ -89,7 +89,7 @@ function guardarEquipaje(event) {
 		url: "equipaje/guardar.php",
 		method: "POST",
 		dataType: "JSON",
-		data: $("#form_equipaje").serialize() + "&id_corridas="+ $("#form_boletos #id_corridas").val()
+		data: $("#form_equipaje").serialize()
 		
 		}).done(function (respuesta) {
 		console.log("respuesta", respuesta);
@@ -118,7 +118,7 @@ function imprimirEquipaje(id_equipaje){
 	
 	
 	$.ajax({
-		url: "imprimir_equipaje.php" ,
+		url: "equipaje/imprimir_equipaje.php" ,
 		data:{
 			"id_equipaje" : id_equipaje
 		}

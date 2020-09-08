@@ -37,7 +37,7 @@
 					<div class="card card-primary">
 						<div class="card-body">
 							<div class="row">
-								<div class="col-sm-6">
+								<div class="col-sm-12">
 									
 									<div class="card card-primary mt-4 ">
 										<div class="card-header bg-secondary text-white">
@@ -51,7 +51,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-sm-6">
+								<div class="col-sm-12">
 									
 									<div class="card card-success mt-4 ">
 										<div class="card-header bg-info text-white">

@@ -221,7 +221,7 @@
 												</div>
 											</div>
 											
-											<div class="card card-success mt-4 ">
+											<div class="card card-success mt-4 " hidden>
 												<div class="card-header bg-info text-white">
 													<b> <i class="fas fa-box-open"></i> Paquetes</b>
 													<button  id="nuevo_paquete" type="button" class="btn btn-success mb-2 d-print-none float-right">

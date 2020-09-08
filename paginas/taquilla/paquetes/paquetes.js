@@ -49,7 +49,7 @@ function guardarPaquete(event) {
 		url: "paquetes/guardar.php",
 		method: "POST",
 		dataType: "JSON",
-		data: $("#form_paquetes").serialize() + "&id_corridas="+ $("#form_boletos #id_corridas").val()
+		data: $("#form_paquetes").serialize()
 		
 		}).done(function (respuesta) {
 		console.log("respuesta", respuesta);

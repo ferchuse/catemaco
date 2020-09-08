@@ -63,12 +63,26 @@
 	LEFT JOIN taquillas ON taquillas.id_taquilla = paquetes.id_taquilla_destino
 	
 	WHERE id_corridas = '{$_GET["id_corridas"]}' 
+	AND estatus_paquetes <> 'Cancelado'
 	";
 	
 	$result_paquetes = mysqli_query($link,$consulta_paquetes);
 	
 	while($fila = mysqli_fetch_assoc($result_paquetes)){ 
 		$paquetes[] = $fila ;
+		
+	}
+	
+	
+	$consulta_equipaje= "SELECT * FROM equipaje
+	WHERE id_corridas = '{$_GET["id_corridas"]}'
+	AND estatus <> 'Cancelado'
+	";
+	
+	$result_equipaje = mysqli_query($link,$consulta_equipaje);
+	
+	while($fila = mysqli_fetch_assoc($result_equipaje)){ 
+		$equipajes[] = $fila ;
 		
 	}
 	
@@ -212,17 +226,38 @@
 		$respuesta.=   "\x1b"."@";
 		$respuesta.= "\x1b"."E".chr(1); // Bold
 		$respuesta.= "!\x10"; //font size
-		$respuesta.=   "LISTA DE  PAQUETES \n";
+		$respuesta.=   "LISTA DE PAQUETES \n";
 		$respuesta.=   "\x1b"."@"; 
 		$total_paquetes = 0;
 		foreach($paquetes AS $i =>$paquete){
 			
 			$total_paquetes+= $paquete["costo"];
 			
-			
-			$respuesta.=  $paquete["id_paquetes"]."\x09";
-			$respuesta.=  $paquete["nombre_taquilla"]."\x09    ";
+		
+			$respuesta.=  $paquete["tipo_paquete"]."\x09    ";
 			$respuesta.="$". number_format($paquete["costo"])."\n";
+			
+		}
+		
+		$respuesta.= "______________________\n "; 
+		
+		
+		
+		//EQUIPAJE
+		
+		$respuesta.=   "\x1b"."@";
+		$respuesta.= "\x1b"."E".chr(1); // Bold
+		$respuesta.= "!\x10"; //font size
+		$respuesta.=   "LISTA DE  EQUIPAJE EXTRA \n";
+		$respuesta.=   "\x1b"."@"; 
+		$total_equipaje = 0;
+		foreach($equipajes AS $i =>$equipaje){
+			
+			$total_equipaje+= $equipaje["importe"];
+			
+		
+			$respuesta.=  $equipaje["tipo_equipaje"]."\x09    ";
+			$respuesta.="$". number_format($equipaje["importe"])."\n";
 			
 		}
 		
@@ -232,13 +267,11 @@
 		
 		
 		
-		
-		
-		
 		$respuesta.=   "\nTOTAL BOLETOS: $". number_format($total_guia). "\n";
 		$respuesta.=   "TOTAL GASTOS: $". number_format($total_gastos). "\n";
 		$respuesta.=   "TOTAL PAQUETERIA: $". number_format($total_paquetes). "\n";
-		$respuesta.=   "BALANCE: $". number_format($total_guia - $total_gastos + $total_paquetes). "\n";
+		$respuesta.=   "TOTAL EQUIPAJE EXTRA: $". number_format($total_equipaje). "\n";
+		$respuesta.=   "BALANCE: $". number_format($total_guia - $total_gastos + $total_paquetes +$total_equipaje). "\n";
 		
 		$respuesta.= "VA"; // Cut
 		
