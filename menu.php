@@ -48,7 +48,7 @@
 			<a class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown" >
 				<i class="fas fa-fw fa-exchange-alt"></i>
 				<span>Movimientos</span>
-			</a>
+				</a>
 			<div class="dropdown-menu" >
 				<?php 
 					$q_catalogos = "SELECT * FROM paginas WHERE categoria_paginas = 'Movimientos'";	
@@ -62,9 +62,9 @@
 					}
 				?> 
 			</div> 
-		</li>
+		</li> 
 		
-			<?php if(dame_permiso("base_ingresos.php", $link) == "Supervisor"){?> 
+			<?php if(dame_permiso("base_ingresos.php", $link) == "Supervisor" || dame_permiso("base_ingresos.php", $link) == "Escritura"){?> 
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown" >
 					<i class="fas fa-fw fa-home"></i>
