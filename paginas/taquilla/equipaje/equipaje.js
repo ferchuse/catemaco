@@ -1,3 +1,5 @@
+var printService = new WebSocketPrinter();
+
 listarEquipaje();
 
 
