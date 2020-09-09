@@ -47,18 +47,18 @@
 		$respuesta.= "Fecha:   " . date('d/m/Y', strtotime($fila["fecha"]))."\n";
 		$respuesta.= "Hora:    " . date('H:i:s', strtotime($fila["fecha"]))."\n";
 		$respuesta.= "Realiza: ". $fila["nombre_beneficiarios"]."\n";
-		$respuesta.= "Realiza: ". utf8_decode($fila["nombre_beneficiarios"])."\n";
-		$tab = array("UTF-8", "ASCII", "Windows-1252", "ISO-8859-15", "ISO-8859-1", "ISO-8859-6", "CP1256");
-
-foreach ($tab as $i)
-    {
-        foreach ($tab as $j)
-        {
-            $respuesta.= " $i$j ".iconv($i, $j, "$respuesta");
-        }
-    }
-
-echo $chain;
+		// $respuesta.= "Realiza: ". utf8_decode($fila["nombre_beneficiarios"])."\n";
+		// $tab = array("UTF-8", "ASCII", "Windows-1252", "ISO-8859-15", "ISO-8859-1", "ISO-8859-6", "CP1256");
+		
+		// foreach ($tab as $i)
+		// {
+			// foreach ($tab as $j)
+			// {
+				// $respuesta.= " $i$j ".iconv($i, $j, "$respuesta");
+			// }
+		// }
+		
+		// echo $chain;
 		// $respuesta.= "Realiza: ". iconv("UTF-8", "ISO-8859-1//TRANSLIT", $fila["nombre_beneficiarios"]) ."\n";
 		// $respuesta.= "Realiza: ". iconv("UTF-8", "ISO-8859-1//IGNORE", $fila["nombre_beneficiarios"]) ."\n";
 		// $respuesta.= "Realiza: ". iconv("UTF-8", "ISO-8859-1", $fila["nombre_beneficiarios"]) ."\n";
