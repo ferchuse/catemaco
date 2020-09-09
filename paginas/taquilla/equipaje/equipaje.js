@@ -15,6 +15,7 @@ $("#nuevo_equipaje").click(function nuevo() {
 });
 
 
+$('#equipaje_id_corridas').change(eligeBoleto);
 $('#tipo_equipaje').change(eligeEquipaje);
 
 $('#form_equipaje').submit(guardarEquipaje);
@@ -36,6 +37,21 @@ function listarEquipaje() {
 		}
 		}).done(function alCargar(respuesta) {
 		$("#lista_equipaje").html(respuesta);
+		
+	});
+}
+
+function eligeBoleto(evnt) {
+	
+	let id_corridas = $(this).val();
+	console.log()
+	$.ajax({
+		"url": "equipaje/lista_boletos_corrida.php",
+		data:{
+			"id_corridas": id_corridas
+		}
+		}).done(function alCargar(respuesta) {
+		$("#pasajero").html(respuesta);
 		
 	});
 }

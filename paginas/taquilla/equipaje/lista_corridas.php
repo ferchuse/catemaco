@@ -4,6 +4,7 @@
 	$consulta = "SELECT * FROM corridas
 	
 	WHERE estatus_corridas = 'Activa' 
+	AND fecha_corridas >= CURDATE()
 	";
 	
 	

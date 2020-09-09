@@ -11,9 +11,9 @@
 					<div class="form-group">		
 						<label >Corrida:</label>
 						<select required class="form-control" id="equipaje_id_corridas" name="id_corridas" required>
-								<option value="">Elige...</option>
+							<option value="">Elige...</option>
 							<?php foreach($corridas as $corrida ){?>
-							
+								
 								<option value="<?= $corrida["id_corridas"]?>">
 									<?= date("d-m-Y", strtotime($corrida["fecha_corridas"]))." Eco: ".$corrida["num_eco"] ?>
 									
@@ -40,19 +40,21 @@
 					</div>
 					<div class="form-group">		
 						<label >Pasajero:</label>
-						<input class="form-control" type="text" name="pasajero" id="pasajero" required>
-						</div>
-					
+						<select class="form-control" type="text" name="pasajero" id="pasajero" required>
+							
+						</select>
 					</div>
 					
-					<!-- Modal footer -->
-					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" data-dismiss="modal">
-						<i class="fas fa-times"></i> Cancelar</button>
-						<button type="submit" class="btn btn-success " >
-						<i class="fas fa-save"></i> Guardar </button>
-					</div>
+				</div>
+				
+				<!-- Modal footer -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">
+					<i class="fas fa-times"></i> Cancelar</button>
+					<button type="submit" class="btn btn-success " >
+					<i class="fas fa-save"></i> Guardar </button>
 				</div>
 			</div>
 		</div>
-	</form>		
+	</div>
+</form>		

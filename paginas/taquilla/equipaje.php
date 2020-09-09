@@ -102,8 +102,8 @@
 		<?php include("../../scripts.php")?>
 		<script src="../../plugins/pos_print/websocket-printer.js" > </script>
 		
-		<script src="equipaje/equipaje.js?v=<?= date("Y-m-d-H-i-s")?>"></script>
-		<script src="paquetes/paquetes.js?v=<?= date("Y-m-d-H-i-s")?>"></script>
+		<script src="equipaje/equipaje.js?v=<?= date("Y-m-d-H")?>"></script>
+		<script src="paquetes/paquetes.js?v=<?= date("Y-m-d-H")?>"></script>
 		
 	</body>
 </html>																														
