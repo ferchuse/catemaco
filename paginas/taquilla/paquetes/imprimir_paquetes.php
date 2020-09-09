@@ -54,11 +54,11 @@
 		$respuesta.= "  Fecha:" . date("d/m/Y", strtotime($registro["fecha_paquetes"]))."\n";
 		$respuesta.= "  Hora:" . date("H:i:s", strtotime($registro["fecha_paquetes"]))."\n";
 		$respuesta.= "  Taquilla Destino :". $registro["nombre_taquilla"]."\n";
-		$respuesta.= "  Tamaño :". $registro["tipo_paquete"]."\n";
+		$respuesta.= "  Tamano :". $registro["tipo_paquete"]."\n";
 		$respuesta.= "  Contenido :". $registro["contenido"]."\n";
 		$respuesta.= "  Destinatario :". $registro["destinatario"]."\n";
 		$respuesta.= "  Costo: $ ". $registro["costo"]."\n";
-		$respuesta.= "  Taquillero:" . $_COOKIE["nombre_usuarios"]."\n\n\n\n";
+		$respuesta.= "  Usuario:" . $_COOKIE["nombre_usuarios"]."\n\n\n\n";
 		
 		$respuesta.= "VA"; // Cut
 		
@@ -77,10 +77,11 @@
 		$respuesta.= "  Fecha:" . date("d/m/Y", strtotime($registro["fecha_paquetes"]))."\n";
 		$respuesta.= "  Hora:" . date("H:i:s", strtotime($registro["fecha_paquetes"]))."\n";
 		$respuesta.= "  Taquilla Destino :". $registro["nombre_taquilla"]."\n";
+		$respuesta.= "  Tamano :". $registro["tipo_paquete"]."\n";
 		$respuesta.= "  Contenido :". $registro["contenido"]."\n";
 		$respuesta.= "  Destinatario :". $registro["destinatario"]."\n";
 		$respuesta.= "  Costo: $ ". $registro["costo"]."\n";
-		$respuesta.= "  Taquillero:" . $_COOKIE["nombre_usuarios"]."\n\n";
+		$respuesta.= "  Usuario:" . $_COOKIE["nombre_usuarios"]."\n\n";
 		$respuesta.= "       COPIA \n\n\n";
 		
 		$respuesta.= "VA"; // Cut

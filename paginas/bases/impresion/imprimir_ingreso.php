@@ -43,6 +43,7 @@
 		$respuesta.= "!\x10";
 		$respuesta.= "\x1b"."d".chr(1); // 4 Blank lines
 		$respuesta.= "Folio:   ". $fila["id_ingreso"]. "\n";
+		$respuesta.= "Base:   ". $fila["base"]. "\n";
 		$respuesta.= "Fecha:   " . date('d/m/Y', strtotime($fila["fecha"]))."\n";
 		$respuesta.= "Hora:    " . date('H:i:s', strtotime($fila["fecha"]))."\n";
 		$respuesta.= "Realiza: ". $fila["nombre_beneficiarios"]."\n";
@@ -63,6 +64,7 @@
 		$respuesta.= "!\x10";
 		$respuesta.= "\x1b"."d".chr(1); // 4 Blank lines
 		$respuesta.= "Folio:   ". $fila["id_ingreso"]. "\n";
+		$respuesta.= "Base:   ". $fila["base"]. "\n";
 		$respuesta.= "Fecha:   " . date('d/m/Y', strtotime($fila["fecha"]))."\n";
 		$respuesta.= "Hora:    " . date('H:i:s', strtotime($fila["fecha"]))."\n";
 		$respuesta.= "Realiza: ". $fila["nombre_beneficiarios"]."\n";

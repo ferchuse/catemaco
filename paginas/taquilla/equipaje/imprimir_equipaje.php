@@ -45,9 +45,9 @@
 		$respuesta.= "Fecha:" . date("d-m-Y", strtotime($registro["fecha_equipaje"]))."\n";
 		$respuesta.= "Hora:" . date("H:i:s", strtotime($registro["fecha_equipaje"]))."\n";
 		$respuesta.= "Pasajero :". $registro["pasajero"]."\n";
-		$respuesta.= "Tamaño :". $registro["tipo_equipaje"]."\n";
+		$respuesta.= "Tamano :". $registro["tipo_equipaje"]."\n";
 		$respuesta.= "Importe: $ ". $registro["importe"]."\n";
-		$respuesta.=  "Taquillero:" . $_COOKIE["nombre_usuarios"]."\n\n";
+		$respuesta.=  "Usuario:" . $_COOKIE["nombre_usuarios"]."\n\n";
 		$respuesta.= "\x1b"."d".chr(1); // Blank line
 		$respuesta.= "  _________________\n\n"; // Blank line
 		$respuesta.= "aFIRMA DE RECIBIDO\n"; // Blank line
@@ -69,9 +69,9 @@
 		$respuesta.= "Fecha:" . date("d-m-Y", strtotime($registro["fecha_equipaje"]))."\n";
 		$respuesta.= "Hora:" . date("H:i:s", strtotime($registro["fecha_equipaje"]))."\n";
 		$respuesta.= "Pasajero :". $registro["pasajero"]."\n";
-		$respuesta.= "Tamaño :". $registro["tipo_equipaje"]."\n";
+		$respuesta.= "Tamano :". $registro["tipo_equipaje"]."\n";
 		$respuesta.= "Importe: $ ". $registro["importe"]."\n";
-		$respuesta.=  "Taquillero:" . $_COOKIE["nombre_usuarios"]."\n\n";
+		$respuesta.=  "Usuario:" . $_COOKIE["nombre_usuarios"]."\n\n";
 		$respuesta.= "\x1b"."d".chr(1); // Blank line
 		$respuesta.= "  _________________\n\n"; // Blank line
 		$respuesta.= "aFIRMA DE RECIBIDO\n"; // Blank line
