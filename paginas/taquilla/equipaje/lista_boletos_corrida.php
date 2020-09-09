@@ -7,6 +7,7 @@
 	$consulta = "SELECT * FROM boletos
 	
 	WHERE id_corridas = '{$_GET["id_corridas"]}' 
+	AND estatus_boletos = 'Activo'
 	";
 	
 	$respuesta .="$consulta";
