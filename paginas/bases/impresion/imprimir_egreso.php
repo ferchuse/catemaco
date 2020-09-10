@@ -11,7 +11,7 @@
 	
 	
 	if(!isset($_GET["folios"])){
-		$folios = [$_GET["id_registro"]];	
+		$folios = [$_GET["folio"]];	
 	}
 	else{	
 		$folios = explode(",", $_GET["folios"]);
@@ -19,12 +19,10 @@
 	
 	foreach($folios as $i => $folio){
 		
-		$consulta = "SELECT * FROM recibos_salidas 
-		LEFT JOIN empresas USING(id_empresas)
+		$consulta = "SELECT * FROM base_egresos 
 		LEFT JOIN beneficiarios USING(id_beneficiarios) 
-		LEFT JOIN motivos_salida USING(id_motivosSalida) 
 		LEFT JOIN usuarios USING(id_usuarios)
-		WHERE id_reciboSalidas= '{$folio}'";
+		WHERE id_egreso= '{$folio}'";
 		
 		
 		$result = mysqli_query($link,$consulta); 
@@ -52,33 +50,33 @@
 				</div>
 				<div class="col-7 text-center">
 					<h4>Coordinadora de Transporte Grupo AAZ AC</h4>
-					<legend>Recibo de Salida </legend> 
+					<legend>Egreso </legend> 
 				</div>
 			</div>
 			
 			<div class="row">
 				<div class="col-6">
 					<h5>
-						Empresa: <?php echo $filas["nombre_empresas"]?><br>
-						Motivo: <?php echo $filas["nombre_motivosSalida"]?><br> 
+						Beneficiario: <?php echo $filas["nombre_beneficiarios"]?><br>
+						Observaciones: <?php echo $filas["observaciones"]?><br> 
 					</h5>
 				</div>	 
 				<div class="col-6 text-right">	
-					<h4>Folio: <?php echo $filas["id_reciboSalidas"]?></h4>
+					<h4>Folio: <?php echo $filas["id_egreso"]?></h4>
 					<h5>
-						Bueno por: $  <?php echo number_format($filas["monto_reciboSalidas"], 2)?><br>
-						Fecha: <?php echo $filas["fecha_reciboSalidas"]?><br>
+						Bueno por: $  <?php echo number_format($filas["monto"], 2)?><br>
+						Fecha: <?php echo $filas["fecha"]?><br>
 						
 					</h5>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-12">
-					<p>Recibi la cantidad de $<?=$filas["monto_reciboSalidas"]?>
-						(<?php echo NumeroALetras::convertir($filas["monto_reciboSalidas"], 'PESOS', 'CENTAVOS')?>)
+					<p>Recibi la cantidad de $<?=$filas["monto"]?>
+						(<?php echo NumeroALetras::convertir($filas["monto"], 'PESOS', 'CENTAVOS')?>)
 					</p>
 					<br>
-					<p>Por concepto de: <?php echo $filas["observaciones_reciboSalidas"];?></p>
+					<p>Por concepto de: <?php echo $filas["observaciones"];?></p>
 				</div>	 
 			</div>
 			
@@ -105,7 +103,7 @@
 				</div>
 				<div class="col-6 text-right">
 					Creado por: <?php echo $filas["nombre_usuarios"];?><br>
-					Fecha Aplicación: <?php echo $filas["fecha_aplicacion"];?><br>
+					Fecha Creación: <?php echo $filas["fecha"]?><br>
 				</div>
 			</div> 
 		</div> 
@@ -123,34 +121,37 @@
 				</div>
 				<div class="col-7 text-center">
 					<h4>Coordinadora de Transporte Grupo AAZ AC</h4>
-					<legend>Recibo de Salida COPIA</legend> 
+					<legend>Egreso </legend> 
 				</div>
 			</div>
+			
 			<div class="row">
 				<div class="col-6">
 					<h5>
-						Empresa: <?php echo $filas["nombre_empresas"]?><br>
-						Motivo: <?php echo $filas["nombre_motivosSalida"]?><br>
+						Beneficiario: <?php echo $filas["nombre_beneficiarios"]?><br>
+						Observaciones: <?php echo $filas["observaciones"]?><br> 
 					</h5>
 				</div>	 
 				<div class="col-6 text-right">	
-					<h4>Folio: <?php echo $filas["id_reciboSalidas"]?></h4>
+					<h4>Folio: <?php echo $filas["id_egreso"]?></h4>
 					<h5>
-						Bueno por: $  <?php echo number_format($filas["monto_reciboSalidas"], 2)?><br>
-						Fecha: <?php echo $filas["fecha_reciboSalidas"]?><br>
+						Bueno por: $  <?php echo number_format($filas["monto"], 2)?><br>
+						Fecha: <?php echo $filas["fecha"]?><br>
 						
 					</h5>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-12">
-					<p>Recibi la cantidad de $<?=$filas["monto_reciboSalidas"]?>
-						(<?php echo NumeroALetras::convertir($filas["monto_reciboSalidas"], 'PESOS', 'CENTAVOS')?>)
+					<p>Recibi la cantidad de $<?=$filas["monto"]?>
+						(<?php echo NumeroALetras::convertir($filas["monto"], 'PESOS', 'CENTAVOS')?>)
 					</p>
 					<br>
-					<p>Por concepto de: <?php echo $filas["observaciones_reciboSalidas"];?></p>
+					<p>Por concepto de: <?php echo $filas["observaciones"];?></p>
 				</div>	 
 			</div>
+			
+			
 			<div class="row text-center">
 				<div class="col-4 ">
 				</div>
@@ -166,7 +167,6 @@
 				</div>
 			</div>
 			<br>
-			
 			<div class="row">
 				<div class="col-6 border-top">
 					Impreso por: <?php echo $_COOKIE["nombre_usuarios"];?><br>
@@ -174,10 +174,10 @@
 				</div>
 				<div class="col-6 text-right">
 					Creado por: <?php echo $filas["nombre_usuarios"];?><br>
-					Fecha Aplicación: <?php echo $filas["fecha_aplicacion"];?><br>
+					Fecha Creación: <?php echo $filas["fecha"]?><br>
 				</div>
 			</div> 
-		</div> 
+		</div>
 		
 		<?php
 			if($i < sizeof($folios) - 1){

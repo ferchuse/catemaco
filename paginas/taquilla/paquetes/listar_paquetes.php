@@ -82,7 +82,7 @@
 				<td ><B> Total Paquetes</b></td>
 				<td ></td>
 				<td >
-					$<?php echo number_format($suma_importe);?>.
+					$<?php echo number_format($suma_importe,2);?>.
 				</td>
 			</tr>
 		</tfoot>

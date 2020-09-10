@@ -1,48 +1,34 @@
 <?php 
-	session_start();
 	include('../../../conexi.php');
 	$link = Conectarse();
 	
 	$respuesta = array();
 	
-	$tabla = $_POST["tabla"];
-	$campos_valores = $_POST["datos"];
-	$str_pairs = "";
 	
-	if(empty($campos_valores[0]['value'])){  
-		$query ="INSERT INTO $tabla SET ";	
-		
-		foreach($campos_valores as $arr_field_value){
-			$str_pairs.= $arr_field_value["name"]. " = '" . $arr_field_value["value"] . "',";
-		}
-		
-		// $str_pairs  = trim($str_pairs, ",");
-		$query.= $str_pairs;
-		
-		$query.= " id_administrador = '1' ";
-		
-    }else{
-		
-		$query ="UPDATE $tabla SET ";	
-		
-		foreach($campos_valores as $arr_field_value){
-			$str_pairs.= $arr_field_value["name"]. " = '" . $arr_field_value["value"] . "',";
-		}
-    
-		$str_pairs  = trim($str_pairs, ",");
-		$query.= $str_pairs." WHERE ".$campos_valores[0]['name']."='".$campos_valores[0]['value']."'";
-	}	
+	
+	$query ="INSERT INTO base_egresos SET 
+	
+	fecha = NOW(),
+	id_beneficiarios = '{$_POST["id_beneficiarios"]}',
+	monto = '{$_POST["monto"]}',
+	observaciones = '{$_POST["observaciones"]}',
+	id_usuarios = '{$_COOKIE["id_usuarios"]}'
+
+
+	";	
+	
+	
 	
 	$exec_query = 	mysqli_query($link,$query);
+	$respuesta["query"] = $query;
 	
 	if($exec_query){
 		$respuesta["estatus"] = "success";
-		$respuesta["mensaje"] = "Agregado";
-		$respuesta["query"] = $query;
+		$respuesta["mensaje"] = "Guardado";
 		$respuesta["folio"] = mysqli_insert_id($link);
 		
-	}
-	else{
+		
+    }else{
 		
 		$respuesta["estatus"] = "error";
 		$respuesta["mensaje"] = "Error en insert: $query  ".mysqli_error($link);		

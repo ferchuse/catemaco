@@ -1,5 +1,5 @@
 <?php 
-	session_start();
+	
 	include('../../../conexi.php');
 	include('../../../funciones/generar_select.php');
 	include('../../../funciones/dame_permiso.php');
@@ -10,37 +10,16 @@
 	
 	
 	
-	$consulta = "SELECT * FROM recibos_salidas
-	LEFT JOIN empresas USING(id_empresas) 
-	LEFT JOIN beneficiarios USING(id_beneficiarios) 
-	LEFT JOIN motivos_salida USING(id_motivosSalida)
+	$consulta = "SELECT * FROM base_egresos
 	LEFT JOIN usuarios USING(id_usuarios)
-	WHERE 1
+	LEFT JOIN beneficiarios USING(id_beneficiarios)
+	WHERE  DATE(fecha) BETWEEN '{$_GET['fecha_inicial']}' AND '{$_GET['fecha_final']}'
+	
 	";
 	
-	$consulta.=  " 
-	AND  DATE(fecha_reciboSalidas)
-	BETWEEN '{$_GET['fecha_inicial']}' 
-	AND '{$_GET['fecha_final']}'"; 
-	
-	if($_GET['mes'] != ""){
-		
-		$consulta.=  " 
-		AND 	MONTH(fecha_aplicacion) = '{$_GET["mes"]}'
-		AND YEAR(fecha_aplicacion) = '{$_GET["year"]}'"; 
-		
-	}
 	
 	
-	if($_GET['id_motivosSalida'] != ""){
-		$consulta.=  " AND id_motivosSalida =  '{$_GET['id_motivosSalida']}' "; 
-	}
-	
-	
-	
-	
-	$consulta.=  " ORDER BY id_reciboSalidas ASC"; 
-	
+	// $consulta.=  " ORDER BY id_egreso ASC"; 
 	
 	
 	$result = mysqli_query($link,$consulta);
@@ -52,7 +31,7 @@
 		}
 		
 		while($fila = mysqli_fetch_assoc($result)){
-			// console_log($fila);
+			
 			$filas[] = $fila ;
 		}
 	?>
@@ -66,78 +45,54 @@
 	<table class="table table-bordered table-condensed" id="dataTable" width="100%" cellspacing="0">
 		<thead>
 			<tr>
-				<th><input type="checkbox" id="check_all"></th>
+				<th hidden><input type="checkbox" id="check_all"></th>
 				<th></th>
 				<th>Folio</th>
-				<th>Fecha Creación</th>
-				<th>Fecha Aplicación</th>
+				<th>Fecha </th>
 				<th>Beneficiario</th>
-				<th>Motivo</th>
 				<th>Monto</th>
 				<th>Observaciones</th>
 				<th>Estatus</th>
 				<th>Usuario</th>
 			</thead>
-			<tbody id="tabla_DB">
+			<tbody >
 				<?php 
 					foreach($filas as $index=>$fila){
 					?>
 					<tr>
-						<td class="text-center"><input type="checkbox" class="seleccionar" value='<?php echo $fila['id_reciboSalidas']?>'></td>
+						<td hidden  class="text-center"><input type="checkbox" class="seleccionar" value='<?php echo $fila['id_egreso']?>'></td>
 						<td class="text-center"> 
-							<?php if($fila["estatus_reciboSalidas"] != 'Cancelado'){ 
-								
-								$totales[0]+= $fila["monto_reciboSalidas"];
-								if(dame_permiso("recibos_salida.php", $link) == 'Supervisor'){ 
+							<?php if($fila["estatus"] != 'Cancelado' ){
+								$totales[0]+= $fila["monto"];
+								if(dame_permiso("base_egresos.php", $link) == 'Supervisor'){ 
 								?>
-								<button class="btn btn-danger cancelar" title="Cancelar" data-id_registro='<?php echo $fila['id_reciboSalidas']?>'>
+								<button class="btn btn-danger cancelar" title="Cancelar" data-id_registro='<?php echo $fila['id_egreso']?>'>
 									<i class="fas fa-times"></i>
 								</button>
-								
+								<button class="btn btn-outline-info imprimir" data-id_registro='<?php echo $fila['id_egreso']?>'>
+									<i class="fas fa-print"></i>
+								</button>
 								<?php
 								}
 							?>
 							
-							<button class="btn btn-outline-info imprimir" data-id_registro='<?php echo $fila['id_reciboSalidas']?>'>
-								<i class="fas fa-print"></i>
-							</button>
 							<?php	
 							}
 							else{
-								
-								
-								echo "<span class='badge badge-danger'>".$fila["estatus_reciboSalidas"]."<br>".$fila["datos_cancelacion"]."</span>";
+								echo "<span class='badge badge-danger'>".$fila["estatus"]."<br>".$fila["datos_cancelacion"]."</span>";
 							}
 							?>
 						</td>
-						<td><?php echo $fila["id_reciboSalidas"]?></td>
-						<td><?php echo $fila["fecha_reciboSalidas"]?></td>
-						<td><?php echo $fila["fecha_aplicacion"]?></td>
+						<td><?php echo $fila["id_egreso"]?></td>
+						<td><?php echo $fila["fecha"]?></td>
 						<td><?php echo $fila["nombre_beneficiarios"]?></td>
-						<td><?php echo $fila["nombre_motivosSalida"]?></td>
-						<td class="text-right">$<?php echo number_format($fila["monto_reciboSalidas"],2)?></td>
-						<td><?php echo $fila["observaciones_reciboSalidas"]?></td>
-						<td>
-							
-							<?php
-								if($fila["estatus_reciboSalidas"] == "Cancelado"){
-									
-									echo "<span class='badge badge-danger'>".$fila["estatus_reciboSalidas"]."<br>".$fila["datos_cancelacion"]."</span>";
-								}
-								else{
-									
-									echo $fila["estatus_reciboSalidas"];
-								}
-								
-								
-								
-							?>
-						</td>
+						<td class="text-right">$<?php echo number_format($fila["monto"], 2)?></td>
+						<td><?php echo $fila["observaciones"]?></td>
+						<td><?php echo $fila["estatus"]?></td>
 						<td><?php echo $fila["nombre_usuarios"]?></td>
 						
 					</tr>
 					<?php
-						
 						
 					}
 				?>
@@ -148,19 +103,18 @@
 					<td></td>
 					<td></td>
 					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
+					
 					<?php
 						foreach($totales as $i =>$total){
 						?>
-						<td class="h6 text-right">$<?php echo number_format($total,2)?></td>
+						<td class="text-right h6">$<?php echo number_format($total, 2)?></td>
 						<?php	
 						}
 					?>
 					<td></td>
 					<td></td>
 					<td></td>
+					
 				</tr>
 			</tfoot>
 		</table>
@@ -174,4 +128,4 @@
 		echo  "Error en ".$consulta.mysqli_Error($link);
 	}
 	
-?>									
+?>				

@@ -1,7 +1,7 @@
 <?php
 	include('../../conexi.php');
 	$link = Conectarse();
-	$nombre_pagina = "Ingresos";
+	$nombre_pagina = "Egresos";
 	include('../../funciones/generar_select.php');
 	include("../../paginas/login/login_check.php");
 ?>
@@ -27,7 +27,7 @@
 					<!-- Breadcrumbs-->
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
-							<a href="#">Bases</a> 
+							<a href="#">Egresos</a> 
 						</li>
 						<li class="breadcrumb-item active"><?php echo $nombre_pagina; ?></li>
 					</ol>
@@ -59,6 +59,7 @@
 								<input class="form-control" type="date" name="fecha_final" id="fecha_final" value="<?php echo date("Y-m-d");?>">
 							</div>
 							
+							
 						</div>
 						
 					</form>
@@ -69,10 +70,7 @@
 						<div class="card-header">
 							<i class="fas fa-table"></i>
 							Lista de <?php echo $nombre_pagina; ?>
-							<button hidden  id="imprimir_recibos" class="btn btn-info btn-sm float-right" type="button">
-								<i class="fas fa-print"></i> Imprimir <span id="cant_seleccionados"></span>
-							</button>
-							<input type="hidden" id="folios_seleccionados" name="folios_seleccionados" >
+							
 						</div>
 						<div class="card-body">
 							
@@ -81,14 +79,14 @@
 									<thead>
 										<tr>
 											<th class="text-center">Fecha</th>
-											<th class="text-center">Realiza</th>
+											<th class="text-center">Beneficiario</th>
 											<th class="text-center">Monto</th>
+											<th class="text-center">Observaciones</th>
 											<th class="text-center">Estatus</th>
 											<th class="text-center"></th>
 										</tr>
 									</thead>
-									
-									<tbody >
+									<tbody id="">
 										<tr>
 											<td colspan="8"><h3 class="text-center">Cargando...</h3></td>
 										</tr>
@@ -126,10 +124,8 @@
 		
 		<?php 
 			include("../../scripts.php");
-			include('forms/form_ingreso.php');
+			include('forms/forms_egreso.php');
 		?>
-		<script src="../../plugins/pos_print/websocket-printer.js" > </script>
-		<script src="js/base_ingresos.js?v=<?= date("d-m-Y-H-i-s")?>"></script>
-		
+		<script src="js/base_egresos.js?v=<?= date("d-m-Y-H-i-s")?>"></script>
 	</body>
 </html>

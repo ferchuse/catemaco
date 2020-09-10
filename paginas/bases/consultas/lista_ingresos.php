@@ -14,7 +14,8 @@
 	LEFT JOIN bases USING(id_base)
 	LEFT JOIN usuarios USING(id_usuarios)
 	LEFT JOIN beneficiarios USING(id_beneficiarios)
-	WHERE 1
+	WHERE  DATE(fecha) BETWEEN '{$_GET['fecha_inicial']}' AND '{$_GET['fecha_final']}'
+	
 	";
 	
 	
@@ -99,6 +100,7 @@
 			</tbody>
 			<tfoot>
 				<tr>
+					<td></td>
 					<td></td>
 					<td></td>
 					<td></td>
