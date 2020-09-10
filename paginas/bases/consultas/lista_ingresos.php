@@ -69,13 +69,13 @@
 								<button class="btn btn-danger cancelar" title="Cancelar" data-id_registro='<?php echo $fila['id_ingreso']?>'>
 									<i class="fas fa-times"></i>
 								</button>
-								
+								<button class="btn btn-outline-info imprimir" data-id_registro='<?php echo $fila['id_ingreso']?>'>
+									<i class="fas fa-print"></i>
+								</button>
 								<?php
 								}
 							?>
-							<button class="btn btn-outline-info imprimir" data-id_registro='<?php echo $fila['id_ingreso']?>'>
-								<i class="fas fa-print"></i>
-							</button>
+							
 							<?php	
 							}
 							else{
@@ -113,7 +113,7 @@
 					?>
 					<td></td>
 					<td></td>
-				
+					
 				</tr>
 			</tfoot>
 		</table>
