@@ -2,6 +2,7 @@
 	include("../../paginas/login/login_check.php");
 	include('../../conexi.php');
 	include('../../funciones/generar_select.php');
+	// include_once('../../funciones/dame_permiso.php');
 	
 	$link = Conectarse();
 	$nombre_pagina = "Equipaje y Paquetería";
@@ -38,7 +39,24 @@
 						<div class="card-body">
 							<div class="row">
 								<div class="col-sm-12">
-									
+									<?php 
+										
+										if(dame_permiso("equipaje.php", $link) == "Supervisor"){
+											$permiso = "";
+										}
+										else{
+											$permiso = "hidden";
+										}
+									?>
+									<form id="form_filtros" >
+										<div class="form-group col-sm-3" <?= $permiso?> >
+											<label>Fecha</label>
+											
+											
+											<input id="fecha" name="fecha" class="form-control" type="date" value="<?= date("Y-m-d")?>"  >
+											
+										</div>
+									</form>
 									<div class="card card-primary mt-4 ">
 										<div class="card-header bg-secondary text-white">
 											<b> <i class="fas fa-briefcase"></i> EQUIPAJE EXTRA</b>
@@ -101,6 +119,8 @@
 		
 		<?php include("../../scripts.php")?>
 		<script src="../../plugins/pos_print/websocket-printer.js" > </script>
+		
+		
 		
 		<script src="equipaje/equipaje.js?v=<?= date("Y-m-d-H")?>"></script>
 		<script src="paquetes/paquetes.js?v=<?= date("Y-m-d-H")?>"></script>

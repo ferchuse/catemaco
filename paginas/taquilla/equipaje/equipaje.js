@@ -2,6 +2,11 @@ var printService = new WebSocketPrinter();
 
 listarEquipaje();
 
+$("#fecha").change(function(){
+	
+	listarEquipaje();
+	listarPaquetes();
+})
 
 $("#lista_equipaje").on("click", ".btn_cancelar", confirmarCancelacion);
 
@@ -33,7 +38,7 @@ function listarEquipaje() {
 	$.ajax({
 		"url": "equipaje/listar_equipaje.php",
 		data:{
-			
+			"fecha": $("#fecha").val()
 		}
 		}).done(function alCargar(respuesta) {
 		$("#lista_equipaje").html(respuesta);

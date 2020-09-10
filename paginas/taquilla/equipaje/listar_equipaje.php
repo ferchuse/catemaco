@@ -7,7 +7,7 @@
 	$consulta = "SELECT * FROM equipaje
 	LEFT JOIN usuarios USING(id_usuarios)
 	
-	WHERE fecha_equipaje >= CURDATE()
+	WHERE DATE(fecha_equipaje) = '{$_GET["fecha"]}'
 	";
 	
 	

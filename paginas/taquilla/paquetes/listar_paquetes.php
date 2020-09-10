@@ -10,7 +10,7 @@
 	$consulta = "SELECT * FROM paquetes
 	LEFT JOIN taquillas ON taquillas.id_taquilla = paquetes.id_taquilla_destino
 	
-	WHERE fecha_paquetes >= CURDATE()
+	WHERE DATE(fecha_paquetes) = '{$_GET["fecha"]}'
 	";
 	
 
