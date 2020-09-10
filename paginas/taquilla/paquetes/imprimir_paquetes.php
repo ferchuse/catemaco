@@ -49,16 +49,18 @@
 		// $respuesta.= "!".chr(1). "FONTA B \n";
 		
 		$respuesta.= "\x1b"."d".chr(1); // 4 Blank lines
-		$respuesta.= "  Folio:". $registro["id_paquetes"]. "\n";
-		$respuesta.= "  Num Eco:". $registro["num_eco"]. "\n";
-		$respuesta.= "  Fecha:" . date("d/m/Y", strtotime($registro["fecha_paquetes"]))."\n";
-		$respuesta.= "  Hora:" . date("H:i:s", strtotime($registro["fecha_paquetes"]))."\n";
-		$respuesta.= "  Taquilla Destino :". $registro["nombre_taquilla"]."\n";
-		$respuesta.= "  Tamano :". $registro["tipo_paquete"]."\n";
-		$respuesta.= "  Contenido :". $registro["contenido"]."\n";
-		$respuesta.= "  Destinatario :". $registro["destinatario"]."\n";
-		$respuesta.= "  Costo: $ ". $registro["costo"]."\n";
-		$respuesta.= "  Usuario:" . $_COOKIE["nombre_usuarios"]."\n\n\n\n";
+		$respuesta.= "  Folio:        ". $registro["id_paquetes"]. "\n";
+		$respuesta.= "Fecha de Corrida: ".  date("d-m-Y", strtotime($registro["fecha_corridas"]))."\n";
+		$respuesta.= "Hora de Corrida:  ". date("H:i:s", strtotime($registro["hora_corridas"]))."\n";
+		$respuesta.= "  Num Eco:      ". $registro["num_eco"]. "\n";
+		$respuesta.= "  Fecha:        " . date("d/m/Y", strtotime($registro["fecha_paquetes"]))."\n";
+		$respuesta.= "  Hora:         " . date("H:i:s", strtotime($registro["fecha_paquetes"]))."\n";
+		$respuesta.= "  Destino :     ". $registro["nombre_taquilla"]."\n";
+		$respuesta.= "  Tamano:       ". $registro["tipo_paquete"]."\n";
+		$respuesta.= "  Contenido:    ". $registro["contenido"]."\n";
+		$respuesta.= "  Destinatario: ". $registro["destinatario"]."\n";
+		$respuesta.= "  Costo:      $ ". $registro["costo"]."\n";
+		$respuesta.= "  Usuario:      " . $_COOKIE["nombre_usuarios"]."\n\n\n\n";
 		
 		$respuesta.= "VA"; // Cut
 		
@@ -72,43 +74,25 @@
 		$respuesta.= "!".chr(0);
 		
 		$respuesta.= "\x1b"."d".chr(1); // 4 Blank lines
-		$respuesta.= "  Folio:". $registro["id_paquetes"]. "\n";
-		$respuesta.= "  Num Eco:". $registro["num_eco"]. "\n";
-		$respuesta.= "  Fecha:" . date("d/m/Y", strtotime($registro["fecha_paquetes"]))."\n";
-		$respuesta.= "  Hora:" . date("H:i:s", strtotime($registro["fecha_paquetes"]))."\n";
-		$respuesta.= "  Taquilla Destino :". $registro["nombre_taquilla"]."\n";
-		$respuesta.= "  Tamano :". $registro["tipo_paquete"]."\n";
-		$respuesta.= "  Contenido :". $registro["contenido"]."\n";
-		$respuesta.= "  Destinatario :". $registro["destinatario"]."\n";
-		$respuesta.= "  Costo: $ ". $registro["costo"]."\n";
-		$respuesta.= "  Usuario:" . $_COOKIE["nombre_usuarios"]."\n\n";
+		$respuesta.= "  Folio:        ". $registro["id_paquetes"]. "\n";
+		$respuesta.= "  Fecha de Corrida: ".  date("d-m-Y", strtotime($registro["fecha_corridas"]))."\n";
+		$respuesta.= "  Hora de Corrida:  ". date("H:i:s", strtotime($registro["hora_corridas"]))."\n";
+		$respuesta.= "  Num Eco:      ". $registro["num_eco"]. "\n";
+		$respuesta.= "  Fecha:        " . date("d/m/Y", strtotime($registro["fecha_paquetes"]))."\n";
+		$respuesta.= "  Hora:         " . date("H:i:s", strtotime($registro["fecha_paquetes"]))."\n";
+		$respuesta.= "  Destino :     ". $registro["nombre_taquilla"]."\n";
+		$respuesta.= "  Tamano:       ". $registro["tipo_paquete"]."\n";
+		$respuesta.= "  Contenido:    ". $registro["contenido"]."\n";
+		$respuesta.= "  Destinatario: ". $registro["destinatario"]."\n";
+		$respuesta.= "  Costo:      $ ". $registro["costo"]."\n";
+		$respuesta.= "  Usuario:      " . $_COOKIE["nombre_usuarios"]."\n\n";
 		$respuesta.= "       COPIA \n\n\n";
 		
 		$respuesta.= "VA"; // Cut
 		
+	
 		
-		// /* Output an example receipt */
-		// echo ESC."@"; // Reset to defaults
-		// echo ESC."E".chr(1); // Bold
-		// echo "FOO CORP Ltd.\n"; // Company
-		// echo ESC."E".chr(0); // Not Bold
-		// echo ESC."d".chr(1); // Blank line
-		// echo "Receipt for whatever\n"; // Print text
-		// echo ESC."d".chr(4); // 4 Blank lines
-		
-		// /* Bar-code at the end */
-		// echo ESC."a".chr(1); // Centered printing
-		
-		// echo ESC."d".chr(1); // Blank line
-		// echo "987654321\n"; // Print number
-		// $respuesta.= " \x1d"."V\x41".chr(3); // Cut
-		
-		// $respuesta = "@@aHello World
-		// !aESC/POS Printer Test
-		// !aGoodbye World
-		// VA"; 
-		
-		echo base64_encode ( $respuesta );
+		echo base64_encode ( iconv('UTF-8', 'CP437//TRANSLIT//IGNORE', $respuesta) );
 		exit(0);
 		
 		

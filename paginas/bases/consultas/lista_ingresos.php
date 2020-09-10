@@ -11,6 +11,7 @@
 	
 	
 	$consulta = "SELECT * FROM base_ingresos
+	LEFT JOIN bases USING(id_base)
 	LEFT JOIN usuarios USING(id_usuarios)
 	LEFT JOIN beneficiarios USING(id_beneficiarios)
 	WHERE 1
@@ -48,6 +49,7 @@
 				<th></th>
 				<th>Folio</th>
 				<th>Fecha </th>
+				<th>Base</th>
 				<th>Realiza</th>
 				<th>Monto</th>
 				<th>Estatus</th>
@@ -83,6 +85,7 @@
 						</td>
 						<td><?php echo $fila["id_ingreso"]?></td>
 						<td><?php echo $fila["fecha"]?></td>
+						<td><?php echo $fila["base"]?></td>
 						<td><?php echo $fila["nombre_beneficiarios"]?></td>
 						<td class="text-right">$<?php echo number_format($fila["monto"], 2)?></td>
 						<td><?php echo $fila["estatus"]?></td>

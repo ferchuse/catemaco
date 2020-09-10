@@ -48,9 +48,9 @@
 		$respuesta.= "Fecha:            " . date("d-m-Y", strtotime($registro["fecha_equipaje"]))."\n";
 		$respuesta.= "Hora:             " . date("H:i:s", strtotime($registro["fecha_equipaje"]))."\n";
 		$respuesta.= "Pasajero:         ". $registro["pasajero"]."\n";
-		$respuesta.= "Tamano:           ". $registro["tipo_equipaje"]."\n";
+		$respuesta.= "Tamaño:           ". $registro["tipo_equipaje"]."\n";
 		$respuesta.= "Importe:          $ ". $registro["importe"]."\n";
-		$respuesta.=  "Usuario:         " . $_COOKIE["nombre_usuarios"]."\n\n";
+		$respuesta.= "Usuario:         " . $_COOKIE["nombre_usuarios"]."\n\n";
 		// $respuesta.=  utf8_decode ("tamañp ácébnós")."n\n";
 		// $respuesta.=  utf8_encode ("tamañp ácébnós")."n\n";
 		$respuesta.= "\x1b"."d".chr(1); // Blank line
@@ -63,7 +63,7 @@
 		
 		
 		
-		echo base64_encode ( $respuesta );
+		echo base64_encode ( iconv('UTF-8', 'CP437//TRANSLIT//IGNORE', $respuesta) );
 		exit(0);
 		
 		

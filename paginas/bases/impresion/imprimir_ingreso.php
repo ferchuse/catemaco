@@ -42,58 +42,41 @@
 		$respuesta.= "\x1b"."E".chr(0); // Not Bold
 		$respuesta.= "!\x10";
 		$respuesta.= "\x1b"."d".chr(1); // 4 Blank lines
+		$respuesta.=  "\x1b"."@";
 		$respuesta.= "Folio:   ". $fila["id_ingreso"]. "\n";
 		$respuesta.= "Base:   ". $fila["base"]. "\n";
 		$respuesta.= "Fecha:   " . date('d/m/Y', strtotime($fila["fecha"]))."\n";
 		$respuesta.= "Hora:    " . date('H:i:s', strtotime($fila["fecha"]))."\n";
 		$respuesta.= "Realiza: ". $fila["nombre_beneficiarios"]."\n";
-		// $respuesta.= "Realiza: ". utf8_decode($fila["nombre_beneficiarios"])."\n";
-		// $tab = array("UTF-8", "ASCII", "Windows-1252", "ISO-8859-15", "ISO-8859-1", "ISO-8859-6", "CP1256");
-		
-		// foreach ($tab as $i)
-		// {
-			// foreach ($tab as $j)
-			// {
-				// $respuesta.= " $i$j ".iconv($i, $j, "$respuesta");
-			// }
-		// }
-		
-		// echo $chain;
-		// $respuesta.= "Realiza: ". iconv("UTF-8", "ISO-8859-1//TRANSLIT", $fila["nombre_beneficiarios"]) ."\n";
-		// $respuesta.= "Realiza: ". iconv("UTF-8", "ISO-8859-1//IGNORE", $fila["nombre_beneficiarios"]) ."\n";
-		// $respuesta.= "Realiza: ". iconv("UTF-8", "ISO-8859-1", $fila["nombre_beneficiarios"]) ."\n";
 		$respuesta.= "Monto:   $ ". $fila["monto"]."\n";
 		$respuesta.= "Recibe:  ". $fila["nombre_usuarios"]."\n\n\n";
-		
 		$respuesta.= "\x1b"."d".chr(1); // Blank line
-		
 		$respuesta.= "\x1b"."d".chr(1). "\n"; // Blank line
 		$respuesta.= "VA"; // Cut
 		
 		
-		// $respuesta.=  "\x1b"."@";
-		// $respuesta.= "\x1b"."E".chr(1); // Bold
-		// $respuesta.= "!";
-		// $respuesta.= "RECIBO DE INGRESO \n";
-		// $respuesta.= "\x1b"."E".chr(0); // Not Bold
-		// $respuesta.= "!\x10";
-		// $respuesta.= "\x1b"."d".chr(1); // 4 Blank lines
-		// $respuesta.= "Folio:   ". $fila["id_ingreso"]. "\n";
-		// $respuesta.= "Base:   ". $fila["base"]. "\n";
-		// $respuesta.= "Fecha:   " . date('d/m/Y', strtotime($fila["fecha"]))."\n";
-		// $respuesta.= "Hora:    " . date('H:i:s', strtotime($fila["fecha"]))."\n";
-		// $respuesta.= "Realiza: ". $fila["nombre_beneficiarios"]."\n";
-		// $respuesta.= "Monto:   $ ". $fila["monto"]."\n";
-		// $respuesta.= "Recibe:  ". $fila["nombre_usuarios"]."\n\n\n";
-		
-		// $respuesta.= "\x1b"."d".chr(1); // Blank line
-		
-		// $respuesta.= "\x1b"."d".chr(1). "\n"; // Blank line
-		// $respuesta.= "VA"; // Cut
-		
+		$respuesta.=  "\x1b"."@";
+		$respuesta.= "\x1b"."E".chr(1); // Bold
+		$respuesta.= "!";
+		$respuesta.= "RECIBO DE INGRESO \n";
+		$respuesta.= "\x1b"."E".chr(0); // Not Bold
+		$respuesta.= "!\x10";
+		$respuesta.= "\x1b"."d".chr(1); // 4 Blank lines
+		$respuesta.=  "\x1b"."@";
+		$respuesta.= "Folio:   ". $fila["id_ingreso"]. "\n";
+		$respuesta.= "Base:   ". $fila["base"]. "\n";
+		$respuesta.= "Fecha:   " . date('d/m/Y', strtotime($fila["fecha"]))."\n";
+		$respuesta.= "Hora:    " . date('H:i:s', strtotime($fila["fecha"]))."\n";
+		$respuesta.= "Realiza: ". $fila["nombre_beneficiarios"]."\n";
+		$respuesta.= "Monto:   $ ". $fila["monto"]."\n";
+		$respuesta.= "Recibe:  ". $fila["nombre_usuarios"]."\n\n\n";
+		$respuesta.= "\x1b"."d".chr(1); // Blank line
+		$respuesta.= "\x1b"."d".chr(1). "\n"; // Blank line
+		$respuesta.= "VA"; // Cut
 		
 		
-		echo base64_encode ( $respuesta );
+		
+		echo base64_encode ( iconv('UTF-8', 'CP437//TRANSLIT//IGNORE', $respuesta));
 		exit(0);
 		
 		
