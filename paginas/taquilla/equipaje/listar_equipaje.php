@@ -1,5 +1,5 @@
 <?php 
-
+	
 	include('../../../conexi.php');
 	include('../../../funciones/dame_permiso.php');
 	$link = Conectarse();
@@ -26,6 +26,7 @@
 				<th class="text-center">Pasajero</th>
 				<th class="text-center">Tamaño</th>
 				<th class="text-center">Importe</th>
+				<th class="text-center">Usuario</th>
 				<th class="text-center"></th>
 				
 			</tr>
@@ -43,6 +44,7 @@
 					<td><?php echo $fila["pasajero"];?></td>
 					<td><?php echo $fila["tipo_equipaje"];?></td>
 					<td>$<?php echo $fila["importe"];?></td>
+					<td><?php echo $fila["nombre_usuarios"];?></td>
 					<td>
 						<?php 
 							

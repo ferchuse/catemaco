@@ -9,6 +9,7 @@
 	
 	$consulta = "SELECT * FROM paquetes
 	LEFT JOIN taquillas ON taquillas.id_taquilla = paquetes.id_taquilla_destino
+	LEFT JOIN usuarios USING(id_usuarios)
 	
 	WHERE DATE(fecha_paquetes) = '{$_GET["fecha"]}'
 	";
@@ -28,6 +29,7 @@
 				<th class="text-center">Taquilla Destino</th>
 				<th class="text-center">Tamaño</th>
 				<th class="text-center">Costo</th>
+				<th class="text-center">Usuario</th>
 			
 			</tr>
 		</thead>
@@ -42,6 +44,7 @@
 					<td><?php echo $fila["nombre_taquilla"];?></td>
 					<td><?php echo $fila["tipo_paquete"];?></td>
 					<td>$<?php echo $fila["costo"];?></td>
+					<td><?php echo $fila["nombre_usuarios"];?></td>
 					<td>
 						<?php 
 							
