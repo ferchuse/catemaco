@@ -141,7 +141,7 @@ function confirmaCancelacion(event){
 		icono.toggleClass("fa-times fa-spinner fa-spin");
 		
 		return $.ajax({ 
-			url: "consultas/cancelar_ingreso.php",
+			url: "consultas/cancelar_egreso.php",
 			dataType:"JSON",
 			data:{
 				folio : folio
