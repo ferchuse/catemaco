@@ -15,7 +15,7 @@
 					
 					<div class="form-group">
 						<label for="id_empresas">Beneficiario:</label>
-						<?php echo generar_select($link, "beneficiarios", "id_beneficiarios", "nombre_beneficiarios", false, false, true); ?>
+						<?php echo generar_select($link, "base_beneficiarios", "id_beneficiarios", "nombre_beneficiarios", false, false, true); ?>
 					</div>
 				
 					<div class="form-group">

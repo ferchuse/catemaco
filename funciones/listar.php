@@ -25,10 +25,13 @@
 	// }
 	else{
 		$consulta = "SELECT * FROM $tabla";
-		$consulta.= " WHERE $tabla.id_administrador = '1'";
 	}
 	
+	if(isset($_POST['order'])){
 	
+		$consulta.= " ORDER BY {$_POST['order']} ";
+		
+	}
 	
 	$query = mysqli_query($link,$consulta);
 	if($query){
