@@ -44,6 +44,9 @@
 		$consulta.=  " AND  id_beneficiarios = '{$_GET["id_beneficiarios"]}'"; 
 	}
 	
+	$consulta.=  " ORDER BY nombre_beneficiarios"; 
+	
+	
 	$result = mysqli_query($link,$consulta);
 	
 	if($result){

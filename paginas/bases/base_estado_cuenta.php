@@ -27,7 +27,7 @@
 					<!-- Breadcrumbs-->
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item">
-							<a href="#">Estado de Cuenta</a> 
+							<a href="#">Bases</a> 
 						</li>
 						<li class="breadcrumb-item active"><?php echo $nombre_pagina; ?></li>
 					</ol>
@@ -86,7 +86,7 @@
 					<div class="card mb-3">
 						<div class="card-header">
 							<i class="fas fa-table"></i>
-							Lista de <?php echo $nombre_pagina; ?>
+							<?php echo $nombre_pagina; ?>
 						</div>
 						<div class="card-body">
 							

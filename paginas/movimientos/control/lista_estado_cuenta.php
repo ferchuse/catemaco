@@ -30,7 +30,8 @@
 	SUM(monto)  AS entradas 
 	FROM recibos_entradas
 	WHERE 
-	MONTH(fecha_aplicacion) = '{$_GET["mes"]}'
+	MONTH(fecha_aplicacion) BETWEEN '{$_GET["mes_inicial"]}'
+	AND '{$_GET["mes_final"]}'
 	AND YEAR(fecha_aplicacion) = '{$_GET["year"]}'
 	AND estatus_deposito = 'Activo'
 	GROUP BY id_beneficiarios
@@ -43,7 +44,8 @@
 	SUM(monto_ReciboSalidas)  AS salidas 
 	FROM recibos_salidas
 	WHERE 
-	MONTH(fecha_aplicacion) = '{$_GET["mes"]}'
+	MONTH(fecha_aplicacion) BETWEEN '{$_GET["mes_inicial"]}'
+	AND '{$_GET["mes_final"]}'
 	AND YEAR(fecha_aplicacion) = '{$_GET["year"]}'
 	AND estatus_reciboSalidas = 'Activo'	
 	GROUP BY id_beneficiarios
@@ -54,6 +56,8 @@
 		
 		$consulta.=  " AND  id_beneficiarios = '{$_GET["id_beneficiarios"]}'"; 
 	}
+	
+	$consulta.=  " ORDER BY nombre_beneficiarios"; 
 	
 	$result = mysqli_query($link,$consulta);
 	
