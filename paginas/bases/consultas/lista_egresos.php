@@ -12,7 +12,7 @@
 	
 	$consulta = "SELECT * FROM base_egresos
 	LEFT JOIN usuarios USING(id_usuarios)
-	LEFT JOIN beneficiarios USING(id_beneficiarios)
+	LEFT JOIN base_beneficiarios USING(id_beneficiarios)
 	WHERE  DATE(fecha) BETWEEN '{$_GET['fecha_inicial']}' AND '{$_GET['fecha_final']}'
 	
 	";
