@@ -10,44 +10,33 @@
 	
 	
 	$consulta = "
-	SELECT * FROM beneficiarios
+	SELECT * FROM base_beneficiarios
+	
 	LEFT JOIN (
 	SELECT
 	id_beneficiarios,
-	SUM(monto)  AS cargos 
-	FROM cargos
+	SUM(monto)  AS ingresos 
+	FROM base_ingresos
 	WHERE 
-	MONTH(fecha_cargos) = '{$_GET["mes"]}'
-	AND YEAR(fecha_cargos) = '{$_GET["year"]}'
+	MONTH(fecha) = '{$_GET["mes"]}'
+	AND YEAR(fecha) = '{$_GET["year"]}'
 	AND estatus = 'Activo'
 	GROUP BY id_beneficiarios
-	) as t_cargos
+	) as t_ingresos
+	
 	USING (id_beneficiarios)
 	
 	LEFT JOIN (
 	SELECT
 	id_beneficiarios,
-	SUM(monto)  AS entradas 
-	FROM recibos_entradas
+	SUM(monto)  AS egresos 
+	FROM base_egresos
 	WHERE 
-	MONTH(fecha_aplicacion) = '{$_GET["mes"]}'
-	AND YEAR(fecha_aplicacion) = '{$_GET["year"]}'
-	AND estatus_deposito = 'Activo'
+	MONTH(fecha) = '{$_GET["mes"]}'
+	AND YEAR(fecha) = '{$_GET["year"]}'
+	AND estatus = 'Activo'	
 	GROUP BY id_beneficiarios
-	) as t_depositos
-	USING (id_beneficiarios)
-	
-	LEFT JOIN (
-	SELECT
-	id_beneficiarios,
-	SUM(monto_ReciboSalidas)  AS salidas 
-	FROM recibos_salidas
-	WHERE 
-	MONTH(fecha_aplicacion) = '{$_GET["mes"]}'
-	AND YEAR(fecha_aplicacion) = '{$_GET["year"]}'
-	AND estatus_reciboSalidas = 'Activo'	
-	GROUP BY id_beneficiarios
-	) as t_salidas
+	) as t_egresos
 	USING (id_beneficiarios)
 	"; 
 	if($_GET["id_beneficiarios"] != ''){
@@ -79,8 +68,8 @@
 		<thead>
 			<tr>
 				<th>Beneficiario</th>
-				<th>Entradas</th>
-				<th>Salidas</th>
+				<th>Ingresos</th>
+				<th>Egresos</th>
 				<th>Saldo</th>
 				
 			</thead>
@@ -88,15 +77,15 @@
 				<?php 
 					foreach($filas as $index=>$fila){
 						
-						$total[1]+= $fila["entradas"];
-						$total[2]+= $fila["salidas"];
-						$total[3]+=  $fila["entradas"] - $fila["salidas"]  ;
+						$total[1]+= $fila["ingresos"];
+						$total[2]+= $fila["egresos"];
+						$total[3]+=  $fila["ingresos"] - $fila["egresos"]  ;
 					?>
 					<tr>						
 						<td><?php echo $fila["nombre_beneficiarios"]?></td>
-						<td class="text-right">$<?php echo number_format($fila["entradas"])?></td>
-						<td class="text-right">$<?php echo number_format($fila["salidas"])?></td>
-						<td class="text-right">$<?php echo number_format( $fila["entradas"] - $fila["salidas"] )?></td>
+						<td class="text-right">$<?php echo number_format($fila["ingresos"])?></td>
+						<td class="text-right">$<?php echo number_format($fila["egresos"])?></td>
+						<td class="text-right">$<?php echo number_format( $fila["ingresos"] - $fila["egresos"] )?></td>
 					</tr>
 					<?php
 					}
