@@ -25,7 +25,7 @@
 			let button = document.getElementById("conectar");
 			
 			button.addEventListener('pointerup', function(event) {
-				navigator.bluetooth.requestDevice().then(function(device) {
+				navigator.bluetooth.requestDevice({"acceptAllDevices": true}).then(function(device) {
 					console.log('Name: ' + device.name);
 					// Do something with the device.
 				})
