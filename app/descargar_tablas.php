@@ -2,7 +2,7 @@
 	header("Content-Type: application/json");
 	session_start();
 	// if(count($_COOKIE) == 0){
-		// die("<div class='alert alert-danger'>Tu Sesión ha caducado, recarga la página.</div>");
+	// die("<div class='alert alert-danger'>Tu Sesión ha caducado, recarga la página.</div>");
 	// }
 	include('../conexi.php');
 	$link = Conectarse();
@@ -36,7 +36,7 @@
 	ORDER BY nombre_destinos
 	";
 	
-
+	
 	
 	$result = mysqli_query($link,$consulta);
 	if($result){
@@ -57,8 +57,8 @@
 		
 		foreach($resultados as $registro){
 			
-				$respuesta["destinos"][] = $registro["nombre_destinos"];
-				$respuesta["precios"][] = number_format($registro["precio"], 0);
+			$respuesta["destinos"][] = $registro["nombre_destinos"];
+			$respuesta["precios"][] = number_format($registro["precio"], 0);
 		}
 		
 		
@@ -74,7 +74,7 @@
 	////TAQUILLAS
 	
 	$consulta = "SELECT * FROM taquillas 	";
-		
+	
 	$result = mysqli_query($link,$consulta);
 	if($result){
 		
@@ -90,7 +90,7 @@
 		}
 		
 		foreach($resultados as $registro){
-				$respuesta["taquillas"][] = $registro;
+			$respuesta["taquillas"][] = $registro;
 		}
 	}
 	else {
@@ -105,7 +105,7 @@
 	WHERE  estatus_usuarios = 'Alta'
 	ORDER BY nombre_usuarios
 	";
-		
+	
 	$result = mysqli_query($link,$consulta);
 	if($result){
 		
@@ -121,7 +121,7 @@
 		}
 		
 		foreach($resultados as $registro){
-				$respuesta["usuarios"][] = $registro;
+			$respuesta["usuarios"][] = $registro;
 		}
 	}
 	else {
@@ -129,9 +129,11 @@
 		
 	}
 	
-		$consulta = "SELECT * FROM empresas 
-	";
-		
+	
+	//EMPRESAS
+	
+	$consulta = "SELECT * FROM empresas ";
+	
 	$result = mysqli_query($link,$consulta);
 	if($result){
 		
@@ -147,7 +149,7 @@
 		}
 		
 		foreach($resultados as $registro){
-				$respuesta["empresas"][] = $registro["nombre_empresas"];
+			$respuesta["empresas"][] = $registro["nombre_empresas"];
 		}
 	}
 	else {
