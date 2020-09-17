@@ -45,9 +45,7 @@ function checkAll(){
 		$(".seleccionar").prop("checked", true);
 	}
 	else{
-		
 		$(".seleccionar").prop("checked", false);
-		
 	}
 	contarSeleccionados();
 	
