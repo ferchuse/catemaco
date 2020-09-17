@@ -31,6 +31,7 @@
 				})
 				.catch(function(error) {
 					console.log("Something went wrong. " + error);
+					alert("Something went wrong. " + error);
 				});
 			});
 		</script>
