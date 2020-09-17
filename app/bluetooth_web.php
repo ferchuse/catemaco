@@ -22,7 +22,7 @@
 		
 		
 		<script>
-			let button = getElementByID("conectar");
+			let button = document.getElementById("conectar");
 			
 			button.addEventListener('pointerup', function(event) {
 				navigator.bluetooth.requestDevice
