@@ -22,6 +22,9 @@
 		$id_administrador = 2;
 	}
 	
+	
+	//PRECIOS
+	
 	$consulta = "SELECT * FROM precios_boletos 
 	LEFT JOIN origenes USING(id_origenes) 
 	LEFT JOIN (
@@ -29,7 +32,7 @@
 	nombre_origenes AS nombre_destinos
 	FROM origenes) t_destinos
 	USING(id_destinos)
-	WHERE precios_boletos.id_administrador = '$id_administrador'
+	
 	ORDER BY nombre_destinos
 	";
 	
@@ -99,8 +102,7 @@
 	////USUARIOS
 	
 	$consulta = "SELECT * FROM usuarios 
-	WHERE id_administrador = '$id_administrador'
-	AND estatus_usuarios = 'Alta'
+	WHERE  estatus_usuarios = 'Alta'
 	ORDER BY nombre_usuarios
 	";
 		
