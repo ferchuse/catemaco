@@ -131,39 +131,41 @@
 										<div class="col-sm-8">
 											<form id="form_boletos" autocomplete="off">
 												<div class="form-row">
-													<div class="form-group col-2"> 
+													<div class="form-group col-sm-2 col-4"> 
 														<label>Corrida #	</label>
 														<input name="id_corridas" id="id_corridas" class="form-control" readonly >
 													</div>
-													<div class="form-group col-2"> 
+													<div class="form-group col-sm-2 col-4"> 
 														<label>Num Eco	</label>
 														<input name="num_eco" id="num_eco" class="form-control" readonly >
 													</div>
-													<div class="col-2">
+													<div class="form-group col-sm-2 col-4">
 														<label>Asientos: </label>
 														<input name="asientos" id="asientos" class="form-control" readonly >
 													</div>
 												</div>
-												<table class="table table-bordered">
-													<thead>
-														<tr>
-															<th>Num Asiento</th>
-															<th>Tipo de Boleto</th>
-															<th>Nombre 
-																<label>
-																	<input checked type="checkbox" id="copiar_datos">
-																	Copiar
-																</label>
-																
-															</th>
-															<th>CURP </th>
-															<th>Precio</th>
-														</tr>
-													</thead>
-													<tbody id="resumen_boletos">
-														
-													</tbody>
-												</table>
+												<div class="table-responsive">
+													<table class="table table-bordered">
+														<thead>
+															<tr>
+																<th>Num Asiento</th>
+																<th>Tipo de Boleto</th>
+																<th>Nombre 
+																	<label>
+																		<input checked type="checkbox" id="copiar_datos">
+																		Copiar
+																	</label>
+																	
+																</th>
+																<th>CURP </th>
+																<th>Precio</th>
+															</tr>
+														</thead>
+														<tbody id="resumen_boletos">
+															
+														</tbody>
+													</table>
+												</div>
 												<div class="row">
 													<div class="col-12 ">
 														<div class="form-group float-right" >
@@ -191,7 +193,7 @@
 									
 									
 									<div class="row">
-										<div class="col-7" >
+										<div class="col-sm-7" >
 											<div class="card card-secondary mt-4 ">
 												<div class="card-header">
 													<b> <i class="fas fa-ticket-alt"></i> Boletos Vendidos</b>
@@ -201,20 +203,23 @@
 													</button>
 												</div>
 												<div class="card-body" id="lista_boletos">
-													<h3 class="text-center">Cargando <i class="fas fa-spinner fa-pulse"></i></h3>
+													<div class="table-responsive">
+														<h3 class="text-center">Cargando <i class="fas fa-spinner fa-pulse"></i>
+														</h3>
+													</div>
 												</div>
 											</div>
 										</div>
 										
 										
-										<div class="col-5">
+										<div class="col-sm-5">
 											
 											<div class="card card-primary mt-4 ">
 												<div class="card-header bg-danger text-white">
 													<b> <i class="fas fa-dollar-sign"></i> Gastos por Corrida</b>
 													<button  id="nuevo_gasto" type="button" class="btn btn-success mb-2 d-print-none float-right">
-														<i class="fas fa-plus"></i> Nuevo
-													</button>
+													<i class="fas fa-plus"></i> Nuevo
+												</button>
 												</div>
 												<div class="card-body" id="lista_gastos">
 													<h3 class="text-center">Cargando <i class="fas fa-spinner fa-pulse"></i></h3>

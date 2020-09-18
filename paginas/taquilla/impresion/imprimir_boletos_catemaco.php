@@ -41,7 +41,7 @@
 		
 		
 		
-		$texto .= file_get_contents('../boletos_iv/logo_brujaz.tmb');
+		// $texto .= file_get_contents('../boletos_iv/logo_brujaz.tmb');
 		$texto .="\x1b"."@ ";
 		foreach($filas as $i => $item){
 			

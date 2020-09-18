@@ -651,10 +651,18 @@ function imprimirGuia(id_corridas){
 			"id_corridas": id_corridas
 		}
 		}).done(function(respuesta){
+		
+		
+		if(window.AppInventor){
+			window.AppInventor.setWebViewString(atob(respuesta));
+		}
+		
 		printService.submit({
 			'type': 'LABEL',
 			'raw_content': respuesta
 		});
+		
+		
 		
 	});
 	
@@ -817,10 +825,18 @@ function imprimirTicket(boletos){
 		}).done(function (respuesta){
 		
 		$("#ticket").html(respuesta); 
+		
+		if(window.AppInventor){
+			window.AppInventor.setWebViewString(atob(respuesta));
+		}
+		
 		printService.submit({
 			'type': 'LABEL',
 			'raw_content': respuesta
 		});
+		
+		
+		
 		}).always(function(){
 		
 		boton.prop("disabled", false);
@@ -854,6 +870,7 @@ function imprimirPrueba(){
 			'type': 'LABEL',
 			'raw_content': respuesta
 		});
+		
 		}).always(function(){
 		
 		boton.prop("disabled", false);
@@ -880,12 +897,18 @@ function imprimirPago(id_pagos){
 		}).done(function (respuesta){
 		
 		// $("#ticket").html(respuesta); 
+		if(window.AppInventor){
+			
+			window.AppInventor.setWebViewString(atob(respuesta));
+		}
 		
 		
 		printService.submit({
 			'type': 'LABEL',
 			'raw_content': respuesta
 		});
+		
+		
 		}).always(function(){
 		
 		boton.prop("disabled", false);

@@ -100,7 +100,7 @@
 		
 		
 		
-		$respuesta = file_get_contents('logo_brujaz.tmb');
+		// $respuesta = file_get_contents('logo_brujaz.tmb');
 		
 		$empresa = "";
 		

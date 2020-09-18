@@ -62,7 +62,7 @@
 		
 		
 		
-		
+		//SI es movil convertir de CP936
 		echo base64_encode ( iconv('UTF-8', 'CP437//TRANSLIT//IGNORE', $respuesta) );
 		exit(0);
 		

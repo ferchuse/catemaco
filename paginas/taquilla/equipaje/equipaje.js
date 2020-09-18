@@ -137,7 +137,7 @@ function guardarEquipaje(event) {
 
 
 function imprimirEquipaje(id_equipaje){
-	console.log("imprimirequipaje()");
+	console.log("imprimirEquipaje()");
 	
 	
 	$.ajax({
@@ -147,18 +147,18 @@ function imprimirEquipaje(id_equipaje){
 		}
 		}).done(function (respuesta){
 		
-		let ticket_text = atob(respuesta);
+		if(window.AppInventor){
+			window.AppInventor.setWebViewString(atob(respuesta));
+		}
 		
-		console.log("Texto Ticket:", ticket_text);
-		
-		window.AppInventor.setWebViewString(ticket_text);
-		
-		
+				
 		
 		printService.submit({
 			'type': 'LABEL',
 			'raw_content': respuesta
 		});
+		
+		
 		
 		
 		}).always(function(){

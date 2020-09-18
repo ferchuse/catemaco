@@ -85,10 +85,18 @@ function imprimirPaquete(id_paquetes){
 		}
 		}).done(function (respuesta){
 		
+		if(window.AppInventor){
+			window.AppInventor.setWebViewString(atob(respuesta));
+		}
+		
+		
 		printService.submit({
 			'type': 'LABEL',
 			'raw_content': respuesta
 		});
+		
+		
+		
 		}).always(function(){
 		
 		

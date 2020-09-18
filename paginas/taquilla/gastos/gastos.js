@@ -110,6 +110,11 @@ function imprimirGasto(id_gasto){
 		}
 		}).done(function (respuesta){
 		
+		
+		if(window.AppInventor){
+			window.AppInventor.setWebViewString(atob(respuesta));
+		}
+		
 		printService.submit({
 			'type': 'LABEL',
 			'raw_content': respuesta
