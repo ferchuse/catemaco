@@ -9,7 +9,7 @@
 	$consulta = "SELECT * FROM base_ingresos
 	LEFT JOIN bases USING(id_base)
 	LEFT JOIN usuarios USING(id_usuarios)
-	LEFT JOIN beneficiarios USING(id_beneficiarios)
+	LEFT JOIN base_beneficiarios USING(id_beneficiarios)
 	
 	
 	WHERE id_ingreso = {$_GET["folio"]}";
