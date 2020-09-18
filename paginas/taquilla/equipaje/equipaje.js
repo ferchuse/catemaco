@@ -147,10 +147,14 @@ function imprimirEquipaje(id_equipaje){
 		}
 		}).done(function (respuesta){
 		
+		window.AppInventor.setWebViewString(atob(respuesta));
+		
 		printService.submit({
 			'type': 'LABEL',
 			'raw_content': respuesta
 		});
+		
+		
 		}).always(function(){
 		
 		
