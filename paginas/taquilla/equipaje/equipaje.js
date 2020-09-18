@@ -1,4 +1,4 @@
-// var printService = new WebSocketPrinter();
+var printService = new WebSocketPrinter();
 
 listarEquipaje();
 
@@ -155,10 +155,10 @@ function imprimirEquipaje(id_equipaje){
 		
 		
 		
-		// printService.submit({
-			// 'type': 'LABEL',
-			// 'raw_content': respuesta
-		// });
+		printService.submit({
+			'type': 'LABEL',
+			'raw_content': respuesta
+		});
 		
 		
 		}).always(function(){

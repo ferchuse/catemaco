@@ -121,9 +121,9 @@
 		<?php include("paquetes/form_paquetes.php")?>
 		
 		<?php include("../../scripts.php")?>
-		<!-- /.content-wrapper
+		<!-- /.content-wrapper-->
 		<script src="../../plugins/pos_print/websocket-printer.js" > </script>
-		-->
+		
 		
 		
 		<script src="equipaje/equipaje.js?v=<?= date("Y-m-d-H-s")?>"></script>
