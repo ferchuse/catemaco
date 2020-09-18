@@ -1,4 +1,4 @@
-var printService = new WebSocketPrinter();
+// var printService = new WebSocketPrinter();
 
 listarEquipaje();
 
@@ -147,12 +147,18 @@ function imprimirEquipaje(id_equipaje){
 		}
 		}).done(function (respuesta){
 		
-		window.AppInventor.setWebViewString(atob(respuesta));
+		let ticket_text = atob(respuesta);
 		
-		printService.submit({
-			'type': 'LABEL',
-			'raw_content': respuesta
-		});
+		console.log("Texto Ticket:", ticket_text);
+		
+		window.AppInventor.setWebViewString(ticket_text);
+		
+		
+		
+		// printService.submit({
+			// 'type': 'LABEL',
+			// 'raw_content': respuesta
+		// });
 		
 		
 		}).always(function(){

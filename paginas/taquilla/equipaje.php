@@ -64,8 +64,11 @@
 												<i class="fas fa-plus"></i> Nuevo
 											</button>
 										</div>
-										<div class="card-body" id="lista_equipaje">
+										<div class="card-body table-responsive">
+										<div class="table-responsive" id="lista_equipaje">
+											
 											<h3 class="text-center">Cargando <i class="fas fa-spinner fa-pulse"></i></h3>
+										</div>
 										</div>
 									</div>
 								</div>
@@ -118,12 +121,13 @@
 		<?php include("paquetes/form_paquetes.php")?>
 		
 		<?php include("../../scripts.php")?>
+		<!-- /.content-wrapper
 		<script src="../../plugins/pos_print/websocket-printer.js" > </script>
+		-->
 		
 		
-		
-		<script src="equipaje/equipaje.js?v=<?= date("Y-m-d-H")?>"></script>
-		<script src="paquetes/paquetes.js?v=<?= date("Y-m-d-H")?>"></script>
+		<script src="equipaje/equipaje.js?v=<?= date("Y-m-d-H-s")?>"></script>
+		<script src="paquetes/paquetes.js?v=<?= date("Y-m-d-H-s")?>"></script>
 		
 	</body>
 </html>																														
