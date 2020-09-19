@@ -1,7 +1,7 @@
 <?php
 	include('../../conexi.php');
 	$link = Conectarse();
-	$nombre_pagina = "Estado de Cuenta";
+	$nombre_pagina = "Ingresos";
 	include('../../funciones/generar_select.php');
 	include("../../paginas/login/login_check.php");
 ?>

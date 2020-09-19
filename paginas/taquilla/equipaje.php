@@ -65,10 +65,10 @@
 											</button>
 										</div>
 										<div class="card-body table-responsive">
-										<div class="table-responsive" id="lista_equipaje">
-											
-											<h3 class="text-center">Cargando <i class="fas fa-spinner fa-pulse"></i></h3>
-										</div>
+											<div class="table-responsive" id="lista_equipaje">
+												
+												<h3 class="text-center">Cargando <i class="fas fa-spinner fa-pulse"></i></h3>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -81,8 +81,10 @@
 												<i class="fas fa-plus"></i> Nuevo
 											</button>
 										</div>
-										<div class="card-body" id="lista_paquetes">
-											<h3 class="text-center">Cargando <i class="fas fa-spinner fa-pulse"></i></h3>
+										<div class="card-body" >
+											<div class="table-responsive" id="lista_paquetes">
+												<h3 class="text-center">Cargando <i class="fas fa-spinner fa-pulse"></i></h3>
+											</div>
 										</div>
 									</div>
 									
