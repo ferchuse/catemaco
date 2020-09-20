@@ -35,7 +35,7 @@
 		}
 		else{
 			
-			return false;//"Pagina no existe, $url_paginas,{$_SESSION["id_usuarios"]}, $consulta";
+			return false;//"Pagina no existe, $url_paginas,{$_COOKIE["id_usuarios"]}, $consulta";
 		}
 		
 	}

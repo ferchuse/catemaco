@@ -13,7 +13,7 @@
 		tipo_boleto = '{$_POST["tipo_boleto"]}',
 		id_precio = '{$_POST["id_precio"]}',
 		precio_boletos = '{$_POST["precio"]}',
-		id_usuarios = '{$_SESSION["id_usuarios"]}',
+		id_usuarios = '{$_COOKIE["id_usuarios"]}',
 		fecha_boletos = NOW()
 		";
 		$result_detalle = 	mysqli_query($link,$insert);

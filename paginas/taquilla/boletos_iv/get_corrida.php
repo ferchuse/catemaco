@@ -10,7 +10,7 @@
 	
 	$consulta ="SELECT * FROM corridas 
 	WHERE  
-	id_administrador = '{$_SESSION['id_administrador']}' ,
+	id_administrador = '{$_COOKIE['id_administrador']}' ,
 	AND estatus_corridas = 'Activo'
 	";
 	$result = 	mysqli_query($link,$insert);

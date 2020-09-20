@@ -23,7 +23,7 @@
 						
 						<div class="form-group col-4">
 							<label for="id_taquilla">Taquilla:</label>
-							<?php echo generar_select($link, "taquillas", "id_taquilla", "nombre_taquilla", false, false, true, $_SESSION["id_recaudaciones"]) ;	?>
+							<?php echo generar_select($link, "taquillas", "id_taquilla", "nombre_taquilla", false, false, true, $_COOKIE["id_recaudaciones"]) ;	?>
 						</div>
 					</div>
 					<div class="form-row">

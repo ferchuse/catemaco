@@ -15,7 +15,7 @@
 		curp = '{$_POST["curp"][$i]}',
 		id_precio = '{$_POST["id_precio"][$i]}',
 		precio_boletos = '{$_POST["precio"][$i]}',
-		id_usuarios = '{$_SESSION["id_usuarios"]}',
+		id_usuarios = '{$_COOKIE["id_usuarios"]}',
 		fecha_boletos = NOW()
 		";
 		$result_detalle = 	mysqli_query($link,$insert);

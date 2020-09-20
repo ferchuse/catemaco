@@ -11,7 +11,7 @@
 	
 	$consulta = "SELECT * FROM precios_boletos 
 	
-	WHERE id_administrador= '{$_SESSION["id_administrador"]}'
+	WHERE id_administrador= '{$_COOKIE["id_administrador"]}'
 	";
   
 	
