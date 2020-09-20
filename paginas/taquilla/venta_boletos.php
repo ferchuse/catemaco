@@ -202,8 +202,8 @@
 														<i class="fas fa-print"></i> Imprimir Guia y Finalizar 
 													</button>
 												</div>
-												<div class="card-body" id="lista_boletos">
-													<div class="table-responsive">
+												<div class="card-body" >
+													<div class="table-responsive" id="lista_boletos">
 														<h3 class="text-center">Cargando <i class="fas fa-spinner fa-pulse"></i>
 														</h3>
 													</div>
@@ -218,11 +218,13 @@
 												<div class="card-header bg-danger text-white">
 													<b> <i class="fas fa-dollar-sign"></i> Gastos por Corrida</b>
 													<button  id="nuevo_gasto" type="button" class="btn btn-success mb-2 d-print-none float-right">
-													<i class="fas fa-plus"></i> Nuevo
-												</button>
+														<i class="fas fa-plus"></i> Nuevo
+													</button>
 												</div>
-												<div class="card-body" id="lista_gastos">
-													<h3 class="text-center">Cargando <i class="fas fa-spinner fa-pulse"></i></h3>
+												<div class="card-body" >
+													<div class="table-responsive" id="lista_gastos">
+														<h3 class="text-center">Cargando <i class="fas fa-spinner fa-pulse"></i></h3>
+													</div>
 												</div>
 											</div>
 											
