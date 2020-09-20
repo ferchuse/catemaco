@@ -1,8 +1,5 @@
 <?php 
-	session_start();
-	if(count($_SESSION) == 0){
-		die("<div class='alert alert-danger'>Tu Sesión ha caducado, recarga la página.</div>");
-	}
+
 	include('../../../conexi.php');
 	include('../../../funciones/generar_select.php');
 	include('../../../funciones/console_log.php');
@@ -33,7 +30,7 @@
 	estatus_boletaje = 'Activo'
 	) AS boletaje_activo USING (id_unidades)
 	WHERE tarjeta= '$tarjeta'
-	AND tarjetas.id_administrador = '{$_SESSION["id_administrador"]}'";
+	AND tarjetas.id_administrador = '{$_COOKIE["id_administrador"]}'";
   
 	 
 	$result = mysqli_query($link,$consulta);

@@ -1,12 +1,5 @@
 <?php 
-	session_start();
-	if(count($_SESSION) == 0){
-		$respuesta["estatus"] = "error";
-		$respuesta["mensaje"] = "Tu sesion a caducado, vuelve a entrar ";		
-		
-		echo json_encode($respuesta);
-		exit();
-	}
+
 	include('../conexi.php');
 	$link = Conectarse();
 	
@@ -25,7 +18,7 @@
 		
 		// $str_pairs  = trim($str_pairs, ",");
 		$query.= $str_pairs;
-		$query.= " id_administrador = '{$_SESSION["id_administrador"]}'";
+		$query.= " id_administrador = '{$_COOKIE["id_administrador"]}'";
 		
     }else{
 		

@@ -1,8 +1,5 @@
 <?php 
-	session_start();
-	if(count($_SESSION) == 0){
-		die("<div class='alert alert-danger'>Tu Sesión ha caducado, recarga la página.</div>");
-	}
+	
 	include('../../../conexi.php');
 	include('../../../funciones/generar_select.php');
 	include('../../../funciones/console_log.php');
@@ -97,7 +94,7 @@
 	";
 	$consulta.="
 	WHERE 1
-	AND unidades.id_administrador = '{$_SESSION["id_administrador"]}'
+	AND unidades.id_administrador = '{$_COOKIE["id_administrador"]}'
 	"; 
 	
 	if($_GET["num_eco"] != ""){
@@ -105,7 +102,7 @@
 	}
 	
 	if($_SESSION["tipo_usuario"] == "propietario"){
-		$consulta.=  " AND id_propietarios  = '{$_SESSION["id_usuarios"]}' ";
+		$consulta.=  " AND id_propietarios  = '{$_COOKIE["id_usuarios"]}' ";
 	}
 	
 	if($_GET["id_propietarios"] != ""){
