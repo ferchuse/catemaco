@@ -106,6 +106,7 @@
 						</div>	
 						<div class="col-5">			
 							<select disabled class="form-control placa" id="tipo_placas" name="tipo_placas">
+								<option value="">Seleccione...</option>
 								<option value="ESTATAL">ESTATAL</option>
 								<option value="FEDERAL">FEDERAL</option>
 							</select>
