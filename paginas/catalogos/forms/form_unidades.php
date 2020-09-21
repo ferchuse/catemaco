@@ -91,6 +91,44 @@
 					</div>
 					<div class="row mb-2">
 						<div class="col-2">
+							<label >Tiene Placas:</label>
+						</div>	
+						<div class="col-5">			
+							<select class="form-control " id="tiene_placas" name="tiene_placas">
+								<option value="NO">NO</option>
+								<option value="SI">SI</option>
+							</select>
+						</div>
+					</div>
+					<div class="row mb-2">
+						<div class="col-2">
+							<label >Tipo de Placa:</label>
+						</div>	
+						<div class="col-5">			
+							<select disabled class="form-control placa" id="tipo_placas" name="tipo_placas">
+								<option value="ESTATAL">ESTATAL</option>
+								<option value="FEDERAL">FEDERAL</option>
+							</select>
+						</div>
+					</div>
+					<div class="row mb-2">
+						<div class="col-2">
+							<label for="placas">Placas:</label>
+						</div>	
+						<div class="col-5">			
+							<input disabled class="form-control placa" type="text" name="placas" id="placas">
+						</div>
+					</div>
+					<div class="row mb-2">
+						<div class="col-2">
+							<label for="">Razon Social:</label>
+						</div>	
+						<div class="col-5">			
+							<input disabled class="form-control placa" type="text" name="razon_social" id="razon_social">
+						</div>
+					</div>
+					<div class="row mb-2">
+						<div class="col-2">
 							<label for="nombre_propietario">Serie:</label>
 						</div>	
 						<div class="col-5">			
@@ -145,16 +183,16 @@
 							<input class="form-control" type="text" name="tipo_aceite" id="tipo_aceite" placeholder="Opcional">
 						</div>
 					</div>
-				</div>
-				
-				<!-- Modal footer -->
-				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-dismiss="modal">
-					<i class="fas fa-times"></i> Cancelar</button>
-					<button type="submit" class="btn btn-success " >
-					<i class="fas fa-save"></i> Guardar </button>
+					</div>
+					
+					<!-- Modal footer -->
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">
+						<i class="fas fa-times"></i> Cancelar</button>
+						<button type="submit" class="btn btn-success " >
+						<i class="fas fa-save"></i> Guardar </button>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</form>		
+	</form>		

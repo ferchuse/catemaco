@@ -15,6 +15,20 @@ $(document).ready(function(){
 	$("#imprimir_qr").click(function(){
 		$("#form_seleccionados").submit()
 	});
+	
+	$("#tiene_placas").change(function(){
+		
+		if($(this).val() == "SI"){
+			$(".placa").prop("disabled", false);
+			$(".placa").prop("required", true);
+		}
+		else{			
+			$(".placa").prop("disabled", true);
+			$(".placa").prop("required", false);
+		}
+		
+		
+	});
 });
 
 
@@ -72,7 +86,7 @@ function buscarUnidad(){
 		}).done(function(respuesta){
 		
 		if(respuesta.count_rows > 0){
-			alertify.warning("La unidad ya existe")
+			// alertify.warning("La unidad ya existe")
 			$.each(respuesta.data, function(name , value){
 				$("#form_edicion").find("#"+ name).val(value);
 				
@@ -148,7 +162,7 @@ function listarRegistros() {
 		}).done(function(respuesta){
 		
 		$('#lista_registros').html(respuesta);
-	
+		
 		$("#check_all").change(checkAll);
 		$(".seleccionar").change(contarSeleccionados)
 		$('.btn_editar').on('click', cargarRegistro);
