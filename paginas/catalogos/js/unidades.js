@@ -2,9 +2,13 @@ $(document).ready(function(){
 	listarRegistros();
 	
 	$('#form_edicion').submit( guardarRegistro );
-	$('#form_edicion').keydown( function(event){
+	$('#form_edicion input').keydown( function(event){
 		console.log()
-		if(event.which == 13){
+		if(event.which == 13 ){
+			if($(this).attr("id") == "num_eco"  ){
+				buscarUnidad();	
+				return false;
+			}
 			event.preventDefault();
 			return false;
 		}
