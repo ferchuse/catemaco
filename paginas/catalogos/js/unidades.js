@@ -2,6 +2,8 @@ $(document).ready(function(){
 	listarRegistros();
 	
 	$('#form_edicion').submit( guardarRegistro );
+	
+	//Evitar enviar el formulario al presiona  Enter
 	$('#form_edicion input').keydown( function(event){
 		console.log()
 		if(event.which == 13 ){
@@ -110,6 +112,7 @@ function buscarUnidad(){
 				
 			});
 			$("#form_edicion").find("#serie").prop("disabled", false);
+			$("#form_edicion").find("#num_eco").prop("disabled", false);
 			
 			
 		}
