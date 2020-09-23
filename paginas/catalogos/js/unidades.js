@@ -2,6 +2,12 @@ $(document).ready(function(){
 	listarRegistros();
 	
 	$('#form_edicion').submit( guardarRegistro );
+	$('#form_edicion').keyup( function(event){
+		if(event.which == 13){
+			event.preventDefault();
+		}
+		
+	} );
 	$('.nuevo').click( nuevoRegistro );
 	$('#num_eco').blur( buscarUnidad );
 	$('#form_filtro').on('submit', function filtrar(event){
@@ -178,6 +184,9 @@ function listarRegistros() {
 //FUNCION DE Cargar datos
 function cargarRegistro() {
 	console.log("cargarRegistro()");
+	
+	$("#form_edicion")[0].reset();
+	
 	var $boton = $(this);
 	var id_registro= $(this).data("id_registro");
 	
