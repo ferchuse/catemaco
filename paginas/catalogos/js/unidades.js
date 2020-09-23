@@ -98,6 +98,8 @@ function buscarUnidad(){
 			// alertify.warning("La unidad ya existe")
 			$.each(respuesta.data, function(name , value){
 				$("#form_edicion").find("#"+ name).val(value);
+				
+				// if($("#permiso"))
 				$("#form_edicion").find("#"+ name).prop("disabled", true);
 				
 				
@@ -123,6 +125,9 @@ function nuevoRegistro(event){
 		$('#form_edicion input:eq(0)').trigger("focus");
 		$('#form_edicion input:eq(0)').trigger("focus");
 	});
+	
+	$("#form_edicion").find("input").prop("disabled", false);
+	$("#form_edicion").find("select").prop("disabled", false);
 }
 function guardarRegistro(event){
 	event.preventDefault();
