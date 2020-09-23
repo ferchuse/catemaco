@@ -99,8 +99,9 @@ function buscarUnidad(){
 			$.each(respuesta.data, function(name , value){
 				$("#form_edicion").find("#"+ name).val(value);
 				
-				// if($("#permiso"))
-				$("#form_edicion").find("#"+ name).prop("disabled", true);
+				if($("#permiso").val() != "Supervisor"){
+					$("#form_edicion").find("#"+ name).prop("disabled", true);
+				}
 				
 				
 			});
