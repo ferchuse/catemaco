@@ -2,9 +2,11 @@ $(document).ready(function(){
 	listarRegistros();
 	
 	$('#form_edicion').submit( guardarRegistro );
-	$('#form_edicion').keyup( function(event){
+	$('#form_edicion').keydown( function(event){
+		console.log()
 		if(event.which == 13){
 			event.preventDefault();
+			return false;
 		}
 		
 	} );
@@ -74,6 +76,7 @@ function checkAll(){
 
 function buscarUnidad(){
 	console.log("id_unidades", $("#id_unidades").val());
+	console.log("buscarUnidad()");
 	
 	
 	$('#num_eco').addClass("cargando");
@@ -95,8 +98,13 @@ function buscarUnidad(){
 			// alertify.warning("La unidad ya existe")
 			$.each(respuesta.data, function(name , value){
 				$("#form_edicion").find("#"+ name).val(value);
+				$("#form_edicion").find("#"+ name).prop("disabled", true);
+				
 				
 			});
+			$("#form_edicion").find("#serie").prop("disabled", false);
+			
+			
 		}
 		
 		}).always(function(){
