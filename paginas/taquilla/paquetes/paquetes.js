@@ -26,7 +26,8 @@ function listarPaquetes() {
 	$.ajax({
 		"url": "paquetes/listar_paquetes.php",
 		data:{
-			"fecha": $("#fecha").val()
+			"fecha": $("#fecha").val(),
+			"id_usuarios": $("#filtro_usuarios").val()
 		}
 		}).done(function alCargar(respuesta) {
 		$("#lista_paquetes").html(respuesta);

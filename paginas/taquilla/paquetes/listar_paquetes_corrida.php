@@ -10,13 +10,13 @@
 	$consulta = "SELECT * FROM paquetes
 	LEFT JOIN taquillas ON taquillas.id_taquilla = paquetes.id_taquilla_destino
 	LEFT JOIN usuarios USING(id_usuarios)
-	LEFT JOIN corridas USING(id_corridas)
 	
-	WHERE DATE(fecha_paquetes) = '{$_GET["fecha"]}'
+	WHERE 
+	 id_corridas = '{$_GET["id_corridas"]}'
 	";
 	
 	if($_GET["id_usuarios"] != ""){
-		$consulta.=" AND paquetes.id_usuarios = '{$_GET["id_usuarios"]}' ";
+		$consulta.=" AND id_usuarios = '{$_GET["id_usuarios"]}' ";
 	}
 	
 
@@ -31,8 +31,6 @@
 			<tr>
 				
 				<th class="text-center">Folio</th>
-				<th class="text-center">Corrida</th>
-				<th class="text-center">Num Eco</th>
 				<th class="text-center">Taquilla Destino</th>
 				<th class="text-center">Tamaño</th>
 				<th class="text-center">Costo</th>
@@ -48,8 +46,6 @@
 				
 				<tr>
 					<td><?php echo $fila["id_paquetes"];?></td>
-					<td><?php echo $fila["id_corridas"];?></td>
-					<td><?php echo $fila["num_eco"];?></td>
 					<td><?php echo $fila["nombre_taquilla"];?></td>
 					<td><?php echo $fila["tipo_paquete"];?></td>
 					<td>$<?php echo $fila["costo"];?></td>
@@ -90,10 +86,8 @@
 				</td>
 				<td ><B> Total Paquetes</b></td>
 				<td ></td>
-				<td ></td>
-				<td ></td>
 				<td >
-					$<?php echo number_format($suma_importe,2);?>
+					$<?php echo number_format($suma_importe,2);?>.
 				</td>
 			</tr>
 		</tfoot>

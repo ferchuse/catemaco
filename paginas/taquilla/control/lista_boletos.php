@@ -10,9 +10,14 @@
 	$consulta_paquetes = "SELECT SUM(costo) AS total_paquetes FROM paquetes
 	LEFT JOIN taquillas ON taquillas.id_taquilla = paquetes.id_taquilla_destino
 	
-	WHERE id_corridas = '{$_GET["id_corridas"]}' 
-	AND estatus_paquetes <> 'Cancelado'
-	";
+	WHERE id_corridas = '{$_GET["id_corridas"]}' ";
+		
+	if($_GET["id_usuarios"] != ""){
+		$consulta_paquetes.=" AND id_usuarios = '{$_GET["id_usuarios"]}' ";
+	}
+	
+	
+	$consulta_paquetes.=" AND estatus_paquetes <> 'Cancelado'";
 	
 	$result_paquetes = mysqli_query($link,$consulta_paquetes);
 	
@@ -23,8 +28,13 @@
 	
 	
 	$consulta_equipaje= "SELECT SUM(importe) AS total_equipaje FROM equipaje
-	WHERE id_corridas = '{$_GET["id_corridas"]}'
-	AND estatus <> 'Cancelado'
+	WHERE id_corridas = '{$_GET["id_corridas"]}'";
+	
+	if($_GET["id_usuarios"] != ""){
+		$consulta_equipaje.=" AND id_usuarios = '{$_GET["id_usuarios"]}' ";
+	}
+	$consulta_equipaje.=" AND estatus <> 'Cancelado'
+	
 	";
 	
 	$result_equipaje = mysqli_query($link,$consulta_equipaje);
@@ -35,25 +45,30 @@
 	}
 	
 	
-	$consulta = "SELECT *, nombre_origenes as destino FROM boletos 
+	$consulta_boletos = "SELECT *, nombre_origenes as destino FROM boletos 
 	LEFT JOIN precios_boletos USING(id_precio)
+	LEFT JOIN usuarios USING(id_usuarios)
 	LEFT JOIN origenes ON precios_boletos.id_destinos = origenes.id_origenes
-	WHERE id_corridas = '{$_GET["id_corridas"]}'
-	ORDER BY id_boletos DESC
-	";
+	WHERE id_corridas = '{$_GET["id_corridas"]}'";
+	
+	if($_GET["id_usuarios"] != ""){
+		$consulta_boletos.=" AND id_usuarios = '{$_GET["id_usuarios"]}' ";
+	}
+	
+	$consulta_boletos.=" ORDER BY id_boletos DESC";
 	
 	
-	$result = mysqli_query($link,$consulta);
-	if($result){
+	$result_boletos = mysqli_query($link,$consulta_boletos);
+	if($result_boletos){
 		
-		if( mysqli_num_rows($result) == 0){
+		if( mysqli_num_rows($result_boletos) == 0){
 			die("<div class='alert alert-danger'>No hay registros</div>");
 			
 		}
 		
 	?>  
 	<pre hidden>
-		<?php echo $consulta;?>
+		<?php echo $consulta_boletos;?>
 	</pre>
 	
 	<table class="table table-bordered table-condensed">
@@ -65,14 +80,14 @@
 				<th>Nombre Pasajero</th>
 				<th>Destino</th>
 				<th>Precio</th>
-				<th hidden>Origen </th>
+				<th >Usuario </th>
 				<th hidden>Destino</th>
 			</tr>
 		</thead>
 		<tbody>
 			<?php 
 				
-				while($fila = mysqli_fetch_assoc($result)){
+				while($fila = mysqli_fetch_assoc($result_boletos)){
 					
 					$filas = $fila ;
 					
@@ -110,6 +125,7 @@
 					<td><?php echo $filas["nombre_pasajero"];?></td>
 					<td ><?php echo $filas["destino"]?></td>
 					<td>$<?php echo number_format($filas["precio_boletos"])?></td>
+					<td ><?php echo $filas["nombre_usuarios"]?></td>
 					
 				</tr>
 				
@@ -135,7 +151,7 @@
 		<div class="col-6">
 			<div class="form-group">
 				<label>Boletos Vendidos</label>
-				<input type="" class="form-control" readonly  id="boletos_vendidos" value="<?php echo mysqli_num_rows($result)?>">
+				<input type="" class="form-control" readonly  id="boletos_vendidos" value="<?php echo mysqli_num_rows($result_boletos)?>">
 			</div>
 		</div>
 		<div class="col-6">
@@ -165,7 +181,7 @@
 	}
 	
 	else {
-		echo "Error en ".$consulta.mysqli_Error($link);
+		echo "Error en ".$consulta_boletos.mysqli_Error($link);
 		
 	}
 	

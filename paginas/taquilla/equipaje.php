@@ -49,12 +49,20 @@
 										}
 									?>
 									<form id="form_filtros" >
+										<div class="row" <?= $permiso?> >
 										<div class="form-group col-sm-3" <?= $permiso?> >
 											<label>Fecha</label>
-											
-											
 											<input id="fecha" name="fecha" class="form-control" type="date" value="<?= date("Y-m-d")?>"  >
-											
+										</div>
+										
+										<div class="form-group  col-sm-3">
+											<label>
+												Usuario:
+											</label>
+											<?php
+												echo generar_select($link, "usuarios" , "id_usuarios", "nombre_usuarios", true, false, false, $_COOKIE["id_usuarios"],0, "id_usuarios" , "filtro_usuarios")
+											?>
+										</div>
 										</div>
 									</form>
 									<div class="card card-primary mt-4 ">

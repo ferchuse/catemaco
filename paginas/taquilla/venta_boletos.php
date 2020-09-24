@@ -14,6 +14,8 @@
 	//$date_inicial = $dt_fecha_inicial->format("Y-m-d");
 	$date_final = $dt_fecha_final->format("Y-m-d");
 	
+	
+	
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -198,11 +200,32 @@
 												<div class="card-header">
 													<b> <i class="fas fa-ticket-alt"></i> Boletos Vendidos</b>
 													
+													
 													<button class="btn btn-info float-right" id="imprimir_guia">
-														<i class="fas fa-print"></i> Imprimir Guia y Finalizar 
+														<i class="fas fa-print"></i> Imprimir Guia 
 													</button>
 												</div>
 												<div class="card-body" >
+													<div class="row" >
+														<?php
+															
+															if(dame_permiso("venta_boletos.php", $link) == "Supervisor"){
+																
+																$permiso ="";
+															}
+															else{
+																$permiso ="hidden";
+															}
+														?>
+														<div class="form-group" <?= $permiso;?>>
+															<label>
+																Usuario:
+															</label>
+															<?php
+																echo generar_select($link, "usuarios" , "id_usuarios", "nombre_usuarios", true, false, false, $_COOKIE["id_usuarios"],0, "id_usuarios" , "filtro_usuarios")
+															?>
+														</div>
+													</div>
 													<div class="table-responsive" id="lista_boletos">
 														<h3 class="text-center">Cargando <i class="fas fa-spinner fa-pulse"></i>
 														</h3>
@@ -219,23 +242,30 @@
 													<b> <i class="fas fa-dollar-sign"></i> Gastos por Corrida</b>
 													<button  id="nuevo_gasto" type="button" class="btn btn-success mb-2 d-print-none float-right">
 														<i class="fas fa-plus"></i> Nuevo
-													</button>
-												</div>
-												<div class="card-body" >
+														</button>
+														</div>
+														<div class="card-body" >
 													<div class="table-responsive" id="lista_gastos">
 														<h3 class="text-center">Cargando <i class="fas fa-spinner fa-pulse"></i></h3>
 													</div>
 												</div>
 											</div>
 											
-											<div class="card card-success mt-4 " hidden>
+											<div class="card card-success mt-4 " >
 												<div class="card-header bg-info text-white">
 													<b> <i class="fas fa-box-open"></i> Paquetes</b>
-													<button  id="nuevo_paquete" type="button" class="btn btn-success mb-2 d-print-none float-right">
-														<i class="fas fa-plus"></i> Nuevo
-													</button>
+													
 												</div>
-												<div class="card-body" id="lista_paquetes">
+												<div class="card-body table-responsive" id="lista_paquetes">
+													<h3 class="text-center">Cargando <i class="fas fa-spinner fa-pulse"></i></h3>
+												</div>
+											</div>
+											<div class="card card-success mt-4 " >
+												<div class="card-header bg-secondary text-white">
+													<b> <i class="fas fa-briefcase"></i> Equipaje</b>
+													
+												</div>
+												<div class="card-body table-responsive" id="lista_equipaje">
 													<h3 class="text-center">Cargando <i class="fas fa-spinner fa-pulse"></i></h3>
 												</div>
 											</div>
@@ -276,7 +306,6 @@
 		</div>
 		
 		<?php include("gastos/form_gastos.php")?>
-		<?php include("paquetes/form_paquetes.php")?>
 		
 		<?php include("../../scripts.php")?>
 		<script src="../../plugins/pos_print/websocket-printer.js" > </script>
@@ -284,7 +313,6 @@
 		<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js" ></script>
 		<script src="boletos_iv/venta_boletos.js?v=<?= date("Y-m-d-H-i-s")?>"></script>
 		<script src="gastos/gastos.js?v=<?= date("Y-m-d-H-i-s")?>"></script>
-		<script src="paquetes/paquetes.js?v=<?= date("Y-m-d-H-i-s")?>"></script>
 		
 	</body>
 </html>																														

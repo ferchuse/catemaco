@@ -57,7 +57,7 @@
 										<label for="">No. Economico:</label>
 									</div>	
 									<div class="col-sm-3">			
-										<input class="form-control" type="text" name="num_eco"  >
+										<input class="form-control" type="number" name="num_eco"  >
 									</div> 
 									<div class="col-sm-1">
 										<label for="">Derrotero:</label>

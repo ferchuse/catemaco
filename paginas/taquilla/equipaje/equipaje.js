@@ -22,6 +22,12 @@ $("#nuevo_equipaje").click(function nuevo() {
 
 $('#equipaje_id_corridas').change(eligeBoleto);
 $('#tipo_equipaje').change(eligeEquipaje);
+$('#filtro_usuarios').change(function(){
+	
+	listarEquipaje();
+	listarPaquetes();
+	
+});
 
 $('#form_equipaje').submit(guardarEquipaje);
 
@@ -38,7 +44,8 @@ function listarEquipaje() {
 	$.ajax({
 		"url": "equipaje/listar_equipaje.php",
 		data:{
-			"fecha": $("#fecha").val()
+			"fecha": $("#fecha").val(),
+			"id_usuarios": $("#filtro_usuarios").val()
 		}
 		}).done(function alCargar(respuesta) {
 		$("#lista_equipaje").html(respuesta);
@@ -151,7 +158,7 @@ function imprimirEquipaje(id_equipaje){
 			window.AppInventor.setWebViewString(atob(respuesta));
 		}
 		
-				
+		
 		
 		printService.submit({
 			'type': 'LABEL',

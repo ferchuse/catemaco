@@ -8,8 +8,13 @@
 	WHERE id_corridas = '{$_GET["id_corridas"]}' 
 	";
 	
+	
+	if($_GET["id_usuarios"] != ""){
+		$consulta.=" AND gastos_corrida.id_usuarios = '{$_GET["id_usuarios"]}' ";
+	}
+	
 
-	$consulta.= "ORDER BY fecha_gastos ";
+	$consulta.= " ORDER BY fecha_gastos ";
 	$result = mysqli_query($link,$consulta);
 	
 	if($result){

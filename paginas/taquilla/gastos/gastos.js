@@ -17,7 +17,8 @@ function listarGastos() {
 	$.ajax({
 		"url": "gastos/listar_gastos.php",
 		data:{
-			"id_corridas": $("#form_boletos #id_corridas").val()
+			"id_corridas": $("#form_boletos #id_corridas").val(),
+			"id_usuarios": $("#filtro_usuarios").val()
 		}
 		}).done(function alCargar(respuesta) {
 		$("#lista_gastos").html(respuesta);
@@ -101,7 +102,7 @@ function guardarGasto(event) {
 
 function imprimirGasto(id_gasto){
 	console.log("imprimirGasto()");
-
+	
 	
 	$.ajax({
 		url: "impresion/imprimir_gasto.php" ,

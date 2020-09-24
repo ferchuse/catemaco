@@ -1,5 +1,5 @@
 <?php 
-
+	
 	include('../../../conexi.php');
 	$link = Conectarse();
 	$filas = array();
@@ -13,12 +13,18 @@
 	FROM	boletos 
 	LEFT JOIN usuarios USING(id_usuarios)
 	LEFT JOIN corridas USING(id_corridas)
-	
 	LEFT JOIN precios_boletos USING(id_precio)
 	LEFT JOIN origenes ON precios_boletos.id_destinos = origenes.id_origenes
-	WHERE id_corridas = '{$_GET["id_corridas"]}' 
-	ORDER BY num_asiento
-	";
+	WHERE id_corridas = '{$_GET["id_corridas"]}' ";
+	
+	if($_GET["id_usuarios"] != ""){
+		$consulta_guia.=" AND boletos.id_usuarios = '{$_GET["id_usuarios"]}' ";
+	}
+	
+	
+	$consulta_guia.=" ORDER BY num_asiento";
+	
+	
 	$result_guia = mysqli_query($link,$consulta_guia);
 	
 	while($fila_guia = mysqli_fetch_assoc($result_guia)){
@@ -32,9 +38,13 @@
 	FROM	boletos 
 	LEFT JOIN precios_boletos USING(id_precio)
 	LEFT JOIN origenes ON precios_boletos.id_destinos = origenes.id_origenes
-	WHERE id_corridas = '{$_GET["id_corridas"]}' 
-	GROUP BY id_precio
-	";
+	WHERE id_corridas = '{$_GET["id_corridas"]}' ";
+	if($_GET["id_usuarios"] != ""){
+		$consulta_boletos.=" AND gastos_corrida.id_usuarios = '{$_GET["id_usuarios"]}' ";
+	}
+	$consulta_boletos.="GROUP BY id_precio";
+	
+	
 	$result_boletos = mysqli_query($link,$consulta_boletos);
 	
 	while($fila_boletos = mysqli_fetch_assoc($result_boletos)){
@@ -46,8 +56,15 @@
 	
 	$consulta_gastos = "SELECT * FROM gastos_corrida
 	LEFT JOIN cat_gastos USING(id_cat_gastos)
-	WHERE id_corridas = '{$_GET["id_corridas"]}' 
-	ORDER BY fecha_gastos ";
+	WHERE id_corridas = '{$_GET["id_corridas"]}'";
+	
+	
+	if($_GET["id_usuarios"] != ""){
+		$consulta_gastos.=" AND gastos_corrida.id_usuarios = '{$_GET["id_usuarios"]}' ";
+	}
+	
+	
+	$consulta_gastos .=" ORDER BY fecha_gastos ";
 	
 	$result_gastos = mysqli_query($link,$consulta_gastos);
 	
@@ -62,6 +79,11 @@
 	WHERE id_corridas = '{$_GET["id_corridas"]}' 
 	AND estatus_paquetes <> 'Cancelado'
 	";
+	if($_GET["id_usuarios"] != ""){
+		$consulta_paquetes.=" AND paquetes.id_usuarios = '{$_GET["id_usuarios"]}' ";
+	}
+	
+	
 	
 	$result_paquetes = mysqli_query($link,$consulta_paquetes);
 	
@@ -75,6 +97,11 @@
 	WHERE id_corridas = '{$_GET["id_corridas"]}'
 	AND estatus <> 'Cancelado'
 	";
+	
+	if($_GET["id_usuarios"] != ""){
+		$consulta_equipaje.=" AND equipaje.id_usuarios = '{$_GET["id_usuarios"]}' ";
+	}
+	
 	
 	$result_equipaje = mysqli_query($link,$consulta_equipaje);
 	
@@ -135,7 +162,7 @@
 		}
 		
 		
-			$respuesta.= "ASIENTO           PASAJERO            PRECIO\n";
+		$respuesta.= "ASIENTO           PASAJERO            PRECIO\n";
 		foreach($guias AS $i =>$fila){
 			if($fila["estatus_boletos"] == "Cancelado"){
 				
@@ -185,7 +212,7 @@
 		$respuesta.=   "  TIPOS DE BOLETOS \n";
 		$respuesta.=   "\x1b"."@"; 
 		$respuesta.=  "  DESTINO           CANTIDAD \n";
-			
+		
 		foreach($boletos AS $i =>$boleto){
 			$respuesta.=  "  ".$boleto["destino"]." \x09       ";
 			$respuesta.= $boleto["cantidad"]."\n";
@@ -230,7 +257,7 @@
 			
 			$total_paquetes+= $paquete["costo"];
 			
-		
+			
 			$respuesta.=  $paquete["tipo_paquete"]."\x09    ";
 			$respuesta.="$". number_format($paquete["costo"])."\n";
 			
@@ -252,7 +279,7 @@
 			
 			$total_equipaje+= $equipaje["importe"];
 			
-		
+			
 			$respuesta.=  $equipaje["tipo_equipaje"]."\x09    ";
 			$respuesta.="$". number_format($equipaje["importe"])."\n";
 			

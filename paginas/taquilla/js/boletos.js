@@ -78,7 +78,7 @@ function nueva_venta(){
 	$(":checked").prop("checked", false);
 	// $("#form_boletos")[0].reset();
 	
-}
+	}
 function desactivaAsientosOcupados(){
 	console.log(" desactivaAsientosOcupados()")
 	

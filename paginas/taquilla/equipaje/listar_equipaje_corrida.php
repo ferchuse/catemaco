@@ -8,7 +8,8 @@
 	LEFT JOIN usuarios USING(id_usuarios)
 	LEFT JOIN corridas USING(id_corridas)
 	
-	WHERE DATE(fecha_equipaje) = '{$_GET["fecha"]}'";
+	WHERE  id_corridas = '{$_GET["id_corridas"]}'
+	";
 	
 	if($_GET["id_usuarios"] != ""){
 		$consulta.=" AND equipaje.id_usuarios = '{$_GET["id_usuarios"]}' ";
@@ -26,8 +27,6 @@
 				
 				<th class="text-center">Folio</th>
 				<th class="text-center">Concepto</th>
-				<th class="text-center">Corrida</th>
-				<th class="text-center">Num Eco</th>
 				<th class="text-center">Pasajero</th>
 				<th class="text-center">Tamaño</th>
 				<th class="text-center">Importe</th>
@@ -46,8 +45,6 @@
 					
 					<td><?php echo $fila["id_equipaje"];?></td>
 					<td><?php echo $fila["tipo_equipaje"];?></td>
-					<td><?php echo $fila["id_corridas"];?></td>
-					<td><?php echo $fila["num_eco"];?></td>
 					<td><?php echo $fila["pasajero"];?></td>
 					<td><?php echo $fila["tipo_equipaje"];?></td>
 					<td>$<?php echo $fila["importe"];?></td>

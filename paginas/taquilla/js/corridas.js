@@ -13,9 +13,9 @@ $(document).ready(function(){
 	
 	
 	// $('#form_edicion').on('keypress', function (event){
-		// if(event.which == 13){
-			// return false;
-		// }
+	// if(event.which == 13){
+	// return false;
+	// }
 	// });
 	
 	
@@ -23,7 +23,7 @@ $(document).ready(function(){
 	// $('#num_eco').on('blur', buscarUnidad);
 	
 	
-
+	
 	
 	//==========GUARDAR============
 	$('#form_edicion').on('submit',function(event){
@@ -113,28 +113,28 @@ function confirmaCancelacion(event){
 				
 			}
 			
-		}).always(function(){
-		boton.prop("disabled", false);
-		icono.toggleClass("fa-times fa-spinner fa-spin");
-		
+			}).always(function(){
+			boton.prop("disabled", false);
+			icono.toggleClass("fa-times fa-spinner fa-spin");
+			
 		});
-		}
-		}
-		
-		function imprimirTicket(event){
-		console.log("imprimirTicket()");
-		var id_registro = $(this).data("id_registro");
-		// var url = $(this).data("url");
-		var boton = $(this); 
-		var icono = boton.find("fas");
-		
-		boton.prop("disabled", true);
-		icono.toggleClass("fa-print fa-spinner fa-spin");
-		
-		$.ajax({
+	}
+}
+
+function imprimirTicket(event){
+	console.log("imprimirTicket()");
+	var id_registro = $(this).data("id_registro");
+	// var url = $(this).data("url");
+	var boton = $(this); 
+	var icono = boton.find("fas");
+	
+	boton.prop("disabled", true);
+	icono.toggleClass("fa-print fa-spinner fa-spin");
+	
+	$.ajax({
 		url: "impresion/imprimir_boletaje.php" ,
 		data:{
-		id_registro : id_registro
+			id_registro : id_registro
 		}
 		}).done(function (respuesta){
 		
@@ -145,6 +145,5 @@ function confirmaCancelacion(event){
 		boton.prop("disabled", false);
 		icono.toggleClass("fa-print fa-spinner fa-spin");
 		
-		});
-		}
-				
+	});
+}

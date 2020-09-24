@@ -43,6 +43,7 @@
 	
 	$consulta = "SELECT * FROM corridas 
 	
+	LEFT JOIN taquillas USING(id_taquilla)
 	LEFT JOIN unidades USING(num_eco)
 	LEFT JOIN empresas ON corridas.id_empresas = empresas.id_empresas
 	LEFT JOIN origenes USING(id_origenes)
@@ -105,6 +106,7 @@
 				<th>Fecha</th>
 				<th>Hora</th>
 				<th>Total</th>
+				<th>Taquilla </th>
 				<th>Origen </th>
 				<th>Destino </th>
 				<th>Usuario</th>
@@ -230,6 +232,7 @@
 					</td>
 					<td><?php echo $filas["id_corridas"]?></td>
 					<td><?php echo $filas["num_eco"]?></td>
+					<td><?php echo $filas["nombre_taquilla"]?></td>
 					<td><?php echo $filas["fecha_corridas"]?></td>
 					<td><?php echo $filas["hora_corridas"]?></td>
 					

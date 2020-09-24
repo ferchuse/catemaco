@@ -7,7 +7,7 @@
 	
 	$update ="UPDATE corridas SET
 	
-	estatus_corridas = 'Finalizada',
+	estatus_corridas = 'Activa',
 	boletos_vendidos = '{$_POST["boletos_vendidos"]}',
 	total_guia = '{$_POST["total_guia"]}'
 	WHERE id_corridas = '{$_POST["id_corridas"]}'

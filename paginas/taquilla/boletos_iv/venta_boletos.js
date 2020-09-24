@@ -14,6 +14,14 @@ function onLoad(){
 	
 	
 	
+	$("#filtro_usuarios").on("change", function(){
+		
+			listaBoletos();
+			listarGastos();
+			listarEquipaje();
+			listarPaquetes();
+	});
+	
 	$("#id_taquilla").on("change", eligeHoraSalida);
 	$("#form_filtros").on("submit", filtrarRegistros);
 	
@@ -98,7 +106,33 @@ function onLoad(){
 }
 
 
+function listarPaquetes() {
+	
+	$.ajax({
+		"url": "paquetes/listar_paquetes_corrida.php",
+		data:{
+			"id_corridas": $("#id_corridas").val(),
+			"id_usuarios": $("#filtro_usuarios").val()
+		}
+		}).done(function alCargar(respuesta) {
+		$("#lista_paquetes").html(respuesta);
+		
+	});
+}
 
+function listarEquipaje() {
+	
+	$.ajax({
+		"url": "equipaje/listar_equipaje_corrida.php",
+		data:{
+			"id_corridas": $("#id_corridas").val(),
+			"id_usuarios": $("#filtro_usuarios").val()
+		}
+		}).done(function alCargar(respuesta) {
+		$("#lista_equipaje").html(respuesta);
+		
+	});
+}
 
 
 
@@ -648,7 +682,8 @@ function imprimirGuia(id_corridas){
 	$.ajax({
 		"url": "boletos_iv/imprimir_guias_escpos.php",
 		"data": {
-			"id_corridas": id_corridas
+			"id_corridas": id_corridas,
+			"id_usuarios" : $("#filtro_usuarios").val()
 		}
 		}).done(function(respuesta){
 		
@@ -681,6 +716,8 @@ function abrirTaquilla(event){
 	$("#pill_venta").tab("show");
 	listaBoletos();
 	listarGastos();
+	listarEquipaje();
+	listarPaquetes();
 	renderAsientos();
 }
 
@@ -725,7 +762,11 @@ function listaBoletos(){
 	console.log("listaBoletos");
 	$.ajax({
 		"url" : "control/lista_boletos.php",
-		"data" :{"id_corridas": $("#id_corridas").val()}
+		"data" :{
+			"id_corridas": $("#id_corridas").val(),
+			"id_usuarios": $("#filtro_usuarios").val()
+			
+			}
 		
 		}).done(function (respuesta){
 		$("#lista_boletos").html(respuesta);
