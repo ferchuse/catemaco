@@ -117,9 +117,9 @@
 			<?php 
 				
 				while($fila = mysqli_fetch_assoc($result)){
-				
+					
 					$filas = $fila ;
-				
+					
 				?>
 				<tr>
 					
@@ -143,12 +143,7 @@
 							>
 								<i class="fas fa-exchange-alt"></i> Cambiar Unidad
 							</button>
-							<button class="btn btn-warning  btn-sm editar" title="Editar" 
-							data-id_registro="<?php echo $filas["id_corridas"]?>"
-							data-num_eco="<?php echo $filas["num_eco"]?>"
-							>
-								<i class="fas fa-edit"></i> Editar
-							</button>
+							
 							
 							<?php
 								break;
@@ -190,6 +185,12 @@
 								<button class="btn btn-danger cancelar" title="Cancelar"     data-id_registro='<?php echo $filas["id_corridas"]?>'>
 									<i class="fas fa-times"></i>
 								</button>	
+								<button class="btn btn-warning  btn-sm editar" title="Editar" 
+								data-id_registro="<?php echo $filas["id_corridas"]?>"
+								data-num_eco="<?php echo $filas["num_eco"]?>"
+								>
+									<i class="fas fa-edit"></i> Editar
+								</button>
 								
 								<?php
 								}
