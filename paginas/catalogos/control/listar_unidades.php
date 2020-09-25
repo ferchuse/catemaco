@@ -61,16 +61,14 @@
 					<td><?php echo $fila["fecha_ingreso"];?></td>
 					<td><?php echo $fila["estatus_unidades"];?></td>
 					<td>
-						<?php if(dame_permiso("unidades.php", $link) == 'Supervisor'){ ?>
-							<button class="btn btn-warning btn_editar" data-id_registro="<?php echo $fila["num_eco"];?>">
-								<i class="fas fa-edit"></i>
-							</button>
-							
-							<button class="btn btn-info btn_historial" data-id_registro="<?php echo $fila["num_eco"];?>">
-								<i class="fas fa-clock"></i> 
-							</button>
-							<?php
-							}
+						<?php // modificar al fin de septiempbre 2020if(dame_permiso("unidades.php", $link) == 'Supervisor'){ ?>
+						<button class="btn btn-warning btn_editar" data-id_registro="<?php echo $fila["num_eco"];?>">
+							<i class="fas fa-edit"></i>
+						</button>
+						
+						
+						<?php
+							// }
 						?>
 						
 						
@@ -78,6 +76,9 @@
 							<i class="fas fa-print"></i> 
 						</a>
 						<?php if(dame_permiso("unidades.php", $link) == 'Supervisor'){ ?>
+							<button class="btn btn-info btn_historial" data-id_registro="<?php echo $fila["num_eco"];?>">
+								<i class="fas fa-clock"></i> 
+							</button>
 							<a target="_blank" class="btn btn-secondary" href="unidades/imprimir_qr.php?num_eco=<?php echo $fila["num_eco"];?>">
 								<i class="fas fa-qrcode"></i> 
 							</a>

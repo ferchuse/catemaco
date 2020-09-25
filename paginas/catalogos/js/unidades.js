@@ -143,32 +143,33 @@ function guardarRegistro(event){
 	let boton = $(this).find(":submit");
 	let icono = boton.find(".fas");
 	
-	boton.prop("disabled", true);
-	icono.toggleClass("fa-save fa-spinner fa-spin");
-	
-	$.ajax({
-		url: 'control/guardar_unidades_historial.php',
-		dataType: 'JSON',
-		method: 'POST',
-		data: {
-			tabla: 'unidades',
-			datos: datos
-		}
-	}).done(
-	function(respuesta){
-		boton.prop("disabled", false);
+	if(confirm("Esta seguro que desea guardar?")){
+		
+		boton.prop("disabled", true);
 		icono.toggleClass("fa-save fa-spinner fa-spin");
 		
-		if(respuesta.estatus == "success"){ 
-			alertify.success('Se ha agregado correctamente');
-			$('#form_edicion')[0].reset();
-			$('#modal_edicion').modal("hide");
-			listarRegistros();
-			}else{
-			console.log(respuesta.mensaje);
-		}
-	});
-	
+		$.ajax({
+			url: 'control/guardar_unidades_historial.php',
+			dataType: 'JSON',
+			method: 'POST',
+			data: {
+				tabla: 'unidades',
+				datos: datos
+			}
+			}).done(function(respuesta){
+			boton.prop("disabled", false);
+			icono.toggleClass("fa-save fa-spinner fa-spin");
+			
+			if(respuesta.estatus == "success"){ 
+				alertify.success('Se ha agregado correctamente');
+				$('#form_edicion')[0].reset();
+				$('#modal_edicion').modal("hide");
+				listarRegistros();
+				}else{
+				console.log(respuesta.mensaje);
+			}
+		});
+	}
 	
 }
 
