@@ -28,6 +28,14 @@
 		<title>Venta de Boletos </title>
 		<?php include('../../styles.php')?>
 		<link href="../../css/corrida.less" type="text/css"  rel="stylesheet/less" >
+		
+		
+		<style>
+			.reservado label {
+			
+				background: #ec213d !important;
+			}
+		</style>
 	</head>
 	<body id="page-top">
 		<?php include("../../navbar.php")?>
@@ -65,33 +73,42 @@
 											<button type="button" class="btn btn-success mb-2 nuevo  d-print-none">
 												<i class="fas fa-plus"></i> Nueva
 											</button>
-											<form id="form_filtros" class="form-inline">
-												<div class="form-group">
-													<label>
-														Empresa:
-													</label>
-													<?php echo generar_select($link, "empresas", "id_empresas", "nombre_empresas", true	);	?>
+											<form id="form_filtros" >
+												<div class="row">
+													<div class="form-group col-sm-2">
+														<label>
+															Empresa:
+														</label>
+														<?php echo generar_select($link, "empresas", "id_empresas", "nombre_empresas", true	);	?>
+													</div>
+													<div class="form-group col-sm-2">
+														<label for="num_eco" >Num Eco:</label>
+														<input type="number" class="form-control input-sm" name="num_eco" >
+													</div>
+													<div class="form-group col-sm-2">
+														<label for="" class="col-sm col-form-label">Desde:</label>
+														<input type="date" class="form-control" value="<?php echo date("Y-m-d");?>" name="fecha_inicial" id="fecha_inicial">
+													</div>
+													<div class="form-group col-sm-2">
+														<label for="" class="col-sm col-form-label">Hasta:</label>
+														<input type="date" class="form-control" value="<?php echo $date_final;?>" name="fecha_final" id="fecha_final">
+														
+													</div>
+													<div class="form-group col-sm-2">
+														<label>
+															Usuario:
+														</label>
+														<?php echo generar_select($link, "usuarios", "id_usuarios", "nombre_usuarios", true, false, false)?>
+													</div>
+													<div class="form-group col-sm-2">
+														<label>
+															Taquilla:
+														</label>
+														<?php echo generar_select($link, "taquillas", "id_taquilla", "nombre_taquilla", true, false, false, 0 , 0, "id_taquilla","filtro_taquilla")?>
+													</div>
 												</div>
-												<div class="form-group mx-sm-3 mb-2">
-													<label for="num_eco" >Num Eco:</label>
-													<input type="number" class="form-control input-sm" name="num_eco" >
-												</div>
-												<div class="form-group mx-sm-3 mb-2">
-													<label for="" class="col-sm col-form-label">Desde:</label>
-													<input type="date" class="form-control" value="<?php echo date("Y-m-d");?>" name="fecha_inicial" id="fecha_inicial">
-												</div>
-												<div class="form-group mx-sm-3 mb-2">
-													<label for="" class="col-sm col-form-label">Hasta:</label>
-													<input type="date" class="form-control" value="<?php echo $date_final;?>" name="fecha_final" id="fecha_final">
-													
-												</div>
-												<br>
-												<label>
-													Usuario:
-												</label>
-												<?php echo generar_select($link, "usuarios", "id_usuarios", "nombre_usuarios", true, false, false)?>
 												<button type="submit"  title="Buscar" class="btn btn-primary  d-print-none">
-													<i class="fas fa-search"></i>
+													<i class="fas fa-search"></i> Buscar
 												</button>
 											</form>
 										</div>
@@ -101,11 +118,11 @@
 											<h3 >Lista de Corridas
 												<?php if(dame_permiso("venta_boletos.php", $link) == "Supervisor"){?>
 													<button disabled type="button" class="btn btn-primary float-right d-print-none" id="btn_pagar">
-														<i class="fas fa-dollar-sign"></i> Pagar 
-														<span id="span_num_selected">0</span>
-													</button>
-													<?php
-													}	
+													<i class="fas fa-dollar-sign"></i> Pagar 
+													<span id="span_num_selected">0</span>
+												</button>
+												<?php
+												}	
 												?>
 												<button  type="button" onclick="window.print()" class="btn btn-info float-right d-print-none">
 													<i class="fas fa-print"></i> Imprimir 
@@ -117,6 +134,10 @@
 										</div>
 									</div>
 								</div>
+								
+								
+								
+								
 								
 								<div class="tab-pane  " id="tab_boletos">
 									<hr>
@@ -242,9 +263,9 @@
 													<b> <i class="fas fa-dollar-sign"></i> Gastos por Corrida</b>
 													<button  id="nuevo_gasto" type="button" class="btn btn-success mb-2 d-print-none float-right">
 														<i class="fas fa-plus"></i> Nuevo
-														</button>
-														</div>
-														<div class="card-body" >
+													</button>
+												</div>
+												<div class="card-body" >
 													<div class="table-responsive" id="lista_gastos">
 														<h3 class="text-center">Cargando <i class="fas fa-spinner fa-pulse"></i></h3>
 													</div>

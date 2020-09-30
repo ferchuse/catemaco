@@ -73,6 +73,9 @@
 	if($_GET["num_eco"] != ""){
 		$consulta.="AND corridas.num_eco = '{$_GET["num_eco"]}'";
 	}
+	if($_GET["id_taquilla"] != ""){
+		$consulta.="AND corridas.id_taquilla = '{$_GET["id_taquilla"]}'";
+	}
 	
 	$consulta.="
 	ORDER BY id_corridas DESC "
@@ -103,10 +106,10 @@
 				</th>
 				<th>Folio</th>
 				<th>Num Eco</th>
+				<th>Taquilla </th>
 				<th>Fecha</th>
 				<th>Hora</th>
 				<th>Total</th>
-				<th>Taquilla </th>
 				<th>Origen </th>
 				<th>Destino </th>
 				<th>Usuario</th>
@@ -177,7 +180,7 @@
 								if(dame_permiso("venta_boletos.php", $link) == 'Supervisor'){
 								?>
 								<button class="btn btn-danger cancelar" title="Cancelar"     data-id_registro='<?php echo $filas["id_corridas"]?>'>
-									<i class="fas fa-times"></i>
+									<i class="fas fa-times"></i> Cancelar
 								</button>	
 								<button class="btn btn-warning  btn-sm editar" title="Editar" 
 								data-id_registro="<?php echo $filas["id_corridas"]?>"
@@ -238,7 +241,7 @@
 					<td><?php echo $filas["hora_corridas"]?></td>
 					
 					<td  class="text-right">
-						$ <?php echo number_format($filas["importe_corridas"], 0)?>
+						$<?php echo number_format($filas["importe_corridas"], 0)?>
 					</td>
 					
 					<td><?php echo $filas["origen"]?></td>
@@ -261,7 +264,7 @@
 		</tbody>
 		<tfoot>
 			<tr class="bg-secondary text-white">
-				<td colspan="6">TOTAL</td>
+				<td colspan="7">TOTAL</td>
 				<td class="text-right">$<?= number_format($total_corrida,0)?></td>
 				<td></td>
 				<td></td>

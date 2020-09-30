@@ -16,10 +16,15 @@ function onLoad(){
 	
 	$("#filtro_usuarios").on("change", function(){
 		
-			listaBoletos();
-			listarGastos();
-			listarEquipaje();
-			listarPaquetes();
+		listaBoletos();
+		listarGastos();
+		listarEquipaje();
+		listarPaquetes();
+	});
+	
+	$("#filtro_taquilla").on("change", function(){
+		
+		$("#form_filtros").submit();
 	});
 	
 	$("#id_taquilla").on("change", eligeHoraSalida);
@@ -253,6 +258,10 @@ function desactivaAsientosOcupados(){
 		
 		$.each(respuesta.asientos_ocupados, function(index, num_asiento){
 			$("#"+ num_asiento).prop("disabled", true);
+		})
+		
+		$.each(respuesta.asientos_reservados, function(index, num_asiento){
+			$("#"+ num_asiento).next("label").css("background" ,"#ec213d");
 		})
 		}).always(function(){
 		
@@ -766,7 +775,7 @@ function listaBoletos(){
 			"id_corridas": $("#id_corridas").val(),
 			"id_usuarios": $("#filtro_usuarios").val()
 			
-			}
+		}
 		
 		}).done(function (respuesta){
 		$("#lista_boletos").html(respuesta);

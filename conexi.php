@@ -5,7 +5,7 @@
 		
 		$host="localhost";
 		
-		if($_SERVER["SERVER_NAME"] == "localhost"  || $_SERVER["SERVER_NAME"] == "192.168.1.88"){
+		if($_SERVER["SERVER_NAME"] == "localhost"  || $_SERVER["SERVER_NAME"] == "192.168.0.2"){
 			$db="catemaco";
 			$usuario="sistemas";
 			$pass="Glifom3dia";

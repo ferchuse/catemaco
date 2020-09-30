@@ -7,7 +7,7 @@
 	
 	
 	
-	$consulta = "SELECT num_asiento FROM boletos 
+	$consulta = "SELECT num_asiento, estatus_boletos FROM boletos 
 	
 	WHERE id_corridas= {$_GET["id_corridas"]}
 	AND estatus_boletos  <> 'Cancelado'
@@ -24,12 +24,21 @@
 		
 		
 		while($fila = mysqli_fetch_assoc($result)){
+			if($fila["estatus_boletos"] == "Reservado"){
+				$respuesta["asientos_reservados"][] = $fila["num_asiento"] ;
+				
+			}
+			else{
+				
+				$respuesta["asientos_ocupados"][] = $fila["num_asiento"] ;
+			}
 			
-			$respuesta["asientos_ocupados"][] = $fila["num_asiento"] ;
-			
-			
+			$respuesta["fila"][] = $fila;
 		}
-		echo (json_encode($respuesta ));
+		
+		
+		
+		echo json_encode($respuesta);
 		
 	}
 	
