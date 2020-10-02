@@ -46,11 +46,13 @@ function onLoad(){
 		
 	});
 	
-	
+	$("#imprimir_guia").on("click", finalizarCorrida);
+		
 	
 	$("#lista_corridas").on("click", ".cambiar_unidad", editarRegistro);
 	$("#lista_corridas").on("click", ".editar", editarRegistro);
 	$("#lista_corridas").on("click", ".cancelar", confirmaCancelarCorrida);
+	$("#lista_corridas").on("click", ".finalizar_corrida", confirmaFinalizar);
 	
 	$("#lista_corridas").on("click", ".imprimir", function(){
 		imprimirGuia($(this).data("id_registro"));
@@ -569,6 +571,61 @@ function confirmaCancelacion(event){
 	}
 }
 
+function confirmaFinalizar(event){
+	console.log("confirmaFinalizar()");
+	let boton = $(this);
+	let icono = boton.find(".fas");
+	var id_registro = $(this).data("id_registro");
+	var fila = boton.closest('tr');
+	
+	alertify.confirm()
+	.setting({
+		'reverseButtons': true,
+		'labels' :{ok:"SI", cancel:'NO'},
+		'title': "Finalizar Corrida" ,
+		'message': "¿Estás seguro que desea finalizar?" ,
+		'onok': finalizarTodaCorrida,
+		'oncancel': function(){
+			boton.prop('disabled', false);
+			
+		}
+	}).show();
+	
+	
+	function finalizarTodaCorrida(evt){
+		console.log("finalizarTodaCorrida()");
+		
+		boton.prop("disabled", true);
+		icono.toggleClass("fa-times fa-spinner fa-spin");
+		
+		
+		return $.ajax({
+			url: "control/finalizar_corrida.php",
+			data:{
+				"id_corridas" : id_registro
+			}
+			}).done(function (respuesta){
+			
+			if(window.AppInventor){
+				window.AppInventor.setWebViewString(atob(respuesta));
+			}
+			
+			printService.submit({
+				'type': 'LABEL',
+				'raw_content': respuesta
+			});
+			
+			listarCorridas();
+			console.log("Termina Impresion", respuesta)
+			
+			}).always(function(){
+			boton.prop("disabled", false);
+			icono.toggleClass("fa-times fa-spinner fa-spin");
+			
+		});
+	}
+}
+
 
 function eligeBoleto(evt){
 	console.log("eligeBoleto()")
@@ -780,7 +837,6 @@ function listaBoletos(){
 		}).done(function (respuesta){
 		$("#lista_boletos").html(respuesta);
 		
-		$("#imprimir_guia").on("click", finalizarCorrida);
 		
 	});
 	

@@ -223,7 +223,7 @@
 													
 													
 													<button class="btn btn-info float-right" id="imprimir_guia">
-														<i class="fas fa-print"></i> Imprimir Guia 
+														<i class="fas fa-print"></i> Imprimir Guia Parcial
 													</button>
 												</div>
 												<div class="card-body" >

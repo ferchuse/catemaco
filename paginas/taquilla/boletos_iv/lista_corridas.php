@@ -140,7 +140,10 @@
 							>
 								<i class="fas fa-ticket-alt"></i> Venta de Boletos
 							</button>
-							
+							<button class="btn btn-primary  btn-sm finalizar_corrida" title="Finalizar Corrida" 
+							data-id_registro="<?php echo $filas["id_corridas"]?>">
+								<i class="fas fa-check"></i> Finalizar Corrida
+							</button>
 							
 							<?php
 								break;
@@ -152,7 +155,7 @@
 								// if(dame_permiso(""))
 							?>
 							
-							<button  class="btn btn-info  btn-sm imprimir " title="Imprimir" data-id_registro='<?php echo $filas["id_corridas"]?>'>
+							<button  class="btn btn-info  btn-sm imprimir " hidden title="Imprimir" data-id_registro='<?php echo $filas["id_corridas"]?>'>
 								<i class="fas fa-print"></i> Imprimir Guía
 							</button>	
 							
@@ -188,12 +191,13 @@
 								>
 									<i class="fas fa-edit"></i> Editar
 								</button>
-								<button class="btn btn-info  btn-sm cambiar_unidad" title="Cambiar Unidad" 
+								<button class="btn btn-secondary  btn-sm cambiar_unidad" title="Cambiar Unidad" 
 								data-id_registro="<?php echo $filas["id_corridas"]?>"
 								data-num_eco="<?php echo $filas["num_eco"]?>"
 								>
 									<i class="fas fa-exchange-alt"></i> Cambiar Unidad
 								</button>
+								
 								
 								<?php
 								}

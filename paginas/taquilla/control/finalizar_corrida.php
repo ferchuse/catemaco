@@ -8,6 +8,14 @@
 	
 	
 	
+	$finalizar_guia = "UPDATE corridas SET estatus_corridas = 'Finalizada'
+	WHERE id_corridas = '{$_GET["id_corridas"]}' ";
+	
+	
+	$result_finalizar = mysqli_query($link,$finalizar_guia);
+	
+	
+	
 	$consulta_guia = "SELECT *, nombre_origenes as destino
 	
 	FROM	boletos 
@@ -53,25 +61,6 @@
 	}
 	
 	
-	
-	$consulta_gastos = "SELECT * FROM gastos_corrida
-	LEFT JOIN cat_gastos USING(id_cat_gastos)
-	WHERE id_corridas = '{$_GET["id_corridas"]}'";
-	
-	
-	if($_GET["id_usuarios"] != ""){
-		$consulta_gastos.=" AND gastos_corrida.id_usuarios = '{$_GET["id_usuarios"]}' ";
-	}
-	
-	
-	$consulta_gastos .=" ORDER BY fecha_gastos ";
-	
-	$result_gastos = mysqli_query($link,$consulta_gastos);
-	
-	while($fila = mysqli_fetch_assoc($result_gastos)){ 
-		$gastos[] = $fila ;
-		
-	}
 	
 	$consulta_paquetes = "SELECT * FROM paquetes
 	LEFT JOIN taquillas ON taquillas.id_taquilla = paquetes.id_taquilla_destino
@@ -133,8 +122,8 @@
 		// $respuesta.= "!";
 		// $respuesta.= "!";
 		$respuesta.= "!\x10"; //font size
-		$respuesta.=   "$empresa \n";
-		$respuesta.=   "GUIA PARCIAL\n";
+		// $respuesta.=   "$empresa \n";
+		$respuesta.=   "GUIA \n";
 		$respuesta.=  "\x1b"."E".chr(0); // Not Bold
 		$respuesta.= "!\x10"; //font size
 		$respuesta.= "Folio: ". $guias[0]["id_corridas"];
@@ -162,7 +151,7 @@
 		}
 		
 		
-		$respuesta.= "ASIENTO         PASAJERO          PRECIO\n";
+		$respuesta.= "ASIENTO           PASAJERO            PRECIO\n";
 		foreach($guias AS $i =>$fila){
 			if($fila["estatus_boletos"] == "Cancelado"){
 				
@@ -223,28 +212,6 @@
 		
 		
 		
-		
-		//GASTOS
-		
-		// $respuesta.=   "\x1b"."@";
-		// $respuesta.= "\x1b"."E".chr(1); // Bold
-		// $respuesta.= "!\x10"; //font size
-		// $respuesta.=   "LISTA DE  GASTOS \n";
-		// $respuesta.=   "\x1b"."@"; 
-		
-		// foreach($gastos AS $i =>$gasto){
-			// $importe= $gasto["importe"];
-			// $total_gastos+= $importe;
-			
-			// $respuesta.=  $gasto["id_gastos"]."\x09";
-			// $respuesta.=  $gasto["descripcion_gastos"]."\x09"."\x09";
-			// $respuesta.="$". number_format($gasto["importe"], 0)."\n";
-			
-		// }
-		
-		// $respuesta.= "______________________\n "; 
-		
-		
 		//PAQUETES
 		
 		$respuesta.=   "\x1b"."@";
@@ -292,7 +259,7 @@
 		
 		
 		$respuesta.=   "\nTOTAL BOLETOS: $". number_format($total_guia). "\n";
-		// $respuesta.=   "TOTAL GASTOS: $". number_format($total_gastos). "\n";
+		$respuesta.=   "TOTAL GASTOS: $". number_format($total_gastos). "\n";
 		$respuesta.=   "TOTAL PAQUETERIA: $". number_format($total_paquetes). "\n";
 		$respuesta.=   "TOTAL EQUIPAJE EXTRA: $". number_format($total_equipaje). "\n";
 		$respuesta.=   "BALANCE: $". number_format($total_guia - $total_gastos + $total_paquetes +$total_equipaje). "\n";
