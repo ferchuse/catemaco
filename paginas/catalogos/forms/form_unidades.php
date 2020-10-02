@@ -149,7 +149,7 @@
 							<label for="nombre_propietario">Poliza:</label>
 						</div>	
 						<div class="col-5">			
-							<input class="form-control" type="text" name="poliza" id="poliza" >
+							<input class="form-control" type="text" name="poliza" id="poliza" required>
 						</div>
 					</div>
 					<div class="row mb-2">

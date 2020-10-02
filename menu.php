@@ -107,11 +107,11 @@
 		<li class="nav-item dropdown">
 			<a class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown" >
 				<i class="fas fa-fw fa-ticket-alt "></i>
-				<span>Taquilla</span>
+				<span>Catemaco</span>
 			</a>
 			<div class="dropdown-menu" >
 				<?php 
-					$q_catalogos = "SELECT * FROM paginas WHERE categoria_paginas = 'Taquilla'";	
+					$q_catalogos = "SELECT * FROM paginas WHERE categoria_paginas = 'Catemaco'";	
 					$result_catalogos = mysqli_query($link, $q_catalogos);
 					while($fila = mysqli_fetch_assoc($result_catalogos)){
 						echo "<a class='dropdown-item' href='../../paginas/taquilla/{$fila["url_paginas"]}' ";
