@@ -3,7 +3,8 @@
 	include('../../../conexi.php');
 	$link = Conectarse();
 	$filas = array();
-	$respuesta = array();
+	$respuesta = "";
+	$total_gastos= 0;
 	
 	
 	
@@ -101,7 +102,7 @@
 	
 	
 	
-	
+	$copias = ["Operador", "Taquilla"];
 	
 	
 	if($result_guia){
@@ -111,28 +112,28 @@
 			
 		}
 		
-		
-		
-		// $respuesta = file_get_contents('logo_brujaz.tmb');
-		
-		$empresa = "";
-		
-		$respuesta.=   "\x1b"."@";
-		$respuesta.= "\x1b"."E".chr(1); // Bold
-		// $respuesta.= "!";
-		// $respuesta.= "!";
-		$respuesta.= "!\x10"; //font size
-		// $respuesta.=   "$empresa \n";
-		$respuesta.=   "GUIA \n";
-		$respuesta.=  "\x1b"."E".chr(0); // Not Bold
-		$respuesta.= "!\x10"; //font size
-		$respuesta.= "Folio: ". $guias[0]["id_corridas"];
-		$respuesta.= "\x1b"."d".chr(1); // 4 Blank lines
-		$respuesta.= "Fecha:". $guias[0]["fecha_corridas"];
-		$respuesta.= "\x1b"."d".chr(1); // 4 Blank lines
-		
-		$respuesta.= "Taquillero:". $guias[0]["nombre_usuarios"];
-		$respuesta.= "\x1b"."d".chr(1); // 4 Blank lines
+		foreach( $copias AS $copia){
+			
+			// $respuesta = file_get_contents('logo_brujaz.tmb');
+			
+			$empresa = "";
+			
+			$respuesta.=   "\x1b"."@";
+			$respuesta.= "\x1b"."E".chr(1); // Bold
+			// $respuesta.= "!";
+			// $respuesta.= "!";
+			$respuesta.= "!\x10"; //font size
+			// $respuesta.=   "$empresa \n";
+			$respuesta.=   "GUIA $copia\n";
+			$respuesta.=  "\x1b"."E".chr(0); // Not Bold
+			$respuesta.= "!\x10"; //font size
+			$respuesta.= "Folio: ". $guias[0]["id_corridas"];
+			$respuesta.= "\x1b"."d".chr(1); // 4 Blank lines
+			$respuesta.= "Fecha:". $guias[0]["fecha_corridas"];
+			$respuesta.= "\x1b"."d".chr(1); // 4 Blank lines
+			
+			$respuesta.= "Taquillero:". $guias[0]["nombre_usuarios"];
+			$respuesta.= "\x1b"."d".chr(1); // 4 Blank lines
 		
 		$respuesta.= "Num Eco:". $guias[0]["num_eco"];
 		$respuesta.= "\x1b"."d".chr(1); // 4 Blank lines
@@ -259,26 +260,28 @@
 		
 		
 		$respuesta.=   "\nTOTAL BOLETOS: $". number_format($total_guia). "\n";
-		$respuesta.=   "TOTAL GASTOS: $". number_format($total_gastos). "\n";
+		// $respuesta.=   "TOTAL GASTOS: $". number_format($total_gastos). "\n";
 		$respuesta.=   "TOTAL PAQUETERIA: $". number_format($total_paquetes). "\n";
 		$respuesta.=   "TOTAL EQUIPAJE EXTRA: $". number_format($total_equipaje). "\n";
 		$respuesta.=   "BALANCE: $". number_format($total_guia - $total_gastos + $total_paquetes +$total_equipaje). "\n";
 		
 		$respuesta.= "VA"; // Cut
 		
-		// echo  ( $respuesta );
-		echo base64_encode ( $respuesta );
-		
-		exit(0);
-		
-		
 		
 	}
+	// echo  ( $respuesta );
+	echo base64_encode ( $respuesta );
 	
-	else {
-		echo "Error en ".$consulta.mysqli_Error($link);
-		
-	}
+	exit(0);
 	
 	
+	
+}
+
+else {
+	echo "Error en ".$consulta.mysqli_Error($link);
+	
+}
+
+
 ?>				
