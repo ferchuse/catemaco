@@ -136,7 +136,7 @@
 			// $respuesta.= "!";
 			$respuesta.= "!\x10"; //font size
 			// $respuesta.=   "$empresa \n";
-			$respuesta.=   "GUIA PARCIAL\n";
+			$respuesta.=   "GUIA PARCIAL $copia\n";
 			$respuesta.=  "\x1b"."E".chr(0); // Not Bold
 			$respuesta.= "!\x10"; //font size
 			$respuesta.= "Folio: ". $guias[0]["id_corridas"];
@@ -184,7 +184,7 @@
 					
 					$respuesta.=  $fila["num_asiento"]."\x09";
 					$respuesta.=  substr($fila["nombre_pasajero"], 0 , 22)."\x09";
-					$respuesta.="$". number_format($fila["precio_boletos"],2)."\x09   ";
+					$respuesta.="$". number_format($fila["precio_boletos"],2);
 					
 					$respuesta.= "\n"; // Blank line
 					
