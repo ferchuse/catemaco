@@ -102,7 +102,7 @@
 	
 	
 	
-	$copias = ["Operador", "Taquilla"];
+	
 	
 	
 	if($result_guia){
@@ -111,6 +111,7 @@
 			die("<div class='alert alert-danger'>No hay boletos venidos</div>");
 			
 		}
+		$copias = ["Operador", "Taquilla"];
 		
 		foreach( $copias AS $copia){
 			
