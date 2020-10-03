@@ -260,6 +260,7 @@ function desactivaAsientosOcupados(){
 		
 		$.each(respuesta.asientos_ocupados, function(index, num_asiento){
 			$("#"+ num_asiento).prop("disabled", true);
+			quitarBoleto(num_asiento);
 		})
 		
 		$.each(respuesta.asientos_reservados, function(index, num_asiento){
