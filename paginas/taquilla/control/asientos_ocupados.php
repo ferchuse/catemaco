@@ -33,7 +33,7 @@
 				$respuesta["asientos_ocupados"][] = $fila["num_asiento"] ;
 			}
 			
-			$respuesta["fila"][] = $fila;
+			// $respuesta["fila"][] = $fila;
 		}
 		
 		
