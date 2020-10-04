@@ -159,6 +159,10 @@
 			
 			$total_guia = 0;
 			$total_boletos = 0;
+			$total_gastos = 0;
+			$total_paquetes = 0;
+			$total_equipaje = 0;
+			
 			if(!$result_guia){
 				echo "<pre>".mysqli_error($result_guia)."</pre>";
 				
