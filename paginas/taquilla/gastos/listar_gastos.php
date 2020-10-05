@@ -1,6 +1,7 @@
 <?php 
-	session_start();
+	
 	include('../../../conexi.php');
+	include('../../../funciones/dame_permiso.php');
 	$link = Conectarse();
 	
 	$consulta = "SELECT * FROM gastos_corrida
@@ -13,7 +14,7 @@
 		$consulta.=" AND gastos_corrida.id_usuarios = '{$_GET["id_usuarios"]}' ";
 	}
 	
-
+	
 	$consulta.= " ORDER BY fecha_gastos ";
 	$result = mysqli_query($link,$consulta);
 	
@@ -28,21 +29,48 @@
 				<th class="text-center">Folio</th>
 				<th class="text-center">Concepto</th>
 				<th class="text-center">Importe</th>
-			
+				
 			</tr>
 		</thead>
 		<tbody >
 			<?php
 				while($fila = mysqli_fetch_assoc($result)){ 
-					$suma_gastos+= $fila["importe"];
-					?>
+					
+					
+				?>
 				
 				<tr>
 					
 					<td><?php echo $fila["id_gastos"];?></td>
 					<td><?php echo $fila["descripcion_gastos"];?></td>
 					<td>$<?php echo $fila["importe"];?></td>
-				
+					
+					
+					<td>
+						<?php
+							if($fila["estatus_gastos"] == "Cancelado"){
+								echo "<span class='badge badge-danger'>{$fila["datos_cancelacion"]}</span>";
+							}
+							else{
+								
+								$suma_gastos+= $fila["importe"];
+								
+								if(dame_permiso("venta_boletos.php", $link) == 'Supervisor'){
+								?>
+								<button class="btn btn-danger cancelar_gasto" title="Cancelar"     data-id_registro='<?php echo $fila["id_gastos"]?>'>
+									<i class="fas fa-times"></i>
+								</button>	
+								
+								<?php 	
+								}
+							}
+							
+							
+						?>
+						
+						
+					</td>
+					
 					
 				</tr>
 				
@@ -51,26 +79,26 @@
 			?>
 		</tbody>
 		<tfoot>
-			<tr>
-				<td >
-					<?php echo mysqli_num_rows($result);?> Registros.
-				</td>
-				<td ><B> Total Gastos</b></td>
-				<td >
-					$<?php echo number_format($suma_gastos);?>.
-				</td>
-			</tr>
+		<tr>
+		<td >
+		<?php echo mysqli_num_rows($result);?> Registros.
+		</td>
+		<td ><B> Total Gastos</b></td>
+		<td >
+		$<?php echo number_format($suma_gastos);?>.
+		</td>
+		</tr>
 		</tfoot>
-	</table>
-	
-	
-	<?php
+		</table>
 		
 		
-	}
-	else {
-		echo "Error en".$consulta. mysqli_error($link);
-	}
-	
-	
-?>	
+		<?php
+			
+			
+		}
+		else {
+			echo "Error en".$consulta. mysqli_error($link);
+		}
+		
+		
+				?>					

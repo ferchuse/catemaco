@@ -63,7 +63,9 @@
 		$consulta_gastos.=" AND gastos_corrida.id_usuarios = '{$_GET["id_usuarios"]}' ";
 	}
 	
-	$consulta_gastos .=" ORDER BY fecha_gastos ";
+	$consulta_gastos .=" 
+	AND estatus_paquetes <> 'Cancelado'
+	ORDER BY fecha_gastos ";
 	
 	$result_gastos = mysqli_query($link,$consulta_gastos);
 	

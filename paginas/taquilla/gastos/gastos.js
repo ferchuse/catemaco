@@ -7,6 +7,7 @@ $("#nuevo_gasto").click(function nuevo() {
 	
 });
 
+$("#lista_gastos").on("click", ".cancelar_gasto", confirmaCancelarGasto);
 
 
 $('#form_gasto').submit(guardarGasto);
@@ -27,7 +28,7 @@ function listarGastos() {
 }
 
 
-function confirmaBorrar(event){
+function confirmaCancelarGasto(event){
 	console.log("confirmaBorrar")
 	let $boton = $(this);
 	let $fila = $(this).closest('tr');
@@ -37,18 +38,15 @@ function confirmaBorrar(event){
 	
 	if(confirm("¿Estás Seguro?")){
 		$.ajax({ 
-			"url": "../../funciones/fila_delete.php",
+			"url": "gastos/cancelar_gastos.php",
 			"dataType": "JSON",
-			"method": "POST",
 			"data": {
-				"tabla": "cat_gastos",
-				"id_campo": "id_cat_gastos",
-				"id_valor": $boton.data("id_registro")
+				"id_registro": $boton.data("id_registro")
 			}
 			}).done( function alTerminar (respuesta){
 			console.log("respuesta", respuesta);
 			
-			$fila.remove();
+			listarGastos();
 			
 			}).fail(function(xhr, textEstatus, error){
 			console.log("textEstatus", textEstatus);

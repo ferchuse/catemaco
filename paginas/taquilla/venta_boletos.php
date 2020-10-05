@@ -91,7 +91,7 @@
 													</div>
 													<div class="form-group col-sm-2">
 														<label for="" class="col-sm col-form-label">Hasta:</label>
-														<input type="date" class="form-control" value="<?php echo $date_final;?>" name="fecha_final" id="fecha_final">
+														<input type="date" class="form-control" value="<?php echo date("Y-m-d");?>" name="fecha_final" id="fecha_final">
 														
 													</div>
 													<div class="form-group col-sm-2">
