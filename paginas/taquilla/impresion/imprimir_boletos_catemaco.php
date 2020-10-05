@@ -89,6 +89,7 @@
 			$texto.=chr(10).chr(13);
 			$texto.="    ENLACES DE TRANSPORTE TERRESTRE".chr(10).chr(13);
 			$texto.="       7 DE ENERO, S.A. DE C.V.".chr(10).chr(13).chr(10).chr(13);
+			$texto.="FOLIO: ".$item["id_boletos"].chr(10).chr(13);
 			$texto.="TIPO DE  BOLETO: ".$item["tipo_precio"].chr(10).chr(13);
 			$texto.="ORIGEN: ".$item["nombre_origenes"].chr(10).chr(13);
 			$texto.="DESTINO: ".$item["nombre_destinos"].chr(10).chr(13);
