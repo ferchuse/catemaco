@@ -90,13 +90,17 @@
 			$texto.="    ENLACES DE TRANSPORTE TERRESTRE".chr(10).chr(13);
 			$texto.="       7 DE ENERO, S.A. DE C.V.".chr(10).chr(13).chr(10).chr(13);
 			$texto.="FOLIO: ".$item["id_boletos"].chr(10).chr(13);
+			$texto.="FECHA VENTA: ".$item['fecha_boletos'].chr(10).chr(13);
+			$texto.="TAQUILLERO: ". $item["nombre_usuarios"].chr(10).chr(13);
 			$texto.="TIPO DE  BOLETO: ".$item["tipo_precio"].chr(10).chr(13);
 			$texto.="ORIGEN: ".$item["nombre_origenes"].chr(10).chr(13);
 			$texto.="DESTINO: ".$item["nombre_destinos"].chr(10).chr(13);
 			$texto.="PRECIO: ".$item["precio_boletos"].chr(10).chr(13);
 			$texto.="FECHA SALIDA: ".$item["fecha_corridas"].chr(10).chr(13);
+			$texto.="HORA SALIDA: ".$item["hora_corridas"].chr(10).chr(13);
 			$texto.="ASIENTO: ".$item["num_asiento"].chr(10).chr(13);
-			// $texto.="RUTA: ".$_GET['ruta'].chr(10).chr(13);
+			$texto.="PASAJERO: ".$item["nombre_pasajero"].chr(10).chr(13);
+			
 			$texto.="UNIDAD: ".$item["num_eco"].chr(10).chr(13);
 			// $texto.=chr(29)."h".chr(80).chr(29)."H".chr(2).chr(29)."k".chr(2)."1".sprintf("%011s",(intval($item["id_boletos"]))).chr(0);
 			$texto.=chr(10).chr(13)."              OPERADOR".chr(10).chr(13);
