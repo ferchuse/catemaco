@@ -787,7 +787,7 @@ function abrirTaquilla(event){
 	listarPaquetes();
 	renderAsientos();
 	
-	setInterval(desactivaAsientosOcupados, 5000);
+	setInterval(desactivaAsientosOcupados, 3000);
 }
 
 
