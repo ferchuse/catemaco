@@ -9,8 +9,19 @@ $(document).ready(onLoad);
 
 function onLoad(){
 	
+	if($("#sesion_id_taquillas").val() == ""){
+		//Elegir taquilla de la sesion
+		$("#modal_taquilla_sesion").modal({
+			keyboard: false,
+			backdrop: 'static'
+		}).modal('show');
+	}
+	
 	listarCorridas();
 	$("#form_corridas input[name='num_eco']").on("blur", buscarNumEco);
+	
+	
+	$("#form_taquilla_sesion").on("submit", guardarTaquillaSesion);
 	
 	
 	
@@ -47,7 +58,7 @@ function onLoad(){
 	});
 	
 	$("#imprimir_guia").on("click", finalizarCorrida);
-		
+	
 	
 	$("#lista_corridas").on("click", ".cambiar_unidad", editarRegistro);
 	$("#lista_corridas").on("click", ".editar", editarRegistro);
@@ -112,6 +123,18 @@ function onLoad(){
 	
 }
 
+
+function guardarTaquillaSesion(event) {
+	event.preventDefault();
+	
+	$.ajax({
+		"url": "control/iniciar_sesion_taquilla.php",
+		data: 	$("#form_taquilla_sesion").serialize()
+		}).done(function alCargar(respuesta) {
+		$("#modal_taquilla_sesion").modal("hide");
+		
+	});
+}
 
 function listarPaquetes() {
 	

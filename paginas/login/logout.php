@@ -17,6 +17,7 @@
 	setcookie("permiso_usuarios", "",  0, "/");
 	setcookie("id_recaudaciones","",  0, "/"); 
 	setcookie("id_administrador",  "",  0, "/");
+	setcookie("id_taquilla", "",  0, "/");
 	setcookie("tipo_usuario", "",  0, "/");
 	
 	header("location:form_login.php");

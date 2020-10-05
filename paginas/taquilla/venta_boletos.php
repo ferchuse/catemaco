@@ -327,6 +327,7 @@
 		</div>
 		
 		<?php include("gastos/form_gastos.php")?>
+		<?php include("forms/form_taquilla_sesion.php")?>
 		
 		<?php include("../../scripts.php")?>
 		<script src="../../plugins/pos_print/websocket-printer.js" > </script>
