@@ -16,6 +16,7 @@
 		id_precio = '{$_POST["id_precio"][$i]}',
 		precio_boletos = '{$_POST["precio"][$i]}',
 		id_usuarios = '{$_COOKIE["id_usuarios"]}',
+		id_taquilla = '{$_COOKIE["id_taquilla"]}',
 		fecha_boletos = NOW()
 		";
 		$result_detalle = 	mysqli_query($link,$insert);

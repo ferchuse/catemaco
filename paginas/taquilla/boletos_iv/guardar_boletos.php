@@ -1,5 +1,5 @@
 <?php 
-	 
+	 //Borrar no se ocupa en catemaco O pasar  aotr taquilla
 	include('../../../conexi.php');
 	$link = Conectarse();
 	
@@ -14,6 +14,7 @@
 		id_precio = '{$_POST["id_precio"]}',
 		precio_boletos = '{$_POST["precio"]}',
 		id_usuarios = '{$_COOKIE["id_usuarios"]}',
+		id_taquilla = '{$_COOKIE["id_taquilla"]}',
 		fecha_boletos = NOW()
 		";
 		$result_detalle = 	mysqli_query($link,$insert);

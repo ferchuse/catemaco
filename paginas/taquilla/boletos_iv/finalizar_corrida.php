@@ -1,4 +1,9 @@
 <?php 
+	
+	
+	//Este archivo ya no se ocupa borrar
+	
+	
 	header("Content-Type: application/json");
 	include('../../../conexi.php');
 	$link = Conectarse();
