@@ -125,7 +125,7 @@
 		
 		<div class="d-print-block p-2" style="max-width:100mm;" hidden id="ticket" >
 		</div>
-		
+		<?php include("forms/form_taquilla_sesion.php")?>
 		<?php include("equipaje/lista_corridas.php")?>
 		<?php include("equipaje/form_equipaje.php")?>
 		<?php include("paquetes/form_paquetes.php")?>

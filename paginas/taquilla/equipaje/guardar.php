@@ -12,6 +12,7 @@
 	tipo_equipaje = '{$_POST["tipo_equipaje"]}',
 	pasajero = '{$_POST["pasajero"]}',
 	id_usuarios = '{$_COOKIE["id_usuarios"]}',
+	id_taquilla = '{$_COOKIE["id_taquilla"]}',
 	importe = '{$_POST["importe"]}'
 	
 	";	

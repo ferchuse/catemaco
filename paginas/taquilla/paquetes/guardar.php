@@ -9,6 +9,7 @@
 	$query ="INSERT INTO paquetes SET 
 	id_corridas = '{$_POST["id_corridas"]}',
 	id_usuarios = '{$_COOKIE["id_usuarios"]}',
+	id_taquilla = '{$_COOKIE["id_taquilla"]}',
 	id_taquilla_destino = '{$_POST["id_taquilla"]}',
 	fecha_paquetes = NOW(),
 	tipo_paquete = '{$_POST["tipo_paquete"]}',
