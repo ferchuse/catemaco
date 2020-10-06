@@ -6,6 +6,7 @@
 	
 	$consulta = "SELECT * FROM gastos_corrida
 	LEFT JOIN cat_gastos USING(id_cat_gastos)
+	LEFT JOIN usuarios USING(id_usuarios)
 	WHERE id_corridas = '{$_GET["id_corridas"]}' 
 	";
 	
@@ -29,6 +30,7 @@
 				<th class="text-center">Folio</th>
 				<th class="text-center">Concepto</th>
 				<th class="text-center">Importe</th>
+				<th class="text-center">Usuario</th>
 				
 			</tr>
 		</thead>
@@ -44,6 +46,7 @@
 					<td><?php echo $fila["id_gastos"];?></td>
 					<td><?php echo $fila["descripcion_gastos"];?></td>
 					<td>$<?php echo $fila["importe"];?></td>
+					<td><?php echo $fila["nombre_usuarios"];?></td>
 					
 					
 					<td>
@@ -79,26 +82,28 @@
 			?>
 		</tbody>
 		<tfoot>
-		<tr>
-		<td >
-		<?php echo mysqli_num_rows($result);?> Registros.
-		</td>
-		<td ><B> Total Gastos</b></td>
-		<td >
-		$<?php echo number_format($suma_gastos);?>.
-		</td>
-		</tr>
+			<tr>
+				<td >
+					<?php echo mysqli_num_rows($result);?> Registros.
+				</td>
+				<td ><B> Total Gastos</b></td>
+				<td >
+					$<?php echo number_format($suma_gastos);?>.
+				</td>
+				<td ></td>
+				<td ></td>
+			</tr>
 		</tfoot>
-		</table>
+	</table>
+	
+	
+	<?php
 		
 		
-		<?php
-			
-			
-		}
-		else {
-			echo "Error en".$consulta. mysqli_error($link);
-		}
-		
-		
-				?>					
+	}
+	else {
+		echo "Error en".$consulta. mysqli_error($link);
+	}
+	
+	
+?>					

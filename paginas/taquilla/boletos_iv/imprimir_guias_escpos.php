@@ -64,7 +64,7 @@
 	}
 	
 	$consulta_gastos .=" 
-	AND estatus_paquetes <> 'Cancelado'
+	AND estatus_gastos <> 'Cancelado'
 	ORDER BY fecha_gastos ";
 	
 	$result_gastos = mysqli_query($link,$consulta_gastos);
