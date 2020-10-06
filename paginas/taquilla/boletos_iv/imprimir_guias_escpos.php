@@ -17,10 +17,11 @@
 	LEFT JOIN origenes ON precios_boletos.id_destinos = origenes.id_origenes
 	WHERE id_corridas = '{$_GET["id_corridas"]}' ";
 	
-	if($_GET["id_usuarios"] != ""){
-		$consulta_guia.=" AND boletos.id_usuarios = '{$_GET["id_usuarios"]}' ";
-	}
+	// if($_GET["id_usuarios"] != ""){
+	// $consulta_guia.=" AND boletos.id_usuarios = '{$_GET["id_usuarios"]}' ";
+	// }
 	
+	$consulta_guia.=" AND boletos.id_taquilla = '{$_COOKIE["id_taquilla"]}' ";
 	
 	$consulta_guia.=" ORDER BY num_asiento";
 	
@@ -39,9 +40,13 @@
 	LEFT JOIN precios_boletos USING(id_precio)
 	LEFT JOIN origenes ON precios_boletos.id_destinos = origenes.id_origenes
 	WHERE id_corridas = '{$_GET["id_corridas"]}' ";
-	if($_GET["id_usuarios"] != ""){
-		$consulta_boletos.=" AND gastos_corrida.id_usuarios = '{$_GET["id_usuarios"]}' ";
-	}
+	
+	// if($_GET["id_usuarios"] != ""){
+	// $consulta_boletos.=" AND gastos_corrida.id_usuarios = '{$_GET["id_usuarios"]}' ";
+	// }
+	
+	$consulta_boletos.=" AND boletos.id_taquilla = '{$_COOKIE["id_taquilla"]}' ";
+	
 	$consulta_boletos.="GROUP BY id_precio";
 	
 	
@@ -58,10 +63,11 @@
 	LEFT JOIN cat_gastos USING(id_cat_gastos)
 	WHERE id_corridas = '{$_GET["id_corridas"]}'";
 	
+	// if($_GET["id_usuarios"] != ""){
+	// $consulta_gastos.=" AND gastos_corrida.id_usuarios = '{$_GET["id_usuarios"]}' ";
+	// }
 	
-	if($_GET["id_usuarios"] != ""){
-		$consulta_gastos.=" AND gastos_corrida.id_usuarios = '{$_GET["id_usuarios"]}' ";
-	}
+	$consulta_gastos.=" AND gastos.id_taquilla = '{$_COOKIE["id_taquilla"]}' ";
 	
 	$consulta_gastos .=" 
 	AND estatus_gastos <> 'Cancelado'
@@ -82,10 +88,12 @@
 	WHERE id_corridas = '{$_GET["id_corridas"]}' 
 	AND estatus_paquetes <> 'Cancelado'
 	";
-	if($_GET["id_usuarios"] != ""){
-		$consulta_paquetes.=" AND paquetes.id_usuarios = '{$_GET["id_usuarios"]}' ";
-	}
 	
+	// if($_GET["id_usuarios"] != ""){
+	// $consulta_paquetes.=" AND paquetes.id_usuarios = '{$_GET["id_usuarios"]}' ";
+	// }
+	
+	$consulta_paquetes.=" AND paquetes.id_taquilla = '{$_COOKIE["id_taquilla"]}' ";
 	
 	
 	$result_paquetes = mysqli_query($link,$consulta_paquetes);
@@ -101,9 +109,11 @@
 	AND estatus <> 'Cancelado'
 	";
 	
-	if($_GET["id_usuarios"] != ""){
-		$consulta_equipaje.=" AND equipaje.id_usuarios = '{$_GET["id_usuarios"]}' ";
-	}
+	// if($_GET["id_usuarios"] != ""){
+	// $consulta_equipaje.=" AND equipaje.id_usuarios = '{$_GET["id_usuarios"]}' ";
+	// }
+	
+	$consulta_equipaje.=" AND equipaje.id_taquilla = '{$_COOKIE["id_taquilla"]}' ";
 	
 	
 	$result_equipaje = mysqli_query($link,$consulta_equipaje);
@@ -242,13 +252,13 @@
 			$respuesta.=   "\x1b"."@"; 
 			
 			foreach($gastos AS $i =>$gasto){
-			$importe= $gasto["importe"];
-			$total_gastos+= $importe;
-			
-			$respuesta.=  $gasto["id_gastos"]."\x09";
-			$respuesta.=  $gasto["descripcion_gastos"]."\x09"."\x09";
-			$respuesta.="$". number_format($gasto["importe"], 0)."\n";
-			
+				$importe= $gasto["importe"];
+				$total_gastos+= $importe;
+				
+				$respuesta.=  $gasto["id_gastos"]."\x09";
+				$respuesta.=  $gasto["descripcion_gastos"]."\x09"."\x09";
+				$respuesta.="$". number_format($gasto["importe"], 0)."\n";
+				
 			}
 			
 			$respuesta.= "______________________\n "; 
