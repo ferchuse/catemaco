@@ -111,7 +111,7 @@
 			</a>
 			<div class="dropdown-menu" >
 				<?php 
-					$q_catalogos = "SELECT * FROM paginas WHERE categoria_paginas = 'Catemaco'";	
+					$q_catalogos = "SELECT * FROM paginas WHERE categoria_paginas = 'Catemaco' ORDER BY orden_paginas";	
 					$result_catalogos = mysqli_query($link, $q_catalogos);
 					while($fila = mysqli_fetch_assoc($result_catalogos)){
 						echo "<a class='dropdown-item' href='../../paginas/taquilla/{$fila["url_paginas"]}' ";

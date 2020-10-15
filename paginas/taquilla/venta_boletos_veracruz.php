@@ -104,7 +104,7 @@
 														<label>
 															Taquilla:
 														</label>
-														<?php echo generar_select($link, "taquillas", "id_taquilla", "nombre_taquilla", true, false, false, 4 , 0, "id_taquilla","filtro_taquilla")?>
+														<?php echo generar_select($link, "taquillas", "id_taquilla", "nombre_taquilla", true, false, false, 3 , 0, "id_taquilla","filtro_taquilla")?>
 													</div>
 												</div>
 												<button type="submit"  title="Buscar" class="btn btn-primary  d-print-none">
