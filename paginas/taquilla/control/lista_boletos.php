@@ -48,6 +48,7 @@
 	$consulta_boletos = "SELECT *, nombre_origenes as destino FROM boletos 
 	LEFT JOIN precios_boletos USING(id_precio)
 	LEFT JOIN usuarios USING(id_usuarios)
+	LEFT JOIN taquillas USING(id_taquilla)
 	LEFT JOIN origenes ON precios_boletos.id_destinos = origenes.id_origenes
 	WHERE id_corridas = '{$_GET["id_corridas"]}'";
 	
@@ -81,7 +82,7 @@
 				<th>Destino</th>
 				<th>Precio</th>
 				<th >Usuario </th>
-				<th hidden>Destino</th>
+				<th >Taquilla</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -126,6 +127,7 @@
 					<td ><?php echo $filas["destino"]?></td>
 					<td>$<?php echo number_format($filas["precio_boletos"])?></td>
 					<td ><?php echo $filas["nombre_usuarios"]?></td>
+					<td ><?php echo $filas["nombre_taquilla"]?></td>
 					
 				</tr>
 				
