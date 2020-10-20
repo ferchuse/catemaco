@@ -16,10 +16,12 @@
 	id_ingreso AS folio,
 	base,
 	monto,
-	'Ingreso' AS tipo
+	'Ingreso' AS tipo,
+	nombre_beneficiarios
 	
 	FROM base_ingresos
 	LEFT JOIN bases USING(id_base)
+	LEFT JOIN beneficiarios USING(id_beneficiarios)
 	WHERE 
 	MONTH(fecha) BETWEEN '{$_GET["mes_inicial"]}'
 	AND '{$_GET["mes_final"]}'
@@ -34,9 +36,11 @@
 	id_egreso AS folio,
 	' ' AS base,
 	monto,
-	'Egreso' AS tipo
+	'Egreso' AS tipo,
+	nombre_beneficiarios
 	
 	FROM base_egresos
+	LEFT JOIN beneficiarios USING(id_beneficiarios)
 	WHERE 
 	MONTH(fecha) BETWEEN '{$_GET["mes_inicial"]}'
 	AND '{$_GET["mes_final"]}'
@@ -77,6 +81,7 @@
 				<th>Folio</th>
 				<th>Fecha</th>
 				<th>Base</th>
+				<th>Beneficiario</th>
 				<th>Monto</th>
 				
 				
@@ -107,15 +112,17 @@
 						<td><?php echo $fila["folio"]?></td>
 						<td><?php echo $fila["fecha"]?></td>
 						<td><?php echo $fila["base"]?></td>
+						<td><?php echo $fila["nombre_beneficiarios"]?></td>
 						<td class="text-right">$<?php echo number_format($fila["monto"])?></td>
 					</tr>
 					<?php
 					}
-					?>
-					</tbody>
-					<tfoot>
+				?>
+			</tbody>
+			<tfoot>
 				<tr class="bg-secondary text-white">
 					<td><?php echo mysqli_num_rows($result);?> Registros</td>
+					<td class="text-right"></td>
 					<td class="text-right"></td>
 					<td class="text-right"></td>
 					<td class="text-right"></td>
