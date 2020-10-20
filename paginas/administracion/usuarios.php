@@ -86,7 +86,7 @@
 		
 		<?php include("forms/form_usuarios.php")?>
 		<?php include("../../scripts.php")?>
-		<script src="js/usuarios.js" ></script>
+		<script src="js/usuarios.js?v=<?= date("dmYHi")?>" ></script>
 
 	</body>
 </html>

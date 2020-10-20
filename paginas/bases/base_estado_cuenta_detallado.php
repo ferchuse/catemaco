@@ -52,8 +52,8 @@
 								</select>
 							</div>
 							<div class="col-sm-2">
-								<label>Mes:</label>
-								<select class="form-control filtro" id="mes" name="mes" >
+								<label>Mes Inicial:</label>
+								<select class="form-control filtro" id="mes_inicial" name="mes_inicial" >
 									
 									<option <?= date("n") == "1" ? "selected": "";?> value="1">Enero</option>
 									<option <?= date("n") == "2" ? "selected": "";?> value="2">Febrero</option>
@@ -70,9 +70,28 @@
 									
 								</select>
 							</div>
-							<div class="col-sm-3">
-								<label >Beneficiarios:</label>
-								<?= generar_select($link, "base_beneficiarios", "id_beneficiarios", "nombre_beneficiarios", true); ?>
+							<div class="col-sm-2">
+								<label>Mes Final:</label>
+								<select class="form-control filtro" id="mes_final" name="mes_final" >
+									
+									<option <?= date("n") == "1" ? "selected": "";?> value="1">Enero</option>
+									<option <?= date("n") == "2" ? "selected": "";?> value="2">Febrero</option>
+									<option <?= date("n") == "3" ? "selected": "";?> value="3">Marzo</option>
+									<option <?= date("n") == "4" ? "selected": "";?> value="4">Abril</option>
+									<option <?= date("n") == "5" ? "selected": "";?> value="5">Mayo</option>
+									<option <?= date("n") == "6" ? "selected": "";?> value="6">Junio</option>
+									<option <?= date("n") == "7" ? "selected": "";?> value="7">Julio</option>
+									<option <?= date("n") == "8" ? "selected": "";?> value="8">Agosto</option>
+									<option <?= date("n") == "9" ? "selected": "";?> value="9">Septiembre</option>
+									<option <?= date("n") == "10" ? "selected": "";?> value="10">Octubre</option>
+									<option <?= date("n") == "11" ? "selected": "";?> value="11">Noviembre</option>
+									<option <?= date("n") == "12" ? "selected": "";?> value="12">Diciembre</option>
+									
+								</select>
+							</div>
+							<div class="col-sm-3" hidden >
+								<label >Base:</label>
+								<?= generar_select($link, "bases", "id_base", "base", true); ?>
 							</div>
 						</div>
 						
@@ -150,6 +169,58 @@
 		<?php 
 			include("../../scripts.php");
 		?>
-		<script src="js/estado_cuenta.js?v=<?php echo date('Y-m-d-H:i:s');?>"></script>
+		<script >
+			$(document).ready( function onLoad(){ 
+	
+	
+	listarRegistros();
+	
+	
+	
+
+	
+	$('#form_filtro').on('submit', function filtrar(event){
+		
+		listarRegistros();
+		return false;
+	});
+	
+	
+		
+});
+
+
+
+
+
+function listarRegistros(){
+	console.log("listarRegistros()");
+	
+	let form = $("#form_filtro");
+	let boton = form.find(":submit");
+	let icono = boton.find('.fa');
+	
+	boton.prop('disabled',true);
+	icono.toggleClass('fa-search fa-spinner fa-pulse ');
+	
+	return $.ajax({
+		url: 'consultas/lista_estado_cuenta_detalle.php',
+		data: $("#form_filtro").serialize()
+		}).done(function(respuesta){
+		
+		$("#tabla_registros").html(respuesta)
+		
+		
+		}).always(function(){  
+		
+		boton.prop('disabled',false);
+		icono.toggleClass('fa-search fa-spinner fa-pulse fa-fw');
+		
+	});
+}
+
+
+			
+			</script>
 	</body>
 </html>

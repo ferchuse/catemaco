@@ -17,7 +17,7 @@ $(document).ready(function(){
 	
 	$('#nuevo').on('click',function(){
 		$('#form_edicion')[0].reset();
-		$('.modal-title').text('Nuevo Ingreso');
+		$('.modal-title').text('Nuevo Egreso');
 		$('#modal_edicion').modal('show');
 	}); 
 	

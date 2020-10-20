@@ -10,41 +10,44 @@
 	
 	
 	$consulta = "
-	SELECT * FROM base_beneficiarios
-	
-	LEFT JOIN (
 	SELECT
-	id_beneficiarios,
-	SUM(monto)  AS ingresos 
+	
+	fecha,
+	id_ingreso AS folio,
+	base,
+	monto,
+	'Ingreso' AS tipo
+	
 	FROM base_ingresos
+	LEFT JOIN bases USING(id_base)
 	WHERE 
-	MONTH(fecha) = '{$_GET["mes"]}'
+	MONTH(fecha) BETWEEN '{$_GET["mes_inicial"]}'
+	AND '{$_GET["mes_final"]}'
 	AND YEAR(fecha) = '{$_GET["year"]}'
 	AND estatus = 'Activo'
-	GROUP BY id_beneficiarios
-	) as t_ingresos
 	
-	USING (id_beneficiarios)
 	
-	LEFT JOIN (
+	UNION
+	
 	SELECT
-	id_beneficiarios,
-	SUM(monto)  AS egresos 
+	fecha,
+	id_egreso AS folio,
+	' ' AS base,
+	monto,
+	'Egreso' AS tipo
+	
 	FROM base_egresos
 	WHERE 
-	MONTH(fecha) = '{$_GET["mes"]}'
+	MONTH(fecha) BETWEEN '{$_GET["mes_inicial"]}'
+	AND '{$_GET["mes_final"]}'
 	AND YEAR(fecha) = '{$_GET["year"]}'
-	AND estatus = 'Activo'	
-	GROUP BY id_beneficiarios
-	) as t_egresos
-	USING (id_beneficiarios)
-	"; 
-	if($_GET["id_beneficiarios"] != ''){
-		
-		$consulta.=  " AND  id_beneficiarios = '{$_GET["id_beneficiarios"]}'"; 
-	}
+	AND estatus = 'Activo'
 	
-	$consulta.=  " ORDER BY nombre_beneficiarios"; 
+	
+	
+	"; 
+	
+	$consulta.=  " ORDER BY fecha"; 
 	
 	
 	$result = mysqli_query($link,$consulta);
@@ -70,10 +73,12 @@
 	<table class="table table-bordered table-condensed" id="dataTable" width="100%" cellspacing="0">
 		<thead>
 			<tr>
-				<th>Beneficiario</th>
-				<th>Ingresos</th>
-				<th>Egresos</th>
-				<th>Saldo</th>
+				<th>Tipo</th>
+				<th>Folio</th>
+				<th>Fecha</th>
+				<th>Base</th>
+				<th>Monto</th>
+				
 				
 			</thead>
 			<tbody id="">
@@ -82,24 +87,39 @@
 						
 						$total[1]+= $fila["ingresos"];
 						$total[2]+= $fila["egresos"];
+						$total[2]+= $fila["egresos"];
 						$total[3]+=  $fila["ingresos"] - $fila["egresos"]  ;
 					?>
 					<tr>						
-						<td><?php echo $fila["nombre_beneficiarios"]?></td>
-						<td class="text-right">$<?php echo number_format($fila["ingresos"])?></td>
-						<td class="text-right">$<?php echo number_format($fila["egresos"])?></td>
-						<td class="text-right">$<?php echo number_format( $fila["ingresos"] - $fila["egresos"] )?></td>
+						<td><?php 
+							
+							if($fila["tipo"] == "Ingreso"){
+								
+								echo "<span class='badge badge-success'>".$fila["tipo"]."</span>";
+								
+							}
+							else{
+								echo "<span class='badge badge-danger'>".$fila["tipo"]."</span>";
+							}
+							
+							
+						?></td>
+						<td><?php echo $fila["folio"]?></td>
+						<td><?php echo $fila["fecha"]?></td>
+						<td><?php echo $fila["base"]?></td>
+						<td class="text-right">$<?php echo number_format($fila["monto"])?></td>
 					</tr>
 					<?php
 					}
-				?>
-			</tbody>
-			<tfoot>
+					?>
+					</tbody>
+					<tfoot>
 				<tr class="bg-secondary text-white">
 					<td><?php echo mysqli_num_rows($result);?> Registros</td>
-					<td class="text-right">$<?= number_format($total[1]);?></td>
-					<td class="text-right">$<?= number_format($total[2]);?></td>
-					<td class="text-right">$<?= number_format($total[3]);?></td>
+					<td class="text-right"></td>
+					<td class="text-right"></td>
+					<td class="text-right"></td>
+					<td class="text-right"></td>
 				</tr>
 			</tfoot>
 		</table>

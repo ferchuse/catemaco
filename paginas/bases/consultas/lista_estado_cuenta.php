@@ -90,7 +90,13 @@
 						<td><?php echo $fila["nombre_beneficiarios"]?></td>
 						<td class="text-right">$<?php echo number_format($fila["ingresos"])?></td>
 						<td class="text-right">$<?php echo number_format($fila["egresos"])?></td>
-						<td class="text-right">$<?php echo number_format( $fila["ingresos"] - $fila["egresos"] )?></td>
+						<td class="text-right">
+							<a href="base_estado_cuenta_detallado.php">
+								
+								$<?php echo number_format( $fila["ingresos"] - $fila["egresos"] )?>
+								
+							</a>
+						</td>
 					</tr>
 					<?php
 					}
