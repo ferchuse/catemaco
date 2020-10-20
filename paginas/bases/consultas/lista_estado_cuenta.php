@@ -18,7 +18,8 @@
 	SUM(monto)  AS ingresos 
 	FROM base_ingresos
 	WHERE 
-	MONTH(fecha) = '{$_GET["mes"]}'
+	MONTH(fecha)  BETWEEN '{$_GET["mes_inicial"]}'
+	AND '{$_GET["mes_final"]}'
 	AND YEAR(fecha) = '{$_GET["year"]}'
 	AND estatus = 'Activo'
 	GROUP BY id_beneficiarios
@@ -32,7 +33,8 @@
 	SUM(monto)  AS egresos 
 	FROM base_egresos
 	WHERE 
-	MONTH(fecha) = '{$_GET["mes"]}'
+	MONTH(fecha)  BETWEEN '{$_GET["mes_inicial"]}'
+	AND '{$_GET["mes_final"]}'
 	AND YEAR(fecha) = '{$_GET["year"]}'
 	AND estatus = 'Activo'	
 	GROUP BY id_beneficiarios
