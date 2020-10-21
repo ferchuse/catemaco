@@ -21,7 +21,7 @@
 	
 	FROM base_ingresos
 	LEFT JOIN bases USING(id_base)
-	LEFT JOIN beneficiarios USING(id_beneficiarios)
+	LEFT JOIN base_beneficiarios USING(id_beneficiarios)
 	WHERE 
 	MONTH(fecha) BETWEEN '{$_GET["mes_inicial"]}'
 	AND '{$_GET["mes_final"]}'
@@ -40,7 +40,7 @@
 	nombre_beneficiarios
 	
 	FROM base_egresos
-	LEFT JOIN beneficiarios USING(id_beneficiarios)
+	LEFT JOIN base_beneficiarios USING(id_beneficiarios)
 	WHERE 
 	MONTH(fecha) BETWEEN '{$_GET["mes_inicial"]}'
 	AND '{$_GET["mes_final"]}'
