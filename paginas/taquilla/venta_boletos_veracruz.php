@@ -170,7 +170,7 @@
 														<label>Asientos: </label>
 														<input name="asientos" id="asientos" class="form-control" readonly >
 													</div>
-													<div class="form-group col-sm-2 col-4">
+													<div class="form-group col-sm-3 col-6">
 														
 															<label for="">Taquilla:</label>
 															<?php echo generar_select($link, "taquillas", "id_taquilla", "nombre_taquilla", false, false, true, $_COOKIE["id_taquilla"], 0, "id_taquilla" , "sesion_id_taquillas")?>
