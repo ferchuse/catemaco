@@ -33,7 +33,7 @@
 		<style>
 			.reservado label {
 			
-				background: #ec213d !important;
+			background: #ec213d !important;
 			}
 		</style>
 	</head>
@@ -101,10 +101,12 @@
 														<?php echo generar_select($link, "usuarios", "id_usuarios", "nombre_usuarios", true, false, false)?>
 													</div>
 													<div class="form-group col-sm-2">
-														<label>
-															Taquilla:
-														</label>
-														<?php echo generar_select($link, "taquillas", "id_taquilla", "nombre_taquilla", true, false, false, 4 , 0, "id_taquilla","filtro_taquilla")?>
+														<label for="">Taquilla:</label>
+														<select  class="form-control" name="id_taquilla" id="filtro_taquilla">
+															<option value="">Todas</option>
+															<option >VERACRUZ</option>
+															<option  selected>INDIOS VERDES</option>
+														</select>
 													</div>
 												</div>
 												<button type="submit"  title="Buscar" class="btn btn-primary  d-print-none">
@@ -118,11 +120,11 @@
 											<h3 >Lista de Corridas
 												<?php if(dame_permiso("venta_boletos.php", $link) == "Supervisor"){?>
 													<button disabled type="button" class="btn btn-primary float-right d-print-none" id="btn_pagar">
-													<i class="fas fa-dollar-sign"></i> Pagar 
-													<span id="span_num_selected">0</span>
-												</button>
-												<?php
-												}	
+														<i class="fas fa-dollar-sign"></i> Pagar 
+														<span id="span_num_selected">0</span>
+													</button>
+													<?php
+													}	
 												?>
 												<button  type="button" onclick="window.print()" class="btn btn-info float-right d-print-none">
 													<i class="fas fa-print"></i> Imprimir 
@@ -166,6 +168,12 @@
 														<label>Asientos: </label>
 														<input name="asientos" id="asientos" class="form-control" readonly >
 													</div>
+													<div class="form-group col-sm-2 col-4">
+														
+															<label for="">Taquilla:</label>
+															<?php echo generar_select($link, "taquillas", "id_taquilla", "nombre_taquilla", false, false, true, $_COOKIE["id_taquilla"], 0, "id_taquilla" , "sesion_id_taquillas")?>
+														
+													</div>
 												</div>
 												<div class="table-responsive">
 													<table class="table table-bordered">
@@ -181,8 +189,8 @@
 																	
 																</th>
 																<th>CURP </th>
-																<th>Precio</th>
-															</tr>
+															<th>Precio</th>
+														</tr>
 														</thead>
 														<tbody id="resumen_boletos">
 															
@@ -327,7 +335,7 @@
 		</div>
 		
 		<?php include("gastos/form_gastos.php")?>
-		<?php include("forms/form_taquilla_sesion.php")?>
+		<?php// include("forms/form_taquilla_sesion.php")?>
 		
 		<?php include("../../scripts.php")?>
 		<script src="../../plugins/pos_print/websocket-printer.js" > </script>

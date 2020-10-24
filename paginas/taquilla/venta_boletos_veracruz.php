@@ -33,7 +33,7 @@
 		<style>
 			.reservado label {
 			
-				background: #ec213d !important;
+			background: #ec213d !important;
 			}
 		</style>
 	</head>
@@ -104,7 +104,11 @@
 														<label>
 															Taquilla:
 														</label>
-														<?php echo generar_select($link, "taquillas", "id_taquilla", "nombre_taquilla", true, false, false, 3 , 0, "id_taquilla","filtro_taquilla")?>
+														<select  class="form-control" name="id_taquilla" id="filtro_taquilla">
+															<option value="">Todas</option>
+															<option selected>VERACRUZ</option>
+															<option  >INDIOS VERDES</option>
+														</select>
 													</div>
 												</div>
 												<button type="submit"  title="Buscar" class="btn btn-primary  d-print-none">
@@ -118,11 +122,11 @@
 											<h3 >Lista de Corridas
 												<?php if(dame_permiso("venta_boletos.php", $link) == "Supervisor"){?>
 													<button disabled type="button" class="btn btn-primary float-right d-print-none" id="btn_pagar">
-													<i class="fas fa-dollar-sign"></i> Pagar 
-													<span id="span_num_selected">0</span>
-												</button>
-												<?php
-												}	
+														<i class="fas fa-dollar-sign"></i> Pagar 
+														<span id="span_num_selected">0</span>
+													</button>
+													<?php
+													}	
 												?>
 												<button  type="button" onclick="window.print()" class="btn btn-info float-right d-print-none">
 													<i class="fas fa-print"></i> Imprimir 
@@ -165,6 +169,12 @@
 													<div class="form-group col-sm-2 col-4">
 														<label>Asientos: </label>
 														<input name="asientos" id="asientos" class="form-control" readonly >
+													</div>
+													<div class="form-group col-sm-2 col-4">
+														
+															<label for="">Taquilla:</label>
+															<?php echo generar_select($link, "taquillas", "id_taquilla", "nombre_taquilla", false, false, true, $_COOKIE["id_taquilla"], 0, "id_taquilla" , "sesion_id_taquillas")?>
+														
 													</div>
 												</div>
 												<div class="table-responsive">

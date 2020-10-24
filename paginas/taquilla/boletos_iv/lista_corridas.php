@@ -73,9 +73,18 @@
 	if($_GET["num_eco"] != ""){
 		$consulta.="AND corridas.num_eco = '{$_GET["num_eco"]}'";
 	}
-	if($_GET["id_taquilla"] != ""){
-		$consulta.="AND corridas.id_taquilla = '{$_GET["id_taquilla"]}'";
+	
+	//Si la taquilla es indios verdes solo ostrar corridas de indios verdes
+	if($_GET["id_taquilla"] == "INDIOS VERDES"){
+		$consulta.="AND corridas.id_taquilla = '4'";
 	}
+	elseif($_GET["id_taquilla"] != "INDIOS VERDES" && $_GET["id_taquilla"] != "" ){
+		//si la taquilla es diferente de IV y diferente de "Todos" mostrar CABADA, SAn andres y catemaco
+		
+		$consulta.=" AND corridas.id_taquilla <> '4'";
+	}
+	
+	
 	
 	$consulta.="
 	ORDER BY id_corridas DESC "

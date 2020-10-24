@@ -9,19 +9,13 @@ $(document).ready(onLoad);
 
 function onLoad(){
 	
-	if($("#sesion_id_taquillas").val() == ""){
-		//Elegir taquilla de la sesion
-		$("#modal_taquilla_sesion").modal({
-			keyboard: false,
-			backdrop: 'static'
-		}).modal('show');
-	}
+	
 	
 	listarCorridas();
 	$("#form_corridas input[name='num_eco']").on("blur", buscarNumEco);
 	
 	
-	$("#form_taquilla_sesion").on("submit", guardarTaquillaSesion);
+	// $("#form_taquilla_sesion").on("submit", guardarTaquillaSesion);
 	
 	
 	
@@ -125,14 +119,18 @@ function onLoad(){
 
 
 function guardarTaquillaSesion(event) {
-	event.preventDefault();
+	// event.preventDefault();
 	
 	$.ajax({
 		"url": "control/iniciar_sesion_taquilla.php",
-		data: 	$("#form_taquilla_sesion").serialize()
-		}).done(function alCargar(respuesta) {
-		$("#modal_taquilla_sesion").modal("hide");
+		data: 	
+		{
+			id_taquilla: $("#sesion_id_taquillas").val()
+		}
 		
+		}).done(function alCargar(respuesta) {
+		// $("#modal_taquilla_sesion").modal("hide");
+		alertify.success("Taquilla guardada")
 	});
 }
 
@@ -303,6 +301,13 @@ function guardarBoletos(event){
 	let boton = form.find(':submit');
 	let icono = boton.find('.fa');
 	let datos = form.serialize();
+	
+	
+	if($("#sesion_id_taquillas").val() == ""){
+		alert("Elige una taquilla");
+		$("#sesion_id_taquillas").focus();
+		return false
+	}
 	
 	datos+="&id_usuarios="+ $("#id_usuarios").val();
 	
@@ -810,8 +815,15 @@ function abrirTaquilla(event){
 	listarPaquetes();
 	renderAsientos();
 	
+	if($("#sesion_id_taquillas").val() == ""){
+		alert("Elige una taquilla");
+		$("#sesion_id_taquillas").focus();
+	}
+	
 	setInterval(desactivaAsientosOcupados, 3000);
 }
+
+$("#sesion_id_taquillas").change(guardarTaquillaSesion);
 
 
 function guardarCorrida(event){
