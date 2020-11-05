@@ -115,7 +115,15 @@
 						<td><?php echo $fila["fecha_aplicacion"]?></td>
 						<td><?php echo $fila["nombre_beneficiarios"]?></td>
 						<td><?php echo $fila["nombre_motivosSalida"]?></td>
-						<td class="text-right">$<?php echo number_format($fila["monto_reciboSalidas"],2)?></td>
+						<td class="text-right">
+							<?php 
+								if($fila["estatus_reciboSalidas"] != 'Cancelado'){	
+									echo "$".number_format($fila["monto_reciboSalidas"], 2);
+								}
+							?>
+						</td>
+						
+						
 						<td><?php echo $fila["observaciones_reciboSalidas"]?></td>
 						<td>
 							

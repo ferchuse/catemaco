@@ -110,7 +110,13 @@
 						<td><?php echo $fila["fecha_aplicacion"]?></td>
 						<td><?php echo $fila["nombre_beneficiarios"]?></td>
 						<td><?php echo $fila["nombre_empresas"]?></td>
-						<td class="text-right">$<?php echo number_format($fila["monto"], 2)?></td>
+						<td class="text-right">
+							<?php 
+								if($fila["estatus_deposito"] != 'Cancelado'){	
+									echo "$".number_format($fila["monto"], 2);
+								}
+							?>
+						</td>
 						
 						<td><?php echo $fila["estatus_deposito"]?></td>
 						<td><?php echo $fila["nombre_usuarios"]?></td>
@@ -132,9 +138,9 @@
 					<td></td>
 					<?php
 						foreach($totales as $i =>$total){
-						?>
-						<td class="h6">$<?php echo number_format($total, 2)?></td>
-						<?php	
+							?>
+							<td class="h6">$<?php echo number_format($total, 2)?></td>
+							<?php	
 						}
 					?>
 					<td></td>
