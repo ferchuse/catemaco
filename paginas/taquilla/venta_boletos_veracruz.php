@@ -100,6 +100,7 @@
 														</label>
 														<?php echo generar_select($link, "usuarios", "id_usuarios", "nombre_usuarios", true, false, false)?>
 													</div>
+													
 													<div class="form-group col-sm-2">
 														<label>
 															Taquilla:
@@ -172,8 +173,8 @@
 													</div>
 													<div class="form-group col-sm-3 col-6">
 														
-															<label for="">Taquilla:</label>
-															<?php echo generar_select($link, "taquillas", "id_taquilla", "nombre_taquilla", false, false, true, $_COOKIE["id_taquilla"], 0, "id_taquilla" , "sesion_id_taquillas")?>
+														<label for="">Taquilla:</label>
+														<?php echo generar_select($link, "taquillas", "id_taquilla", "nombre_taquilla", false, false, true, $_COOKIE["id_taquilla"], 0, "id_taquilla" , "sesion_id_taquillas")?>
 														
 													</div>
 												</div>
@@ -256,6 +257,13 @@
 																echo generar_select($link, "usuarios" , "id_usuarios", "nombre_usuarios", true, false, false, $_COOKIE["id_usuarios"],0, "id_usuarios" , "filtro_usuarios")
 															?>
 														</div>
+														<div class="form-group col-sm-6 float-right">
+															<div class="alert alert-success small" id="last_update">
+																
+															</div>
+														</div>
+														
+														
 													</div>
 													<div class="table-responsive" id="lista_boletos">
 														<h3 class="text-center">Cargando <i class="fas fa-spinner fa-pulse"></i>

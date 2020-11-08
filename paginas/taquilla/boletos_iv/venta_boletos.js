@@ -269,7 +269,12 @@ function selectAsiento(evt){
 }
 
 function desactivaAsientosOcupados(){
+	
 	console.log(" desactivaAsientosOcupados()")
+	
+	
+	$("#last_update").html("Actualizando <i class='fas fa-spinner fa-spin'></i>" );
+	
 	
 	$.ajax({
 		url: "control/asientos_ocupados.php" ,
@@ -287,6 +292,11 @@ function desactivaAsientosOcupados(){
 		$.each(respuesta.asientos_reservados, function(index, num_asiento){
 			$("#"+ num_asiento).next("label").css("background" ,"#ec213d");
 		})
+		
+		var last_update = new Date();
+		
+		$("#last_update").text("Actualizado: " +  last_update.toLocaleString());
+		
 		}).always(function(){
 		
 		// boton.prop("disabled", false);
@@ -820,7 +830,7 @@ function abrirTaquilla(event){
 		$("#sesion_id_taquillas").focus();
 	}
 	
-	setInterval(desactivaAsientosOcupados, 3000);
+	setInterval(desactivaAsientosOcupados, 4500);
 }
 
 $("#sesion_id_taquillas").change(guardarTaquillaSesion);
