@@ -13,7 +13,7 @@
 		nombre_usuarios = '{$_POST['nombre_usuarios']}' , 
 		nombre_completo_usuarios = '{$_POST['nombre_completo_usuarios']}' , 
 		pass_usuarios ='{$_POST['pass_usuarios']}',
-		id_administrador ='{$_SESSION['id_administrador']}'
+		id_administrador ='1'
 		
 		";	
 		
@@ -25,7 +25,7 @@
 			$respuesta["estatus"] = "success";
 			$respuesta["mensaje"] = "Guardado";
 			$id_usuarios = mysqli_insert_id($link);
-			}
+		}
 		else{
 			$respuesta["estatus"] = "error";
 			$respuesta["mensaje"] = "Error en $q_usuario ".mysqli_error($link);		
@@ -50,7 +50,7 @@
 			$respuesta["estatus"] = "success";
 			$respuesta["mensaje"] = "Actualizado";
 			$id_usuarios = $_POST["id_usuarios"];
-			}
+		}
 		else{
 			$respuesta["estatus"] = "error";
 			$respuesta["mensaje"] = "Error en $q_usuario ".mysqli_error($link);		
