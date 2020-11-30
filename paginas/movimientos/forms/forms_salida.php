@@ -34,6 +34,38 @@
 						<label for="monto_reciboSalidas">MONTO</label>
 						<input type="number" class="form-control" id="monto_reciboSalidas" name="monto_reciboSalidas" required step="any">
 					</div> 
+					
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-6">
+								<label for="limite">LIMITE MENSUAL</label>
+							</div>
+							
+							<div class="col-sm-6">
+								<input readonly type="number" class="form-control" id="limite"  step="any">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<label for="total_gastado">TOTAL GASTADO</label>
+							</div>
+							
+							<div class="col-sm-6">
+								<input readonly type="number" class="form-control" id="total_gastado"  value="0" step="any">
+							</div>
+						</div>
+						
+						<div class="row" >
+							<div class="col-sm-6">
+								<label for="excedente">EXCEDENTE</label>
+							</div>
+							
+							<div class="col-sm-6">
+								<input readonly type="number" class="form-control" id="excedente"  value="0" step="any">
+							</div>
+						</div>
+						
+					</div> 
                     <div class="form-group">
 						<label for="observaciones_reciboSalidas">OBSERVACIONES</label>
 						<input type="text" class="form-control" id="observaciones_reciboSalidas" name="observaciones_reciboSalidas" required placeholder="Observaciones">

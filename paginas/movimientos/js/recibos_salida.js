@@ -1,37 +1,3 @@
-function contarSeleccionados(){
-	console.log( ("contarSeleccionados()"));
-	$("#cant_seleccionados").text($(".seleccionar:checked").length);
-	
-	
-	var folios = $(".seleccionar:checked").map(function(){
-		return $(this).val();
-	}).get().join(",");
-	
-	
-	$("#folios_seleccionados").val(folios);
-	console.log( ("folios") , folios);	
-	
-	if($(".seleccionar:checked").length > 0 ){
-		$("#imprimir_recibos").prop("disabled", false);
-	}
-	else{
-		$("#imprimir_recibos").prop("disabled", true);
-	}
-}
-
-function checkAll(){
-	console.log("checkAll");
-	if($(this).prop("checked")){
-		$(".seleccionar").prop("checked", true);
-	}
-	else{
-		
-		$(".seleccionar").prop("checked", false);
-		
-	}
-	contarSeleccionados();
-	
-}
 
 
 $(document).ready(function(){ 
@@ -100,6 +66,8 @@ $(document).ready(function(){
 			$('#mensaje').html('');
 		}
 	});
+	
+	
 	$("#fecha_recibo").change(function filtro_buscar(){
 		var indice = $(this).data("indice");
 		var valor_filtro = $(this).val();
@@ -113,9 +81,96 @@ $(document).ready(function(){
 	});
 	
 	
-	
+	$("#form_salida #id_motivosSalida").change(buscarLimiteMensual);
+	$("#form_salida #monto_reciboSalidas").keyup(calcularExcedente);
+	// $("#form_salida #monto_reciboSalidas").blur(calcularExcedente);
 	
 });
+
+
+
+function buscarLimiteMensual(){
+	console.log( ("buscarLimiteMensual"));
+	
+	$.ajax({
+		url: 'control/buscar_limite_mensual.php',
+		method: 'GET',
+		dataType: 'JSON',
+		data:{
+			"id_motivo": $("#form_salida #id_motivosSalida").val(),
+			"id_empresas" : $("#form_salida #id_empresas").val(),
+			"fecha": $("#fecha_aplicacion").val()
+		}
+		}).done(function(respuesta){
+		$("#limite").val(respuesta.filas.limite);
+		$("#total_gastado").val(respuesta.total_gastado);
+		// alert(JSON.stringify(respuesta));
+		
+		}).always(function(){
+		
+	});
+	
+}
+function calcularExcedente(){
+	console.log( ("calcularExcedente"));
+	
+	let limite = Number($("#limite").val());
+	let total_gastado = Number($("#total_gastado").val());
+	let monto = Number($("#monto_reciboSalidas").val());
+	
+	if(limite > 0){
+		
+		excedente = total_gastado + monto - limite ;
+		
+		if(excedente > 0){
+			
+			$("#excedente").val(excedente);
+			alert("Se ha superado el limte mensual");
+		}
+		else{
+			$("#excedente").val(0);
+			
+		}
+		
+	}
+	
+}
+
+function contarSeleccionados(){
+	console.log( ("contarSeleccionados()"));
+	$("#cant_seleccionados").text($(".seleccionar:checked").length);
+	
+	
+	var folios = $(".seleccionar:checked").map(function(){
+		return $(this).val();
+	}).get().join(",");
+	
+	
+	$("#folios_seleccionados").val(folios);
+	console.log( ("folios") , folios);	
+	
+	if($(".seleccionar:checked").length > 0 ){
+		$("#imprimir_recibos").prop("disabled", false);
+	}
+	else{
+		$("#imprimir_recibos").prop("disabled", true);
+	}
+}
+
+function checkAll(){
+	console.log("checkAll");
+	if($(this).prop("checked")){
+		$(".seleccionar").prop("checked", true);
+	}
+	else{
+		
+		$(".seleccionar").prop("checked", false);
+		
+	}
+	contarSeleccionados();
+	
+}
+
 
 function guardarRecibo(event){
 	event.preventDefault();
