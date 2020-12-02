@@ -94,7 +94,10 @@
 								<label for="">Motivo:</label>
 								<?= generar_select ($link, "motivos_salida", "id_motivosSalida", "nombre_motivosSalida", true);?>
 							</div>	
-							
+							<div class="col-sm-2">
+								<label for="id_usuarios">Usuario:</label>
+								<?= generar_select ($link, "usuarios", "id_usuarios", "nombre_usuarios", true);?>
+							</div>
 						</div>
 						
 					</form>

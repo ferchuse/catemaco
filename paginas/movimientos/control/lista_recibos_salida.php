@@ -36,7 +36,9 @@
 		$consulta.=  " AND id_motivosSalida =  '{$_GET['id_motivosSalida']}' "; 
 	}
 	
-	
+	if($_GET["id_usuarios"] != ""){
+		$consulta.=  " AND recibos_salidas.id_usuarios = '{$_GET["id_usuarios"]}'"; 
+	}
 	
 	
 	$consulta.=  " ORDER BY id_reciboSalidas ASC"; 

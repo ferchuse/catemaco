@@ -91,6 +91,10 @@
 								<label for="nombre_condonaciones">Empresa:</label>
 								<?= generar_select ($link, "empresas", "id_empresas", "nombre_empresas", true);?>
 							</div>
+							<div class="col-sm-2">
+								<label for="id_usuarios">Usuario:</label>
+								<?= generar_select ($link, "usuarios", "id_usuarios", "nombre_usuarios", true);?>
+							</div>
 						</div>
 						
 					</form>

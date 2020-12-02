@@ -22,9 +22,9 @@
 						<label for="id_empresas">EMPRESA</label>
 						<?php echo generar_select($link, "empresas", "id_empresas", "nombre_empresas", false, false, true, $_SESSION["id_empresas"]); ?>
 					</div>
-					<div class="form-group">
+					<div class="form-group" hidden>
 						<label for="id_beneficiarios">BENEFICIARIO</label>
-						<?php echo generar_select($link, "beneficiarios", "id_beneficiarios", "nombre_beneficiarios",  false, false, true); ?>
+						<?php echo generar_select($link, "beneficiarios", "id_beneficiarios", "nombre_beneficiarios",  false, false, true, 2); ?>
 					</div> 
 					
 					<div class="form-group">

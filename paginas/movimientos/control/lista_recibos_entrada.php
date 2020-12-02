@@ -38,6 +38,10 @@
 		$consulta.=  " AND recibos_entradas.id_empresas = '{$_GET["id_empresas"]}'"; 
 	}
 	
+	if($_GET["id_usuarios"] != ""){
+		$consulta.=  " AND recibos_entradas.id_usuarios = '{$_GET["id_usuarios"]}'"; 
+	}
+	
 	
 	
 	$consulta.=  " ORDER BY id_deposito ASC"; 

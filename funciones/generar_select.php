@@ -32,7 +32,7 @@
 		while($fila = mysqli_fetch_assoc($result)){
 			$select.="<option value='".$fila[$llave_primaria]."'";
 			$select.=$fila[$llave_primaria] == $id_selected ? " selected" : "" ;
-			if($tabla = "taquillas"){
+			if($tabla == "taquillas"){
 				
 				$select .= " data-hora_salida='".date("H:i", strtotime($fila["hora_salida"]))."' ";
 			}
