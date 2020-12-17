@@ -87,8 +87,8 @@
 								</select>
 							</div>
 							<div class="col-sm-4">
-								<label for="nombre_condonaciones">Empresa:</label>
-								<?= generar_select ($link, "empresas", "id_empresas", "nombre_empresas", true);?>
+								<label for="nombre_condonaciones">Beneficiario:</label>
+								<?= generar_select ($link, "beneficiarios", "id_beneficiarios", "nombre_beneficiarios", true);?>
 							</div>
 							<div class="col-sm-3">
 								<label for="">Motivo:</label>

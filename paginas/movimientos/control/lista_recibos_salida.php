@@ -32,6 +32,9 @@
 	}
 	
 	
+	if($_GET['id_beneficiarios'] != ""){
+		$consulta.=  " AND id_beneficiarios =  '{$_GET['id_beneficiarios']}' "; 
+	}
 	if($_GET['id_motivosSalida'] != ""){
 		$consulta.=  " AND id_motivosSalida =  '{$_GET['id_motivosSalida']}' "; 
 	}
