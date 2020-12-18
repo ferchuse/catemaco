@@ -25,6 +25,8 @@
 		$set_local = "SET time_zone = '-05:00'";
 		$set_names = "SET NAMES 'utf8'";
 		date_default_timezone_set('America/Mexico_City');
+		setlocale(LC_ALL,"es_MX"); 
+		setlocale(LC_NUMERIC, 'en_US'); 
 		
 		if (!($link=mysqli_connect($host,$usuario,$pass)))
 		{
@@ -41,13 +43,13 @@
 		// mysqli_query($link, "SET CHARACTER SET utf8") or die("Error en charset UTF8".mysqli_error($link));
 		
 		// if($_SERVER["SERVER_NAME"] != "localhost") {
-			mysqli_query($link, "SET NAMES 'utf8'") or die("Error Cambiando charset").mysqli_error($link);
-			
-			mysqli_query($link, "SET sql_mode = ''") or die("Error Cambiando sqlmode").mysqli_error($link);
-			
-			mysqli_query($link, "SET SESSION sql_mode = ''") or die("Error Cambiando charset").mysqli_error($link);
-			
-			mysqli_query($link, "SET CHARACTER SET utf8") or die("Error en charset UTF8".mysqli_error($link));
+		mysqli_query($link, "SET NAMES 'utf8'") or die("Error Cambiando charset").mysqli_error($link);
+		
+		mysqli_query($link, "SET sql_mode = ''") or die("Error Cambiando sqlmode").mysqli_error($link);
+		
+		mysqli_query($link, "SET SESSION sql_mode = ''") or die("Error Cambiando charset").mysqli_error($link);
+		
+		mysqli_query($link, "SET CHARACTER SET utf8") or die("Error en charset UTF8".mysqli_error($link));
 		// }
 		
 		
