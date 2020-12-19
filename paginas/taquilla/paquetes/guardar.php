@@ -13,6 +13,7 @@
 	id_taquilla_destino = '{$_POST["id_taquilla"]}',
 	fecha_paquetes = NOW(),
 	tipo_paquete = '{$_POST["tipo_paquete"]}',
+	remitente = '{$_POST["remitente"]}',
 	destinatario = '{$_POST["destinatario"]}',
 	contenido = '{$_POST["contenido"]}',
 	costo = '{$_POST["costo"]}'

@@ -33,11 +33,14 @@
 							<option data-precio="80">PEQUEÑO (30X25X25) $80</option>
 							<option data-precio="140">MEDIANO (40X36X36) $140</option>
 							<option data-precio="210">GRANDE (60X30X33) $210</option>
+							<option data-precio="300">EXTRA GRANDE (70X80X80) $300</option>
 							
 						</select>
 					</div>
-					
-					
+					<div class="form-group">		
+						<label >Remitente:</label>
+						<input class="form-control" type="text" name="remitente" id="remitente" required>
+					</div>
 					<div class="form-group">		
 						<label >Nombre Destinatario:</label>
 						<input class="form-control" type="text" name="destinatario" id="destinatario" required>

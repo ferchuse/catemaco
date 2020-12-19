@@ -58,6 +58,7 @@
 		$respuesta.= "  Destino :     ". $registro["nombre_taquilla"]."\n";
 		$respuesta.= "  Tamano:       ". $registro["tipo_paquete"]."\n";
 		$respuesta.= "  Contenido:    ". $registro["contenido"]."\n";
+		$respuesta.= "  Remitente: ". $registro["remitente"]."\n";
 		$respuesta.= "  Destinatario: ". $registro["destinatario"]."\n";
 		$respuesta.= "  Costo:      $ ". $registro["costo"]."\n";
 		$respuesta.= "  Usuario:      " . $_COOKIE["nombre_usuarios"]."\n\n\n\n";
