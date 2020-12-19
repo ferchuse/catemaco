@@ -11,7 +11,7 @@
 	LEFT JOIN taquillas ON taquillas.id_taquilla = paquetes.id_taquilla_destino
 	
 	WHERE id_corridas = '{$_GET["id_corridas"]}' ";
-		
+	
 	if($_GET["id_usuarios"] != ""){
 		$consulta_paquetes.=" AND id_usuarios = '{$_GET["id_usuarios"]}' ";
 	}
@@ -107,6 +107,10 @@
 							?>
 							<button class="btn btn-danger cancelar" title="Cancelar"     data-id_registro='<?php echo $filas["id_boletos"]?>'>
 								<i class="fas fa-times"></i>
+							</button>	
+							
+							<button class="btn btn-warning editar_boleto" title="Editar"     data-id_registro='<?php echo $filas["id_boletos"]?>'>
+								<i class="fas fa-edit"></i>
 							</button>	
 							
 							<?php

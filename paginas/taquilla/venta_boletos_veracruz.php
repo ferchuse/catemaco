@@ -346,13 +346,15 @@
 		
 		<?php include("gastos/form_gastos.php")?>
 		<?php include("forms/form_taquilla_sesion.php")?>
+		<?php include("forms/form_editar_boleto.php")?>
 		
 		<?php include("../../scripts.php")?>
 		<script src="../../plugins/pos_print/websocket-printer.js" > </script>
 		<?php include("boletos_iv/form_corridas.php");?>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js" ></script>
-		<script src="boletos_iv/venta_boletos.js?v=<?= date("Y-m-d-H-i-s")?>"></script>
-		<script src="gastos/gastos.js?v=<?= date("Y-m-d-H-i-s")?>"></script>
+		<script src="boletos_iv/venta_boletos.js?v=<?= date("Y-m-d-H-i")?>"></script>
+		<script src="gastos/gastos.js?v=<?= date("Y-m-d-H-i")?>"></script>
+		<script src="js/editar_boletos.js?v=<?= date("Y-m-d-H")?>"></script>
 		
 	</body>
 </html>																														
