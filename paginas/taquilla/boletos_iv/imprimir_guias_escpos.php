@@ -139,6 +139,20 @@
 		
 		$copias = ["Operador", "Taquilla"];
 		
+		if(isset($_GET["copia"])){
+			if($_GET["copia"] == 'SI'){
+				$copias = ["Operador", "Taquilla"];
+			}
+			else{
+				$copias = ["Operador"];
+			}
+		}
+		else{
+			$copias = ["Operador", "Taquilla"];
+		}
+		
+		
+		
 		foreach( $copias AS $copia){
 			
 			// $respuesta = file_get_contents('logo_brujaz.tmb');

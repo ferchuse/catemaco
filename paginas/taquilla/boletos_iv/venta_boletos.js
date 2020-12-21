@@ -783,11 +783,16 @@ function finalizarCorrida(){
 
 function imprimirGuia(id_corridas){
 	console.log("imprimirGuia()", id_corridas);
+	var copia = 'SI';
+	
+	 copia = $("#copia_parcial").prop("checked") ? 'SI' : 'NO';
+	
 	
 	$.ajax({
 		"url": "boletos_iv/imprimir_guias_escpos.php",
 		"data": {
 			"id_corridas": id_corridas,
+			"copia": copia,
 			"id_usuarios" : $("#filtro_usuarios").val()
 		}
 		}).done(function(respuesta){

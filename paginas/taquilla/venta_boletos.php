@@ -233,6 +233,10 @@
 													<button class="btn btn-info float-right" id="imprimir_guia">
 														<i class="fas fa-print"></i> Imprimir Guia Parcial
 													</button>
+													<label class="float-right" >
+														<input type="checkbox" id="copia_parcial" checked/>
+														Copia 
+													</label >
 												</div>
 												<div class="card-body" >
 													<div class="row" >
