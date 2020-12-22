@@ -14,6 +14,7 @@
 	nombre_usuarios,
 	suma_boletos,
 	suma_paquetes,
+	suma_equipaje,
 	suma_gastos
 	FROM
 	usuarios
