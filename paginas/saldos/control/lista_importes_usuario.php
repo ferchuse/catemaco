@@ -118,7 +118,7 @@
 					$totales[1]+= $filas["suma_paquetes"];
 					$totales[2]+= $filas["suma_equipaje"];
 					$totales[3]+= $filas["suma_gastos"];
-					$balance_usuario  = $filas["suma_boletos"] + $filas["suma_paquetes"] - $filas["suma_gastos"] ;
+					$balance_usuario  = $filas["suma_boletos"] + $filas["suma_paquetes"]  + $filas["suma_equipaje"] - $filas["suma_gastos"] ;
 					$balance_total+= $balance_usuario;
 				?>
 				<tr>
