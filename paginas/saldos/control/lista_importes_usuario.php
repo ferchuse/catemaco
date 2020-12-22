@@ -57,14 +57,31 @@
 	estatus_gastos <> 'Cancelado'
 	AND DATE(fecha_gastos) BETWEEN '{$_GET["fecha_inicial"]}'
 	AND '{$_GET["fecha_final"]}'
-	
 	GROUP BY
 	id_usuarios
 	) AS t_gastos USING (id_usuarios)
+	
+	
+	LEFT JOIN (
+	SELECT
+	id_usuarios,
+	SUM(importe) AS suma_equipaje
+	FROM
+	equipaje
+	WHERE
+	estatus <> 'Cancelado'
+	AND DATE(fecha_equipaje) BETWEEN '{$_GET["fecha_inicial"]}'
+	AND '{$_GET["fecha_final"]}'
+	GROUP BY
+	id_usuarios
+	) AS t_equipaje USING (id_usuarios)
+	
+	
+	
 	WHERE usuarios.id_administrador = '1'
 	";
 	
-  
+	
 	
 	$result = mysqli_query($link,$consulta);
 	if($result){
@@ -84,8 +101,10 @@
 				<th>Usuario</th>
 				<th>Venta de Boletos</th>
 				<th>Paquetería</th>
+				<th>Equipaje Extra</th>
 				<th>Gastos</th>
 				<th>Total</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -96,7 +115,8 @@
 					$filas = $fila ;
 					$totales[0]+= $filas["suma_boletos"];
 					$totales[1]+= $filas["suma_paquetes"];
-					$totales[2]+= $filas["suma_gastos"];
+					$totales[2]+= $filas["suma_equipaje"];
+					$totales[3]+= $filas["suma_gastos"];
 					$balance_usuario  = $filas["suma_boletos"] + $filas["suma_paquetes"] - $filas["suma_gastos"] ;
 					$balance_total+= $balance_usuario;
 				?>
@@ -111,12 +131,16 @@
 						$ <?php echo $filas["suma_paquetes"]  == '' ? 0 : number_format($filas["suma_paquetes"])?>
 					</td>
 					<td class="text-right">
+						$ <?php echo $filas["suma_equipaje"]  == '' ? 0 : number_format($filas["suma_equipaje"])?>
+					</td>
+					<td class="text-right">
 						$ <?php echo $filas["suma_gastos"]  == ''? 0 : number_format($filas["suma_gastos"]) ?>
 					</td>
 				</a>
 				<td class="text-right">
-					<?php echo number_format($balance_usuario); ?>
+					$ <?php echo number_format($balance_usuario); ?>
 				</td>
+				
 			</tr>
 			
 			<?php
@@ -160,4 +184,4 @@
 		}
 		
 		
-	?>																											
+	?>																												
