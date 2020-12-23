@@ -50,6 +50,18 @@
 			// $texto.="\x1bt2";
 			$texto.="    ENLACES DE TRANSPORTE TERRESTRE".chr(10).chr(13);
 			$texto.="       7 DE ENERO, S.A. DE C.V.".chr(10).chr(13).chr(10).chr(13);
+			
+			if($item["id_taquilla"] == '4'){
+				
+				$texto.=" LATERAL AV. INSURGENTES NORTE,\n METRO INDIOS VERDES ANDEN  'A' \n";
+				$texto.=" TEL: 55 57 50 08 58 \n\n";
+				
+			}
+			else{
+				
+				$texto.="     CATEMACO 294-943-1725 \n";
+				$texto.="     SAN ANDRES 294-942-1976 \n\n";
+			}
 			// $texto.="     TERMINAL EN MEXICO D.F. METRO".chr(10).chr(13); 
 			// $texto.="             INDIOS VERDES".chr(10).chr(13);
 			// $texto.="   ANDEN 'A' TEL:5750-0858   5750-0847".chr(10).chr(13);
