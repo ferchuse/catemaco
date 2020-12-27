@@ -15,7 +15,8 @@
 							<?php foreach($corridas as $corrida ){?>
 								
 								<option value="<?= $corrida["id_corridas"]?>">
-									<?= date("d-m-Y", strtotime($corrida["fecha_corridas"]))." Eco: ".$corrida["num_eco"] ?>
+									<?= "#".$corrida["id_corridas"].
+										" ".date("d-m-Y", strtotime($corrida["fecha_corridas"]))." Eco: ".$corrida["num_eco"]  ?>
 									
 								</option>
 							<?php }?>
