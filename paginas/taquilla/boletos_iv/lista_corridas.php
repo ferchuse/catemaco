@@ -167,9 +167,16 @@
 							<button  class="btn btn-info  btn-sm imprimir " hidden title="Imprimir" data-id_registro='<?php echo $filas["id_corridas"]?>'>
 								<i class="fas fa-print"></i> Imprimir Guía
 							</button>	
-							
 							<?php
+								if(dame_permiso("venta_boletos.php", $link) == 'Supervisor'){
+								?>
+								<button class="btn btn-success  btn-sm activar_corrida" title="Activar Corrida" 
+								data-id_corridas="<?php echo $filas["id_corridas"]?>">
+									<i class="fas fa-check"></i> Activar Corrida
+								</button>
 								
+								<?php
+								}
 								
 								break;
 								
@@ -214,86 +221,86 @@
 						?>
 						
 						
-					</td>
-					<td>
-						<?php
-							switch($filas["estatus_pago"]){
-								case "PENDIENTE":
-								if($filas["estatus_corridas"] == "Finalizada"){
-									echo "<label class='badge badge-warning'> <input type='checkbox' form='form_pagar_corridas' name='corridas[]' class='select' value='{$filas["id_corridas"]}' data-importe_corridas='{$filas["total_guia"]}'>";
-									echo $filas["estatus_pago"]."</label>";
+						</td>
+						<td>
+							<?php
+								switch($filas["estatus_pago"]){
+									case "PENDIENTE":
+									if($filas["estatus_corridas"] == "Finalizada"){
+										echo "<label class='badge badge-warning'> <input type='checkbox' form='form_pagar_corridas' name='corridas[]' class='select' value='{$filas["id_corridas"]}' data-importe_corridas='{$filas["total_guia"]}'>";
+										echo $filas["estatus_pago"]."</label>";
+									}
+									
+									break;
+									
+									case "PAGADA":
+									
+									echo "<span class='badge badge-success'>".$filas["estatus_pago"]."</span>";
+									
+									
+								?>
+								<?php
+									
+									
+									break;
+									
+									case "Cancelada":
+									echo "<span class='badge badge-danger'>".$filas["estatus_corridas"]."</span>";
+									break;
+									
 								}
 								
-								break;
-								
-								case "PAGADA":
-								
-								echo "<span class='badge badge-success'>".$filas["estatus_pago"]."</span>";
-								
-								
 							?>
-							<?php
-								
-								
-								break;
-								
-								case "Cancelada":
-								echo "<span class='badge badge-danger'>".$filas["estatus_corridas"]."</span>";
-								break;
-								
-							}
 							
-						?>
+							
+						</td>
+						<td><?php echo $filas["id_corridas"]?></td>
+						<td><?php echo $filas["num_eco"]?></td>
+						<td><?php echo $filas["nombre_taquilla"]?></td>
+						<td><?php echo $filas["fecha_corridas"]?></td>
+						<td><?php echo $filas["hora_corridas"]?></td>
+						
+						<td  class="text-right">
+							$<?php echo number_format($filas["importe_corridas"], 0)?>
+						</td>
+						
+						<td><?php echo $filas["origen"]?></td>
+						<td><?php echo $filas["destino"]?></td>
+						<td><?php echo $filas["nombre_usuarios"]?></td>
+						
+					</tr>
+					
+					<?php
+						if($fila["estatus_corridas"] != "Cancelada"){
+							
+							$total_corrida+= $filas["importe_corridas"];
+						}
 						
 						
-					</td>
-					<td><?php echo $filas["id_corridas"]?></td>
-					<td><?php echo $filas["num_eco"]?></td>
-					<td><?php echo $filas["nombre_taquilla"]?></td>
-					<td><?php echo $filas["fecha_corridas"]?></td>
-					<td><?php echo $filas["hora_corridas"]?></td>
-					
-					<td  class="text-right">
-						$<?php echo number_format($filas["importe_corridas"], 0)?>
-					</td>
-					
-					<td><?php echo $filas["origen"]?></td>
-					<td><?php echo $filas["destino"]?></td>
-					<td><?php echo $filas["nombre_usuarios"]?></td>
-					
-				</tr>
-				
-				<?php
-					if($fila["estatus_corridas"] != "Cancelada"){
-						
-						$total_corrida+= $filas["importe_corridas"];
 					}
-					
-					
-				}
-			?>
-			
-			
-		</tbody>
-		<tfoot>
-			<tr class="bg-secondary text-white">
-				<td colspan="7">TOTAL</td>
-				<td class="text-right">$<?= number_format($total_corrida,0)?></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-		</tfoot>
-	</table>
-	
-	<?php
+				?>
+				
+				
+			</tbody>
+			<tfoot>
+				<tr class="bg-secondary text-white">
+					<td colspan="7">TOTAL</td>
+					<td class="text-right">$<?= number_format($total_corrida,0)?></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</tfoot>
+		</table>
 		
-	}
-	
-	else {
-		echo "Error en ".$consulta.mysqli_Error($link);
+		<?php
+			
+		}
 		
-	}
-	
-	
-?>						
+		else {
+			echo "Error en ".$consulta.mysqli_Error($link);
+			
+		}
+		
+		
+	?>							

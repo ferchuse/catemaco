@@ -58,6 +58,7 @@ function onLoad(){
 	$("#lista_corridas").on("click", ".editar", editarRegistro);
 	$("#lista_corridas").on("click", ".cancelar", confirmaCancelarCorrida);
 	$("#lista_corridas").on("click", ".finalizar_corrida", confirmaFinalizar);
+	$("#lista_corridas").on("click", ".activar_corrida", activarCorrida);
 	
 	$("#lista_corridas").on("click", ".imprimir", function(){
 		imprimirGuia($(this).data("id_registro"));
@@ -780,12 +781,43 @@ function finalizarCorrida(){
 		
 	});
 }
+function activarCorrida(){
+	console.log("activarCorrida()");
+	boton = $(this);
+	icono = $(this).find(".fas");
+	
+	id_corridas = $(this).data("id_corridas");
+	
+	boton.prop("disabled", true);
+	icono.toggleClass("fa-spinner fa-spin fa-check");
+	
+	$.ajax({
+		"url": "boletos_iv/activar_corrida.php",
+		"method": "post",
+		"data": {
+			"id_corridas": id_corridas
+		}
+		}).done(function(){
+		
+		listarCorridas();
+		
+		
+		}).fail(function(){
+		
+		
+		}).always(function(){
+		
+		boton.prop("disabled", false);
+		icono.toggleClass("fa-spinner fa-spin fa-check");
+		
+	});
+}
 
 function imprimirGuia(id_corridas){
 	console.log("imprimirGuia()", id_corridas);
 	var copia = 'SI';
 	
-	 copia = $("#copia_parcial").prop("checked") ? 'SI' : 'NO';
+	copia = $("#copia_parcial").prop("checked") ? 'SI' : 'NO';
 	
 	
 	$.ajax({
