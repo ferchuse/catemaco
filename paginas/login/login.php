@@ -16,6 +16,7 @@
 	nombre_usuarios,
 	id_recaudaciones, 
 	id_administrador, 
+	taquilla_predet, 
 	'recaudacion' AS tipo_usuario 
 	FROM usuarios
 	WHERE nombre_usuarios='$myusername' 
@@ -28,6 +29,7 @@
 	nombre_propietarios AS nombre_usuarios,
 	1 AS id_recaudaciones,
 	id_administrador,
+	'' AS taquilla_predet, 
 	'propietario' AS tipo_usuario 
 	FROM
 	propietarios
@@ -65,6 +67,7 @@
 		setcookie("id_recaudaciones",  $row["id_recaudaciones"],  0, "/");
 		setcookie("id_administrador",  $row["id_administrador"],  0, "/");
 		setcookie("tipo_usuario",  $row["tipo_usuario"],  0, "/");
+		setcookie("id_taquilla", $row["taquilla_predet"],  0, "/");
 		
 	}
 	else{
