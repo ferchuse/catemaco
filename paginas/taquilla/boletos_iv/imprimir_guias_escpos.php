@@ -69,7 +69,7 @@
 	// $consulta_gastos.=" AND gastos_corrida.id_usuarios = '{$_GET["id_usuarios"]}' ";
 	// }
 	
-	$consulta_gastos.=" AND gastos.id_taquilla = '{$_COOKIE["id_taquilla"]}' ";
+	$consulta_gastos.=" AND gastos_corrida.id_taquilla = '{$_COOKIE["id_taquilla"]}' ";
 	
 	$consulta_gastos .=" 
 	AND estatus_gastos <> 'Cancelado'
