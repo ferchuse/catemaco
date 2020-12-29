@@ -12,6 +12,7 @@
 	id_cat_gastos = '{$_POST["id_cat_gastos"]}',
 	recibe = '{$_POST["recibe"]}',
 	id_usuarios = '{$_COOKIE["id_usuarios"]}',
+	id_taquilla = '{$_COOKIE["id_taquilla"]}',
 	importe = '{$_POST["importe"]}'
 	
 	";	
