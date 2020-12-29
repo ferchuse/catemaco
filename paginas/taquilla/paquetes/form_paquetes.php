@@ -24,7 +24,7 @@
 					</div>
 					<div class="form-group">		
 						<label >Taquilla Destino:</label>
-							<?= generar_select($link, "taquillas", "id_taquilla", "nombre_taquilla", false, false, true) ?>
+							<?= generar_select($link, "taquillas", "id_taquilla", "nombre_taquilla", false, false, true, 3) ?>
 					</div>
 					<div class="form-group">		
 						<label >Tamaño:</label>
