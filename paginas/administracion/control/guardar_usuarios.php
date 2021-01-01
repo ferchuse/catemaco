@@ -13,6 +13,7 @@
 		nombre_usuarios = '{$_POST['nombre_usuarios']}' , 
 		nombre_completo_usuarios = '{$_POST['nombre_completo_usuarios']}' , 
 		pass_usuarios ='{$_POST['pass_usuarios']}',
+		taquilla_predet ='{$_POST['taquilla_predet']}',
 		id_administrador ='1'
 		
 		";	
@@ -39,8 +40,10 @@
 		estatus_usuarios = '{$_POST['estatus_usuarios']}' , 
 		nombre_usuarios = '{$_POST['nombre_usuarios']}' , 
 		nombre_completo_usuarios = '{$_POST['nombre_completo_usuarios']}' , 
-		pass_usuarios = '{$_POST['pass_usuarios']}'
-		WHERE id_usuarios = '{$_POST['id_usuarios']}'
+		pass_usuarios = '{$_POST['pass_usuarios']}',
+		taquilla_predet ='{$_POST['taquilla_predet']}'
+		WHERE
+		id_usuarios = '{$_POST['id_usuarios']}'
 		";
 		$result_usuarios = 	mysqli_query($link,$q_usuario);
 		

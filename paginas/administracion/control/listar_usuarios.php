@@ -4,7 +4,7 @@
 	$link = Conectarse();
 	
 	$consulta = "SELECT * FROM usuarios 
-	
+	ORDER BY nombre_usuarios
 	"; 
 	 
 	$result = mysqli_query($link,$consulta);

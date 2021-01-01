@@ -45,6 +45,16 @@
 					</div>
 					<div class="row mb-2">
 						<div class="col-2">
+							<label >Taquilla:</label>
+						</div>	
+						<div class="col-5">			
+							<?php
+								echo generar_select($link, "taquillas", "id_taquilla", "nombre_taquilla", false, false, false, 0, 0, "taquilla_predet", "taquilla_predet");
+							?>
+						</div>
+					</div>
+					<div class="row mb-2">
+						<div class="col-2">
 							<label >Recaudación:</label>
 						</div>	
 						<div class="col-5">			
