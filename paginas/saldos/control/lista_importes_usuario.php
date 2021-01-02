@@ -80,6 +80,8 @@
 	
 	
 	WHERE usuarios.id_administrador = '1'
+	ORDER BY nombre_usuarios
+	
 	";
 	
 	

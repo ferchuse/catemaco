@@ -83,7 +83,7 @@
 	) AS t_equipaje USING (id_usuarios)
 	
 	
-	
+	ORDER BY nombre_usuarios
 	
 	
 	";
