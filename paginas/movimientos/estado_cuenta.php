@@ -36,15 +36,31 @@
 						<button  type="submit" id="btn_buscar"  class="btn btn-primary" >
 							<i class="fas fa-search"></i> Buscar
 						</button> 
+						
 						<div class="row"> 
 							<div class="col-sm-2">
-								<label>Año:</label>
+								<label>Tipo Búsqueda :</label>
+								<select class="form-control filtro" id="tipo_busqueda" name="tipo_busqueda" >
+									<option value="mensual">Por Mes</option>
+									<option value="libre" >Fecha Libre</option>
+								</select>
+							</div>
+							<div class="col-sm-2">
+								<label>Año :</label>
 								<select class="form-control filtro" id="year" name="year" >
 									<option <?= date("Y") == "2020" ? "selected": "";?> value="2020">2020</option>
 									<option <?= date("Y") == "2021" ? "selected": "";?> value="2021">2021</option>
 									<option <?= date("Y") == "2022" ? "selected": "";?> value="2022">2022</option>
 									<option <?= date("Y") == "2023" ? "selected": "";?> value="2023">2023</option>
 								</select>
+							</div>
+							<div hidden class="col-sm-2">
+								<label>Fecha Inicial:</label>
+								<input type="date" name="fecha_inicial" id="fecha_inicial" class="form-control" value="<?= date("Y-m-d")?>" disabled>
+							</div>
+							<div hidden class="col-sm-2">
+								<label>Fecha Final:</label>
+								<input type="date" name="fecha_final" id="fecha_final" class="form-control" value="<?= date("Y-m-d")?>" disabled >
 							</div>
 							<div class="col-sm-2">
 								<label>Mes Inicial:</label>
@@ -134,38 +150,37 @@
 								<div id="mensaje"></div>
 							</div>
 						</div>
-					
+						
 					</div>
-					</div>
-					<!-- /.container-fluid -->
-					
-					<!-- Sticky Footer -->
-					<footer class="sticky-footer">
+				</div>
+				<!-- /.container-fluid -->
+				
+				<!-- Sticky Footer -->
+				<footer class="sticky-footer">
 					<div class="container my-auto">
-					<div class="copyright text-center my-auto">
-					<span>Copyright  Glifo Media 2020</span>
+						<div class="copyright text-center my-auto">
+							<span>Copyright  Glifo Media 2020</span>
+						</div>
 					</div>
-					</div>
-					</footer>
-					
-					</div>
-					<!-- /.content-wrapper -->
-					</div>
-					<!-- /#wrapper -->
-					
-					<!-- Scroll to Top Button-->
-					<a class="scroll-to-top rounded" href="#page-top">
-					<i class="fas fa-angle-up"></i>
-					</a>	
-					<div class="d-print-inline d-none p-2 carta"   id="impresion">
-					
-					</div>
-					
-					<?php 
-					include("../../scripts.php");
-					?>
-					<script src="js/estado_cuenta.js?v=<?php echo date('Y-m-d-H:i:s');?>"></script>
-					<script src="../catalogos/js/buscar.js"></script>
-					</body>
-					</html>
-										
+				</footer>
+				
+			</div>
+			<!-- /.content-wrapper -->
+		</div>
+		<!-- /#wrapper -->
+		
+		<!-- Scroll to Top Button-->
+		<a class="scroll-to-top rounded" href="#page-top">
+			<i class="fas fa-angle-up"></i>
+		</a>	
+		<div class="d-print-inline d-none p-2 carta"   id="impresion">
+			
+		</div>
+		
+		<?php 
+			include("../../scripts.php");
+		?>
+		<script src="js/estado_cuenta.js?v=<?php echo date('Y-m-d-H:i:s');?>"></script>
+		<script src="../catalogos/js/buscar.js"></script>
+	</body>
+</html>

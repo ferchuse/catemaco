@@ -4,8 +4,37 @@ $(document).ready( function onLoad(){
 	listarRegistros();
 	
 	
+	$("#tipo_busqueda").change(function(){
+		
+		if($(this).val() == "libre"){
+			$("#fecha_inicial").prop("disabled", false).closest("div").prop("hidden", false)
+			$("#fecha_final").prop("disabled", false).closest("div").prop("hidden", false)
+			
+			
+			$("#year").prop("disabled", true).closest("div").prop("hidden", true)
+			$("#mes_inicial").prop("disabled", true).closest("div").prop("hidden", true)
+			$("#mes_final").prop("disabled", true).closest("div").prop("hidden", true)
+			
+			
+			
+		}
+		else{
+			
+			$("#fecha_inicial").prop("disabled", true).closest("div").prop("hidden", true)
+			$("#fecha_final").prop("disabled", true).closest("div").prop("hidden", true)
+			
+			
+			$("#year").prop("disabled", false).closest("div").prop("hidden", false)
+			$("#mes_inicial").prop("disabled", false).closest("div").prop("hidden", false)
+			$("#mes_final").prop("disabled", false).closest("div").prop("hidden", false)
+			
+			
+			
+		}
+	})
 	
-
+	
+	
 	
 	$('#form_filtro').on('submit', function filtrar(event){
 		
@@ -14,7 +43,7 @@ $(document).ready( function onLoad(){
 	});
 	
 	
-		
+	
 });
 
 
