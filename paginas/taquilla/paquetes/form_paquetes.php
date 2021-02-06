@@ -22,9 +22,10 @@
 							<?php }?>
 						</select>
 					</div>
-					<div class="form-group">		
+					<div class="form-group " >		
 						<label >Taquilla Destino:</label>
-							<?= generar_select($link, "taquillas", "id_taquilla", "nombre_taquilla", false, false, true, 3) ?>
+							<input type ="hidden"  name="id_taquillas" id="id_taquillas" value="3" >
+							<input class="form-control" readonly type="text"   value="CATEMACO" >
 					</div>
 					<div class="form-group">		
 						<label >Tamaño:</label>
