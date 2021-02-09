@@ -8,13 +8,13 @@
 				</div>
 				
 				<div class="modal-body">
-				
+					
 					<div class="form-group">		
 						<label >Corrida:</label>
 						<select required class="form-control" id="paquete_id_corridas" name="id_corridas" required>
-								<option value="">Elige...</option>
+							<option value="">Elige...</option>
 							<?php foreach($corridas as $corrida ){?>
-							
+								
 								<option value="<?= $corrida["id_corridas"]?>">
 									<?= "#".$corrida["id_corridas"]." ". date("d-m-Y", strtotime($corrida["fecha_corridas"]))." Eco: ".$corrida["num_eco"] ?>
 									
@@ -24,8 +24,10 @@
 					</div>
 					<div class="form-group " >		
 						<label >Taquilla Destino:</label>
-							<input type ="hidden"  name="id_taquillas" id="id_taquillas" value="3" >
-							<input class="form-control" readonly type="text"   value="CATEMACO" >
+						<select  class="form-control" name="id_taquilla_destino " id="id_taquilla_destino "  >
+							<option value="4" >INDIOS VERDES</option>
+							<option value="3" selected >CATEMACO</option>
+						</select>	
 					</div>
 					<div class="form-group">		
 						<label >Tamaño:</label>
@@ -37,8 +39,8 @@
 							<option data-precio="300">EXTRA GRANDE (70X80X80) $300</option>
 							
 						</select>
-					</div>
-					<div class="form-group">		
+						</div>
+						<div class="form-group">		
 						<label >Remitente:</label>
 						<input class="form-control" type="text" name="remitente" id="remitente" required>
 					</div>
@@ -54,8 +56,8 @@
 						<label >Costo:</label>
 						<input readonly class="form-control" type="number" name="costo" id="costo" required >
 					</div>
-				
-				
+					
+					
 				</div>
 				
 				<!-- Modal footer -->
@@ -64,8 +66,8 @@
 					<i class="fas fa-times"></i> Cancelar</button>
 					<button type="submit" class="btn btn-success " >
 					<i class="fas fa-save"></i> Guardar </button>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 </form>		
