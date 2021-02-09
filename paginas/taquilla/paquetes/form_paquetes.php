@@ -24,7 +24,7 @@
 					</div>
 					<div class="form-group " >		
 						<label >Taquilla Destino:</label>
-						<select  class="form-control" name="id_taquilla_destino" id="id_taquilla_destino"  >
+						<select  class="form-control" name="id_taquilla" id="id_taquilla"  >
 							<option value="4" >INDIOS VERDES</option>
 							<option value="3" selected >CATEMACO</option>
 						</select>	
